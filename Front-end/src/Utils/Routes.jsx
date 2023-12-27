@@ -14,7 +14,7 @@ export const PrivateRoute = ({ component: InternalComponent, ...rest }) => (
                     }}
                 />
             )
-        }}
+        }} 
     />
 );
 

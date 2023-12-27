@@ -1,4 +1,6 @@
-import { Switch, Route, Routes } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
+
+import { PrivateRoute } from "./Utils/Routes";
 
 import BulletinBoardPage from "./pages/BulletinBoardPage";
 import BulletinMinePage from "./pages/BulletinMyPage";
@@ -18,33 +20,31 @@ import QueryGeneralPage from "./pages/QueryGeneralPage";
 import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
 
-function App() {
+const Mainboard = () =>{
 
   return (
     <Switch>
-      <Routes>
-        <PrivateRoute path="/messageboardpage" element={<MessageBoardPage />} />
-        <PrivateRoute path="/messagepage" element={<MessagePage />} />
-        <PrivateRoute path="/postagentpage" element={<PostAgentPage />} />
-        <PrivateRoute path="/postrepage" element={<PostREPage />} />
-        <PrivateRoute path="/favouritepage" element={<FavouritePage />} />
-        <PrivateRoute path="/bulletinmypage" element={<BulletinMinePage />} />
-        <PrivateRoute path="/querybulletinpage" element={<QueryBulletinPage />} />
-        <PrivateRoute path="/querygeneralpage" element={<QueryGeneralPage />} />
+        <PrivateRoute exact path="/messageboardpage" component={<MessageBoardPage />} />
+        <PrivateRoute exact path="/messagepage" component={<MessagePage />} />
+        <PrivateRoute exact path="/postagentpage" component={<PostAgentPage />} />
+        <PrivateRoute exact path="/postrepage" component={<PostREPage />} />
+        <PrivateRoute exact path="/favouritepage" component={<FavouritePage />} />
+        <PrivateRoute exact path="/bulletinmypage" component={<BulletinMinePage />} />
+        <PrivateRoute exact path="/querybulletinpage" component={<QueryBulletinPage />} />
+        <PrivateRoute exact path="/querygeneralpage" component={<QueryGeneralPage />} />
 
-        <Route path="/" element={<DashboardPage />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
-        <Route path="/bulletinselectpage" element={<BulletinSelectPage />} />
-        <Route path="/bulletinboardpage" element={<BulletinBoardPage />} />
-        <Route path="/bulletinpage" element={<BulletinPage />} />
-        <Route path="/faqpage" element={<FAQPage />} />
-        <Route path="/feedbackboardpage" element={<FeedbackBoardPage />} />
-        <Route path="/feedbackpage" element={<FeedbackPage />} />
-        <Route path="/signinpage" element={<SignInPage />} />
-        <Route path="/signuppage" element={<SignUpPage />} />
-      </Routes>
+        <Route exact path="/" component={<DashboardPage />} />
+        <Route exact path="/dashboard" component={<DashboardPage />} />
+        <Route exact path="/bulletinselectpage" component={<BulletinSelectPage />} />
+        <Route exact path="/bulletinboardpage" component={<BulletinBoardPage />} />
+        <Route exact path="/bulletinpage" component={<BulletinPage />} />
+        <Route exact path="/faqpage" component={<FAQPage />} />
+        <Route exact path="/feedbackboardpage" component={<FeedbackBoardPage />} />
+        <Route exact path="/feedbackpage" component={<FeedbackPage />} />
+        <Route exact path="/signinpage" component={<SignInPage />} />
+        <Route exact path="/signuppage" component={<SignUpPage />} />
     </Switch>  
   );
 }
 
-export default App;
+export default Mainboard;
