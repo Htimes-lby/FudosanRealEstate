@@ -19,6 +19,7 @@ import QueryBulletinPage from "./pages/QueryBulletinPage";
 import QueryGeneralPage from "./pages/QueryGeneralPage";
 import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
+import BasicTable from "./components/BasicTable";
 
 const Mainboard = () =>{
 
@@ -43,6 +44,7 @@ const Mainboard = () =>{
         <Route exact path="/feedbackpage" component={FeedbackPage} />
         <Route exact path="/signinpage" component={SignInPage} />
         <Route exact path="/signuppage" component={SignUpPage} />
+        <Route exact path="/basictable" component={BasicTable} />
     </Switch>  
   );
 }
