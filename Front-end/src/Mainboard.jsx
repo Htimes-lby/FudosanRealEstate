@@ -2,10 +2,10 @@ import { Switch, Route } from "react-router-dom";
 
 import { PrivateRoute } from "./Utils/Routes";
 
-import BulletinBoardPage from "./pages/BulletinBoardPage";
-import BulletinMinePage from "./pages/BulletinMyPage";
-import BulletinPage from "./pages/BulletinPage";
-import BulletinSelectPage from "./pages/BulletinSelectPage";
+import ItemBoardPage from "./pages/ItemBoardPage";
+import ItemDetailPage from "./pages/ItemDetailPage";
+import ItemListPage from "./pages/ItemListPage";
+import ItemMyPage from "./pages/ItemMyPage";
 import DashboardPage from "./pages/DashboardPage";
 import FAQPage from "./pages/FAQPage";
 import FavouritePage from "./pages/FavouritePage";
@@ -29,15 +29,15 @@ const Mainboard = () =>{
         <PrivateRoute exact path="/postagentpage" component={PostAgentPage} />
         <PrivateRoute exact path="/postrepage" component={PostREPage} />
         <PrivateRoute exact path="/favouritepage" component={FavouritePage} />
-        <PrivateRoute exact path="/bulletinmypage" component={BulletinMinePage} />
+        <PrivateRoute exact path="/itemmypage" component={ItemMyPage} />
         <PrivateRoute exact path="/querybulletinpage" component={QueryBulletinPage} />
         <PrivateRoute exact path="/querygeneralpage" component={QueryGeneralPage} />
 
         <Route exact path="/" component={DashboardPage} />
         <Route exact path="/dashboard" component={DashboardPage} />
-        <Route exact path="/bulletinselectpage" component={BulletinSelectPage} />
-        <Route exact path="/bulletinboardpage" component={BulletinBoardPage} />
-        <Route exact path="/bulletinpage" component={BulletinPage} />
+        <Route exact path="/itemboardpage" component={ItemBoardPage} />
+        <Route exact path="/itemlistpage" component={ItemListPage} />
+        <Route exact path="/itemdetailpage" component={ItemDetailPage} />
         <Route exact path="/faqpage" component={FAQPage} />
         <Route exact path="/feedbackboardpage" component={FeedbackBoardPage} />
         <Route exact path="/feedbackpage" component={FeedbackPage} />
