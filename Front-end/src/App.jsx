@@ -9,7 +9,7 @@ function App() {
   return (
     <div>
       <Router history={history}>
-        {/* <Header /> */}
+        <Header />
         <Mainboard />
         {/* <Footer /> */}
       </Router>

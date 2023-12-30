@@ -10,3 +10,16 @@
 body {
   font-family: "Poppins", sans-serif;
 }
+
+#dropdown-menu:hover #dropdown-content{
+  display:block;
+}
+
+.bg-image-blur{
+  background-image: url('./assets/kawaguchiko-city.jpg');
+  filter: blur(6px);
+}
+
+.bg-image{
+  background-image: url('./assets/kawaguchiko-city.jpg');
+}
