@@ -2,7 +2,7 @@ import React from 'react';
 
 const ShowContents = ({ text, maxLength }) => {
   if (text.length <= maxLength) {
-    return <div className="p-5"> {text}</div>;
+    return <div > {text}</div>;
   }
 
   const truncatedText = text.substring(0, maxLength) + '...';
