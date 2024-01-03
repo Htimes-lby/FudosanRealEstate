@@ -11,7 +11,7 @@ function App() {
       <Router history={history}>
         <Header />
         <Mainboard />
-        {/* <Footer /> */}
+        <Footer />
       </Router>
     </div>
   )
