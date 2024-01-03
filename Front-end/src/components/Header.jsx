@@ -14,7 +14,7 @@ const Header = () => {
                     <div className=' relative inline-block' id='dropdown-menu'>
                         <div className=' text-[18px] leading-[80px] text-white font-semibold px-5 cursor-pointer'>マイページ</div>
                         <div className=' hidden absolute top-[60px] min-w-[150px] z-10 bg-[#0D4868]' id='dropdown-content'>
-                            <div className=' text-[18px] font-semibold py-1 text-white'><Link to='/messageboard'>メッセージ</Link></div>
+                            <div className=' text-[18px] font-semibold py-1 text-white'><Link to='/messageboardpage'>メッセージ</Link></div>
                             <div className=' text-[17px] font-semibold py-1 text-white'><Link to='/itemmypage'>私の投稿</Link></div>
                             <div className=' text-[17px] font-semibold py-1 text-white'><Link to='/favouritepage'>お気に入り</Link></div>
                             <div className=' text-[17px] font-semibold py-1 text-white'><Link to='/querygeneralpage'>総合窓口</Link></div>
