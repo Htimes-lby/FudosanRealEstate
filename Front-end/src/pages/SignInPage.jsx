@@ -21,7 +21,7 @@ const SignInPage = () => {
                         />
                     </div>
                     <div className=' flex flex-col w-full'>
-                        <label htmlFor="" className='text-white font-normal mb-1 mt-7 text-[20px]'>パスワード<br /><span className='text-[14px] leading-[2px]'>登録済みのパスワードをご入力ください。</span><br /><a href="" className='text-[14px] text-violet-300'>パスワードを忘れた場合</a></label>
+                        <label htmlFor="" className='text-white font-normal mb-1 mt-7 text-[20px]'>パスワード<br /><span className='text-[14px] leading-[2px]'>登録済みのパスワードをご入力ください。</span><br /></label>
                         <input
                             className='h-[35px]'
                             type="text"
@@ -29,8 +29,8 @@ const SignInPage = () => {
                             name="password"
                         />
                     </div>
-                    <p className='text-white mt-10'>アカウント作成と同時に、当サイトの <a href="" className='text-[14px] text-violet-300 cursor-pointer'>個人情報保護方針</a>および
-                    <a href="" className='text-[14px] text-violet-300'>プライバシーポリシー</a>に同意したとみなされます。</p> 
+                    <p className='text-white mt-10'>アカウント作成と同時に、当サイトの <a href="" className='text-[14px] cursor-pointer underline underline-offset-4 decoration-red-500'>個人情報保護方針</a>および
+                    <a href="" className='text-[14px] underline underline-offset-4 decoration-red-500'>プライバシーポリシー</a>に同意したとみなされます。</p> 
                     <button className='mt-10 w-full h-[50px] rounded-md bg-[#2A6484] text-white font-semibold border-white/50 border-2 text-[22px]'>ログイン </button>
                     <button className='mt-10 w-full h-[50px] rounded-md bg-[#2A6484] text-white font-semibold border-white/50 border-2 text-[19px]'>サインアップページに移動 </button>
                 </form>
