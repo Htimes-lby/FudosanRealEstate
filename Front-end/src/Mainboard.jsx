@@ -10,47 +10,39 @@ import DashboardPage from "./pages/DashboardPage";
 import FAQPage from "./pages/FAQPage";
 import FavouritePage from "./pages/FavouritePage";
 import FeedbackBoardPage from "./pages/FeedbackBoardPage";
-import FeedbackPage from "./pages/FeedbackPage";
+import FeedbackDetailPage from "./pages/FeedbackDetailPage";
 import MessageBoardPage from "./pages/MessageBoardPage";
-import MessagePage from "./pages/MessagePage";
+import MessageDetailPage from "./pages/MessageDetailPage";
 import PostAgentPage from "./pages/PostAgentPage";
 import PostREPage from "./pages/PostREPage";
 import QueryBulletinPage from "./pages/QueryBulletinPage";
 import QueryGeneralPage from "./pages/QueryGeneralPage";
 import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
-import FeedBackCard from "./components/FeedbackCard";
-
 
 const Mainboard = () =>{
 
   return (
     <Switch>
-        <PrivateRoute exact path="/messageboardpage" component={MessageBoardPage} />
-        <PrivateRoute exact path="/messagepage" component={MessagePage} />
-        <PrivateRoute exact path="/postagentpage" component={PostAgentPage} />
-        <PrivateRoute exact path="/postrepage" component={PostREPage} />
-        <PrivateRoute exact path="/favouritepage" component={FavouritePage} />
-        <PrivateRoute exact path="/itemmypage" component={ItemMyPage} />
-        <PrivateRoute exact path="/querybulletinpage" component={QueryBulletinPage} />
-        <PrivateRoute exact path="/querygeneralpage" component={QueryGeneralPage} />
+        <PrivateRoute exact path="/message-board" component={MessageBoardPage} />
+        <PrivateRoute exact path="/message-detail" component={MessageDetailPage} />
+        <PrivateRoute exact path="/post-agent" component={PostAgentPage} />
+        <PrivateRoute exact path="/post-real-estate" component={PostREPage} />
+        <PrivateRoute exact path="/favourite" component={FavouritePage} />
+        <PrivateRoute exact path="/my-item-page" component={ItemMyPage} />
+        <PrivateRoute exact path="/query-item" component={QueryBulletinPage} />
+        <PrivateRoute exact path="/query-general" component={QueryGeneralPage} />
 
         <Route exact path="/" component={DashboardPage} />
         <Route exact path="/dashboard" component={DashboardPage} />
-        <Route exact path="/itemboardpage" component={ItemBoardPage} />
-        <Route exact path="/itemlistpage" component={ItemListPage} />
-        <Route exact path="/itemdetailpage" component={ItemDetailPage} />
-        <Route exact path="/faqpage" component={FAQPage} />
-        <Route exact path="/feedbackboardpage" component={FeedbackBoardPage} />
-        <Route exact path="/feedbackpage" component={FeedbackPage} />
-        <Route exact path="/signinpage" component={SignInPage} />
-        <Route exact path="/signuppage" component={SignUpPage} />
-        <Route exact path="/signuppage" component={SignUpPage} />
-        <Route exact path="/feedback" component={FeedBackCard} />
-
-
-        
-        
+        <Route exact path="/item-board" component={ItemBoardPage} />
+        <Route exact path="/item-list" component={ItemListPage} />
+        <Route exact path="/item-detail" component={ItemDetailPage} />
+        <Route exact path="/faq" component={FAQPage} />
+        <Route exact path="/feedback-board" component={FeedbackBoardPage} />
+        <Route exact path="/feedback-detail" component={FeedbackDetailPage} />
+        <Route exact path="/login" component={SignInPage} />
+        <Route exact path="/register" component={SignUpPage} />
     </Switch>  
   );
 }
