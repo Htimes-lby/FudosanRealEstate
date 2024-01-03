@@ -19,7 +19,8 @@ import QueryBulletinPage from "./pages/QueryBulletinPage";
 import QueryGeneralPage from "./pages/QueryGeneralPage";
 import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
-import ItemSmallCard from "./components/ItemSmallCard";
+import FeedBackCard from "./components/FeedbackCard";
+
 
 const Mainboard = () =>{
 
@@ -44,7 +45,12 @@ const Mainboard = () =>{
         <Route exact path="/feedbackpage" component={FeedbackPage} />
         <Route exact path="/signinpage" component={SignInPage} />
         <Route exact path="/signuppage" component={SignUpPage} />
-        <Route exact path="/basictable" component={ItemSmallCard} />
+        <Route exact path="/signuppage" component={SignUpPage} />
+        <Route exact path="/feedback" component={FeedBackCard} />
+
+
+        
+        
     </Switch>  
   );
 }
