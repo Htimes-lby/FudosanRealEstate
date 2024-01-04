@@ -23,3 +23,15 @@ body {
 .bg-image{
   background-image: url('./assets/kawaguchiko-city.jpg');
 }
+
+#flag::after{
+  content: "";
+  width: 60px;
+  height: 30px;
+  background-color: white;
+  position: absolute;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  transform: rotate(-90deg);
+  left:275px;
+  top:35px
+}

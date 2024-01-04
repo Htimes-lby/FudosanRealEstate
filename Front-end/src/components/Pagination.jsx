@@ -1,10 +1,9 @@
 import React from "react";
-import Category from "./Category";
-import img from '../assets/img/photo3.jpg'
+import FlagTextContainer from "./FlagTextContainer";
 
 const Pagination = () =>{
     return(
-        <Category img={img} text='一戸建て' />
+        <FlagTextContainer text='一戸建て' />
     )
 }
 
