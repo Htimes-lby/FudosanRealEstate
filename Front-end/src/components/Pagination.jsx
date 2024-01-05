@@ -1,9 +1,13 @@
 import React from "react";
-import FlagTextContainer from "./FlagTextContainer";
+import AgentCard from "./AgentCard";
 
 const Pagination = () =>{
     return(
-        <FlagTextContainer text='一戸建て' />
+        <AgentCard companyName="会社名" agentName="担当者名" phoneNumber="0123456789" emailAddress="abcdef@gmail.com" 
+        content="テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト テキスト テキスト テキスト" />
     )
 }
 
