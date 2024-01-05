@@ -13,13 +13,13 @@ const Carousel = () => {
             gap: 10,
             breakpoints: {
                 1280: {
-                    preView: 3,
+                    perView: 3,
                 },
                 1024: {
-                    preView: 2,
+                    perView: 2,
                 },
                 768: {
-                    preView: 1,
+                    perView: 1,
                 },
             },
         };
