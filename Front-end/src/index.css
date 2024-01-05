@@ -6,6 +6,8 @@
 /* Google Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,500;0,700;1,300;1,500;1,700&display=swap");
 
+
+
 /* Root CSS */
 body {
   font-family: "Poppins", sans-serif;
@@ -34,4 +36,75 @@ body {
   transform: rotate(-90deg);
   left:275px;
   top:35px
+}
+
+/* Pagination */
+
+.pagination{
+  display: flex;
+  align-items:center;
+  margin-top: 40px;
+  padding: 0;
+  font-size: 18px;
+  font-weight: 700;
+  list-style: none;
+  user-select:none;
+}
+
+.page-item {
+  min-width: 25px;
+  min-height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 2px;
+  transition: all 0.3s;
+}
+
+.page-item:hover {
+  color: #ff3838;
+  background: #9b9b9b;
+}
+
+.page-item.active {
+  padding: 0;
+  color: white;
+  background: #05103b;
+}
+
+.page-item.arrow-icon {
+  position: relative;
+  z-index: 1;
+  font-size: 35px;
+  transform: translateY(-2px);
+  transition: all 0.3s;
+}
+
+.page-item.arrow-icon:after {
+  content: "";
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  z-index: -1;
+  top: 56%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.page-item.arrow-icon:hover {
+  color: #ff3838;
+  background: transparent;
+}
+
+.page-item.arrow-icon:hover:after {
+  background: #9b9b9b;
+}
+
+.page-item.disabled {
+  cursor: not-allowed;
+  color: #9b9b9b;
+}
+
+.page-item.disabled:hover {
+  background: transparent;
 }
