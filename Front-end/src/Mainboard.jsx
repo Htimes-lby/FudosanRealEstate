@@ -19,7 +19,8 @@ import QueryBulletinPage from "./pages/QueryBulletinPage";
 import QueryGeneralPage from "./pages/QueryGeneralPage";
 import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
-import ContentForm from "./components/Form/ContentForm";
+
+
 
 
 const Mainboard = () =>{
@@ -45,7 +46,7 @@ const Mainboard = () =>{
         <Route exact path="/feedback-detail" component={FeedbackDetailPage} />
         <Route exact path="/login" component={SignInPage} />
         <Route exact path="/register" component={SignUpPage} />
-        <Route exact path="/content" component={ContentForm} />
+        
         
    
 
