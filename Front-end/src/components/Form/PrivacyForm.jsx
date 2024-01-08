@@ -7,7 +7,7 @@ export default function PrivacyForm() {
     <div>
         <div className=' w-[745px]  flex gap-[124px]'>
             <div className='w-[177px] flex gap-[35px] '>
-                <span className='bg-[#F69191] h-[28px] inline-block p-1 rounded-md text-[15px] mx-[12px]'>必須</span>
+                <span className='bg-[#F69191] h-[28px] inline-block p-1 rounded-md text-[15px] mx-[12px] text-white'>必須</span>
                 <p className='text-[20px]'>お名前</p>
             </div>
             <div className='flex gap-[50px] '>
@@ -35,7 +35,7 @@ export default function PrivacyForm() {
         </div>
         <div className=' w-[745px]  flex gap-[124px] pt-[39px]'>
             <div className='w-[177px] flex gap-[35px]  '>
-                <span className='bg-[#F69191] h-[28px] inline-block p-1 rounded-md text-[15px] mx-[12px]'>必須</span>
+                <span className='bg-[#F69191] h-[28px] inline-block p-1 rounded-md text-[15px] mx-[12px] text-white'>必須</span>
                 <p className='text-[20px]'>年齢</p>
             </div>
             <div>
@@ -45,7 +45,7 @@ export default function PrivacyForm() {
        
         <div className=' w-[745px]  flex gap-[124px] pt-[39px]'>
             <div className='w-[177px] flex gap-[35px] '>
-                <span className='bg-[#F69191] h-[28px] inline-block p-1 rounded-md text-[15px] mx-[12px]'>必須</span>
+                <span className='bg-[#F69191] h-[28px] inline-block p-1 rounded-md text-[15px] mx-[12px] text-white'>必須</span>
                 <p className='text-[20px]'>メール</p>
             </div>
             <div>
@@ -55,7 +55,7 @@ export default function PrivacyForm() {
 
         <div className=' w-[745px]  flex gap-[124px] pt-[24px]'>
             <div className='w-[177px] flex gap-[35px]  '>
-                <span className='bg-[#F69191] h-[28px] inline-block p-1 rounded-md text-[15px] mx-[12px]'>必須</span>
+                <span className='bg-[#F69191] h-[28px] inline-block p-1 rounded-md text-[15px] mx-[12px] text-white'>必須</span>
                 <p className='text-[20px]'>メール</p>
             </div>
             <div className='flex '>
@@ -69,7 +69,7 @@ export default function PrivacyForm() {
 
         <div className=' w-[745px]  flex gap-[124px] pt-[24px]'>
             <div className='w-[177px] flex gap-[35px]  '>
-                <span className='bg-[#F69191] h-[28px] inline-block p-1 rounded-md text-[15px] mx-[12px]'>必須</span>
+                <span className='bg-[#F69191] h-[28px] inline-block p-1 rounded-md text-[15px] mx-[12px] text-white'>必須</span>
                 <p className='text-[20px]'>電話番号</p>
             </div>
             <div className='flex '>
@@ -83,7 +83,7 @@ export default function PrivacyForm() {
 
         <div className=' w-[745px]  flex gap-[124px] pt-[24px]'>
             <div className='w-[177px] flex gap-[35px]  '>
-                <span className='bg-[#F69191] h-[28px] inline-block p-1 rounded-md text-[15px] mx-[12px]'>必須</span>
+                <span className='bg-[#F69191] h-[28px] inline-block p-1 rounded-md text-[15px] mx-[12px] text-white'>必須</span>
                 <p className='text-[20px]'>物件住所</p>
             </div>
             <div>              
