@@ -9,8 +9,8 @@ const SearchBoard = () =>{
     }
     return(
         <div className="w-[355px] shadow-2xl border-1 border-black rounded-md">
-            <div>
-                <i class=" fa-solid fa-x text-[30px]  flex justify-end pr-[30px] pt-[24px]" onClick={closenav()}></i>
+            <div className="flex justify-end">
+                <i class=" fa-solid fa-x text-[30px]  pr-[30px] pt-[24px]" onClick={closenav()}></i>
             </div>
             <div className="flex">
                 <i className="fa-solid fa-magnifying-glass text-[50px] pl-[42px] pt-[4px]"></i>

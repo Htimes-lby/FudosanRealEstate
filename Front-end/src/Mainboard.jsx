@@ -19,7 +19,8 @@ import QueryBulletinPage from "./pages/QueryBulletinPage";
 import QueryGeneralPage from "./pages/QueryGeneralPage";
 import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
-import OverviewLandForm from "./components/Form/OverviewLandForm";
+import UploadImageForm from "./components/Form/UploadImageForm";
+import SearchBoard from "./components/SearchBoard";
 
 
 
@@ -37,6 +38,7 @@ const Mainboard = () =>{
         <PrivateRoute exact path="/query-item" component={QueryBulletinPage} />
         <PrivateRoute exact path="/query-general" component={QueryGeneralPage} />
 
+
         <Route exact path="/" component={DashboardPage} />
         <Route exact path="/dashboard" component={DashboardPage} />
         <Route exact path="/item-board" component={ItemBoardPage} />
@@ -47,7 +49,8 @@ const Mainboard = () =>{
         <Route exact path="/feedback-detail" component={FeedbackDetailPage} />
         <Route exact path="/login" component={SignInPage} />
         <Route exact path="/register" component={SignUpPage} />
-        <Route exact path="/content" component={OverviewLandForm} />
+        <Route exact path="/content" component={UploadImageForm} />
+        <Route exact path="/search" component={SearchBoard} />
         
         
    
