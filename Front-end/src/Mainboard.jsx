@@ -30,7 +30,7 @@ const Mainboard = () =>{
   return (
     <Switch>
         <Route exact path="/message-board" component={MessageBoardPage} />
-        <PrivateRoute exact path="/message-detail" component={MessageDetailPage} />
+        <Route exact path="/message-detail" component={MessageDetailPage} />
         <PrivateRoute exact path="/post-agent" component={PostAgentPage} />
         <PrivateRoute exact path="/post-real-estate" component={PostREPage} />
         <PrivateRoute exact path="/favourite" component={FavouritePage} />
