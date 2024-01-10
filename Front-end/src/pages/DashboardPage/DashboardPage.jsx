@@ -1,8 +1,17 @@
 import React from 'react';
-
+import DashboardEyeCatch from './DashboardEyeCatch';
+import DashboardFeedbackBoard from './DashboardFeedbackBoard';
+import DashboardFAQPage from './DashboardFAQBoard';
+import DashboardRealEstatePostBoard from './DashboardRealEstatePostBoard';
 const DashboardPage = () => {
+
     return (
-        <div>This is Dashboard</div>
+        <div className='flex flex-col w-full'>
+            <DashboardEyeCatch/>
+            <DashboardRealEstatePostBoard/>
+            <DashboardFAQPage/>
+            <DashboardFeedbackBoard/>
+        </div>
     )
 }
 
