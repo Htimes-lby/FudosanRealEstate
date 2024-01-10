@@ -6,7 +6,7 @@ import ItemBoardPage from "./pages/ItemBoardPage";
 import ItemDetailPage from "./pages/ItemDetailPage";
 import ItemListPage from "./pages/ItemListPage";
 import ItemMyPage from "./pages/ItemMyPage";
-import DashboardPage from "./pages/DashboardPage";
+import DashboardPage from "./pages/DashboardPage/DashboardPage";
 import FAQPage from "./pages/FAQPage";
 import FavouritePage from "./pages/FavouritePage";
 import FeedbackBoardPage from "./pages/FeedbackBoardPage";
