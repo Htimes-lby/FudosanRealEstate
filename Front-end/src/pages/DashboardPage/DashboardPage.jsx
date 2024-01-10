@@ -10,7 +10,7 @@ const DashboardPage = () => {
             <DashboardEyeCatch/>
             <DashboardRealEstatePostBoard/>
             <DashboardFAQPage/>
-            <DashboardRealEstatePostBoard/>
+            <DashboardFeedbackBoard/>
         </div>
     )
 }
