@@ -5,17 +5,12 @@ const feedbackSchema = new mongoose.Schema({
     type: String,
   },
   imageURL: {
-    type: Schema.Types.ObjectId,
-    ref:"Estate"
+    type: String
   },
   address:{
     type:String
   },
-  mainInfo:{
-    type: Schema.Types.ObjectId,
-    ref:"Estate"
-  },
-  sort:{
+    sort:{
     type:Boolean
   }
 });
