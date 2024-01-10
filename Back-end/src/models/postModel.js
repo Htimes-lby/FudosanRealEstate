@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const realEstatesSchema = new mongoose.Schema({
+const postSchema = new mongoose.Schema({
   category: {
     type: String,
   },
@@ -68,4 +68,4 @@ const realEstatesSchema = new mongoose.Schema({
     },
 });
 
-module.exports = mongoose.model("Estate", realEstatesSchema);
+module.exports = mongoose.model("Post", postSchema);
