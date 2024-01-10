@@ -1,17 +1,18 @@
 import React from "react";
 import BasicTable from "./BasicTable";
-import ShowContents from "./ShowContents";
 import photo from "../assets/img/photo.png"
 
 const ItemSmallCard = () =>{
     return(
         <div className="w-[240px]  border pb-3 shadow-lg ">
-            <div className="px-9 py-3 text-center text-[10px]" >
-                <ShowContents text=" 
+            <div className="px-9 py-3 text-center text-[10px] line-clamp-3" >
+               <p>
+
                 テキスト テキスト テキスト テキスト
                 テキスト テキスト テキスト テキスト
                 テキスト テキスト テキスト テキスト
-                " maxLength="60"/>
+               </p>
+               
             </div>
             <div className="flex justify-center p-4">
 

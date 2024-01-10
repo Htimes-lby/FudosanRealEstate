@@ -1,6 +1,4 @@
 import React from "react";
-
-import ShowContents from "./ShowContents";
 import photo2 from "../assets/img/photo2.png"
 
 const FeedbackCard = () =>{
@@ -10,8 +8,8 @@ const FeedbackCard = () =>{
 
             <img src={photo2} alt="photo2" className="w-[220px] " />
             </div>
-            <div className="px-4 py-3 text-center text-[12px]" >
-                <ShowContents text=" 
+            <div className="px-4 py-3 text-center text-[12px] line-clamp-3" >
+                <p>
                 テキスト テキスト テキスト テキスト
                 テキスト テキスト テキスト テキスト
                 テキスト テキスト テキスト テキスト
@@ -21,7 +19,8 @@ const FeedbackCard = () =>{
                 テキスト テキスト テキスト テキスト
                 テキスト テキスト テキスト テキスト
                 テキスト テキスト テキスト テキスト
-                " maxLength="113"/>
+                </p>
+               
             </div>
            
         </div>

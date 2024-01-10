@@ -1,5 +1,4 @@
 import React from "react";
-import ShowContents from './ShowContents'
 
  const AgentCard =({companyName, agentName, phoneNumber, emailAddress, content}) =>{
 
@@ -15,8 +14,8 @@ import ShowContents from './ShowContents'
                     <p>{emailAddress}</p>
                 </div>
             </div>
-            <div className="pt-[20px] px-[45px]">
-                <ShowContents text={content} maxLength={121}/>
+            <div className="pt-[20px] px-[45px] line-clamp-3">
+               {content}
             </div>
         </div>
     )

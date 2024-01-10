@@ -1,6 +1,5 @@
 import React from "react";
 import BasicTable from "./BasicTable";
-import ShowContents from "./ShowContents";
 import photo1 from "../assets/img/photo1.jpeg"
 
 const ItemBigCard = () =>{
@@ -16,24 +15,28 @@ const ItemBigCard = () =>{
                 <BasicTable />
             </div>
             <div className="pl-5 pt-3">
-                <div className="text-[20px] font-bold ">
-                    <ShowContents text="
+                <div className="text-[20px] font-bold line-clamp-3">
+                    <p>
+
                     テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
                     テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
                     テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
                     テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-                    " maxLength={90} />
+                    </p>
+                    
                 </div>
 
-                <div className="text-[16px] pt-4">
-                    <ShowContents text="
+                <div className="text-[16px] pt-4 line-clamp-3">
+                   <p>
+
                     テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
                     テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
                     テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
                     テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
                     テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
                     テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-                    " maxLength={200} />
+                   </p>
+                    
                 </div>
                 
             </div>
