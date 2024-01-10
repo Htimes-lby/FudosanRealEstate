@@ -2,7 +2,7 @@ import React from "react";
 import BasicTable from "./BasicTable";
 import photo1 from "../assets/img/photo1.jpeg"
 
-const ItemBigCard = () =>{
+const RealEstateBigCard = () =>{
     return(
         <div className="flex w-[1275px] border p-6 rounded-lg shadow-md">
             <div>
@@ -44,4 +44,4 @@ const ItemBigCard = () =>{
     )
 }
 
-export default ItemBigCard;
+export default RealEstateBigCard;

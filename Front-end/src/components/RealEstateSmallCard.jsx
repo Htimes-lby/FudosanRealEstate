@@ -1,29 +1,23 @@
 import React from "react";
 import BasicTable from "./BasicTable";
-import photo from "../assets/img/photo.png"
 
-const ItemSmallCard = () =>{
+
+const RealEstateSmallCard = ({img, text}) =>{
     return(
         <div className="w-[240px]  border pb-3 shadow-lg ">
-            <div className="px-9 py-3 text-center text-[10px] line-clamp-3" >
-               <p>
-
-                テキスト テキスト テキスト テキスト
-                テキスト テキスト テキスト テキスト
-                テキスト テキスト テキスト テキスト
-               </p>
-               
+            <div className="px-[31px] py-[20px] text-center text-[10px] " >
+               <p className="line-clamp-3">{text}</p>              
             </div>
-            <div className="flex justify-center p-4">
+            <div className="flex justify-center">
 
-            <img src={photo} alt="photo" className="w-40 " />
+                <img src={img} alt="photo" className="w-[150px] h-[90px] " />
             </div>
-            <div className="flex justify-center ">
-            <BasicTable  />
+            <div className="flex justify-center pt-[14px]">
+                <BasicTable  />
             </div>
         </div>
     )
 }
 
-export default ItemSmallCard;
+export default RealEstateSmallCard;
 

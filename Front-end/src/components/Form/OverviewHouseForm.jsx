@@ -16,7 +16,7 @@ export default function
             </div>
         </div>
 
-        <div className=' w-[803px]  flex gap-[124px] pt-[14px] justify-end'>
+        <div className=' w-[803px]  flex gap-[124px] pt-[18px] justify-end'>
            
             <div className='flex'>
                 <span className='text-[20px] pr-[60px]'>間取り</span>
@@ -24,7 +24,7 @@ export default function
             </div>
         </div>
 
-        <div className=' w-[803px]  flex gap-[124px] pt-[14px] justify-end'>
+        <div className=' w-[803px]  flex gap-[124px] pt-[18px] justify-end'>
            
             <div className='flex'>
                 <span className='text-[20px] pr-10'>土地面積</span>
@@ -32,7 +32,7 @@ export default function
             </div>
         </div>
         
-        <div className=' w-[803px]  flex gap-[124px] pt-[14px] justify-end'>
+        <div className=' w-[803px]  flex gap-[124px] pt-[18px] justify-end'>
            
             <div className='flex'>
                 <span className='text-[20px] pr-10'>建物面積</span>
@@ -40,7 +40,7 @@ export default function
             </div>
         </div>
 
-        <div className=' w-[803px]  flex gap-[124px] pt-[14px] justify-end'>
+        <div className=' w-[803px]  flex gap-[124px] pt-[18px] justify-end'>
            
             <div className='flex'>
                 <span className='text-[20px] pr-10'>入居日付</span>
@@ -48,7 +48,7 @@ export default function
             </div>
         </div>
 
-        <div className=' w-[803px]  flex gap-[124px] pt-[14px] justify-end'>
+        <div className=' w-[803px]  flex gap-[124px] pt-[18px] justify-end'>
            
             <div className='flex'>
                 <span className='text-[20px] pr-20'>構造</span>
@@ -56,7 +56,7 @@ export default function
             </div>
         </div>  
 
-        <div className=' w-[803px]  flex gap-[124px] pt-[14px] justify-end'>
+        <div className=' w-[803px]  flex gap-[124px] pt-[32px] justify-end'>
            
             <div className='flex'>
                 <span className='text-[14px] '>よく分からないところや、サイトに表示させたくない項目は空欄でも構いません</span>
