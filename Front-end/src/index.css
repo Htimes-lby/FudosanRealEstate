@@ -363,3 +363,6 @@ a, a:hover, a:focus {
 .rc-collapse.show{
   height: auto;
 }
+.bottom-part{
+  margin-inline: auto;
+}

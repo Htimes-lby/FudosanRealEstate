@@ -2,12 +2,12 @@ import React from "react";
 
 const BasicTableBuilding = ( props ) => {
 
-    const {tableData} = props
+    const {tableData, fontSize, width} = props
     const {budget, layout, landarea, buildingarea, deadline, parking} = tableData;
 
     return(
-        <table className="border border-[#8d8d8d] w-[180px] text-center">
-            <tbody className="text-[10px]">
+        <table className={`border border-[#8d8d8d] ${width} text-center`}>
+            <tbody className={`${fontSize}`}>
                 <tr className="bg-[#ececec]">
                     <td className=" py-[5px] border-r border-[#8d8d8d]">価格</td>
                     <td className=" py-[5px]">{budget}</td>
