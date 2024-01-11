@@ -197,6 +197,7 @@ const faqs = [
 ]
 
 const FAQPage = () => {
+
     const [active, setActive] = useState(null);
 
     const handleToggle = (index) => {
@@ -209,31 +210,14 @@ const FAQPage = () => {
 
     return (
         <div className='flex justify-center items-center w-full'>
-        <div className='flex flex-col w-[60%]'>
-            {faqs.map((faq, index) => {
-                return (
-                        <AccordionItem key={index} active={active} handleToggle={handleToggle} faq={faq} />
-                        )
-                })
-            }
-        </div>
-            {/* <div className="container-fluid mt-5 mb-5">
-                <div className="row justify-content-center">
-                    <div className="col-md-8 mt-2">
-                        <div className="card">
-                            <div className="card-body w-[70%]">
-                              <h4 className="form-heading mb-4 text-primary text-center mt-3">React Accordion</h4>
-                                {faqs.map((faq, index) => {
-                                     return (
-                                            <AccordionItem key={index} active={active} handleToggle={handleToggle} faq={faq} />
-                                        )
-                                    })
-                                }
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> */}
+            <div className='flex flex-col w-[60%]'>
+                {faqs.map((faq, index) => {
+                    return (
+                            <AccordionItem key={index} active={active} handleToggle={handleToggle} faq={faq} />
+                            )
+                    })
+                }
+            </div>
         </div>
     )
 }

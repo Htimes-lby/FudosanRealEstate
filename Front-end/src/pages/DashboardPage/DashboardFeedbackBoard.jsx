@@ -1,10 +1,12 @@
- import { React } from 'react';
+import { React } from 'react';
+import FeedbackCard from '../../components/FeedbackCard';
 
- const DashboardFeedbackBoard = () => {
-
+const DashboardFeedbackBoard = () => {
     return (
-        <div>This is DashboardFeedbackBoard</div>
+        <div>
+            <FeedbackCard />
+        </div>
     );
- }
+}
 
- export default DashboardFeedbackBoard;
+export default DashboardFeedbackBoard;

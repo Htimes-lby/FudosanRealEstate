@@ -335,7 +335,9 @@ a, a:hover, a:focus {
 .rc-accordion-body{
   flex: 1 1 auto;
   min-height: 1px;
-  padding: 15px;
+  padding-block: 15px;
+  padding-inline: 35px;
+  background: white;
 }
 .rc-accordion-body p{
   font-weight: 500;
