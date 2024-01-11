@@ -1,4 +1,5 @@
 import { useRef } from "react";
+
 const faqs = [
     {
         id: 1,
