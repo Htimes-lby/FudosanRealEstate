@@ -242,8 +242,9 @@ const realEstateInfo = [
 const DashboardRealEstatePostBoard = () => {
 
     return(
-        <div className='flex justify-center w-full'>
-            <div className=' grid gap-8 grid-cols-4 mt-5  box-border max-w-[1840px]'>
+        <div className='flex flex-col items-center w-full'>
+            <div className=' text-center text-[40px] mt-5'>売ります掲示板</div>
+            <div className=' grid gap-x-8 gap-y-12 grid-cols-4 mt-5 mx-auto box-border max-w-[1100px]'>
                 {
                     realEstateInfo.map((realEstate, index) => {
                         return(
@@ -252,6 +253,7 @@ const DashboardRealEstatePostBoard = () => {
                     })
                 }
             </div>
+            <div className=' w-[200px] bg-[#2A6484] font-semibold text-white text-center py-[12px] mt-20 rounded-xl'>もっと見る</div>
         </div>
     );
 }
