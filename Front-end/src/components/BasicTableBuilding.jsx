@@ -2,7 +2,7 @@ import React from "react";
 
 const BasicTableBuilding = ( props ) => {
 
-    const {tableData, fontSize, width} = props
+    const {tableData, fontSize, width} = props;
     const {budget, layout, landarea, buildingarea, deadline, parking} = tableData;
 
     return(
