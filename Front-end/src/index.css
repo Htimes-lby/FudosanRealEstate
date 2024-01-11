@@ -32,12 +32,12 @@ body {
   content: "";
   width: 60px;
   height: 30px;
-  background-color: white;
+  background-color: #F1F1F1;
   position: absolute;
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
   transform: rotate(-90deg);
-  left:275px;
-  top:35px
+  left:255px;
+  top:15px
 }
 
 /* Pagination */
@@ -124,7 +124,7 @@ a, a:hover, a:focus {
 
 
 .card-body {
-  padding: 0 30px 30px 30px;
+  padding: 0 30px 30px 0;
 }
 
 
@@ -265,4 +265,13 @@ a, a:hover, a:focus {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #AFAFAF; 
+}
+
+.container{
+  max-width: 1440px;
+  margin-inline: auto;
+}
+
+.postContainer{
+  margin-inline: auto;
 }

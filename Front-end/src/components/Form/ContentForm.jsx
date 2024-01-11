@@ -5,7 +5,7 @@ export default function ContentForm() {
     <div>
       <div className=' w-[803px]  flex gap-[124px] '>
           <div className='w-[177px] flex gap-[35px]  '>
-              <span className='bg-[#F69191] h-[28px] inline-block p-1 rounded-md text-[15px] mx-[12px]'>必須</span>
+              <span className='bg-[#F69191] h-[28px] inline-block p-1 rounded-md text-[15px] mx-[12px] text-white'>必須</span>
               <p className='text-[20px]'>物件住所</p>
           </div>
           <div>              

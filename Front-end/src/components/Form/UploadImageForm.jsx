@@ -90,14 +90,14 @@ const UploadImageForm = () => {
         
         <div className="fileupload-view ">
                 <div>
-                    <div className="w-[700px] h-[600px] overflow-auto">
+                    <div className="w-[700px] ">
                         <div className="mt-5">
                             <div className="card-body">
                                 <div className="kb-data-box flex">
                                     <div className=' flex '>
                                         <div className='w-[177px] flex gap-[35px]  '>
                                             <span className='bg-[#63A4D4] h-[28px] inline-block p-1 rounded-md text-[15px] mx-[12px] text-white'>任意</span>
-                                            <p className='text-[20px]'>物件概要</p>
+                                            <p className='text-[20px]'>物件写真</p>
                                         </div>
                                         
                                     </div>
