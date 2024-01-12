@@ -6,18 +6,18 @@ const Footer = () => {
             <div className='flex flex-row justify-between items-start w-full h-[220px] pt-6 px-[330px] border-b  border-white'>
                 <div className='flex flex-col items-start'>
                     <span className=' text-[#FFC804]'><span className=' text-[24px]'>ふどうさん</span><span className=' text-[18px]'>は</span></span>
-                    <span className=' text-white text-[16px] pt-5'>売りました体験談</span>
+                    <span className=' text-white text-[16px] pt-3'>売りました体験談</span>
                     <span className=' text-white text-[16px] pt-1'>こんな風に使ってます</span>
                 </div>
                 <div className='flex flex-col items-start'>
                     <span className=' text-[#FFC804] text-[20px]'>掲示板に投稿</span>
-                    <span className=' text-white text-[16px] pt-5'>建物の投稿</span>
+                    <span className=' text-white text-[16px] pt-3'>建物の投稿</span>
                     <span className=' text-white text-[16px] pt-1'>土地の投稿</span>
                     <span className=' text-white text-[16px] pt-1'>業者の投稿</span>
                 </div>
                 <div className='flex flex-col items-start'>
                     <span className=' text-[#FFC804] text-[20px]'>掲示板を見る</span>
-                    <div className='flex flex-row pt-5'>
+                    <div className='flex flex-row pt-3'>
                         <div className='flex flex-col items-start'>
                             <span className=' text-white text-[16px] pt-1'>古民家</span>
                             <span className=' text-white text-[16px] pt-1'>一戸建て</span>
@@ -34,7 +34,7 @@ const Footer = () => {
                 </div>
                 <div className='flex flex-col items-start'>
                     <span className=' text-[#FFC804] text-[22px]'>マイページ</span>
-                    <span className=' text-white text-[16px] pt-5'>私の投稿</span>
+                    <span className=' text-white text-[16px] pt-3'>私の投稿</span>
                     <span className=' text-white text-[16px] pt-1'>お気に入り</span>
                     <span className=' text-white text-[16px] pt-1'>メッセージ</span>
                     <span className=' text-white text-[16px] pt-1'>総合窓口</span>

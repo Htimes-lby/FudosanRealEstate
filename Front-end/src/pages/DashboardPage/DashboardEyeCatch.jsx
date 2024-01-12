@@ -43,7 +43,7 @@ const DashboardEyeCatch = () => {
 
     return (
         <div className='w-full h-[900px]'>
-            <img src={eyecatches[currentIndex]} alt="" className='w-full h-full bg-center bg-cover duration-500'/>
+            <img src={eyecatches[currentIndex]} alt="" className='w-full h-full bg-center bg-cover'/>
             {/* <div
                 style={{ backgroundImage: `url(${eyecatches[currentIndex]})` }}
                 className='w-full h-full bg-center bg-cover duration-500'

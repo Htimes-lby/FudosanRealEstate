@@ -125,8 +125,8 @@ const DashboardFAQPage = () => {
     }
 
     return (
-        <div className=' flex flex-col items-center justify-center w-full mt-20 py-20 bg-[#5573aa]'>
-            <div className='text-[32px] text-[#FFC804] mb-10 font-normal'>よくある質問</div>
+        <div className=' flex flex-col items-center justify-center w-full mt-20 py-20 bg-[#6d7a6a]'>
+            <div className='text-[32px] text-white mb-10 font-normal'>よくある質問</div>
             <div className='flex flex-col gap-2 w-[60%]'>
                 {faqs.map((faq, index) => {
                     return (
