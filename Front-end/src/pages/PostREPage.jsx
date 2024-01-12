@@ -11,6 +11,7 @@ import ConditionForm from "../components/Form/ConditionForm"
 
 const PostREPage = () => {
 
+   
     const myImage = 
         {
             "古民家":require("../assets/img/category/1.png"),
@@ -133,7 +134,7 @@ const PostREPage = () => {
                                 <p>※どう書いたらいいか分からないなどのご相談もお受けします。</p>
                             </div>
                             <div className='pl-[38px]'>
-                                <RealEstateSmallCard  realEstate = {realEstateInfo} />    
+                                <RealEstateSmallCard  realEstate = {realEstateInfo}  />    
                             </div>
                         </div>
                         <div className='pt-[120px]'>

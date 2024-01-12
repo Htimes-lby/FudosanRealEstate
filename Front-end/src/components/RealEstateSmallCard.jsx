@@ -16,7 +16,7 @@ const RealEstateSmallCard = ( props ) =>{
             </div>
             <div className="flex justify-center ">
                 {
-                realEstateCategory === 'building' ? <BasicTableBuilding tableData = {tableData} /> : <BasicTableLand tableData = {tableData} />
+                realEstateCategory === 'building' ? <BasicTableBuilding tableData = {tableData} fontSize = {"text-[10px]"} width = {"w-[180px]"} /> : <BasicTableLand tableData = {tableData} />
                 }
             </div>
         </div>
