@@ -2,6 +2,8 @@ import React from "react";
 import BasicTableBuilding from "./BasicTableBuilding";
 import BasicTableLand from "./BasicTableLand";
 
+const width = 'w-[180px]'
+const fontSize = 'text-[11px]'
 
 const RealEstateSmallCard = ( props ) =>{
     const {realEstate} = props;
@@ -16,7 +18,7 @@ const RealEstateSmallCard = ( props ) =>{
             </div>
             <div className="flex justify-center ">
                 {
-                realEstateCategory === 'building' ? <BasicTableBuilding tableData = {tableData} fontSize = {"text-[10px]"} width = {"w-[180px]"} /> : <BasicTableLand tableData = {tableData} />
+                realEstateCategory === 'building' ? <BasicTableBuilding tableData = {tableData} width= {width} fontSize = {fontSize} /> : <BasicTableLand tableData = {tableData} width= {width} fontSize = {fontSize} />
                 }
             </div>
         </div>

@@ -1,4 +1,5 @@
 import { useRef } from "react";
+
 const faqs = [
     {
         id: 1,
@@ -29,9 +30,10 @@ const AccordionItem = (props) => {
 
     return (
         <div className="rc-accordion-card">
-                <div className={`rc-accordion-toggle p-3 ${active === id ? 'active' : ''}`} onClick={() => handleToggle(id)}>
-                    <h5 className="rc-accordion-title">{header}</h5>
-                    <i className="fa fa-chevron-down rc-accordion-icon"></i>
+                <div className={`rc-accordion-toggle p-3 relative ${active === id ? 'active' : ''}`} onClick={() => handleToggle(id)}>
+                    <p className=" text-[18px] font-semibold">Q</p>
+                    <h5 className=" rc-accordion-title absolute left-20 leading-5 max-w-[80%]">{header}</h5>
+                    <i className=" fa fa-chevron-down rc-accordion-icon"></i>
                 </div>
             <div ref={contentEl} className={`rc-collapse ${active === id ? 'show' : ''}`} style={
                 active === id
