@@ -1,11 +1,8 @@
-import { React, useState, useEffect } from 'react';
-
-
-
-
+import { React, useState, useEffect, useRef } from 'react';
 
 const DashboardEyeCatch = () => {
-
+    const colors = ["#0088FE", "#00C49F", "#FFBB28"];
+    const delay = 3500;
     const eyecatches = [
         // 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2620&q=80',
         // 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80',
@@ -16,40 +13,32 @@ const DashboardEyeCatch = () => {
         require("../../assets/traditional-water-house-ine-cho_328191-7286-transformed 1.jpg"),
         require("../../assets/city-water 1.jpg"),
     ];
+    const maxLength = eyecatches.length;
+    const [index, setIndex] = useState(0);
+  
+    useEffect(() => {
+      const timeoutId = setTimeout(() => setIndex((prevIndex) => (prevIndex + 1) % maxLength), delay);
+      return () => {
+        clearTimeout(timeoutId);
+      };
+    }, [index]);
 
-    // const images = [
-    //      "../../assets/kawaguchiko-city.jpg",
-    //      "../../assets/traditional-water-house-ine-cho_328191-7286-transformed 1.jpg",
-    //      "../../assets/city-water 1.jpg",
-    // ];
-    
-    // const eyecatches = images.map((element) => {
-    //     return require(element);
-    // });
-
-    // console.log("eyecatches", eyecatches);
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const maxIndex = eyecatches.length;
-
-    useEffect (() => {
-        const timeoutId = setTimeout(() => {
-            setCurrentIndex((currentIndex) => (currentIndex+1) % maxIndex);
-            console.log("currentIndex", currentIndex)
-            return () => {
-                clearTimeout(timeoutId);
-            };
-        },2000);
-    },[currentIndex, maxIndex]);
 
     return (
-        <div className='w-full h-[900px]'>
-            <img src={eyecatches[currentIndex]} alt="" className='w-full h-full bg-center bg-cover'/>
-            {/* <div
-                style={{ backgroundImage: `url(${eyecatches[currentIndex]})` }}
-                className='w-full h-full bg-center bg-cover duration-500'
-            ></div> */}
-        </div>
-    );
-}
+        <div className="overflow-hidden w-full h-[900px]">
+          <div
+            className="whitespace-nowrap transition ease duration-500"
+            style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}
+          >
+            {eyecatches.map((eyecatch, index) => (
+              <div
+                className=" inline-block w-full h-[900px]"
+                key={index}
+              ><img src={eyecatch} alt="" className=' w-full h-full bg-center bg-cover' /></div>
+            ))}
+          </div>
 
+        </div>
+      );
+}
 export default DashboardEyeCatch;
