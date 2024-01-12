@@ -34,9 +34,9 @@ const Mainboard = () =>{
         <PrivateRoute exact path="/favourite" component={FavouritePage} />
         <PrivateRoute exact path="/my-item-page" component={ItemMyPage} />
         <PrivateRoute exact path="/query-item" component={QueryBulletinPage} />
-        <PrivateRoute exact path="/query-general" component={QueryGeneralPage} />
 
 
+        <Route exact path="/query-general" component={QueryGeneralPage} />
         <Route exact path="/" component={DashboardPage} />
         <Route exact path="/dashboard" component={DashboardPage} />
         <Route exact path="/item-board" component={ItemBoardPage} />
