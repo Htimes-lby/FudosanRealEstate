@@ -359,3 +359,10 @@ a, a:hover, a:focus {
 .bottom-part{
   margin-inline: auto;
 }
+
+.light {
+  color: black;
+}
+.dark {
+ color: purple;
+}
