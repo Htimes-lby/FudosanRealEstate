@@ -20,22 +20,18 @@ import QueryGeneralPage from "./pages/QueryGeneralPage";
 import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
 
-
-
-
 const Mainboard = () =>{
 
   return (
     <Switch>
         <Route exact path="/message-board" component={MessageBoardPage} />
         <Route exact path="/message-detail" component={MessageDetailPage} />
-        <PrivateRoute exact path="/post-agent" component={PostAgentPage} />
-        <PrivateRoute exact path="/post-real-estate" component={PostREPage} />
+        <Route exact path="/post-agent" component={PostAgentPage} />
+        <Route exact path="/post-real-estate" component={PostREPage} />
         <Route exact path="/favourite" component={FavouritePage} />
-        <PrivateRoute exact path="/my-item-page" component={ItemMyPage} />
-        <PrivateRoute exact path="/query-item" component={QueryBulletinPage} />
+        <Route exact path="/my-item-page" component={ItemMyPage} />
+        <Route exact path="/query-item" component={QueryBulletinPage} />
         <Route exact path="/query-general" component={QueryGeneralPage} />
-
 
         <Route exact path="/" component={DashboardPage} />
         <Route exact path="/dashboard" component={DashboardPage} />
@@ -48,9 +44,6 @@ const Mainboard = () =>{
         <Route exact path="/post" component={PostREPage} />
         <Route exact path="/login" component={SignInPage} />
         <Route exact path="/register" component={SignUpPage} />
-     
-        
-       
     </Switch>  
   );
 }

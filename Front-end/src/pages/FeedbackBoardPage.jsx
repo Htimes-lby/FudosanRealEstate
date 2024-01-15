@@ -249,6 +249,7 @@ category: 'bought',
 const FeedbackBoardPage = () => {
     const history = useHistory();
     const location = useLocation();
+    if(!location.state)history.goBack();
     const { state } = location.state;
     const category = state.category;
     const handleFeedbackCardClicked = (props) => {
