@@ -9,41 +9,51 @@ export default function ItemDetailPage() {
     const location = useLocation();
     const { state } = location.state;
     const realEstateData = state.realEstateData;
-    const {username, tableData, briefDescription, fullDescription} = realEstateData;
+    const flag = state.flag;
+    const {username, basicInfo, briefDescription, fullDescription, address, images} = realEstateData;
 
   return (
-    <div>
+    <div className='pb-[120px]'>
         <div className='flex flex-col justify-center items-center'>
             <div className='pt-[92px]'>
-                <p className='text-[32px] text-center'>売主さんへの手紙</p>
+                {flag == 'realEstatePost' && <p className='text-[32px] text-center'>{address.province}{address.city}</p>}
+                {flag == 'feedbackBuyer' && <p className='text-[32px] text-center'>売主さんへの手紙</p>}
+                {flag == 'feedbackSeller' && <p className='text-[32px] text-center'>売りました体験談</p>}
             </div>
             <div className='w-[1440px] pt-[72px] flex items-center justify-between'>
-                <p className='text-[32px]'>あれから、こんな風に使ってます</p>
-                <p className='text-[20px]'>{username}</p>
+                {flag == 'feedbackBuyer' && <p className='text-[32px]'>あれから、こんな風に使ってます</p>}
+                {flag != 'realEstatePost' && <p className='text-[20px]'>{username}</p>}
             </div>
         </div>
 
         <div className='pt-[28px]'>
-            <Carousel />
+            <Carousel images = {images}/>
         </div>
-        <div className='w-[1440px] bottom-part'>
-            <div className=' flex items-center justify-between bottom-part pt-[90px] pb-[84px] '>
+        <div className='flex flex-col items-center w-[1440px] mx-auto'>
+            <div className='flex flex-row items-center w-full justify-between pt-[90px] pb-[84px] px-[40px]'>
                 <div>
                     <GoogleMapComponent />
                 </div>
-                <div className='mr-[50px]'>
-                    <BasicTableBuilding tableData = {tableData} fontSize = {"text-[26px]"} width = {"w-[500px]"}  />
+                <div>
+                    <BasicTableBuilding tableData = {basicInfo} fontSize = {"text-[24px]"} width = {"w-[500px]"}  />
                 </div>             
             </div>
-            <div>
-                <p className='text-[24px] flex justify-center'>{briefDescription}</p>
-                <p className='text-[16px] pt-[56px]'>{fullDescription}</p>
-            </div>
-            <div className='pt-[45px] pb-[120px] flex justify-center'>
-                <button className='bg-[#2A6484] text-[24px] text-white px-[42px] py-[25px] rounded-xl'>売りたい物件を掲示板に載せる</button>
-            </div>
+            <p className='text-[24px]'>{briefDescription}</p>
+            <p className='text-[16px] pt-[56px]'>{fullDescription}</p>
+            {
+                flag !== 'realEstatePost' &&
+                <div className=' flex justify-center'>
+                    <button className='bg-[#2A6484] pt-[45px] text-[24px] text-white px-[42px] py-[25px] rounded-xl'>売りたい物件を掲示板に載せる</button>
+                </div>
+            }
+            {
+                flag == 'realEstatePost' &&
+                <div className='flex justify-center gap-[50px] w-full mt-20'>
+                    <div className='flex w-[380px] h-[80px] justify-center items-center bg-[#2A6484] text-white text-[24px] rounded-xl'>メッセージを送信する</div>
+                    <div className='flex w-[380px] h-[80px] justify-center items-center text-[#2A6484] bg-white text-[24px] rounded-xl border-[#2A6484] border-2 font-normal'>お気に入り追加済</div>
+                </div>
+            }
         </div>
-
     </div>
   )
 }

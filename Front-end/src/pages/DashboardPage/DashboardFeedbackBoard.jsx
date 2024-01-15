@@ -160,11 +160,11 @@ const feedbackDataBought = [
 const DashboardFeedbackBoard = () => {
     return (
         <div className='w-full py-20'>
-            <div className='text-center text-[32px] font-semibold'>AAAAAAAAAAAA</div>
+            <div className='text-center text-[32px] font-semibold'>みんなの感想文</div>
             <div className='flex flex-col gap-5 mx-auto w-[1250px] mt-7'>
                 <div className='flex justify-between text-[16px] font-normal px-[10px]'>
-                    <span>AAAAAAAA</span>
-                    <span>AAAAAAAAAA</span>
+                    <span>売りました体験談</span>
+                    <span>もっと見る</span>
                 </div>
                 <div className='flex justify-between'>
                     {
@@ -176,8 +176,8 @@ const DashboardFeedbackBoard = () => {
                     }
                 </div>
                 <div className='flex justify-between text-[16px] font-normal px-[10px] mt-[30px]'>
-                    <span>AAAAAAAAA</span>
-                    <span>AAAAAAAAAA</span>
+                    <span>こんな風に使ってます</span>
+                    <span>もっと見る</span>
                 </div>
                 <div className='flex justify-between'>
                     {
