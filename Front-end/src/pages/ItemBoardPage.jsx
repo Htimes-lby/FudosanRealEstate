@@ -6,8 +6,9 @@ import AgentCard from "../components/AgentCard"
 const ItemBoardPage = () => {
 
     function click(e){
-        const categoryId = e.target.innerHTML
-        alert(e.target.innerHTML)
+        console.log(e);
+        const categoryId = e.target.innerText
+        alert(categoryId)
     }
 
     const myImage = 
@@ -60,7 +61,7 @@ const ItemBoardPage = () => {
 
     return (
         <div className='bg-[#F1F1F1] flex'>
-            <div className='w-[450px] ml-[137px] pt-[130px]   '>
+            <div className='w-[480px] ml-[137px] pt-[130px]   '>
                 {Object.keys(myImage).map((key, i) => (
                     <div className='mb-[27px] ml-[45px] inline-block'  key={i}>
                         <Category text={key} img={myImage[key]} onClick={click} alt={i} />
@@ -120,7 +121,7 @@ const ItemBoardPage = () => {
                         <span>豪州 北米 欧州 アジア</span>
                     </div>
                 </div>
-                <div className='pt-[20px] pl-[70px]'>
+                <div className='pt-[20px] pl-[0px]'>
                     <GoogleMapComponent />
                 </div>
                 

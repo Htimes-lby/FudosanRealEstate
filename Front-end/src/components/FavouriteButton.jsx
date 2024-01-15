@@ -13,7 +13,7 @@ const FavouriteButton = (props) => {
     }
 
     return(
-        <div className={`flex justify-center gap-[20px] items-center text-[#2A6484] bg-white text-[24px] rounded-xl border-[#2A6484] border-2 font-normal cursor-pointer ${calledComponent == 'realEstateDetailPage'? 'w-[380px] h-[80px]' : ''}`} onClick={handleFavouriteButtonClicked}>
+        <div className={`flex justify-center gap-[20px] items-center text-[#2A6484] bg-white text-[24px] rounded-xl border-[#2A6484] border-2 font-normal cursor-pointer ${calledComponent == 'realEstateDetailPage'? 'w-[380px] h-[80px]' : 'w-[200px] h-[40px]'}`} onClick={handleFavouriteButtonClicked}>
             <FavouriteStarInButton clicked = {favouriteButtonClicked}/>
             <span>{favouriteButtonClicked ? removeFavourite : addFavourite}</span>
         </div>
