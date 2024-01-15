@@ -5,11 +5,7 @@ import { useLocation } from 'react-router-dom/cjs/react-router-dom.min'
 import Carousel from '../components/Carousel'
 import GoogleMapComponent from '../components/GoogleMapComponent'
 import BasicTableBuilding from '../components/BasicTableBuilding'
-import FavouriteStar from '../components/FavouriteStar'
-import FavouriteStarInButton from '../components/FavouriteStarInButton'
-
-const addFavourite = 'お気に入りに追加'
-const removeFavourite = 'お気に入りを削除'
+import FavouriteButton from '../components/FavouriteButton'
 
 export default function ItemDetailPage() {
 
@@ -62,10 +58,7 @@ export default function ItemDetailPage() {
                 flag == 'realEstatePost' &&
                 <div className='flex justify-center gap-[50px] w-full mt-20'>
                     <div className='flex w-[380px] h-[80px] justify-center items-center bg-[#2A6484] text-white text-[24px] rounded-xl'>メッセージを送信する</div>
-                    <div className='flex w-[380px] h-[80px] justify-center gap-[20px] items-center text-[#2A6484] bg-white text-[24px] rounded-xl border-[#2A6484] border-2 font-normal cursor-pointer' onClick={handleFavouriteButtonClicked}>
-                        <FavouriteStarInButton clicked = {favouriteButtonClicked}/>
-                        <span>{favouriteButtonClicked ? removeFavourite : addFavourite}</span>
-                    </div>
+                    <FavouriteButton calledComponent='realEstateDetailPage'/>
                 </div>
             }
         </div>
