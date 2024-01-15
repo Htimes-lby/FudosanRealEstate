@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import AccordionItemMessage from '../components/AccordionItemMessage';
+import AgentCard from '../components/AgentCard';
 
 
 const msgs = [
@@ -18,6 +19,7 @@ const msgs = [
 テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト テキスト  テキスト  テキスト  テキスト  テキスト  テキスト テキスト  テキスト  テキスト  テキスト  テキスト`
 ,
         date: '2024/1/5 10:30',
+        status:"receive"
     },
     {
         id: 2,
@@ -33,6 +35,7 @@ const msgs = [
 テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト テキスト  テキスト  テキスト  テキスト  テキスト  テキスト テキスト  テキスト  テキスト  テキスト  テキスト`
 ,
         date: '2024/1/5 10:30',
+        status:"sender"
     },
     {
         id: 3,
@@ -48,6 +51,7 @@ const msgs = [
 テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト テキスト  テキスト  テキスト  テキスト  テキスト  テキスト テキスト  テキスト  テキスト  テキスト  テキスト`
 ,
         date: '2024/1/5 10:30',
+        status:"sender"
     },
     {
         id: 4,
@@ -63,6 +67,7 @@ const msgs = [
 テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト テキスト  テキスト  テキスト  テキスト  テキスト  テキスト テキスト  テキスト  テキスト  テキスト  テキスト`
 ,
         date: '2024/1/5 10:30',
+        status:"receive"
     },
     {
         id: 5,
@@ -78,6 +83,7 @@ const msgs = [
 テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト テキスト  テキスト  テキスト  テキスト  テキスト  テキスト テキスト  テキスト  テキスト  テキスト  テキスト`
 ,
         date: '2024/1/5 10:30',
+        status:"receive"
     },
     {
         id: 5,
@@ -93,6 +99,7 @@ const msgs = [
 テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト テキスト  テキスト  テキスト  テキスト  テキスト  テキスト テキスト  テキスト  テキスト  テキスト  テキスト`
 ,
         date: '2024/1/5 10:30',
+        status:"sender"
     },
     {
         id: 6,
@@ -108,6 +115,7 @@ const msgs = [
 テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト テキスト  テキスト  テキスト  テキスト  テキスト  テキスト テキスト  テキスト  テキスト  テキスト  テキスト`
 ,
         date: '2024/1/5 10:30',
+        status:"receive"
     },
 ]
 
@@ -122,33 +130,42 @@ const FAQPage = () => {
         }
     }
 
+    const agentinfor = {companyName :"会社名",
+    agentName:"担当者名",
+    phoneNumber:"0123456789",
+    emailAddress:"abcdef@gmail.com",
+    content:"テキスト テキスト テキスト テキスト テキスト テキスト テキスト"+
+            "テキスト テキスト テキスト テキスト テキスト テキスト テキスト"+
+            "テキスト テキスト テキスト テキスト テキスト テキスト テキスト"+
+            "テキスト テキスト テキスト テキスト テキスト テキスト テキスト"}
+
     return (
-        <div className='flex justify-center items-center w-full'>
-        <div className='flex flex-col w-[60%] gap-[5px]'>
-            {msgs.map((msg, index) => {
-                return (
-                        <AccordionItemMessage key={index} message={msg} />
-                        )
-                })
-            }
-        </div>
-            {/* <div className="container-fluid mt-5 mb-5">
-                <div className="row justify-content-center">
-                    <div className="col-md-8 mt-2">
-                        <div className="card">
-                            <div className="card-body w-[70%]">
-                              <h4 className="form-heading mb-4 text-primary text-center mt-3">React Accordion</h4>
-                                {faqs.map((faq, index) => {
-                                     return (
-                                            <AccordionItem key={index} active={active} handleToggle={handleToggle} faq={faq} />
-                                        )
-                                    })
-                                }
-                            </div>
-                        </div>
-                    </div>
+        <div> 
+            <div className='pt-[85px] pl-[296px] pb-[134px]'>
+                <p className='text-[24px]'>テキスト テキスト</p>
+            </div>
+            <div className='flex justify-center pb-[59px]'>
+                <AgentCard agentInfo={agentinfor}  />
+            </div>
+            <div className='flex justify-center items-center w-full'>
+                <div className='flex flex-col w-[60%] gap-[5px]'>
+                    {msgs.map((msg, index) => {
+                        return (
+                                <AccordionItemMessage key={index} message={msg} />
+                                )
+                        })
+                    }
                 </div>
-            </div> */}
+            
+            </div>
+            <div className='flex justify-center pt-[48px] pb-[45px]'>
+                <textarea  className="border-[1px] border-black rounded-sm" name="message" id="" cols="100" rows="4"></textarea>
+            </div>
+            <div className='flex justify-center'>
+
+                <button className='bg-[#2A6484] text-[24px] text-white py-[19px] px-[50px] rounded-2xl mb-[103px]'>メッセージを送信する</button>
+            </div>
+            
         </div>
     )
 }
