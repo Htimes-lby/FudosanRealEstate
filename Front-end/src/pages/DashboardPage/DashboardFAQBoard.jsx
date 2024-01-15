@@ -1,4 +1,5 @@
 import { React, useState } from 'react';
+import { useHistory, useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 import AccordionItem from '../../components/AccordionItem';
 
 const faqs = [
@@ -113,7 +114,7 @@ const faqs = [
 ]
 
 const DashboardFAQPage = () => {
-
+    const history = useHistory();
     const [active, setActive] = useState(null);
 
     const handleToggle = (index) => {
@@ -123,9 +124,12 @@ const DashboardFAQPage = () => {
             setActive(index);
         }
     }
+    const handleViewMoreClicked = () => {
+        history.push('/faq');
+    }
 
     return (
-        <div className=' flex flex-col items-center justify-center w-full mt-20 py-20 bg-[#6d7a6a]'>
+        <div className=' flex flex-col items-center justify-center w-full mt-20 py-20 bg-[#32769b]'>
             <div className='text-[32px] text-white mb-10 font-normal'>よくある質問</div>
             <div className='flex flex-col gap-2 w-[60%]'>
                 {faqs.map((faq, index) => {
@@ -135,7 +139,7 @@ const DashboardFAQPage = () => {
                     })
                 }
             </div>
-            <div className=' w-[200px] bg-white font-semibold text-[#2A6484] border-2 border-[#2A6484] text-center py-[12px] mt-20 rounded-xl'>もっと見る</div>
+            <div className=' w-[200px] bg-white font-semibold text-[#2A6484] border-2 border-[#2A6484] text-center py-[12px] mt-20 rounded-xl cursor-pointer' onClick={handleViewMoreClicked}>もっと見る</div>
         </div>
     )
 }
