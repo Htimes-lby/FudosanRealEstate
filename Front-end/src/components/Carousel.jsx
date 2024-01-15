@@ -4,7 +4,8 @@ import '@glidejs/glide/dist/css/glide.core.min.css';
 import '@glidejs/glide/dist/css/glide.theme.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
-const Carousel = () => {
+const Carousel = (props) => {
+    const {images} = props;
     useEffect(() => {
         const config = {
             type: 'carousel',
@@ -38,7 +39,7 @@ const Carousel = () => {
         <div className="glide flex items-center justify-center w-full h-[350px] bg-[#ECECEC] mt-0">
             <div className="glide__track w-[90%] pl-[30px]"  data-glide-el="track">
                 <ul className="glide__slides">
-                    {myArray.map((image, index) => (
+                    {images.map((image, index) => (
                         <li key={index} className="glide__slide">
                             <img src={image} alt={`Slide ${index + 1}`} className="w-[350px] h-[250px]"/>
                         </li>

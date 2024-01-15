@@ -8,10 +8,10 @@ const ItemListPage = () => {
     function toggle() {
         setIsOpen((isOpen) => !isOpen);
       }
-    function opennav(){
+    // function opennav(){
         
-        // document.getElementById("searchBoard").style.display="block"
-    }
+    //     // document.getElementById("searchBoard").style.display="block"
+    // }
     return (
         <div>
             <div className='flex justify-center pt-[59px]'>
