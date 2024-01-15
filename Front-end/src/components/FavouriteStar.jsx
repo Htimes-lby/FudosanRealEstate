@@ -8,7 +8,7 @@ const FavouriteStar = () => {
     }
     return(
         <div onClick={handleStarClicked}>
-            <div className="text-center text-[30px] cursor-pointer">
+            <div className="text-center text-[15px] cursor-pointer">
                 <div className={`fa fa-star transition-all text-duration-200 ease-in ${clicked? 'starred text-[#f52755]': 'unstarred text-slate-200'}`}></div>
             </div>
         </div>

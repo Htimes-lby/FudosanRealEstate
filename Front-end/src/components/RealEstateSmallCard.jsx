@@ -1,7 +1,7 @@
 import React from "react";
 import BasicTableBuilding from "./BasicTableBuilding";
 import BasicTableLand from "./BasicTableLand";
-
+import FavouriteStar from "./FavouriteStar"
 const width = 'w-[180px]'
 const fontSize = 'text-[11px]'
 
@@ -11,7 +11,8 @@ const RealEstateSmallCard = ( props ) =>{
     const tableData = basicInfo;
 
     return(
-        <div className="w-[240px]  border pb-3 shadow-lg ">
+        <div className="relative w-[240px]  border pb-3 shadow-lg ">
+            {/* <div className="absolute top-[2px] right-1"><FavouriteStar/></div> */}
             <div className="px-4 pt-3 text-center text-[10px] line-clamp-3" >
                 <p>{briefDescription}</p>
             </div>
