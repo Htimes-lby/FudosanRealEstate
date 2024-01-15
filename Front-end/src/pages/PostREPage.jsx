@@ -51,14 +51,23 @@ const PostREPage = () => {
 
     const realEstateInfo = 
         {
-            briefDescription: `text text text text text text text text text text text text text text text text
-            text text text text text text text text text text text text text text text text
-            text text text text text text text text text text text text text text text text
-            text text text text text text text text text text text text text text text text
-            text text text text text text text text text text text text text text text text`,
+            
+            
+           
+            images: myArray,
+            briefDescription: `テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト`,
+            fullDescription: `テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+            テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+            テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+            テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+            テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+            テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+            テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト `,
             image: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2620&q=80',
-            tableData: {
-                budget: '123',
+            basicInfo: {
+                budget: '1',
                 layout: '4LDK',
                 landarea: '7777m²',
                 buildingarea: '4444m²',
