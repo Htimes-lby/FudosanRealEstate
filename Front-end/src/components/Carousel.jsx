@@ -46,15 +46,15 @@ const Carousel = (props) => {
                     ))}
                 </ul>
             </div>
-            <div class="glide__arrows" data-glide-el="controls">
-                <button class="glide__arrow glide__arrow--left left-4" data-glide-dir="<">
-                <div class="h-9 w-9 bg-gray-800 rounded-xl flex justify-center items-center my-auto hover:bg-red-500 duration-300 ease-in-out">
-                <i class="fa-solid fa-circle-left text-white text-2xl"></i>
+            <div className="glide__arrows" data-glide-el="controls">
+                <button className="glide__arrow glide__arrow--left left-4" data-glide-dir="<">
+                <div className="h-9 w-9 bg-gray-800 rounded-xl flex justify-center items-center my-auto hover:bg-red-500 duration-300 ease-in-out">
+                <i className="fa-solid fa-circle-left text-white text-2xl"></i>
                 </div>
                 </button>
-                <button class="glide__arrow glide__arrow--right right-4" data-glide-dir=">">
-                <div class="h-9 w-9 bg-gray-800 rounded-xl flex justify-center items-center my-auto hover:bg-red-500 duration-300 ease-in-out">
-                    <i class="fa-solid fa-circle-right text-white text-2xl"></i>
+                <button className="glide__arrow glide__arrow--right right-4" data-glide-dir=">">
+                <div className="h-9 w-9 bg-gray-800 rounded-xl flex justify-center items-center my-auto hover:bg-red-500 duration-300 ease-in-out">
+                    <i className="fa-solid fa-circle-right text-white text-2xl"></i>
                 </div>
                 </button>
             </div>

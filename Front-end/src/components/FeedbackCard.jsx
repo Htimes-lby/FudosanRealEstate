@@ -3,7 +3,7 @@ import React from "react";
 const FeedbackCard = (props) => {
 
     const {feedback} = props;
-    const {feedimg, content} = feedback;
+
 
     return(
         <div className="w-[260px]  border pb-3 shadow-xl rounded-lg">
@@ -11,7 +11,7 @@ const FeedbackCard = (props) => {
                 <img src={feedimg} alt='feedcard' className="w-[220px] " />
             </div>
             <div className="px-4 pt-1 text-center text-[11px] overflow-hidden line-clamp-5">
-                <p>{content}</p>
+                <p>{fullComment}</p>
             </div>
         </div>
     )

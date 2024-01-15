@@ -1,10 +1,29 @@
 import { React } from 'react';
-import FeedbackCard from '../../components/FeedbackCard';
+import { useHistory } from 'react-router-dom'
 
-const feedbackDataSold = [
+
+
+import FeedbackCard from '../../components/FeedbackCard';
+const myArray = [
+    require("../../assets/img/carousel/2.jpg"),
+    require("../../assets/img/carousel/1.jpg"),
+    require("../../assets/img/carousel/3.jpg"),
+    require("../../assets/img/carousel/4.jpg"),
+    require("../../assets/img/carousel/5.jpg"),
+];
+const feedbacks = [
     {
-        image : 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2620&q=80',
-        content : `テキスト テキスト テキスト テキスト
+        name: 'Sasuke',
+        address: 'Lasbegas,US',
+        images : myArray,
+        shortComment : `テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト`,
+        fullComment : `テキスト テキスト テキスト テキスト
 テキスト テキスト テキスト テキスト
 テキスト テキスト テキスト テキスト
 テキスト テキスト テキスト テキスト
@@ -20,10 +39,20 @@ const feedbackDataSold = [
 テキスト テキスト テキスト テキスト
 テキスト テキスト テキスト テキスト
 テキスト テキスト テキスト テキスト`,
+        category: 'sold',
     },
     {
-        image : 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2620&q=80',
-        content : `テキスト テキスト テキスト テキスト
+        name: 'Sasuke',
+        address: 'Lasbegas,US',
+        images : myArray,
+        shortComment : `テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト`,
+        fullComment : `テキスト テキスト テキスト テキスト
 テキスト テキスト テキスト テキスト
 テキスト テキスト テキスト テキスト
 テキスト テキスト テキスト テキスト
@@ -39,10 +68,20 @@ const feedbackDataSold = [
 テキスト テキスト テキスト テキスト
 テキスト テキスト テキスト テキスト
 テキスト テキスト テキスト テキスト`,
+        category: 'sold',
     },
     {
-        image : 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2620&q=80',
-        content : `テキスト テキスト テキスト テキスト
+        name: 'Sasuke',
+        address: 'Lasbegas,US',
+        images : myArray,
+        shortComment : `テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト`,
+        fullComment : `テキスト テキスト テキスト テキスト
 テキスト テキスト テキスト テキスト
 テキスト テキスト テキスト テキスト
 テキスト テキスト テキスト テキスト
@@ -58,10 +97,20 @@ const feedbackDataSold = [
 テキスト テキスト テキスト テキスト
 テキスト テキスト テキスト テキスト
 テキスト テキスト テキスト テキスト`,
+category: 'sold',
     },
     {
-        image : 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2620&q=80',
-        content : `テキスト テキスト テキスト テキスト
+        name: 'Sasuke',
+        address: 'Lasbegas,US',
+        images : myArray,
+        shortComment : `テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト`,
+        fullComment : `テキスト テキスト テキスト テキスト
 テキスト テキスト テキスト テキスト
 テキスト テキスト テキスト テキスト
 テキスト テキスト テキスト テキスト
@@ -77,87 +126,134 @@ const feedbackDataSold = [
 テキスト テキスト テキスト テキスト
 テキスト テキスト テキスト テキスト
 テキスト テキスト テキスト テキスト`,
+category: 'sold',
+    },
+    {
+        name: 'Sasuke',
+        address: 'Lasbegas,US',
+        images : myArray,
+        shortComment : `テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト`,
+        fullComment : `テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト`,
+category: 'bought',
+    },
+    {
+        name: 'Sasuke',
+        address: 'Lasbegas,US',
+        images : myArray,
+        shortComment : `テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト`,
+        fullComment : `テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト`,
+category: 'bought',
+    },
+    {
+        name: 'Sasuke',
+        address: 'Lasbegas,US',
+        images : myArray,
+        shortComment : `テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト`,
+        fullComment : `テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト`,
+category: 'bought',
+    },
+    {
+        name: 'Sasuke',
+        address: 'Lasbegas,US',
+        images : myArray,
+        shortComment : `テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト`,
+        fullComment : `テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト`,
+category: 'bought',
     },
 ]
-const feedbackDataBought = [
-    {
-        image : 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2620&q=80',
-        content : `テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト`,
-    },
-    {
-        image : 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2620&q=80',
-        content : `テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト`,
-    },
-    {
-        image : 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2620&q=80',
-        content : `テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト`,
-    },
-    {
-        image : 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2620&q=80',
-        content : `テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト
-テキスト テキスト テキスト テキスト`,
-    },
-]
+
 const DashboardFeedbackBoard = () => {
+
+    const history = useHistory();
+    const handleCardClicked = (props) => {
+        const index = props;
+        const feedbackData = feedbacks[index];
+        history.push('/feedback-detail',{state: {feedbackData}});
+    }
     return (
         <div className='w-full py-20'>
             <div className='text-center text-[32px] font-semibold'>みんなの感想文</div>
@@ -168,9 +264,12 @@ const DashboardFeedbackBoard = () => {
                 </div>
                 <div className='flex justify-between'>
                     {
-                        feedbackDataBought.map((feedback, index) => {
+                        feedbacks.map((feedback, index) => {
                             return(
-                                <FeedbackCard key = {index} feedback = {feedback}/>
+                                feedback.category === 'bought' &&
+                                <div className='cursor-pointer' onClick={() => handleCardClicked(index)}>
+                                    <FeedbackCard feedback = {feedback}/>
+                                </div>  
                             );
                         })
                     }
@@ -181,9 +280,12 @@ const DashboardFeedbackBoard = () => {
                 </div>
                 <div className='flex justify-between'>
                     {
-                        feedbackDataSold.map((feedback, index) => {
+                        feedbacks.map((feedback, index) => {
                             return(
-                                <FeedbackCard key = {index} feedback = {feedback}/>
+                                feedback.category === 'sold' &&
+                                <div className='cursor-pointer' onClick={() => handleCardClicked(index)}>
+                                    <FeedbackCard feedback = {feedback}/>
+                                </div> 
                             );
                         })
                     }
@@ -192,5 +294,4 @@ const DashboardFeedbackBoard = () => {
         </div>
     );
 }
-
 export default DashboardFeedbackBoard;
