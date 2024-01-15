@@ -13,6 +13,11 @@
 /* Root CSS */
 body {
   font-family: "Poppins", sans-serif;
+  
+}
+ul{
+  margin: 0;
+  padding: 0;
 }
 
 #dropdown-menu:hover #dropdown-content{
