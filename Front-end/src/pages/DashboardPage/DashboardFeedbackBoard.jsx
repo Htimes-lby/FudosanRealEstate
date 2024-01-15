@@ -254,13 +254,17 @@ const DashboardFeedbackBoard = () => {
         const feedbackData = feedbacks[index];
         history.push('/feedback-detail',{state: {feedbackData}});
     }
+    const handleViewMoreClicked = (props) => {
+        const category = props;
+        history.push('/feedback-board', {state: {category}})
+    }
     return (
         <div className='w-full py-20'>
             <div className='text-center text-[32px] font-semibold'>みんなの感想文</div>
             <div className='flex flex-col gap-5 mx-auto w-[1250px] mt-7'>
                 <div className='flex justify-between text-[16px] font-normal px-[10px]'>
                     <span>売りました体験談</span>
-                    <span>もっと見る</span>
+                    <span className='text-[20px] font-medium cursor-pointer' onClick={() => handleViewMoreClicked('sold')}>もっと見る</span>
                 </div>
                 <div className='flex justify-between'>
                     {
@@ -276,7 +280,7 @@ const DashboardFeedbackBoard = () => {
                 </div>
                 <div className='flex justify-between text-[16px] font-normal px-[10px] mt-[30px]'>
                     <span>こんな風に使ってます</span>
-                    <span>もっと見る</span>
+                    <span className='text-[20px] font-medium cursor-pointer' onClick={() => handleViewMoreClicked('bought')}>もっと見る</span>
                 </div>
                 <div className='flex justify-between'>
                     {
