@@ -31,12 +31,12 @@ const Mainboard = () =>{
         <Route exact path="/message-detail" component={MessageDetailPage} />
         <PrivateRoute exact path="/post-agent" component={PostAgentPage} />
         <PrivateRoute exact path="/post-real-estate" component={PostREPage} />
-        <PrivateRoute exact path="/favourite" component={FavouritePage} />
+        <Route exact path="/favourite" component={FavouritePage} />
         <PrivateRoute exact path="/my-item-page" component={ItemMyPage} />
         <PrivateRoute exact path="/query-item" component={QueryBulletinPage} />
-
-
         <Route exact path="/query-general" component={QueryGeneralPage} />
+
+
         <Route exact path="/" component={DashboardPage} />
         <Route exact path="/dashboard" component={DashboardPage} />
         <Route exact path="/item-board" component={ItemBoardPage} />
