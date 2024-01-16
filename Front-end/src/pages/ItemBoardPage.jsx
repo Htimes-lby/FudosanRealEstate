@@ -62,6 +62,10 @@ const ItemBoardPage = () => {
         const content = e.target.innerText
         history.push('/item-list', {state: {flag,content}})
     }
+    const agentCardClicked = (props) => {
+        const agentData = props;
+        history.push('/message-detail', {state: {agentData}});
+    }
 
     return (
         <div className='bg-[#F1F1F1] flex justify-between'>
@@ -74,7 +78,6 @@ const ItemBoardPage = () => {
             </div>
             <div className='flex flex-col items-center'>
                 <div className='pt-[80px]' >
-
                     <div className='flex gap-[22px]'>
                         <span className="text-[#02540A] text-[16px] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'province')}>北海道</span>
                         <div onClick={(e) => handleClick(e, 'city')} className=' cursor-pointer'>
@@ -218,7 +221,7 @@ const ItemBoardPage = () => {
                     </ul> */}
                 </div>
                 {myAgent.map((agent, index) => (
-                    <div className='pt-[45px]'> 
+                    <div className='pt-[45px]' onClick={() => agentCardClicked(index)}> 
                         <AgentCard agentInfo={agent} key={index} />                           
                     </div>
                 ))}
