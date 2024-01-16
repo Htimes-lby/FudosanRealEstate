@@ -93,12 +93,12 @@ const MessageBoardPage = () => {
             <div className='flex justify-center gap-[65px] items-start'>
                 <div className='w-[200px] border-[1px] border-black'>
                     <div className='bg-[#0D4868] text-center text-white p-2'>メッセージボックス</div>
-                    <div className={`text-center text-[16px] border-b-[1px] border-l-4  border-black p-2 cursor-pointer ${activeCategory === 'all' ? 'border-l-red-700' : 'border-l-red-200'}`} onClick={() => handleActiveCategorySelected('all')}>すべて表示</div>
-                    <div className='text-[18px] py-2 pl-3 border-b-[1px] border-b-black/30'>受信箱</div>
-                    <div className={`text-center text-[16px] p-2 border-b-[1px] border-b-black/30 border-l-4 cursor-pointer ${activeCategory === 'received-all' ? 'border-l-red-700' : 'border-l-red-200'}`} onClick={() => handleActiveCategorySelected('received-all')}>すべて表示</div>
-                    <div className={`text-center text-[16px] p-2 border-b-[1px] border-black border-l-4 cursor-pointer ${activeCategory === 'received-unread' ? 'border-l-red-700' : 'border-l-red-200'}`} onClick={() => handleActiveCategorySelected('received-unread')}>未読</div>
-                    <div className='text-[18px] py-2 pl-3 border-b-[1px] border-b-black/30'>送信箱</div>
-                    <div className={`text-center text-[16px] p-2 border-l-4 cursor-pointer ${activeCategory === 'sent' ? 'border-l-red-700' : 'border-l-red-200'}`} onClick={() => handleActiveCategorySelected('sent')}>すべて表示</div>
+                    <div className={`text-center text-[16px] border-b-[1px] border-l-4  border-black p-2 cursor-pointer ${activeCategory === 'all' ? 'border-l-[#0D4868]' : 'border-l-[#0D4868]/30'}`} onClick={() => handleActiveCategorySelected('all')}>すべて表示</div>
+                    <div className='text-[18px] py-2 pl-3 border-b-[1px] border-b-black/30 bg-[#F2ECCD]/70'>受信箱</div>
+                    <div className={`text-center text-[16px] p-2 border-b-[1px] border-b-black/30 border-l-4 cursor-pointer ${activeCategory === 'received-all' ? 'border-l-[#0D4868]' : 'border-l-[#0D4868]/30'}`} onClick={() => handleActiveCategorySelected('received-all')}>すべて表示</div>
+                    <div className={`text-center text-[16px] p-2 border-b-[1px] border-black border-l-4 cursor-pointer ${activeCategory === 'received-unread' ? 'border-l-[#0D4868]' : 'border-l-[#0D4868]/30'}`} onClick={() => handleActiveCategorySelected('received-unread')}>未読</div>
+                    <div className='text-[18px] py-2 pl-3 border-b-[1px] border-b-black/30 bg-[#F2ECCD]/70'>送信箱</div>
+                    <div className={`text-center text-[16px] p-2 border-l-4 cursor-pointer ${activeCategory === 'sent' ? 'border-l-[#0D4868]' : 'border-l-[#0D4868]/30'}`} onClick={() => handleActiveCategorySelected('sent')}>すべて表示</div>
                 </div>
 
                 <div className='w-[1200px]'>
