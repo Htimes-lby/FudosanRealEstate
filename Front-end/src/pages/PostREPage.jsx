@@ -123,7 +123,6 @@ const PostREPage = () => {
                     </div>
                 </div>
                 <div className='flex justify-center pt-[70px] pb-[85px]'>
-
                     <div className='text-center  bg-[#0D4868] w-[1070px] text-white'>
                         <p className='text-[30px] p-[15px] mt-[15px]'>個人情報を明かさずに相手とやりとりできます</p>
                         <p className='text-[30px] p-[15px]'>契約書類はすべて国家資格の宅建士が作成</p>
@@ -164,10 +163,7 @@ const PostREPage = () => {
                         <div className='flex justify-center pt-[105px] pb-[170px]'>
                             <button className='bg-[#2A6484] text-white px-[115px] py-[14px] text-[24px] rounded-[20px]'>提出</button>
                         </div>
-                        
                     </div>
-                   
-
                 </div>
             </div>
         </div>

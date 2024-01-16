@@ -1,8 +1,10 @@
-import React from 'react';
+import React ,{useState     } from 'react';
 import UploadImageForm from "../components/Form/UploadImageForm"
 import ConditionForm from '../components/Form/ConditionForm';
 
 const PostAgentPage = () => {
+
+    const [value, setValue] = useState('');
     return (
         <div className='bg-[#F1F1F1]  pt-[124px]'>
             <div className='container bg-white'>
@@ -55,6 +57,31 @@ const PostAgentPage = () => {
                         <input type="text"  className='w-[445px] border-2 border-black rounded-md'/>
                     </div>
                 </div>
+
+                <div className=' w-[900px] ml-[310px]  flex gap-[169px] pt-[40px] '> 
+
+                    <div className='w-[177px] flex gap-[35px]  '>
+                            <span className='bg-[#F69191] h-[28px] inline-block p-1 rounded-md text-[15px] mx-[12px] text-white'>必須</span>
+                            <p className="text-[20px] ">役割</p>
+                            
+                    </div> 
+                    <div className=" flex items-center  ">
+                            
+                        <select
+                            className="border-2 rounded-md border-black w-[445px] "
+                            onChange={event => setValue(event.target.value)}
+                            defaultValue={value}>                       
+                            <option className="text-[16px]"  value="" >&nbsp;</option>
+                            <option className="text-[16px]"  value="不動産業者" >&nbsp;不動産業者</option>
+                            <option className="text-[16px]"  value="司法書士" >&nbsp;司法書士</option>
+                            <option className="text-[16px]"  value="投資家" >&nbsp;投資家</option>
+                            
+                        </select>
+                    </div>          
+                    
+                </div>
+
+
                 <div className=' w-[900px] ml-[310px]  flex gap-[169px] pt-[40px]'>
                     <div className='w-[177px] flex gap-[35px]  '>
                         <span className='bg-[#F69191] h-[28px] inline-block p-1 rounded-md text-[15px] mx-[12px] text-white'>必須</span>
