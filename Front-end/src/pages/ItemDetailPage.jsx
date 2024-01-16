@@ -12,8 +12,7 @@ export default function ItemDetailPage() {
     const location = useLocation();
     const { state } = location.state;
     const realEstateData = state.realEstateData;
-    const {username, basicInfo, briefDescription, fullDescription, address, images} = realEstateData;
-    const flag = state.flag;
+    const {basicInfo, briefDescription, fullDescription, address, images} = realEstateData;
 
     const [favouriteButtonClicked, setFavouriteButtonClicked] = useState(false);
     const handleFavouriteButtonClicked = () => {

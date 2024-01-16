@@ -50,7 +50,6 @@ ul{
 .pagination{
   display: flex;
   align-items:center;
-  margin-top: 40px;
   padding: 0;
   font-size: 18px;
   font-weight: 700;
