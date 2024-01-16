@@ -1,4 +1,6 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+
 import Category from '../components/Category';
 import GoogleMapComponent from '../components/GoogleMapComponent';
 import AgentCard from "../components/AgentCard"
@@ -52,35 +54,36 @@ content:"テキスト テキスト テキスト テキスト テキスト テキ
 
 const ItemBoardPage = () => {
 
-    function click(e){
-        console.log(e);
-        const categoryId = e.target.innerText
-        alert(categoryId)
-    }
+    const history = useHistory();
 
+    const handleClick = (e, params) => {
+        console.log(e);
+        const flag = params;
+        const content = e.target.innerText
+        history.push('/item-list', {state: {flag,content}})
+    }
 
     return (
         <div className='bg-[#F1F1F1] flex justify-between'>
             <div className='w-[480px] pt-[130px] ml-[100px]'>
                 {Object.keys(myImage).map((key, i) => (
                     <div className='mb-[27px] ml-[45px] inline-block'  key={i}>
-                        <Category text={key} img={myImage[key]} onClick={click} alt={i} />
-                    </div>
-                    
+                        <Category text={key} img={myImage[key]} onClick={(e) => handleClick(e,'category')} alt={i} />
+                    </div>    
                 ))}
             </div>
             <div className='flex flex-col items-center'>
                 <div className='pt-[80px]' >
 
-                    <div className='flex gap-[22px]' >
-                        <span className="text-[#02540A] text-[16px] w-[48px] pb-[10px]">北海道</span>
-                        <div onClick={click} className=' cursor-pointer'>
+                    <div className='flex gap-[22px]'>
+                        <span className="text-[#02540A] text-[16px] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'province')}>北海道</span>
+                        <div onClick={(e) => handleClick(e, 'city')} className=' cursor-pointer'>
                             <span>北海道</span>
                         </div>
                     </div>
-                    <div className='flex gap-[22px]' >
-                        <span className="text-[#02540A] text-[16px] w-[48px] pb-[10px]">東北</span>
-                        <div onClick={click} className=' cursor-pointer'>
+                    <div className='flex gap-[22px]'>
+                        <span className="text-[#02540A] text-[16px] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'province')}>東北</span>
+                        <div onClick={(e) => handleClick(e, 'city')} className=' cursor-pointer'>
                             <span className='pr-[5px]'>青森</span>
                             <span className='pr-[5px]'>岩手</span>
                             <span className='pr-[5px]'>秋田</span>
@@ -90,8 +93,8 @@ const ItemBoardPage = () => {
                         </div>
                     </div>
                     <div className='flex gap-[22px]'>
-                        <span className="text-[#02540A] text-[16px] w-[48px] pb-[10px]">関東</span>
-                        <div onClick={click} className=' cursor-pointer'>
+                        <span className="text-[#02540A] text-[16px] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'province')}>関東</span>
+                        <div onClick={(e) => handleClick(e, 'city')} className=' cursor-pointer'>
                             <span className='pr-[5px]'>茨城</span>
                             <span className='pr-[5px]'>栃木</span>
                             <span className='pr-[5px]'>群馬</span>
@@ -103,8 +106,8 @@ const ItemBoardPage = () => {
                         </div>
                     </div>
                     <div className='flex gap-[22px]'>
-                        <span className="text-[#02540A] text-[16px] w-[48px] pb-[10px]">甲信越</span>
-                        <div onClick={click} className=' cursor-pointer'>
+                        <span className="text-[#02540A] text-[16px] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'province')}>甲信越</span>
+                        <div onClick={(e) => handleClick(e, 'city')} className=' cursor-pointer'>
                             <span className='pr-[5px]'>新潟</span>
                             <span className='pr-[5px]'>長野</span>
                             <span className='pr-[5px]'>山梨</span>
@@ -113,8 +116,8 @@ const ItemBoardPage = () => {
                         
                     </div>
                     <div className='flex gap-[22px]'>
-                        <span className="text-[#02540A] text-[16px] w-[48px] pb-[10px]">北陸</span>
-                        <div onClick={click} className=' cursor-pointer'>
+                        <span className="text-[#02540A] text-[16px] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'province')}>北陸</span>
+                        <div onClick={(e) => handleClick(e, 'city')} className=' cursor-pointer'>
                             <span className='pr-[5px]'>富山</span>
                             <span className='pr-[5px]'>石川</span>
                             <span className='pr-[5px]'>福井</span>
@@ -123,8 +126,8 @@ const ItemBoardPage = () => {
                         
                     </div>
                     <div className='flex gap-[22px]'>
-                        <span className="text-[#02540A] text-[16px] w-[48px] pb-[10px]">東海</span>
-                        <div onClick={click} className=' cursor-pointer'>
+                        <span className="text-[#02540A] text-[16px] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'province')}>東海</span>
+                        <div onClick={(e) => handleClick(e, 'city')} className=' cursor-pointer'>
                             <span className='pr-[5px]'>静岡</span>
                             <span className='pr-[5px]'>愛知</span>
                             <span className='pr-[5px]'>岐阜</span>
@@ -134,8 +137,8 @@ const ItemBoardPage = () => {
                         
                     </div>
                     <div className='flex gap-[22px]'>
-                        <span className="text-[#02540A] text-[16px] w-[48px] pb-[10px]">近畿</span>
-                        <div onClick={click} className=' cursor-pointer'>
+                        <span className="text-[#02540A] text-[16px] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'province')}>近畿</span>
+                        <div onClick={(e) => handleClick(e, 'city')} className=' cursor-pointer'>
                             <span className='pr-[5px]'>滋賀</span>
                             <span className='pr-[5px]'>京都</span>
                             <span className='pr-[5px]'>大阪</span>
@@ -147,8 +150,8 @@ const ItemBoardPage = () => {
                         
                     </div>
                     <div className='flex gap-[22px]'>
-                        <span className="text-[#02540A] text-[16px] w-[48px] pb-[10px]">中国</span>
-                        <div onClick={click} className=' cursor-pointer'>
+                        <span className="text-[#02540A] text-[16px] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'province')}>中国</span>
+                        <div onClick={(e) => handleClick(e, 'city')} className=' cursor-pointer'>
                             <span className='pr-[5px]'>岡山</span>
                             <span className='pr-[5px]'>広島</span>
                             <span className='pr-[5px]'>鳥取</span>
@@ -159,8 +162,8 @@ const ItemBoardPage = () => {
                         
                     </div>
                     <div className='flex gap-[22px]'>
-                        <span className="text-[#02540A] text-[16px] w-[48px] pb-[10px]">四国</span>
-                        <div onClick={click} className=' cursor-pointer'>
+                        <span className="text-[#02540A] text-[16px] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'province')}>四国</span>
+                        <div onClick={(e) => handleClick(e, 'city')} className=' cursor-pointer'>
                             <span className='pr-[5px]'>香川</span>
                             <span className='pr-[5px]'>徳島</span>
                             <span className='pr-[5px]'>愛媛</span>
@@ -170,8 +173,8 @@ const ItemBoardPage = () => {
                         
                     </div>
                     <div className='flex gap-[22px]'>
-                        <span className="text-[#02540A] text-[16px] w-[48px] pb-[10px]">九州</span>
-                        <div onClick={click} className=' cursor-pointer'>
+                        <span className="text-[#02540A] text-[16px] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'province')}>九州</span>
+                        <div onClick={(e) => handleClick(e, 'city')} className=' cursor-pointer'>
                             <span className='pr-[5px]'>福岡</span>
                             <span className='pr-[5px]'>佐賀</span>
                             <span className='pr-[5px]'>長崎</span>
@@ -182,21 +185,19 @@ const ItemBoardPage = () => {
                         </div>
                     </div>
                     <div className='flex gap-[22px]'>
-                        <span className="text-[#02540A] text-[16px] w-[48px] pb-[10px]">沖繩</span>
-                        <div onClick={click} className=' cursor-pointer'>
+                        <span className="text-[#02540A] text-[16px] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'province')}>沖繩</span>
+                        <div onClick={(e) => handleClick(e, 'city')} className=' cursor-pointer'>
                             <span className='pr-[5px]'>沖繩</span>                                                                                                                                        
                         </div>
                     </div>
                     <div className='flex gap-[22px]'>
-                        <span className="text-[#02540A] text-[16px] w-[48px] pb-[10px]">海外</span>
-                        <div onClick={click} className=' cursor-pointer'>
+                        <span className="text-[#02540A] text-[16px] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'province')}>海外</span>
+                        <div onClick={(e) => handleClick(e, 'city')} className=' cursor-pointer'>
                             <span className='pr-[5px]'>豪州</span>
                             <span className='pr-[5px]'>北米</span>
                             <span className='pr-[5px]'>欧州</span>
-                            <span className='pr-[5px]'>アジア</span>
-                                                                                            
-                        </div>
-                        
+                            <span className='pr-[5px]'>アジア</span>                                                                                           
+                        </div>   
                     </div>
                 </div>
                 <div className='pt-[20px]'>
