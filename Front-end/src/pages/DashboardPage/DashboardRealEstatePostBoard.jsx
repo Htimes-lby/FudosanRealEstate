@@ -30,7 +30,6 @@ const realEstateInfo = [
             city:'三浦市',
             street:'1 Chome-9-11 Misaki',
         },
-        username: "千葉県南房総市   T.Tさん",
         images: myArray,
         briefDescription: `テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
     テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
