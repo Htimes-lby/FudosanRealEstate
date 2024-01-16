@@ -5,18 +5,28 @@ const eye = <FontAwesomeIcon icon={faEye} />;
 
 const SignUpPage = () => {
     const [passwordShown, setPasswordShown] = useState(false);
+    const [password, setPassword] = useState();
+    const [email, setEmail] = useState();
+    const [firstNameGana, setFirstNameGana] = useState('');
+    const [lastNameGana, setLastNameGana] = useState('');
+    const [firstNameGanji, setFirstNameGanji] = useState('');
+    const [lastNameGanji, setLastNameGanji] = useState('');
+    const handleSubmit = () => {
+        const name = {firstNameGanji, lastNameGanji, firstNameGana, lastNameGana};
+        const payload = {email, name, password};
+        console.log("payload", payload);
+    }
+
     const togglePasswordVisibility = () => {
         setPasswordShown(passwordShown ? false : true);
     };
-    const handleSignup = () => {
 
-    }
     return (
         <>
             <div className= ' w-full h-[900px] bg-image-blur bg-cover'></div>
             <div className= ' absolute flex flex-col items-center top-[18%] left-[35%] w-[550px] h-[680px] bg-black/50 z-10 border-white border-2 rounded-lg'>
                 <h1 className='text-[28px] text-white font-semibold pt-[24px]'>サインアップ</h1>
-                <form className='flex flex-col items-center flex-wrap w-[70%]' onSubmit={handleSignup()} >
+                <form className='flex flex-col items-center flex-wrap w-[70%]' onSubmit={handleSubmit}>
                     <div className=' flex flex-col w-full'>
                         <label htmlFor="" className='text-white font-normal mb-1 mt-2 text-[20px]'>メール</label>
                         <input
@@ -24,6 +34,7 @@ const SignUpPage = () => {
                             type="text"
                             id="email"
                             name="emailname"
+                            onChange={(e) => setEmail(e.target.value)}
                         />
                     </div>
                     <div className=' flex flex-col relative w-full'>
@@ -33,6 +44,7 @@ const SignUpPage = () => {
                             type={passwordShown ? "text" : "password"}
                             id="password"
                             name="password"
+                            onChange={(e) => setPassword(e.target.value)}
                         />
                         <i className=' absolute bottom-1 right-3 cursor-pointer' onClick={togglePasswordVisibility}>{eye}</i>
                     </div>
@@ -45,6 +57,7 @@ const SignUpPage = () => {
                                 type="text"
                                 id="lastnameganji"
                                 name="lastnameganji"
+                                onChange={(e) => setLastNameGanji(e.target.value)}
                             />
                             <label htmlFor="" className='font-normal text-[16px] text-white'>(名)</label>
                             <input
@@ -52,6 +65,7 @@ const SignUpPage = () => {
                                 type="text"
                                 id="firstnameganji"
                                 name="firstnameganji"
+                                onChange={(e) => setFirstNameGanji(e.target.value)}
                             />
                         </div>
                         <div className='flex flex-row justify-between items-center mt-3'>
@@ -61,6 +75,7 @@ const SignUpPage = () => {
                                 type="text"
                                 id="lastnamegana"
                                 name="lastnamegana"
+                                onChange={(e) => setLastNameGana(e.target.value)}
                             />
                             <label htmlFor="" className='font-normal text-[16px] text-white'>(めい)</label>
                             <input
@@ -68,6 +83,7 @@ const SignUpPage = () => {
                                 type="text"
                                 id="firstnamegana"
                                 name="firstnamegana"
+                                onChange={(e) => setFirstNameGana(e.target.value)}
                             />
                         </div>
                     </div>
