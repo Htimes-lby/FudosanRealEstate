@@ -119,7 +119,7 @@ const msgs = [
     },
 ]
 
-const FAQPage = () => {
+const MessageDetailPage = () => {
     const [active, setActive] = useState(null);
 
     const handleToggle = (index) => {
@@ -162,7 +162,6 @@ const FAQPage = () => {
                 <textarea  className="border-[1px] border-black rounded-sm" name="message" id="" cols="100" rows="4"></textarea>
             </div>
             <div className='flex justify-center'>
-
                 <button className='bg-[#2A6484] text-[24px] text-white py-[19px] px-[50px] rounded-2xl mb-[103px]'>メッセージを送信する</button>
             </div>
             
@@ -170,4 +169,4 @@ const FAQPage = () => {
     )
 }
 
-export default FAQPage;
+export default MessageDetailPage;

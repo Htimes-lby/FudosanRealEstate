@@ -1,10 +1,15 @@
 import React from 'react';
-import MessageItem from '../components/MessageItem';
-import PayOrder from "../components/Pagination"
+import { useState } from 'react';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
-const messageItems = [
+import MessageItem from '../components/MessageItem';
+import Pagination from '../components/Pagination'
+import AccordionItemMessage from '../components/AccordionItemMessage';
+
+const messages = [
     {
-        username: "ユーザー 1",
+        sender: 'sasuke',
+        receiver: 'haruto',
         content: `テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト
         テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト
         テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト
@@ -18,76 +23,91 @@ const messageItems = [
         テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト
         テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト`,
         date: "2023年10月23日09時43分",
-        status:"receive"
+        status: 'read',
     },
     {
-        username: "ユーザー 2",
+        sender: 'sasuke',
+        receiver: 'sakura',
         content: `テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト
         テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト
         テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト`,
         date: "2023年10月23日09時40分",
-        status:"sender"
+        status:"read"
     },
     {
-        username: "ユーザー 1",
+        sender: 'akimoto',
+        receiver: 'sasuke',
         content: `テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト
         テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト
         テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト`,
         date: "2023年10月23日09時38分",
-        status:"receive"
+        status:"unread"
     },
     {
-        username: "ユーザー 4",
+        sender: 'nara',
+        receiver: 'sasuke',
         content: `テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト
         テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト
         テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト`,
         date: "2023年10月23日09時32分",
-        status:"sender"
+        status:"read"
     },
     {
-        username: "ユーザー 1",
+        sender: 'sasuke',
+        receiver: 'hero',
         content: `テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト
         テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト
         テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト`,
         date: "2023年10月23日09時23分",
-        status:"receive"
+        status:"unread"
     },
 ]
 const MessageBoardPage = () => {
+
+    const history = useHistory();
+    const [active, setActive] = useState(1);
+    const [activeCategory, setActiveCategory] = useState('all')
+    const activeHandler = (clickedPage) => {
+        setActive(parseInt(clickedPage));
+    };
+    const handleMessageItemClicked = (props) => {
+        const index = props;
+        const load = messages[index];
+        const calledComponent = 'message-board'
+        history.push('/message-detail', {state: {calledComponent, load}});
+    }
+    const handleActiveCategorySelected = (props) => {
+        setActiveCategory(props);
+    }
     return (
-        <div>
+        <div className='flex flex-col items-center w-full py-20'>
+            <p className='text-[24px] mb-10'>メッセージボックス</p>
             <div>
-                <p className='text-[24px] pt-[133px] pl-[128px]'>メッセージボックス</p>
+                <Pagination
+                    active={active}
+                    size={99}
+                    step={2}
+                    onClickHandler={activeHandler}
+                />
             </div>
-            <div className='flex justify-center mt-[-50px] mb-[15px]'>
-                <PayOrder />
-            </div>
-            <div className='flex justify-center gap-[65px]'>
-                <div className='w-[200px] '>
-                    <div className=' flex justify-center bg-[#0D4868] text-white p-2'><p>メッセージボックス</p></div>
-                    <div className='border-r-[1px] border-l-[1px] border-b-[1px] flex justify-center border-black'><p className='text-[18px]'>すべて表示</p></div>
-                    <div className='border-r-[1px] border-l-[1px] border-b-[1px] border-black'>
-                        <p className='text-[18px] pt-[9px] pl-[11px]'>受信箱</p>
-                        <p className='flex justify-center pt-[18px]'>すべて表示</p>
-                        <p className='flex justify-center pt-[18px] pb-[9px]'>未読</p>
-                    </div>
-                    <div className='border-r-[1px] border-l-[1px] border-b-[1px] border-black '>
-                        <p className='text-[18px] pt-[9px] pl-[11px]'>受信箱</p>
-                        <p className='flex justify-center pt-[18px] pb-[9px]'>すべて表示</p>
-                        
-                    </div>
+            <div className='flex justify-center gap-[65px] items-start'>
+                <div className='w-[200px] border-[1px] border-black'>
+                    <div className='bg-[#0D4868] text-center text-white p-2'>メッセージボックス</div>
+                    <div className={`text-center text-[16px] border-b-[1px] border-l-4  border-black p-2 cursor-pointer ${activeCategory === 'all' ? 'border-l-red-700' : 'border-l-red-200'}`} onClick={() => handleActiveCategorySelected('all')}>すべて表示</div>
+                    <div className='text-[18px] py-2 pl-3 border-b-[1px] border-b-black/30'>受信箱</div>
+                    <div className={`text-center text-[16px] p-2 border-b-[1px] border-b-black/30 border-l-4 cursor-pointer ${activeCategory === 'received-all' ? 'border-l-red-700' : 'border-l-red-200'}`} onClick={() => handleActiveCategorySelected('received-all')}>すべて表示</div>
+                    <div className={`text-center text-[16px] p-2 border-b-[1px] border-black border-l-4 cursor-pointer ${activeCategory === 'received-unread' ? 'border-l-red-700' : 'border-l-red-200'}`} onClick={() => handleActiveCategorySelected('received-unread')}>未読</div>
+                    <div className='text-[18px] py-2 pl-3 border-b-[1px] border-b-black/30'>送信箱</div>
+                    <div className={`text-center text-[16px] p-2 border-l-4 cursor-pointer ${activeCategory === 'sent' ? 'border-l-red-700' : 'border-l-red-200'}`} onClick={() => handleActiveCategorySelected('sent')}>すべて表示</div>
                 </div>
 
                 <div className='w-[1200px]'>
-                    {messageItems.map((messageItem, index) => {
+                    {messages.map((msg, index) => {
                         return(
-                            <MessageItem key={index} messageItem={messageItem} />
+                            <div onClick={() => handleMessageItemClicked(index)}><AccordionItemMessage key={index} message={msg} /></div>
                         )
                     })}
                 </div>
-            </div>
-            <div className='flex justify-center mt-[-30px] mb-[15px]'>
-                <PayOrder />
             </div>
         </div>
     )
