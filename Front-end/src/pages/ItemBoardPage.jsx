@@ -60,8 +60,8 @@ const ItemBoardPage = () => {
 
 
     return (
-        <div className='bg-[#F1F1F1] flex'>
-            <div className='w-[480px] ml-[137px] pt-[130px]   '>
+        <div className='bg-[#F1F1F1] flex justify-between'>
+            <div className='w-[480px] pt-[130px] ml-[100px]'>
                 {Object.keys(myImage).map((key, i) => (
                     <div className='mb-[27px] ml-[45px] inline-block'  key={i}>
                         <Category text={key} img={myImage[key]} onClick={click} alt={i} />
@@ -69,8 +69,8 @@ const ItemBoardPage = () => {
                     
                 ))}
             </div>
-            <div>
-                <div className='pt-[80px] pl-[105px]' >
+            <div className='flex flex-col items-center'>
+                <div className='pt-[80px]' >
 
                     <div className='flex gap-[22px]' >
                         <span className="text-[#02540A] text-[16px] w-[48px] pb-[10px]">北海道</span>
@@ -204,21 +204,23 @@ const ItemBoardPage = () => {
                 </div>
                 
             </div>
-            <div className='pt-[40px] pl-[200px] pb-[24px] '>
-                
+            <div className='pt-[40px] pb-[24px] '>
                 <div className='pt-[65px] w-[600px] bg-white text-center flex flex-col items-center justify-center pb-[55px] shadow-lg rounded-2xl' >
-                <div className=' border-b-2 pt-[2px] border-black w-[500px]'>
-                    <ul className='flex  justify-center text-[14px] relative'>
+                <div className='flex border-b-2 pt-[2px] border-black w-[500px] transition-all duration-300'>
+                    <span className=' w-[33%] pb-[12px] hover:box-content hover:border-b-4 hover:border-[#f13f13] transition-all duration-300 cursor-pointer'>不動産業者</span>
+                    <span className=' w-[34%] pb-[12px] hover:box-content hover:border-b-4 hover:border-[#f13f13] transition-all duration-300 cursor-pointer'>司法書士</span>
+                    <span className=' w-[33%] pb-[12px] hover:box-content hover:border-b-4 hover:border-[#f13f13] transition-all duration-300 cursor-pointer'>投資家</span>
+                    {/* <ul className='flex  justify-center text-[14px] relative'>
                         <li  onClick={click} className=' w-[100px] absolute hover:box-content hover:border-b-4 left-[20px] top-[-23px]  hover:border-red-700'>不動産業者</li>
                         <li  onClick={click} className=' w-[100px] absolute hover:box-content hover:border-b-4 top-[-23px]  hover:border-red-700'>司法書士</li>
                         <li  onClick={click} className=' w-[100px] absolute hover:box-content hover:border-b-4 right-[20px] top-[-23px] hover:border-red-700'>投資家</li>
-                    </ul>
+                    </ul> */}
                 </div>
-                    {myAgent.map((agent, index) => (
-                        <div className='pt-[45px]'> 
-                            <AgentCard agentInfo={agent} key={index} />                           
-                        </div>
-                    ))}
+                {myAgent.map((agent, index) => (
+                    <div className='pt-[45px]'> 
+                        <AgentCard agentInfo={agent} key={index} />                           
+                    </div>
+                ))}
                 </div>
             </div>
         </div>
