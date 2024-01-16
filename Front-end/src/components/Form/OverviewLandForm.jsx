@@ -7,7 +7,7 @@ export default function
     <div>
         <div className=' w-[803px]  flex gap-[124px]'>
             <div className='w-[177px] flex gap-[35px]  '>
-                <span className='bg-[#63A4D4] h-[28px] inline-block p-1 rounded-md text-[15px] mx-[12px] text-white'>必須</span>
+                <span className='bg-[#63A4D4] h-[28px] inline-block p-1 rounded-md text-[15px] mx-[12px] text-white'>任意</span>
                 <p className='text-[20px]'>物件概要</p>
             </div>
             <div className='flex'>
