@@ -51,7 +51,7 @@ const messageItems = [
         テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト`,
         date: "2023年10月23日09時23分",
         status:"receive"
-    }
+    },
 ]
 const MessageBoardPage = () => {
     return (
