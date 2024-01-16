@@ -20,7 +20,7 @@ export default function ConditionForm({content}) {
                                             電話番号  電話番号  電話番号  電話番号  電話番号  電話番号  電話番号  電話番号
                                             電話番号  電話番号  電話番号  電話番号  電話番号  電話番号  電話番号  電話番号</p>
             </div>
-            <div className='flex justify-center'>
+            <div className='flex justify-center pb-3'>
                 <input type='checkbox' name="agree" id="agree" />
                 <span className='text-[14px] pl-[5px]'>上記規約・個人情報の取扱いについて同意します。</span>
             </div>
