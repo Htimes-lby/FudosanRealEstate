@@ -11,7 +11,8 @@ const SignUpPage = () => {
     const [lastNameGana, setLastNameGana] = useState('');
     const [firstNameGanji, setFirstNameGanji] = useState('');
     const [lastNameGanji, setLastNameGanji] = useState('');
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
         const name = {firstNameGanji, lastNameGanji, firstNameGana, lastNameGana};
         const payload = {email, name, password};
         console.log("payload", payload);
@@ -26,7 +27,7 @@ const SignUpPage = () => {
             <div className= ' w-full h-[900px] bg-image-blur bg-cover'></div>
             <div className= ' absolute flex flex-col items-center top-[18%] left-[35%] w-[550px] h-[680px] bg-black/50 z-10 border-white border-2 rounded-lg'>
                 <h1 className='text-[28px] text-white font-semibold pt-[24px]'>サインアップ</h1>
-                <form className='flex flex-col items-center flex-wrap w-[70%]' onSubmit={handleSubmit}>
+                <form className='flex flex-col items-center flex-wrap w-[70%]' onSubmit={(e) => handleSubmit(e)}>
                     <div className=' flex flex-col w-full'>
                         <label htmlFor="" className='text-white font-normal mb-1 mt-2 text-[20px]'>メール</label>
                         <input
@@ -88,7 +89,7 @@ const SignUpPage = () => {
                         </div>
                     </div>
                     <p className='text-white mt-10 text-[14px]'>氏名は正確に（住民票など記載のもの）ご入力ください。</p> 
-                    <button className='mt-10 w-full h-[50px] rounded-md bg-[#2A6484] text-white font-semibold border-white/50 border-2 text-[22px]'>ログイン </button>
+                    <button className='mt-10 w-full h-[50px] rounded-md bg-[#2A6484] text-white font-semibold border-white/50 border-2 text-[22px]' type='submit'>ログイン </button>
                     <button className='mt-3 w-full h-[50px] rounded-md bg-[#2A6484] text-white font-semibold border-white/50 border-2 text-[19px]'>サインアップページに移動 </button>
                 </form>
             </div>
