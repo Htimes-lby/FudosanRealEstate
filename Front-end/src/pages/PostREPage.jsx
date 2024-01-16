@@ -156,7 +156,7 @@ const PostREPage = () => {
                             <OverviewHouseForm />
                         </div>
                         <div>
-                            <UploadImageForm />
+                            <UploadImageForm title="物件写真" button="画像ファイルを選択する" width1={"w-[700px]"} width2={"w-[177px]"} gap={"gap-[35px]"} />
                         </div>
                         <div className='flex justify-center'>
                             <ConditionForm />

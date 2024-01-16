@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 
+
 import shortid from "shortid";
 
 
-const UploadImageForm = () => {
+const UploadImageForm = ({title, button,width1, width2, gap, status}) => {
     const [selectedfile, SetSelectedFile] = useState([]);
     const [Files, SetFiles] = useState([]);
 
@@ -47,7 +48,7 @@ const UploadImageForm = () => {
 
 
     const DeleteSelectFile = (id) => {
-        if(window.confirm("この画像を削除してもよろしいですか?")){
+        if(window.confirm("このファイルを削除してもよろしいですか？")){
             const result = selectedfile.filter((data) => data.id !== id);
             SetSelectedFile(result);
         }else{
@@ -75,39 +76,32 @@ const UploadImageForm = () => {
             alert('Please select file')
         }
     }
-
-
-    const DeleteFile = async (id) => {
-        if(window.confirm("Are you sure you want to delete this Image?")){
-            const result = Files.filter((data)=>data.id !== id);
-            SetFiles(result);
-        }else{
-            // alert('No');
-        }
-    }
    
     return(
         
         <div className="fileupload-view ">
                 <div>
-                    <div className="w-[700px] ">
+                    <div className={`${width1} `}>
                         <div className="mt-5">
                             <div className="card-body">
                                 <div className="kb-data-box flex">
                                     <div className=' flex '>
-                                        <div className='w-[177px] flex gap-[35px]  '>
+                                        <div className={`${width2}  flex ${gap} `}>
+                                            {status === "必須" ? <span className='bg-[#F69191] h-[28px] inline-block p-1 rounded-md text-[15px] mx-[12px] text-white'>必須</span>:
                                             <span className='bg-[#63A4D4] h-[28px] inline-block p-1 rounded-md text-[15px] mx-[12px] text-white'>任意</span>
-                                            <p className='text-[20px]'>物件写真</p>
+                                            }
+                                            
+                                            <p className='text-[20px]'>{title}</p>
                                         </div>
                                         
                                     </div>
                                     <form onSubmit={FileUploadSubmit}>
-                                        <div className="kb-file-upload">
+                                        <div className="kb-file-upload ml-[75px]">
                                             <div className="file-upload-box">           
                                                 <input type="file" id="fileupload" className="file-upload-input" onChange={InputChange} multiple />
-                                                 <span className="file-link">画像ファイルを選択する</span>
+                                                 <span className="file-link">{button}</span>
                                             </div>
-                                            <div><p className="pt-[12px] pl-[60px] text-[15px]">複数枚の画像を選択可能です。</p></div>
+                                            <div><p className="pt-[12px] pl-[60px] text-[15px]">複数のファイルを選択できます。</p></div>
                                         </div>
                                         <div className="kb-attach-box mb-3">
                                             {
