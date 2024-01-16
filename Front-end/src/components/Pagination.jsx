@@ -117,5 +117,5 @@ const Pagination = (props) => {
     );
   };
   
-  export default PayOrder;
+  export default Pagination;
   
