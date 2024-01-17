@@ -16,7 +16,7 @@ import MessageDetailPage from "./pages/MessageDetailPage";
 import PostAgentPage from "./pages/PostAgentPage";
 import PostREPage from "./pages/PostREPage";
 import QueryBulletinPage from "./pages/QueryBulletinPage";
-import QueryGeneralPage from "./pages/QueryGeneralPage";
+import ContactGeneralPage from "./pages/ContactGeneralPage";
 import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
 
@@ -29,9 +29,9 @@ const Mainboard = () =>{
         <Route exact path="/post-agent" component={PostAgentPage} />
         <Route exact path="/post-real-estate" component={PostREPage} />
         <Route exact path="/favourite" component={FavouritePage} />
-        <Route exact path="/my-item-page" component={ItemMyPage} />
+        <Route exact path="/my-post" component={ItemMyPage} />
         <Route exact path="/query-item" component={QueryBulletinPage} />
-        <Route exact path="/query-general" component={QueryGeneralPage} />
+        <Route exact path="/contact-general" component={ContactGeneralPage} />
 
         <Route exact path="/" component={DashboardPage} />
         <Route exact path="/dashboard" component={DashboardPage} />

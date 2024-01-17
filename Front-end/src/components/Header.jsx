@@ -15,9 +15,9 @@ const Header = () => {
                         <div className=' text-[18px] leading-[40px] text-white font-semibold px-3 cursor-pointer'>マイページ</div>
                         <div className=' hidden absolute top-[40px] min-w-[120px] z-10 bg-[#32769b]' id='dropdown-content'>
                             <div className=' text-[18px] font-semibold py-1 text-white'><Link to='/message-board'>メッセージ</Link></div>
-                            <div className=' text-[17px] font-semibold py-1 text-white'><Link to='/my-item-page'>私の投稿</Link></div>
+                            <div className=' text-[17px] font-semibold py-1 text-white'><Link to='/my-post'>私の投稿</Link></div>
                             <div className=' text-[17px] font-semibold py-1 text-white'><Link to='/favourite'>お気に入り</Link></div>
-                            <div className=' text-[17px] font-semibold py-1 text-white'><Link to='/query-general'>総合窓口</Link></div>
+                            <div className=' text-[17px] font-semibold py-1 text-white'><Link to='/contact-general'>総合窓口</Link></div>
                         </div>
                     </div>
                     <div className=' inline-block text-[18px] leading-[40px] text-white font-semibold px-3'><Link to='/login'>ログイン</Link></div>
