@@ -60,7 +60,6 @@ const ItemBoardPage = () => {
     const [activeAgentCategory, setActiveAgentCategory] = useState('judicialscrivener')
 
     const handleClick = (e, params) => {
-        console.log(e);
         const flag = params;
         const content = e.target.innerText
         history.push('/item-list', {state: {flag,content}})
@@ -209,21 +208,20 @@ const ItemBoardPage = () => {
                 <div className='pt-[20px]'>
                     <GoogleMapComponent />
                 </div>
-                
             </div>
             <div className='pt-[40px] pb-[24px] '>
                 <div className='pt-[65px] w-[600px] bg-white text-center flex flex-col items-center justify-center pb-[55px] shadow-lg rounded-2xl' >
-                <div className='flex relative h-12 border-b-2 pt-[2px] border-black w-[500px] transition-all duration-300'>
-                    <span className=' w-[33%] cursor-pointer' onClick={() => setActiveAgentCategory('realEstateAgent')}>不動産業者</span>
-                    <span className=' w-[34%] cursor-pointer' onClick={() => setActiveAgentCategory('judicialscrivener')}>司法書士</span>
-                    <span className=' w-[33%] cursor-pointer' onClick={() => setActiveAgentCategory('invester')}>投資家</span>
-                    <div className={`absolute w-[33.3%] h-1 bottom-0 bg-[#f13f13] rounded-md transition-all duration-500 ${activeAgentCategory === 'realEstateAgent' ? 'left-0' : activeAgentCategory === 'judicialscrivener' ? 'left-[33.3%]' : 'left-[66.6%]' }`}></div>
-                </div>
-                {myAgent.map((agent, index) => (
-                    <div className='pt-[45px]' onClick={() => agentCardClicked(index)}> 
-                        <AgentCard agentInfo={agent} key={index} />                           
+                    <div className='flex relative h-12 border-b-2 pt-[2px] border-black w-[500px] transition-all duration-300'>
+                        <span className=' w-[33%] cursor-pointer' onClick={() => setActiveAgentCategory('realEstateAgent')}>不動産業者</span>
+                        <span className=' w-[34%] cursor-pointer' onClick={() => setActiveAgentCategory('judicialscrivener')}>司法書士</span>
+                        <span className=' w-[33%] cursor-pointer' onClick={() => setActiveAgentCategory('invester')}>投資家</span>
+                        <div className={`absolute w-[33.3%] h-1 bottom-0 bg-[#f13f13] rounded-md transition-all duration-500 ${activeAgentCategory === 'realEstateAgent' ? 'left-0' : activeAgentCategory === 'judicialscrivener' ? 'left-[33.3%]' : 'left-[66.6%]' }`}></div>
                     </div>
-                ))}
+                    {myAgent.map((agent, index) => (
+                        <div className='pt-[45px]' onClick={() => agentCardClicked(index)}> 
+                            <AgentCard agentInfo={agent} key={index} />                           
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>

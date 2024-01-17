@@ -1,14 +1,12 @@
 import React from "react";
 import BasicTableBuilding from "./BasicTableBuilding";
-import BasicTableLand from "./BasicTableLand";
-import FavouriteStar from "./FavouriteStar"
+import BasicTableLand from "./BasicTableLand";  
 const width = 'w-[180px]'
 const fontSize = 'text-[11px]'
 
 const RealEstateSmallCard = ( props ) =>{
     const {realEstate} = props;
     const {briefDescription, images, basicInfo, realEstateCategory} = realEstate;
-    const tableData = basicInfo;
 
     return(
         <div className="relative w-[240px]  border pb-3 shadow-lg ">
@@ -21,7 +19,7 @@ const RealEstateSmallCard = ( props ) =>{
             </div>
             <div className="flex justify-center ">
                 {
-                realEstateCategory === 'building' ? <BasicTableBuilding tableData = {tableData} width= {width} fontSize = {fontSize} /> : <BasicTableLand tableData = {tableData} width= {width} fontSize = {fontSize} />
+                realEstateCategory === 'building' ? <BasicTableBuilding tableData = {basicInfo} width= {width} fontSize = {fontSize} /> : <BasicTableLand tableData = {basicInfo} width= {width} fontSize = {fontSize} />
                 }
             </div>
         </div>

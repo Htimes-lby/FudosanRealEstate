@@ -255,7 +255,7 @@ const FeedbackBoardPage = () => {
     const handleFeedbackCardClicked = (props) => {
         const index = props;
         const feedbackData = feedbacks[index];
-        history.push('feedback-detail',{state: {feedbackData}});
+        history.push('/feedback-detail',{state: {feedbackData}});
     }
     return (
         <div className='w-full mt-[70px] mb-[100px]'>
