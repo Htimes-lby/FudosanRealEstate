@@ -1,7 +1,10 @@
 import React from 'react';
-
-const QueryGeneralPage = ({senderName, receiveName}) => {
-
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+const ContactGeneralPage = ({senderName, receiveName}) => {
+    const history = useHistory();
+    const handleFaqClicked = () => {
+        history.push('/faq');
+    }
     const content = 
         "家を投稿したいです。 利用規約を確認しました。 販売手数料がありましたが、どのように支払われますか？"+
         "鑑賞文ページがとても印象的でしたが、もしここで売買が成立したら鑑賞文を残したいと思います。"+
@@ -21,7 +24,6 @@ const QueryGeneralPage = ({senderName, receiveName}) => {
 
     return (
         <div className='bg-[#F1F1F1]'>
-
             <div className='container'>
                 <div>
                     <p className='text-[40px] flex justify-center pt-[63px] pb-[58px]'>総合窓口</p>
@@ -36,7 +38,7 @@ const QueryGeneralPage = ({senderName, receiveName}) => {
                     </ul>
                 </div>
                 <div className='pt-[67px] pb-[118px] '>
-                    <p className='text-[24px] border-b-2 px-[15px] border-black inline-block'>良くあるご質問はこちら</p>
+                    <p className='text-[24px] border-b-2 px-[15px] border-black inline-block cursor-pointer' onClick={handleFaqClicked}>良くあるご質問はこちら</p>
                 </div>
                 <div className='pb-[98px]'>
 
@@ -65,4 +67,4 @@ const QueryGeneralPage = ({senderName, receiveName}) => {
     )
 }
 
-export default QueryGeneralPage;
+export default ContactGeneralPage;
