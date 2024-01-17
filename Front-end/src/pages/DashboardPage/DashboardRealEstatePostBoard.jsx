@@ -348,9 +348,9 @@ const DashboardRealEstatePostBoard = () => {
 
     const handleRealEstateCardClicked = (props) => {
         const index = props;
-        const realEstateData = realEstateInfo[index];
+        const realEstate = realEstateInfo[index];
         const flag = 'realEstatePost'
-        history.push('/item-detail', {state: {realEstateData, flag}});
+        history.push('/item-detail', {state: {realEstate, flag}});
     };
 
     const handleShowMoreButtonClicked = () => {

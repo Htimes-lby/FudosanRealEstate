@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { useLocation } from 'react-router-dom/cjs/react-router-dom.min'
+import { useLocation, useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 
 import Carousel from '../components/Carousel'
 import GoogleMapComponent from '../components/GoogleMapComponent'
@@ -10,6 +10,7 @@ import FavouriteButton from '../components/FavouriteButton'
 export default function ItemDetailPage() {
 
     const location = useLocation();
+    const history = useHistory();
     const { state } = location.state;
     const realEstateData = state.realEstate;
     const {basicInfo, briefDescription, fullDescription, address, images} = realEstateData;
@@ -18,7 +19,9 @@ export default function ItemDetailPage() {
     const handleFavouriteButtonClicked = () => {
         setFavouriteButtonActive(favouriteButtonActive ? false : true);
     }
-
+    const sendMsgButtonClicked = () => {
+        history.push('/message-detail')
+    }
   return (
     <div className=' flex flex-col items-center pb-[120px] pt-[92px] w-full'>
         <p className='text-[32px] text-center'>{address.province}{address.city}</p>
@@ -40,7 +43,7 @@ export default function ItemDetailPage() {
             <p className='text-[16px] pt-[56px]'>{fullDescription}</p>
 
             <div className='flex justify-center gap-[50px] w-full mt-20'>
-                <div className='flex w-[380px] h-[80px] justify-center items-center bg-[#2A6484] text-white text-[24px] rounded-xl'>メッセージを送信する</div>
+                <div className='flex w-[380px] h-[80px] justify-center items-center bg-[#2A6484] text-white text-[24px] rounded-xl cursor-pointer' onClick={sendMsgButtonClicked}>メッセージを送信する</div>
                 <div onClick={handleFavouriteButtonClicked}><FavouriteButton calledComponent='realEstateDetailPage' favouriteButtonActive={favouriteButtonActive}/></div>
             </div>
         </div>

@@ -73,7 +73,7 @@ const ItemBoardPage = () => {
         <div className='bg-[#F1F1F1] flex justify-between'>
             <div className='w-[480px] pt-[130px] ml-[100px]'>
                 {Object.keys(myImage).map((key, i) => (
-                    <div className='mb-[27px] ml-[45px] inline-block'  key={i}>
+                    <div className='mb-[27px] ml-[45px] inline-block cursor-pointer' key={i}>
                         <Category text={key} img={myImage[key]} onClick={(e) => handleClick(e,'category')} alt={i} />
                     </div>    
                 ))}
