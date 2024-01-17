@@ -1,9 +1,11 @@
 import React from 'react';
+import { useState } from 'react';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 import Category from '../components/Category';
 import GoogleMapComponent from '../components/GoogleMapComponent';
 import AgentCard from "../components/AgentCard"
+
 const myImage = 
 {
     "古民家":require("../assets/img/category/1.png"),
@@ -55,6 +57,7 @@ content:"テキスト テキスト テキスト テキスト テキスト テキ
 const ItemBoardPage = () => {
 
     const history = useHistory();
+    const [activeAgentCategory, setActiveAgentCategory] = useState('judicialscrivener')
 
     const handleClick = (e, params) => {
         console.log(e);
@@ -210,15 +213,11 @@ const ItemBoardPage = () => {
             </div>
             <div className='pt-[40px] pb-[24px] '>
                 <div className='pt-[65px] w-[600px] bg-white text-center flex flex-col items-center justify-center pb-[55px] shadow-lg rounded-2xl' >
-                <div className='flex border-b-2 pt-[2px] border-black w-[500px] transition-all duration-300'>
-                    <span className=' w-[33%] pb-[12px] hover:box-content hover:border-b-4 hover:border-[#f13f13] transition-all duration-300 cursor-pointer'>不動産業者</span>
-                    <span className=' w-[34%] pb-[12px] hover:box-content hover:border-b-4 hover:border-[#f13f13] transition-all duration-300 cursor-pointer'>司法書士</span>
-                    <span className=' w-[33%] pb-[12px] hover:box-content hover:border-b-4 hover:border-[#f13f13] transition-all duration-300 cursor-pointer'>投資家</span>
-                    {/* <ul className='flex  justify-center text-[14px] relative'>
-                        <li  onClick={click} className=' w-[100px] absolute hover:box-content hover:border-b-4 left-[20px] top-[-23px]  hover:border-red-700'>不動産業者</li>
-                        <li  onClick={click} className=' w-[100px] absolute hover:box-content hover:border-b-4 top-[-23px]  hover:border-red-700'>司法書士</li>
-                        <li  onClick={click} className=' w-[100px] absolute hover:box-content hover:border-b-4 right-[20px] top-[-23px] hover:border-red-700'>投資家</li>
-                    </ul> */}
+                <div className='flex relative h-12 border-b-2 pt-[2px] border-black w-[500px] transition-all duration-300'>
+                    <span className=' w-[33%] cursor-pointer' onClick={() => setActiveAgentCategory('realEstateAgent')}>不動産業者</span>
+                    <span className=' w-[34%] cursor-pointer' onClick={() => setActiveAgentCategory('judicialscrivener')}>司法書士</span>
+                    <span className=' w-[33%] cursor-pointer' onClick={() => setActiveAgentCategory('invester')}>投資家</span>
+                    <div className={`absolute w-[33.3%] h-1 bottom-0 bg-[#f13f13] rounded-md transition-all duration-500 ${activeAgentCategory === 'realEstateAgent' ? 'left-0' : activeAgentCategory === 'judicialscrivener' ? 'left-[33.3%]' : 'left-[66.6%]' }`}></div>
                 </div>
                 {myAgent.map((agent, index) => (
                     <div className='pt-[45px]' onClick={() => agentCardClicked(index)}> 
