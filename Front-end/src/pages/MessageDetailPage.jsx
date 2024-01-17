@@ -141,12 +141,7 @@ const MessageDetailPage = () => {
 
     return (
         <div> 
-            <div className='pt-[85px] pl-[296px] pb-[134px]'>
-                <p className='text-[24px]'>テキスト テキスト</p>
-            </div>
-            <div className='flex justify-center pb-[59px]'>
-                <AgentCard agentInfo={agentinfor}  />
-            </div>
+            <p className='text-[32px] font-medium text-center pt-28 pb-20'>サスケさんとのメッセージ</p>
             <div className='flex justify-center items-center w-full'>
                 <div className='flex flex-col w-[60%] gap-[5px]'>
                     {msgs.map((msg, index) => {

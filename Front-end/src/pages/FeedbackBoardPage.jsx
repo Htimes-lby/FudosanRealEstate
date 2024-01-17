@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 
-import PayOrder from '../components/Pagination';
+import Pagination from '../components/Pagination';
 import FeedbackCard from '../components/FeedbackCard';
 
 const myArray = [
@@ -252,6 +252,10 @@ const FeedbackBoardPage = () => {
     if(!location.state)history.goBack();
     const { state } = location.state;
     const category = state.category;
+    const [active, setActive] = useState(1);
+    const activeHandler = (clickedPage) => {
+        setActive(parseInt(clickedPage));
+    };
     const handleFeedbackCardClicked = (props) => {
         const index = props;
         const feedbackData = feedbacks[index];
@@ -260,9 +264,14 @@ const FeedbackBoardPage = () => {
     return (
         <div className='w-full mt-[70px] mb-[100px]'>
             <p className='text-center text-[32px] font-medium'>{category === 'sold' ? '売りました体験談' : 'こんな風に使ってます'}</p>
-            <div className='flex flex-col items-start max-w-[1200px] mx-auto'>
-                <PayOrder/>
-                <div className=' grid gap-x-8 gap-y-12 grid-cols-4 mt-5 mx-auto box-border'>
+            <div className='flex flex-col items-start max-w-[1200px] mt-5 mx-auto'>
+                <Pagination
+                    active={active}
+                    size={99}
+                    step={2}
+                    onClickHandler={activeHandler}
+                />
+                <div className='grid gap-x-8 gap-y-12 grid-cols-4 mt-2 mx-auto box-border'>
                 {
                     feedbacks.map((feedback, index) => {
                         return(

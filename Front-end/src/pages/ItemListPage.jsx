@@ -675,11 +675,11 @@ const ItemListPage = () => {
 
     const history = useHistory();
     const location = useLocation();
-    const [isOpen, setIsOpen] = useState(false);
-    const [active, setActive] = useState(1);
     const { state } = location.state;
     const flag = state.flag;
     const content = state.content;
+    const [isOpen, setIsOpen] = useState(false);
+    const [active, setActive] = useState(1);
     const activeHandler = (clickedPage) => {
         setActive(parseInt(clickedPage));
     };
@@ -691,9 +691,9 @@ const ItemListPage = () => {
     }
     const handleRealEstateCardClicked = (props) => {
         const index = props;
-        const realEstateData = realEstateInfo[index];
+        const realEstate = realEstateInfo[index];
         const flag = 'realEstatePost'
-        history.push('/item-detail', {state: {realEstateData, flag}});
+        history.push('/item-detail', {state: {realEstate, flag}});
     };
     
     return (
