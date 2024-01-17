@@ -11,12 +11,12 @@ export default function ItemDetailPage() {
 
     const location = useLocation();
     const { state } = location.state;
-    const realEstateData = state.realEstateData;
+    const realEstateData = state.realEstate;
     const {basicInfo, briefDescription, fullDescription, address, images} = realEstateData;
 
-    const [favouriteButtonClicked, setFavouriteButtonClicked] = useState(false);
+    const [favouriteButtonActive, setFavouriteButtonActive] = useState(false);
     const handleFavouriteButtonClicked = () => {
-        setFavouriteButtonClicked(favouriteButtonClicked ? false : true);
+        setFavouriteButtonActive(favouriteButtonActive ? false : true);
     }
 
   return (
@@ -41,7 +41,7 @@ export default function ItemDetailPage() {
 
             <div className='flex justify-center gap-[50px] w-full mt-20'>
                 <div className='flex w-[380px] h-[80px] justify-center items-center bg-[#2A6484] text-white text-[24px] rounded-xl'>メッセージを送信する</div>
-                <FavouriteButton calledComponent='realEstateDetailPage'/>
+                <div onClick={handleFavouriteButtonClicked}><FavouriteButton calledComponent='realEstateDetailPage' favouriteButtonActive={favouriteButtonActive}/></div>
             </div>
         </div>
     </div>

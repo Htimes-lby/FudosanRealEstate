@@ -345,8 +345,9 @@ const userInfo = {
 const FavouritePage = () => {
     const history = useHistory();
     const handleRealEstateBigCardClicked = (props) => {
-        const realEstateData = realEstateInfo[props];
-        history.push('/item-detail', {state: {realEstateData}});
+        console.log('++++++++++++++++++++++++++')
+        const realEstate = props;
+        history.push('/item-detail', {state: {realEstate}});
     }
     return (
         <div>
@@ -357,8 +358,8 @@ const FavouritePage = () => {
                 {
                     realEstateInfo.map((realEstate, index) => {
                         return(
-                            <div onClick={() => handleRealEstateBigCardClicked(index)}>
-                                <RealEstateBigCard key = {index} realEstate = {realEstate} />
+                            <div>
+                                <RealEstateBigCard key = {index} realEstate = {realEstate} handleRealEstateBigCardClicked = {handleRealEstateBigCardClicked} />
                             </div>
                         );
                     })
