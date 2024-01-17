@@ -1,7 +1,19 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 
-export default function 
-() {
+export default function ( props ) {
+
+    const [budget, setBudget] = useState('');
+    const [layout, setLayout] = useState('');
+    const [landarea, setLandarea] = useState('');
+    const [buildingarea, setBuildingarea] = useState('');
+    const [deadline, setDeadline] = useState('');
+    const [parking, setParking] = useState('');
+
+    useEffect(()=>{
+        const overviewHouseDataArray = [{budget: budget}, {layout: layout}, {landarea: landarea}, {buildingarea: buildingarea}, {deadline: deadline}, {parking: parking}];
+        props.onDataArrayFromChild(overviewHouseDataArray);
+      },[budget, layout, landarea, buildingarea, deadline, parking])
+      
 
   return (
     <div>
@@ -12,7 +24,7 @@ export default function
             </div>
             <div className='flex'>
                 <span className='text-[20px] pr-10'>希望価格</span>
-                <input type="text" placeholder='万円' className='w-[381px] border-2 border-black rounded-md'/>
+                <input type="text" placeholder='万円' className='w-[381px] border-[1px] border-black rounded-md' onChange={(e) => setBudget(e.target.value)}/>
             </div>
         </div>
 
@@ -20,7 +32,7 @@ export default function
            
             <div className='flex'>
                 <span className='text-[20px] pr-[60px]'>間取り</span>
-                <input type="text" placeholder='4LDK' className='w-[381px] border-2 border-black rounded-md '/>
+                <input type="text" placeholder='4LDK' className='w-[381px] border-[1px] border-black rounded-md' onChange={(e) => setLayout(e.target.value)}/>
             </div>
         </div>
 
@@ -28,7 +40,7 @@ export default function
            
             <div className='flex'>
                 <span className='text-[20px] pr-10'>土地面積</span>
-                <input type="text" placeholder='m²' className='w-[381px] border-2 border-black rounded-md'/>
+                <input type="text" placeholder='m²' className='w-[381px] border-[1px] border-black rounded-md' onChange={(e) => setLandarea(e.target.value)}/>
             </div>
         </div>
         
@@ -36,7 +48,7 @@ export default function
            
             <div className='flex'>
                 <span className='text-[20px] pr-10'>建物面積</span>
-                <input type="text" placeholder='m²' className='w-[381px] border-2 border-black rounded-md'/>
+                <input type="text" placeholder='m²' className='w-[381px] border-[1px] border-black rounded-md' onChange={(e) => setBuildingarea(e.target.value)}/>
             </div>
         </div>
 
@@ -44,7 +56,7 @@ export default function
            
             <div className='flex'>
                 <span className='text-[20px] pr-10'>入居日付</span>
-                <input type="text"  className='w-[381px] border-2 border-black rounded-md'/>
+                <input type="text"  className='w-[381px] border-[1px] border-black rounded-md' onChange={(e) => setDeadline(e.target.value)}/>
             </div>
         </div>
 
@@ -52,7 +64,7 @@ export default function
            
             <div className='flex'>
                 <span className='text-[20px] pr-20'>構造</span>
-                <input type="text" placeholder='木造平屋'  className='w-[381px] border-2 border-black rounded-md'/>
+                <input type="text" placeholder='木造平屋'  className='w-[381px] border-[1px] border-black rounded-md' onChange={(e) => setParking(e.target.value)}/>
             </div>
         </div>  
 

@@ -1,8 +1,49 @@
-import React, {useState} from "react";
+import React, {useState ,useEffect} from "react";
 
-export default function PrivacyForm() {
+export default function PrivacyForm( props ) {
 
-    const [value, setValue] = useState('');
+    const [province, setProvince] = useState('');
+    const [city, setCity] = useState('');
+    const [buildingName, setBuildingName] = useState('');
+    const [street, setStreet] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState([]);
+    const [postalNumber, setPostalNumber] = useState([]);
+    const [email, setEmail] = useState();
+    const [age, setAge] = useState();
+    const [firstNameGana, setFirstNameGana] = useState('');
+    const [lastNameGana, setLastNameGana] = useState('');
+    const [firstNameGanji, setFirstNameGanji] = useState('');
+    const [lastNameGanji, setLastNameGanji] = useState('');
+
+    useEffect(() => {
+        
+        const privacyDataArray = [{province:province}, {city: city}, {buildingName: buildingName}, {street: street}, {phoneNumber: phoneNumber}, 
+                                  {postalNumber: postalNumber}, {email: email}, {age: age}, {firstNameGana: firstNameGana}, {lastNameGana: lastNameGana}, 
+                                  {firstNameGanji: firstNameGanji}, {lastNameGanji: lastNameGanji} ]
+
+        props.onDataArrayFromChild(privacyDataArray);
+      }, [province, city, buildingName, street, phoneNumber, postalNumber, email, age, firstNameGana, firstNameGanji, lastNameGana, lastNameGanji]);
+
+   
+
+    const handleInputPhoneNumber = (index, value) => {
+        // Create a new array with the updated value at the specified index
+        const updatedPhoneValues = [...phoneNumber];
+        updatedPhoneValues[index] = value;   
+        // Update the state with the new array
+        setPhoneNumber(updatedPhoneValues);
+        
+      };
+
+      const handleInputPoastalNumber = (index, value) => {
+        // Create a new array with the updated value at the specified index
+        const updatedPostalNumber = [...postalNumber];
+        updatedPostalNumber[index] = value;
+        // Update the state with the new array
+        setPostalNumber(updatedPostalNumber);
+      };
+
+
   return (
     <div>
         <div className=' w-[745px]  flex gap-[124px]'>
@@ -14,58 +55,46 @@ export default function PrivacyForm() {
                 <div className='w-[196px]'>
                     <div className='flex justify-between '>
                         <span>(姓)</span>
-                        <input className='w-[130px] border-2 border-black rounded-md' type="text" />
+                        <input className='w-[130px] border-[1px] border-black  rounded-md' type="text" onChange={(e) => setLastNameGanji(e.target.value)} />
                     </div>
                     <div className='flex justify-between pt-[16px]'>
                         <span>(せい)</span>
-                        <input className='w-[130px] border-2 border-black rounded-md' type="text" />
+                        <input className='w-[130px] border-[1px] border-black rounded-md' type="text" onChange={(e) => setLastNameGana(e.target.value)}  />
                     </div>
                 </div> 
                 <div className='w-[196px]'>
                     <div className='flex justify-between'>
                         <span>(名)</span>
-                        <input className='w-[130px] border-2 border-black rounded-md' type="text" />
+                        <input className='w-[130px] border-[1px] border-black rounded-md' type="text" onChange={(e) => setFirstNameGanji(e.target.value)} />
                     </div>
                     <div className='flex justify-between pt-[16px]'>
                         <span>(めい)</span>
-                        <input className='w-[130px] border-2 border-black rounded-md' type="text" />
+                        <input className='w-[130px] border-[1px] border-black rounded-md' type="text" onChange={(e) => setFirstNameGana(e.target.value)} />
                     </div>
                 </div>      
             </div>
         </div>
-        <div className=' w-[745px]  flex gap-[124px] pt-[39px]'>
+        <div className=' w-[745px]  flex gap-[124px] pt-[24px]'>
             <div className='w-[177px] flex gap-[35px]  '>
                 <span className='bg-[#F69191] h-[28px] inline-block p-1 rounded-md text-[15px] mx-[12px] text-white'>必須</span>
                 <p className='text-[20px]'>年齢</p>
             </div>
             <div>
-                <input type="text" className='w-[443px] border-2 border-black rounded-md'/>
+                <input type="text" className='w-[443px] border-[1px] border-black rounded-md' onChange={(e) => setAge(e.target.value)}/>
             </div>
         </div>
        
-        <div className=' w-[745px]  flex gap-[124px] pt-[39px]'>
+        <div className=' w-[745px]  flex gap-[124px] pt-[24px]'>
             <div className='w-[177px] flex gap-[35px] '>
                 <span className='bg-[#F69191] h-[28px] inline-block p-1 rounded-md text-[15px] mx-[12px] text-white'>必須</span>
                 <p className='text-[20px]'>メール</p>
             </div>
             <div>
-                <input type="text" className='w-[443px] border-2 border-black rounded-md'/>
+                <input type="text" className='w-[443px] border-[1px] border-black rounded-md' onChange={(e) => setEmail(e.target.value)}/>
             </div>
         </div>
 
-        <div className=' w-[745px]  flex gap-[124px] pt-[24px]'>
-            <div className='w-[177px] flex gap-[35px]  '>
-                <span className='bg-[#F69191] h-[28px] inline-block p-1 rounded-md text-[15px] mx-[12px] text-white'>必須</span>
-                <p className='text-[20px]'>メール</p>
-            </div>
-            <div className='flex '>
-                <input type="text" className='w-[99px] border-2 border-black rounded-md'/>
-                <span className='border-t-2 w-[30px] border-black mt-[15px] mx-[22px]'></span>            
-                <input type="text" className='w-[99px] border-2 border-black rounded-md'/>
-                <span className='border-t-2 w-[30px] border-black mt-[15px] mx-[21px]'></span>
-                <input type="text" className='w-[99px] border-2 border-black rounded-md'/>
-            </div>
-        </div>
+        
 
         <div className=' w-[745px]  flex gap-[124px] pt-[24px]'>
             <div className='w-[177px] flex gap-[35px]  '>
@@ -73,11 +102,11 @@ export default function PrivacyForm() {
                 <p className='text-[20px]'>電話番号</p>
             </div>
             <div className='flex '>
-                <input type="text" className='w-[99px] border-2 border-black rounded-md'/>
+                <input type="text" className='w-[99px] border-[1px] border-black rounded-md' value={phoneNumber[0] || ''} onChange={(e) => handleInputPhoneNumber(0, e.target.value)}/>
                 <span className='border-t-2 w-[30px] border-black mt-[15px] mx-[22px]'></span>            
-                <input type="text" className='w-[99px] border-2 border-black rounded-md'/>
+                <input type="text" className='w-[99px] border-[1px] border-black rounded-md' value={phoneNumber[1] || ''} onChange={(e) => handleInputPhoneNumber(1, e.target.value)}/>
                 <span className='border-t-2 w-[30px] border-black mt-[15px] mx-[21px]'></span>
-                <input type="text" className='w-[99px] border-2 border-black rounded-md'/>
+                <input type="text" className='w-[99px] border-[1px] border-black rounded-md' value={phoneNumber[2] || ''} onChange={(e) => handleInputPhoneNumber(2, e.target.value)}/>
             </div>
         </div>
 
@@ -88,19 +117,20 @@ export default function PrivacyForm() {
             </div>
             <div>              
                 <span className=' w-[30px] mt-[15px] mr-[50px] text-[20px] '>郵便番号 - 〒</span>          
-                <input type="text" className='w-[99px] border-2 border-black rounded-md '/>
+                <input type="text" className='w-[99px] border-[1px] border-black rounded-md' value={postalNumber[0] || ''} onChange={(e) => handleInputPoastalNumber(0, e.target.value)}/>
                 <span className=' inline-block border-t-2 w-[30px] border-black mt-[15px] mx-[21px]  '></span>
-                <input type="text" className='w-[99px] border-2 border-black rounded-md'/>
+                <input type="text" className='w-[99px] border-[1px] border-black rounded-md' value={postalNumber[1] || ''} onChange={(e) => handleInputPoastalNumber(1, e.target.value)}/>
             </div>
         </div>
 
         <div className=' w-[745px]  flex gap-[124px] pt-[24px] justify-end'>            
             <div className=" flex items-center justify-between ">
-                    <p className="text-[20px] ">表示順番</p>
+                    <p className="text-[20px] ">都道府県</p>
                     <select
-                        className="border-2 rounded-md border-black w-[272px] ml-[95px]"
-                        onChange={event => setValue(event.target.value)}
-                        defaultValue={value}>                       
+                        className="border-[1px] rounded-md border-black w-[272px] ml-[95px]"
+                        onChange={event => setProvince(event.target.value)}
+                        defaultValue={province}>                       
+                        <option className="text-[16px]"  value="" >&nbsp;</option>
                         <option className="text-[16px]"  value="北海道" >&nbsp;北海道</option>
                         <option className="text-[16px]"  value="青森県" >&nbsp;青森県</option>
                         <option className="text-[16px]"  value="岩手県" >&nbsp;岩手県</option>
@@ -159,21 +189,21 @@ export default function PrivacyForm() {
         <div className=' w-[745px]  flex gap-[124px] pt-[24px] justify-end'>            
             <div className=" flex items-center justify-between ">
                     <p className="text-[20px] ">市区町村</p>
-                    <input type='text' className="border-2 rounded-md border-black w-[272px] ml-[95px]"/>
+                    <input type='text' className="border-[1px] rounded-md border-black w-[272px] ml-[95px]" onChange={(e) => setCity(e.target.value)}/>
             </div>
         </div>
 
         <div className=' w-[745px]  flex gap-[124px] pt-[24px] justify-end'>            
             <div className=" flex items-center justify-between ">
                     <p className="text-[20px] ">町名番地</p>
-                    <input type='text' className="border-2 rounded-md border-black w-[272px] ml-[95px]"/>
+                    <input type='text' className="border-[1px] rounded-md border-black w-[272px] ml-[95px]" onChange={(e) => setStreet(e.target.value)}/>
             </div>
         </div>
 
         <div className=' w-[745px]  flex gap-[124px] pt-[24px] justify-end'>            
             <div className=" flex items-center justify-between ">
                     <p className="text-[20px] ">建物名-部屋番号</p>
-                    <input type='text' className="border-2 rounded-md border-black w-[272px] ml-[22px]"/>
+                    <input type='text' className="border-[1px] rounded-md border-black w-[272px] ml-[22px]" onChange={(e) => setBuildingName(e.target.value)}/>
             </div>
         </div>
 

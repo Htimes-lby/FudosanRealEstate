@@ -1,6 +1,19 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 
-export default function ConditionForm({content}) {
+export default function ConditionForm({content, onDataArrayFromChild}) {
+
+    const [isChecked, setIsChecked] = useState(false);
+
+    const handleCheckboxChange = () => {
+        // Update the state to toggle the checked state
+        setIsChecked(!isChecked);
+     
+      };
+
+      useEffect(()=>{
+        
+        onDataArrayFromChild(isChecked);
+      },[isChecked])
   return (
     <div>
         <div className=' w-[600px]  bg-[#D9D9D9]/40 pt-4 pb-3'>
@@ -22,7 +35,7 @@ export default function ConditionForm({content}) {
                 </p>
             </div>
             <div className='flex justify-center pb-3'>
-                <input type='checkbox' name="agree" id="agree" />
+                <input type='checkbox' checked={isChecked} onChange={handleCheckboxChange} />
                 <span className='text-[14px] pl-[5px]'>上記規約・個人情報の取扱いについて同意します。</span>
             </div>
         </div>
