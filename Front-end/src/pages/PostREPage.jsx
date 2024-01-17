@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Category from "../components/Category"
 import FlagTextContainer from "../components/FlagTextContainer"
 import SoldFeedbackCard from '../components/SoldFeedbackCard';
@@ -10,8 +10,22 @@ import UploadImageForm from "../components/Form/UploadImageForm";
 import ConditionForm from "../components/Form/ConditionForm"
 
 const PostREPage = () => {
+    const [privacyDataArray, setPrivacyDataArray] = useState([]);
+    const [contentDataArray, setContentDataArray] = useState([]);
+    const [overviewHouseDataArray, setOverviewDataArray] = useState([]);
+    const [uploadDataArray, setUploadDataArray] = useState([]);
+    const [conditionData, setConditionData] = useState("");
 
-   
+    const handlePrivacyDataArray = (data) => {
+        // Update the state with the received array
+        setPrivacyDataArray(data);
+        setContentDataArray(data);
+        setOverviewDataArray(data);
+        setUploadDataArray(data)
+        setConditionData(data)
+      };
+
+           
     const myImage = 
         {
             "古民家":require("../assets/img/category/1.png"),
@@ -103,7 +117,7 @@ const PostREPage = () => {
                         </div>
                         <div className='pt-[25px]'>
                             {myFlag.map((text, index) => (
-                                <div className='inline-block m-[15px]'> 
+                                <div className='inline-block m-[15px]' key={index}> 
                                     <FlagTextContainer text={text} key={index} />                           
                                 </div>
                             ))}
@@ -116,7 +130,7 @@ const PostREPage = () => {
                     </div>
                     <div>
                         {myArray.map((image, index) => (
-                            <div className='inline-block m-[15px]'> 
+                            <div className='inline-block m-[15px]' key={index}> 
                                 <SoldFeedbackCard img={image} text={text} key={index} />                           
                             </div>
                         ))}
@@ -145,24 +159,26 @@ const PostREPage = () => {
                                 <RealEstateSmallCard  realEstate = {realEstateInfo}  />    
                             </div>
                         </div>
-                        <div className='pt-[120px]'>
-                            <PrivacyForm />
-                        </div>
-                        <div className='pt-[53px]'>
-                            <ContentForm />
-                        </div>
-                        <div className='pt-[77px]'>
-                            <OverviewHouseForm />
-                        </div>
-                        <div>
-                            <UploadImageForm title="物件写真" button="画像ファイルを選択する" width1={"w-[700px]"} width2={"w-[177px]"} gap={"gap-[35px]"} />
-                        </div>
-                        <div className='flex justify-center'>
-                            <ConditionForm />
-                        </div>
-                        <div className='flex justify-center pt-[105px] pb-[170px]'>
-                            <button className='bg-[#2A6484] text-white px-[115px] py-[14px] text-[24px] rounded-[20px]'>提出</button>
-                        </div>
+                        
+                            <div className='pt-[120px]'>
+                                <PrivacyForm  onDataArrayFromChild={handlePrivacyDataArray} />
+                            </div>
+                            <div className='pt-[53px]'>
+                                <ContentForm onDataArrayFromChild={handlePrivacyDataArray} />
+                            </div>
+                            <div className='pt-[77px]'>
+                                <OverviewHouseForm onDataArrayFromChild={handlePrivacyDataArray} />
+                            </div>
+                            <div>
+                                <UploadImageForm title="物件写真" button="画像ファイルを選択する" width1={"w-[700px]"} width2={"w-[177px]"} gap={"gap-[35px]"} onDataArrayFromChild={handlePrivacyDataArray} />
+                            </div>
+                            <div className='flex justify-center'>
+                                <ConditionForm  onDataArrayFromChild={handlePrivacyDataArray}/>
+                            </div>
+                            <div className='flex justify-center pt-[105px] pb-[170px]'>
+                                <button type='submit' className='bg-[#2A6484] text-white px-[115px] py-[14px] text-[24px] rounded-[20px]'>提出</button>
+                            </div>
+                       
                     </div>
                 </div>
             </div>

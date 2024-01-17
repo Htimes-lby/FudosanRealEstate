@@ -1,14 +1,16 @@
-import React, { useState } from "react";
-
-
+import React, { useState, useEffect } from "react";
+import axios from 'axios';
 import shortid from "shortid";
 
 
-const UploadImageForm = ({title, button,width1, width2, gap, status}) => {
+const UploadImageForm = ({button, title, width1, width2,gap, status, onDataArrayFromChild}) => {
+
+    
     const [selectedfile, SetSelectedFile] = useState([]);
-    const [Files, SetFiles] = useState([]);
+    const [selectedImage, SetSelectedImage] = useState([]);
 
 
+    
     const filesizes = (bytes, decimals = 2) => {
         if (bytes === 0) return '0 Bytes';
         const k = 1024;
@@ -20,11 +22,14 @@ const UploadImageForm = ({title, button,width1, width2, gap, status}) => {
 
     const InputChange = (e) => {
         // --For Multiple File Input
+        SetSelectedImage(e.target.files);
         let images = [];
         for (let i = 0; i < e.target.files.length; i++) {
             images.push((e.target.files[i]));
+            
             let reader = new FileReader();
             let file = e.target.files[i];
+            
             reader.onloadend = () => {
                 SetSelectedFile((preValue) => {
                     return [
@@ -45,8 +50,10 @@ const UploadImageForm = ({title, button,width1, width2, gap, status}) => {
             }
         }
     }
+    let formData = [];
 
-
+   
+      
     const DeleteSelectFile = (id) => {
         if(window.confirm("このファイルを削除してもよろしいですか？")){
             const result = selectedfile.filter((data) => data.id !== id);
@@ -56,27 +63,48 @@ const UploadImageForm = ({title, button,width1, width2, gap, status}) => {
         }
         
     }
-
+    
+    
     const FileUploadSubmit = async (e) => {
         e.preventDefault();
-
+        let formData = [];
+       console.log(formData)
         // form reset on submit 
-        e.target.reset();
-        if (selectedfile.length > 0) {
+        
             for (let index = 0; index < selectedfile.length; index++) {
-                SetFiles((preValue)=>{
-                    return[
-                        ...preValue,
-                        selectedfile[index]
-                    ]   
-                })
+                formData.push(selectedfile[index].fileimage);
+                console.log(formData)
+               
             }
-            SetSelectedFile([]);
-        } else {
-            alert('Please select file')
-        }
+            
+            // try {
+            //     const response = await axios.post('http://your-server/upload', formData);
+            //     console.log('Upload success:', response.data);
+            //     // Handle any further actions, such as updating state or displaying a success message
+            //   } catch (error) {
+            //     console.error('Upload failed:', error);
+            //     // Handle errors, display error messages, etc.
+            //   }
+        
+        
     }
+
+    useEffect(()=>{
+
+        let formData = [];
    
+        // form reset on submit 
+        
+            for (let index = 0; index < selectedfile.length; index++) {
+                formData.push(selectedfile[index].fileimage);
+        
+               
+            }
+        
+        onDataArrayFromChild(formData);
+        
+      },[selectedfile])
+    
     return(
         
         <div className="fileupload-view ">
@@ -123,6 +151,7 @@ const UploadImageForm = ({title, button,width1, width2, gap, status}) => {
                                                                 <div className="file-actions ">
                                                                     <button type="button" className="file-action-btn" onClick={() => DeleteSelectFile(id)}><i className="fa-solid fa-trash text-[40px] pl-[15px]"></i></button>
                                                                 </div>
+                                                               
                                                             </div>
                                                         </div>
                                                     )
@@ -137,7 +166,10 @@ const UploadImageForm = ({title, button,width1, width2, gap, status}) => {
                         </div>
                     </div>
                 </div>
+                
             </div>
+
+            
        
     );
 }
