@@ -73,8 +73,8 @@ const MessageBoardPage = () => {
     const handleMessageItemClicked = (props) => {
         const index = props;
         const load = messages[index];
-        const calledComponent = 'message-board'
-        history.push('/message-detail', {state: {calledComponent, load}});
+        const parentComponent = 'message-board'
+        history.push('/message-detail', {state: {parentComponent, load}});
     }
     const handleActiveCategorySelected = (props) => {
         setActiveCategory(props);

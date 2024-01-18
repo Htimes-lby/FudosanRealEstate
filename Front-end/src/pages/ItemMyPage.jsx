@@ -354,7 +354,7 @@ const ItemMyPage = () => {
                 {
                     realEstateInfo.map((realEstate, index) => {
                         return(
-                            <RealEstateBigCard key = {index} realEstate = {realEstate} />
+                            <RealEstateBigCard key = {index} realEstate = {realEstate} parentComponent = 'ItemMyPage' />
                         );
                     })
                 }

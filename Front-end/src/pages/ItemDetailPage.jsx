@@ -688,7 +688,9 @@ export default function ItemDetailPage() {
         setFavouriteButtonActive(favouriteButtonActive ? false : true);
     }
     const sendMsgButtonClicked = () => {
-        history.push('/message-detail')
+        const searchParams = new URLSearchParams();
+        searchParams.set('previous-page','itemDetailPage')
+        history.push(`/message-detail?${searchParams.toString()}`);
     }
   return (
     <div className=' flex flex-col items-center pb-[120px] pt-[92px] w-full'>
@@ -715,7 +717,7 @@ export default function ItemDetailPage() {
 
             <div className='flex justify-center gap-[50px] w-full mt-20'>
                 <div className='flex w-[380px] h-[80px] justify-center items-center bg-[#2A6484] text-white text-[24px] rounded-xl cursor-pointer' onClick={sendMsgButtonClicked}>メッセージを送信する</div>
-                <div onClick={handleFavouriteButtonClicked}><FavouriteButton calledComponent='realEstateDetailPage' favouriteButtonActive={favouriteButtonActive}/></div>
+                <div onClick={handleFavouriteButtonClicked}><FavouriteButton parentComponent='realEstateDetailPage' favouriteButtonActive={favouriteButtonActive}/></div>
             </div>
         </div>
     </div>
