@@ -7,8 +7,7 @@ const AccordionItemMessage = (props) => {
 
     const [active, setActive] = useState(false);
     const handleToggle = () => {
-        if(active) setActive(false);
-        else setActive(true);
+        setActive((prevState) => !prevState);
     };
 
     return(

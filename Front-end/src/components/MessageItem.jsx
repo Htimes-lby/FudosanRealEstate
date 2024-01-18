@@ -1,4 +1,4 @@
-import { useEffect,React } from "react";
+import { React } from "react";
 
 
 const MessageItem = (props) => {
