@@ -358,9 +358,7 @@ const FavouritePage = () => {
                 {
                     realEstateInfo.map((realEstate, index) => {
                         return(
-                            <div>
-                                <RealEstateBigCard key = {index} realEstate = {realEstate} handleRealEstateBigCardClicked = {handleRealEstateBigCardClicked} />
-                            </div>
+                            <RealEstateBigCard key = {index} realEstate = {realEstate} handleRealEstateBigCardClicked = {handleRealEstateBigCardClicked} parentComponent = 'FavouritePage' />
                         );
                     })
                 }

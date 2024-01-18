@@ -1,6 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom/cjs/react-router-dom.min'
 import AccordionItemMessage from '../components/AccordionItemMessage';
+import RealEstateBigCard from '../components/RealEstateBigCard';
 import AgentCard from '../components/AgentCard';
 
 
@@ -118,41 +120,85 @@ const msgs = [
         date: '2024/1/5 10:30',
     },
 ]
-
-const MessageDetailPage = () => {
-    const [active, setActive] = useState(null);
-
-    const handleToggle = (index) => {
-        if (active === index) {
-            setActive(null);
-        } else {
-            setActive(index);
-        }
-    }
-
-    const agentinfor = {companyName :"会社名",
+const myArray = [
+    require("../assets/img/carousel/1.jpg"),
+    require("../assets/img/carousel/2.jpg"),
+    require("../assets/img/carousel/3.jpg"),
+    require("../assets/img/carousel/4.jpg"),
+    require("../assets/img/carousel/5.jpg"),
+];
+const realEstate = {
+    posterInfo: {
+        name: {
+            firstNameGanji:'廣崎',
+            lastNameGanji:'佑亮',
+            firstNameGana:'ゆうすけ',
+            lastNameGana:'ひろさき',
+        },
+        age:16,
+        mail:'skywolf777@gmail.com',
+        phoneNumber:'+81501587316',
+    },
+    address: {
+        postNumber:'238-0298',
+        province:'神奈川県',
+        city:'三浦市',
+        street:'1 Chome-9-11 Misaki',
+    },
+    images: myArray,
+    briefDescription: `テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト`,
+    fullDescription: `テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+    テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+    テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+    テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+    テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+    テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+    テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト `,
+    image: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2620&q=80',
+    basicInfo: {
+        budget: '1',
+        layout: '4LDK',
+        landarea: '7777m²',
+        buildingarea: '4444m²',
+        deadline: '即日',
+        parking: '3台',
+    },
+    realEstateCategory: 'building'
+};
+const agent = {companyName :"会社名",
     agentName:"担当者名",
     phoneNumber:"0123456789",
     emailAddress:"abcdef@gmail.com",
-    content:"テキスト テキスト テキスト テキスト テキスト テキスト テキスト"+
-            "テキスト テキスト テキスト テキスト テキスト テキスト テキスト"+
-            "テキスト テキスト テキスト テキスト テキスト テキスト テキスト"+
-            "テキスト テキスト テキスト テキスト テキスト テキスト テキスト"}
-
+    content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+            テキスト テキスト テキスト テキスト テキスト テキスト テキスト`
+};
+const MessageDetailPage = () => {
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const previousPage = searchParams.get('previous-page');
     return (
-        <div> 
+        <div className='flex flex-col items-center w-full'> 
             <p className='text-[32px] font-medium text-center pt-28 pb-20'>サスケさんとのメッセージ</p>
-            <div className='flex justify-center items-center w-full'>
-                <div className='flex flex-col w-[60%] gap-[5px]'>
-                    {msgs.map((msg, index) => {
-                        return (
-                                <AccordionItemMessage key={index} message={msg} />
-                                )
-                        })
-                    }
-                </div>
-            
+            {
+                previousPage === 'itemDetailPage' &&
+                <RealEstateBigCard realEstate = {realEstate} parentComponent = 'MessageDetailPage' />
+            }
+            {
+                previousPage === 'messageBoardPage' && <div></div>
+            }
+            <div className='flex flex-col w-[60%] pt-5 gap-[5px]'>
+                {msgs.map((msg, index) => {
+                    return(
+                    <AccordionItemMessage key={index} message={msg} />
+                    )
+                    })
+                }
             </div>
+
             <div className='flex justify-center pt-[48px] pb-[45px]'>
                 <textarea  className="border-[1px] border-black rounded-sm" name="message" id="" cols="100" rows="4"></textarea>
             </div>

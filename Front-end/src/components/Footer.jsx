@@ -3,8 +3,9 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 const Footer = () => {
     const history = useHistory();
     const handleFeedbackCategoryClicked = (props) => {
-        const category = props;
-        history.push('/feedback-board', {state: {category}})
+        const searchParams = new URLSearchParams();
+        searchParams.set('category', props);
+        history.push(`/feedback-board?${searchParams.toString()}`)
     }
     const handleRealEstateCagegoryClicked = (e) => {
         const searchParams = new URLSearchParams();
@@ -23,6 +24,9 @@ const Footer = () => {
     }
     const handleContactClicked = () => {
         history.push('/contact-general')
+    }
+    const handleLoginClicked = () => {
+        history.push('/login')
     }
     return (
         <div className='flex flex-col relative w-full h-[340px] bg-[#2A6484]'>
@@ -62,7 +66,7 @@ const Footer = () => {
                     <span className=' text-white text-[16px] pt-1 cursor-pointer' onClick={handleMyMsgClicked}>メッセージ</span>
                     <span className=' text-white text-[16px] pt-1 cursor-pointer' onClick={handleContactClicked}>総合窓口</span>
                 </div>
-                <div className='text-[#FFC804] text-[20px]'>ログイン</div>
+                <div className='text-[#FFC804] text-[20px] cursor-pointer' onClick={handleLoginClicked}>ログイン</div>
             </div>
             <div className='flex flex-row justify-between w-full pt-3 px-[330px]'>
                 <span className=' text-white text-[16px]'><span className='text-[20px]'>ふどうさん</span>市場 株式会社</span>

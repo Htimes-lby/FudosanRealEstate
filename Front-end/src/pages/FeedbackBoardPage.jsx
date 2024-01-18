@@ -251,20 +251,15 @@ const FeedbackBoardPage = () => {
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const category = searchParams.get('category');
-    // if(!location.state)history.goBack();
-    // const { state } = location.state;
-    // const category = state.category;
+
     const [active, setActive] = useState(1);
     const activeHandler = (clickedPage) => {
         setActive(parseInt(clickedPage));
     };
     const handleFeedbackCardClicked = (props) => {
-        // const index = props;
         const searchParams = new URLSearchParams();
         searchParams.set('index', props);
         history.push(`/feedback-detail?${searchParams.toString()}`)
-        // const feedbackData = feedbacks[index];0
-        // history.push('/feedback-detail',{state: {feedbackData}});
     }
     return (
         <div className='w-full mt-[70px] mb-[100px]'>
