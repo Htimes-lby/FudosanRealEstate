@@ -20,8 +20,9 @@ ul{
   padding: 0;
 }
 
-#dropdown-menu:hover #dropdown-content{
-  display:block;
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
 .bg-image-blur{

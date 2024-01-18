@@ -51,6 +51,30 @@ content:"テキスト テキスト テキスト テキスト テキスト テキ
         "テキスト テキスト テキスト テキスト テキスト テキスト テキスト"+
         "テキスト テキスト テキスト テキスト テキスト テキスト テキスト"+
         "テキスト テキスト テキスト テキスト テキスト テキスト テキスト"},
+                {companyName :"会社名",
+agentName:"担当者名",
+phoneNumber:"0123456789",
+emailAddress:"abcdef@gmail.com",
+content:"テキスト テキスト テキスト テキスト テキスト テキスト テキスト"+
+        "テキスト テキスト テキスト テキスト テキスト テキスト テキスト"+
+        "テキスト テキスト テキスト テキスト テキスト テキスト テキスト"+
+        "テキスト テキスト テキスト テキスト テキスト テキスト テキスト"},
+        {companyName :"会社名",
+        agentName:"担当者名",
+        phoneNumber:"0123456789",
+        emailAddress:"abcdef@gmail.com",
+        content:"テキスト テキスト テキスト テキスト テキスト テキスト テキスト"+
+                "テキスト テキスト テキスト テキスト テキスト テキスト テキスト"+
+                "テキスト テキスト テキスト テキスト テキスト テキスト テキスト"+
+                "テキスト テキスト テキスト テキスト テキスト テキスト テキスト"},
+                {companyName :"会社名",
+agentName:"担当者名",
+phoneNumber:"0123456789",
+emailAddress:"abcdef@gmail.com",
+content:"テキスト テキスト テキスト テキスト テキスト テキスト テキスト"+
+        "テキスト テキスト テキスト テキスト テキスト テキスト テキスト"+
+        "テキスト テキスト テキスト テキスト テキスト テキスト テキスト"+
+        "テキスト テキスト テキスト テキスト テキスト テキスト テキスト"},
     
     ]
 
@@ -58,6 +82,7 @@ const ItemBoardPage = () => {
 
     const history = useHistory();
     const [activeAgentCategory, setActiveAgentCategory] = useState('judicialscrivener')
+    const [displayAgents, setDisplayAgents] = useState (false);
 
     const handleClick = (e, params) => {
         const flag = params;
@@ -68,10 +93,13 @@ const ItemBoardPage = () => {
         const agentData = props;
         history.push('/message-detail', {state: {agentData}});
     }
+    const handleDisplayAgentsToggle = (value) => {
+        setDisplayAgents(value);
+    }
 
     return (
-        <div className='bg-[#F1F1F1] flex justify-between'>
-            <div className='w-[480px] pt-[130px] ml-[100px]'>
+        <div className={`flex justify-center relative bg-[#F1F1F1] pb-8 ${displayAgents? 'gap-20' : 'gap-40'}`}>
+            <div className='w-[480px] pt-[100px]'>
                 {Object.keys(myImage).map((key, i) => (
                     <div className='mb-[27px] ml-[45px] inline-block cursor-pointer' key={i}>
                         <Category text={key} img={myImage[key]} onClick={(e) => handleClick(e,'category')} alt={i} />
@@ -79,7 +107,7 @@ const ItemBoardPage = () => {
                 ))}
             </div>
             <div className='flex flex-col items-center'>
-                <div className='pt-[80px]' >
+                <div className='pt-[60px]' >
                     <div className='flex gap-[22px]'>
                         <span className="text-[#02540A] text-[16px] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'province')}>北海道</span>
                         <div onClick={(e) => handleClick(e, 'city')} className=' cursor-pointer'>
@@ -209,21 +237,25 @@ const ItemBoardPage = () => {
                     <GoogleMapComponent />
                 </div>
             </div>
-            <div className='pt-[40px] pb-[24px] '>
-                <div className='pt-[65px] w-[600px] bg-white text-center flex flex-col items-center justify-center pb-[55px] shadow-lg rounded-2xl' >
-                    <div className='flex relative h-12 border-b-2 pt-[2px] border-black w-[500px] transition-all duration-300'>
-                        <span className=' w-[33%] cursor-pointer' onClick={() => setActiveAgentCategory('realEstateAgent')}>不動産業者</span>
-                        <span className=' w-[34%] cursor-pointer' onClick={() => setActiveAgentCategory('judicialscrivener')}>司法書士</span>
-                        <span className=' w-[33%] cursor-pointer' onClick={() => setActiveAgentCategory('invester')}>投資家</span>
-                        <div className={`absolute w-[33.3%] h-1 bottom-0 bg-[#f13f13] rounded-md transition-all duration-500 ${activeAgentCategory === 'realEstateAgent' ? 'left-0' : activeAgentCategory === 'judicialscrivener' ? 'left-[33.3%]' : 'left-[66.6%]' }`}></div>
-                    </div>
-                    {myAgent.map((agent, index) => (
-                        <div className='pt-[45px]' onClick={() => agentCardClicked(index)}> 
-                            <AgentCard agentInfo={agent} key={index} />                           
+            <div className={`absolute top-20 right-32 text-[16px] font-medium border-b-2 border-b-emerald-600 py-1 px-3 cursor-pointer ${displayAgents ? 'hidden' : 'block'}`} onClick={() => handleDisplayAgentsToggle(true)}><div className = 'pr-3 fa-solid fa-arrow-left'></div>エージェントを見る</div>
+            {
+                displayAgents &&
+                <div className='relative mt-4 mb-[24px] p-2  bg-white shadow-lg rounded-2xl'>
+                    <div className='absolute top-4 right-6 text-sm font-semibold cursor-pointer' onClick={() => handleDisplayAgentsToggle(false)}>隠れる<div className = 'pl-2 fa-solid fa-arrow-right'></div></div>
+                    <div className='flex flex-col items-center w-[600px] h-[800px]  pt-[50px] pb-[55px] bg-white text-center  overflow-y-scroll no-scrollbar' >
+                        <div className='flex relative border-b-2 pt-[2px] border-black w-[500px] transition-all duration-300'>
+                            <span className=' w-[33%] cursor-pointer pb-3' onClick={() => setActiveAgentCategory('realEstateAgent')}>不動産業者</span>
+                            <span className=' w-[34%] cursor-pointer' onClick={() => setActiveAgentCategory('judicialscrivener')}>司法書士</span>
+                            <span className=' w-[33%] cursor-pointer' onClick={() => setActiveAgentCategory('invester')}>投資家</span>
+                            <div className={`absolute w-[33.3%] h-1 bottom-0 bg-[#f13f13] rounded-md transition-all duration-500 ${activeAgentCategory === 'realEstateAgent' ? 'left-0' : activeAgentCategory === 'judicialscrivener' ? 'left-[33.3%]' : 'left-[66.6%]' }`}></div>
                         </div>
-                    ))}
-                </div>
-            </div>
+                        {myAgent.map((agent, index) => (
+                            <div className='pt-[25px]' onClick={() => agentCardClicked(index)}> 
+                                <AgentCard agentInfo={agent} key={index} />                           
+                            </div>
+                        ))}
+                    </div>
+                </div>}
         </div>
     )
 }
