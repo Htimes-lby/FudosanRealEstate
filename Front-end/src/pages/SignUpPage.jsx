@@ -1,9 +1,11 @@
 import { React, useState } from 'react';
+import { useHistory } from 'react-router-dom'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 const eye = <FontAwesomeIcon icon={faEye} />;
 
 const SignUpPage = () => {
+    const history = useHistory();
     const [passwordShown, setPasswordShown] = useState(false);
     const [password, setPassword] = useState();
     const [email, setEmail] = useState();
@@ -21,6 +23,9 @@ const SignUpPage = () => {
     const togglePasswordVisibility = () => {
         setPasswordShown(passwordShown ? false : true);
     };
+    const handleNavigateToLogIn = () => {
+        history.push('/login')
+    }
 
     return (
         <>
@@ -89,8 +94,8 @@ const SignUpPage = () => {
                         </div>
                     </div>
                     <p className='text-white mt-10 text-[14px]'>氏名は正確に（住民票など記載のもの）ご入力ください。</p> 
-                    <button className='mt-10 w-full h-[50px] rounded-md bg-[#2A6484] text-white font-semibold border-white/50 border-2 text-[22px]' type='submit'>ログイン </button>
-                    <button className='mt-3 w-full h-[50px] rounded-md bg-[#2A6484] text-white font-semibold border-white/50 border-2 text-[19px]'>サインアップページに移動 </button>
+                    <button className='mt-10 w-full h-[50px] rounded-md bg-[#2A6484] text-white font-semibold border-white/50 border-2 text-[22px]' type='submit'>アカウント作成 </button>
+                    <button className='mt-3 w-full h-[50px] rounded-md bg-[#2A6484] text-white font-semibold border-white/50 border-2 text-[19px]' onClick={handleNavigateToLogIn}>サインアップページに移動 </button>
                 </form>
             </div>
         </>

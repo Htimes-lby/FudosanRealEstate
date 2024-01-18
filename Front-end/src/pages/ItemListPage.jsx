@@ -675,9 +675,9 @@ const ItemListPage = () => {
 
     const history = useHistory();
     const location = useLocation();
-    const { state } = location.state;
-    const flag = state.flag;
-    const content = state.content;
+    const searchParams = new URLSearchParams(location.search);
+    const searchStandard = searchParams.get('searchStandard');
+    const searchStandardContent = searchParams.get('searchStandardContent');
     const [isOpen, setIsOpen] = useState(false);
     const [active, setActive] = useState(1);
     const activeHandler = (clickedPage) => {
@@ -686,19 +686,15 @@ const ItemListPage = () => {
     const magnifierToggleHandler = () => {
           setIsOpen((isOpen) => !isOpen);
     }
-    const handleRedirect = () => {
-        history.goBack();
-    }
     const handleRealEstateCardClicked = (props) => {
-        const index = props;
-        const realEstate = realEstateInfo[index];
-        const flag = 'realEstatePost'
-        history.push('/item-detail', {state: {realEstate, flag}});
+        const searchParams = new URLSearchParams();
+        searchParams.set('index', props);
+        history.push(`/item-detail?${searchParams.toString()}`);
     };
     
     return (
         <div className='flex flex-col items-center pt-20'>
-            <p className=' font-medium text-[36px]' >{content}</p>
+            <p className=' font-medium text-[36px]' >{searchStandardContent}</p>
             <div className='flex justify-center items-center gap-10 mt-16'>            
                 <Pagination
                     active={active}

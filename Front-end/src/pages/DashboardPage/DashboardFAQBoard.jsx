@@ -1,5 +1,5 @@
 import { React, useState } from 'react';
-import { useHistory, useLocation } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import AccordionItem from '../../components/AccordionItem';
 
 const faqs = [
