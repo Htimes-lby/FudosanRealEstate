@@ -1,9 +1,11 @@
 import  React, { useState } from 'react';
+import { useHistory } from 'react-router-dom'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 const eye = <FontAwesomeIcon icon={faEye} />;
 
 const SignInPage = () => {
+    const history = useHistory();
     const [passwordShown, setPasswordShown] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -13,7 +15,10 @@ const SignInPage = () => {
     const handleLogin = () =>{
         const payload = {email, password}
     }
-
+    const handleNavigateToRegister = () => {
+        history.push('/register')
+    }
+{/* <a href="" className='text-[14px] cursor-pointer underline underline-offset-4 decoration-[#FFC804]'>個人情報保護方針</a> */}
     return (
         <>
             <div className= ' w-full h-[900px] bg-image-blur bg-cover'></div>
@@ -41,10 +46,9 @@ const SignInPage = () => {
                         />
                         <i className=' absolute bottom-1 right-3 cursor-pointer' onClick={togglePasswordVisibility}>{eye}</i>
                     </div>
-                    <p className='text-white mt-10'>アカウント作成と同時に、当サイトの <a href="" className='text-[14px] cursor-pointer underline underline-offset-4 decoration-[#FFC804]'>個人情報保護方針</a>および
-                    <a href="" className='text-[14px] underline underline-offset-4 decoration-[#FFC804]'>プライバシーポリシー</a>に同意したとみなされます。</p> 
+                    <p className='text-white mt-10'>アカウント作成と同時に、当サイトの および個人情報保護方針プライバシーポリシーに同意したとみなされます。</p> 
                     <button className='mt-10 w-full h-[50px] rounded-md bg-[#2A6484] text-white font-semibold border-white/50 border-2 text-[22px]' onSubmit={handleLogin}>ログイン </button>
-                    <button className='mt-6 w-full h-[50px] rounded-md bg-[#2A6484] text-white font-semibold border-white/50 border-2 text-[19px]'>サインアップページに移動 </button>
+                    <button className='mt-6 w-full h-[50px] rounded-md bg-[#2A6484] text-white font-semibold border-white/50 border-2 text-[19px]' onClick={handleNavigateToRegister}>サインアップページに移動 </button>
                 </form>
             </div>
         </>

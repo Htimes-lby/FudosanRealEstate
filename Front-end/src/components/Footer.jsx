@@ -7,9 +7,10 @@ const Footer = () => {
         history.push('/feedback-board', {state: {category}})
     }
     const handleRealEstateCagegoryClicked = (e) => {
-        const flag = 'realEstate';
-        const content = e.target.innerText;
-        history.push('/item-list',{state:{flag, content}})
+        const searchParams = new URLSearchParams();
+        searchParams.set('searchStandard', 'searchByCategory');
+        searchParams.set('searchStandardContent', e.target.innerText);
+        history.push(`/item-list?${searchParams.toString()}`);
     }
     const handleMyPostClicked = () => {
         history.push('/my-post');

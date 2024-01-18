@@ -90,7 +90,7 @@ const MessageBoardPage = () => {
                     onClickHandler={activeHandler}
                 />
             </div>
-            <div className='flex justify-center gap-32 items-start'>
+            <div className='flex justify-center gap-16 items-start'>
                 <div className='w-[200px] border-[1px] border-black'>
                     <div className='bg-[#0D4868]/60 text-center text-white font-semibold p-2'>メッセージボックス</div>
                     <div className={`text-center text-[16px] border-b-[1px] border-l-4  border-black p-2 cursor-pointer ${activeCategory === 'all' ? 'border-l-[#0D4868]' : 'border-l-[#0D4868]/30'}`} onClick={() => handleActiveCategorySelected('all')}>すべて表示</div>
@@ -101,7 +101,7 @@ const MessageBoardPage = () => {
                     <div className={`text-center text-[16px] p-2 border-l-4 cursor-pointer ${activeCategory === 'sent' ? 'border-l-[#0D4868]' : 'border-l-[#0D4868]/30'}`} onClick={() => handleActiveCategorySelected('sent')}>すべて表示</div>
                 </div>
 
-                <div className='w-[1200px]'>
+                <div className='w-[1000px]'>
                     {messages.map((msg, index) => {
                         return(
                             <div onClick={() => handleMessageItemClicked(index)}><AccordionItemMessage key={index} message={msg} /></div>

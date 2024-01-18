@@ -250,13 +250,15 @@ const DashboardFeedbackBoard = () => {
 
     const history = useHistory();
     const handleCardClicked = (props) => {
+        const queryParams = new URLSearchParams();
+        queryParams.set('index', props);
         const index = props;
-        const feedbackData = feedbacks[index];
-        history.push('/feedback-detail',{state: {feedbackData}});
+        history.push(`/feedback-detail?${queryParams.toString()}`);
     }
     const handleViewMoreClicked = (props) => {
-        const category = props;
-        history.push('/feedback-board', {state: {category}})
+        const queryParams = new URLSearchParams();
+        queryParams.set('category',props);
+        history.push(`/feedback-board?${queryParams.toString()}`);
     }
     return (
         <div className='w-full py-20'>
