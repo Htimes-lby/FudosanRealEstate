@@ -272,16 +272,6 @@ a, a:hover, a:focus {
   background: #AFAFAF; 
 }
 
-.container{
-  max-width: 1440px;
-  margin-inline: auto;
-}
-
-.postContainer{
-  margin-inline: auto;
-}
-
-
 
 /* Accordion-Item */
 

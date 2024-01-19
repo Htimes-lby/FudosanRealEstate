@@ -144,7 +144,7 @@ const PostREPage = () => {
                     </div>
                 </div>
                 <div className='bg-white rounded-2xl '>
-                    <div className='w-[880px] postContainer'>
+                    <div className='w-[880px] mx-auto'>
                         <div>
                             <p className='text-[36px] pt-[80px] text-center'>掲載のご依頼</p>
                         </div>
