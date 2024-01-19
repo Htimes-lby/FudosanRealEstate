@@ -1,71 +1,80 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const postSchema = new mongoose.Schema({
-  category: {
-    type: String,
+  realEstateCategory: {
+    type: Boolean,
   },
-  postInfo:[{
-    name:{
-        type: Schema.Types.ObjectId,
-        ref:"User"
-    },
-    age:{
-        type:Date
-    },
-    email:{
-        type: Schema.Types.ObjectId,
-        ref:"User"
-    },
-    zipCode:{
-        type:Number
-    },
-
-  }],
+  posterInfo:{
+    type: Schema.Types.ObjectId,
+    ref:"User"
+  },
   address:[{
-    prefectures:{
+    province:{
         type:String
     },
-    municipalities:{
+    city:{
         type:String
     },
     streetBunch:{
         type:String
+    },
+    postNumber:{
+      type:Number
     },
     buildingName:{
         type:String
     },
   }],
   description:[{
-    shortDescription:{
+    briefDescription:{
         type:String
     },
     fullDescription:{
         type:String
     }
   }],
-  mainInfo:[{
-    price:{
+  basicInfo:[{
+    budget:{
+      type:Number
+    },
+    layout:{
       type:String
     },
-    floorPlan:{
-      type:String
+    landarea:{
+      type:Number
     },
-    landArea:{
-      type:String
+    buildingarea:{
+      type:Number
     },
-    buildingArea:{
-      type:String
-    },
-    moveIn:{
+    deadline:{
       type:String
     },
     parking:{
-      type:String
+      type:Number
     }
     }],
     imageURL:{
         type:String
     },
+
+    basiclandInfo:[{
+      budget:{
+        type:Number
+      },
+      landarea:{
+        type:String
+      },
+      dryCloseRate:{
+        type:Number
+      },
+      floorAreaRatio:{
+        type:Number
+      },
+      structure:{
+        type:String
+      }
+    }]
 });
 
 module.exports = mongoose.model("Post", postSchema);

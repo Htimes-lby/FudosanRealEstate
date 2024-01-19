@@ -15,8 +15,9 @@ const favicon = require("serve-favicon");
 var path = require("path");
 var cors = require("cors");
 
+
 // imports routes, middleware, and configs
-const todos = require("./src/routes/todos.route");
+const realEstate = require('./src/routes/realEstateRoute')
 const { notFoundRoute, errorHandler } = require("./src/configs/errorHandler");
 
 // loads environment variables from .env file
@@ -49,15 +50,11 @@ app.get("/", (req, res) => {
   res.status(200).json({ message: "Welcome to TODO Node.js application backend." });
 });
 
-// todos api routes
-app.use(process.env.APP_API_PREFIX, todos);
 
-// 404 - not found error handler
-app.use(notFoundRoute);
 
-// error handler
 app.use(errorHandler);
 
+app.use("/", realEstate);
 // app listens to defined port
 app.listen(process.env.APP_PORT, () => {
   console.log("TODO-App backend server running on: " + process.env.APP_BASE_URL);

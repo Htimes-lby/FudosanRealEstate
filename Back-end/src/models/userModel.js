@@ -26,6 +26,12 @@ const userSchema = new mongoose.Schema({
             type: String 
         },       
       }],
+    age:{
+      type:Date
+    },
+    phoneNumber:{
+      type:String
+    }
 });
 
 module.exports = mongoose.model("User", userSchema);
