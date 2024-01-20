@@ -80,7 +80,7 @@ export default function PrivacyForm( props ) {
                 <p className='text-[20px]'>年齢</p>
             </div>
             <div>
-                <input type="text" className='w-[443px] focus:outline-none focus:border-blue-500 px-2 py-[2px] border-[1px] border-black rounded-md' onChange={(e) => setAge(e.target.value)}/>
+                <input type="number" className='w-[443px] focus:outline-none focus:border-blue-500 px-2 py-[2px] border-[1px] border-black rounded-md' onChange={(e) => setAge(e.target.value)}/>
             </div>
         </div>
        
@@ -102,11 +102,11 @@ export default function PrivacyForm( props ) {
                 <p className='text-[20px]'>電話番号</p>
             </div>
             <div className='flex '>
-                <input type="text" className='w-[99px] focus:outline-none focus:border-blue-500 px-2 py-[2px] border-[1px] border-black rounded-md' value={phoneNumber[0] || ''} onChange={(e) => handleInputPhoneNumber(0, e.target.value)}/>
+                <input type="number" className='w-[99px] focus:outline-none focus:border-blue-500 px-2 py-[2px] border-[1px] border-black rounded-md' value={phoneNumber[0] || ''} onChange={(e) => handleInputPhoneNumber(0, e.target.value)}/>
                 <span className='border-t-2 w-[30px] border-black mt-[15px] mx-[22px]'></span>            
-                <input type="text" className='w-[99px] focus:outline-none focus:border-blue-500 px-2 py-[2px] border-[1px] border-black rounded-md' value={phoneNumber[1] || ''} onChange={(e) => handleInputPhoneNumber(1, e.target.value)}/>
+                <input type="number" className='w-[99px] focus:outline-none focus:border-blue-500 px-2 py-[2px] border-[1px] border-black rounded-md' value={phoneNumber[1] || ''} onChange={(e) => handleInputPhoneNumber(1, e.target.value)}/>
                 <span className='border-t-2 w-[30px] border-black mt-[15px] mx-[21px]'></span>
-                <input type="text" className='w-[99px] focus:outline-none focus:border-blue-500 px-2 py-[2px] border-[1px] border-black rounded-md' value={phoneNumber[2] || ''} onChange={(e) => handleInputPhoneNumber(2, e.target.value)}/>
+                <input type="number" className='w-[99px] focus:outline-none focus:border-blue-500 px-2 py-[2px] border-[1px] border-black rounded-md' value={phoneNumber[2] || ''} onChange={(e) => handleInputPhoneNumber(2, e.target.value)}/>
             </div>
         </div>
 
@@ -117,9 +117,9 @@ export default function PrivacyForm( props ) {
             </div>
             <div>              
                 <span className=' w-[30px] mt-[15px] mr-[50px] text-[20px] '>郵便番号 - 〒</span>          
-                <input type="text" className='w-[99px] focus:outline-none focus:border-blue-500 px-2 py-[2px] border-[1px] border-black rounded-md' value={postalNumber[0] || ''} onChange={(e) => handleInputPoastalNumber(0, e.target.value)}/>
+                <input type="number" className='w-[99px] focus:outline-none focus:border-blue-500 px-2 py-[2px] border-[1px] border-black rounded-md' value={postalNumber[0] || ''} onChange={(e) => handleInputPoastalNumber(0, e.target.value)}/>
                 <span className=' inline-block border-t-2 w-[30px] border-black mt-[15px] mx-[21px]  '></span>
-                <input type="text" className='w-[99px] focus:outline-none focus:border-blue-500 px-2 py-[2px] border-[1px] border-black rounded-md' value={postalNumber[1] || ''} onChange={(e) => handleInputPoastalNumber(1, e.target.value)}/>
+                <input type="number" className='w-[99px] focus:outline-none focus:border-blue-500 px-2 py-[2px] border-[1px] border-black rounded-md' value={postalNumber[1] || ''} onChange={(e) => handleInputPoastalNumber(1, e.target.value)}/>
             </div>
         </div>
 
