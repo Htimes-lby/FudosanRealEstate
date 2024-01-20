@@ -13,7 +13,7 @@ const myArray = [
     require("../assets/img/carousel/4.jpg"),
     require("../assets/img/carousel/5.jpg"),
 ];
-const realEstateInfo = [
+const realEstates = [
     {
         posterInfo: {
             name: {
@@ -712,7 +712,7 @@ const ItemListPage = () => {
             <div className='flex flex-col items-center w-full'>
                 <div className=' grid gap-x-8 gap-y-12 grid-cols-4 mt-3 mb-5 mx-auto box-border max-w-[1100px]'>
                     {
-                        realEstateInfo.map((realEstate, index) => {
+                        realEstates.map((realEstate, index) => {
                             return(
                                 <div  onClick={() => handleRealEstateCardClicked(index)} className='cursor-pointer'>
                                     <RealEstateSmallCard key = {index} realEstate = {realEstate}/>

@@ -3,14 +3,14 @@ import { history } from './Utils/history';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Mainboard from './Mainboard';
+import Layout from './Layout';
 
 function App() {
   return (
     <div>
       <Router history={history}>
         <Header />
-        <Mainboard />
+        <Layout />
         <Footer />
       </Router>
     </div>

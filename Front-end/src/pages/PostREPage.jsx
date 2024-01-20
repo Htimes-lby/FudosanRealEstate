@@ -65,9 +65,6 @@ const PostREPage = () => {
 
     const realEstateInfo = 
         {
-            
-            
-           
             images: myArray,
             briefDescription: `テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
         テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト

@@ -17,7 +17,6 @@ const SignUpPage = () => {
         e.preventDefault();
         const name = {firstNameGanji, lastNameGanji, firstNameGana, lastNameGana};
         const payload = {email, name, password};
-        console.log("payload", payload);
     }
 
     const togglePasswordVisibility = () => {

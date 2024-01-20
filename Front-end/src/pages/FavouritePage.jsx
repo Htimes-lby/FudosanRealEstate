@@ -9,7 +9,7 @@ const myArray = [
     require("../assets/img/carousel/4.jpg"),
     require("../assets/img/carousel/5.jpg"),
 ];
-const realEstateInfo = [
+const realEstates = [
     {
         posterInfo: {
             name: {
@@ -345,9 +345,10 @@ const userInfo = {
 const FavouritePage = () => {
     const history = useHistory();
     const handleRealEstateBigCardClicked = (props) => {
-        console.log('++++++++++++++++++++++++++')
-        const realEstate = props;
-        history.push('/item-detail', {state: {realEstate}});
+        const index = props;
+        const searchParams = new URLSearchParams ();
+        searchParams.set('index',index);
+        history.push(`/item-detail?${searchParams.toString()}` );
     }
     return (
         <div>
@@ -356,9 +357,9 @@ const FavouritePage = () => {
             </div>
             <div className='flex flex-col items-center justify-center h-min-[600px]'>
                 {
-                    realEstateInfo.map((realEstate, index) => {
+                    realEstates.map((realEstate, index) => {
                         return(
-                            <RealEstateBigCard key = {index} realEstate = {realEstate} handleRealEstateBigCardClicked = {handleRealEstateBigCardClicked} parentComponent = 'FavouritePage' />
+                            <RealEstateBigCard key = {index} realEstate = {realEstate} handleRealEstateBigCardClicked = {handleRealEstateBigCardClicked} index = {index} parentComponent = 'FavouritePage' />
                         );
                     })
                 }

@@ -1,7 +1,6 @@
 import { React } from 'react';
 import RealEstateSmallCard from '../../components/RealEstateSmallCard';
 import { useHistory } from 'react-router-dom'
-// import image from "../assets/img/photo.png"
 
 const myArray = [
     require("../../assets/img/carousel/1.jpg"),
@@ -11,7 +10,7 @@ const myArray = [
     require("../../assets/img/carousel/5.jpg"),
 ];
 
-const realEstateInfo = [
+const realEstates = [
     {
         posterInfo: {
             name: {
@@ -341,16 +340,15 @@ const realEstateInfo = [
     },
 ]
 
-
 const DashboardRealEstatePostBoard = () => {
 
     const history = useHistory();
 
     const handleRealEstateCardClicked = (props) => {
         const index = props;
-        const realEstate = realEstateInfo[index];
-        const flag = 'realEstatePost'
-        history.push('/item-detail', {state: {realEstate, flag}});
+        const searchParams = new URLSearchParams();
+        searchParams.set('index', index);
+        history.push(`/item-detail?${searchParams.toString()}`);
     };
 
     const handleShowMoreButtonClicked = () => {
@@ -361,9 +359,9 @@ const DashboardRealEstatePostBoard = () => {
             <div className=' text-center text-[40px] mt-5'>売ります掲示板</div>
             <div className=' grid gap-x-8 gap-y-12 grid-cols-4 mt-5 mx-auto box-border max-w-[1100px]'>
                 {
-                    realEstateInfo.map((realEstate, index) => {
+                    realEstates.map((realEstate, index) => {
                         return(
-                            <div  onClick={() => handleRealEstateCardClicked(index)} className='cursor-pointer'>
+                            <div onClick={() => handleRealEstateCardClicked(index)} className='cursor-pointer'>
                                 <RealEstateSmallCard key = {index} realEstate = {realEstate}/>
                             </div>
                         );

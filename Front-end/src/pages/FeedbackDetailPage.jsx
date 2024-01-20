@@ -248,10 +248,7 @@ const FeedbackDetailPage = () => {
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const index = searchParams.get('index')
-    // const { state } = location.state;
-    // const feedbackData = state.feedbackData;
     const {name, address, images, shortComment, fullComment, category} = feedbacks[index];
-    console.log("feedbackDetailPageImages", images);
 
   return (
     <div className='flex flex-col items-center mt-[40px] mb-[80px]'>

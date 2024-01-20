@@ -9,7 +9,6 @@ const Header = () => {
     const [postActive, setPostActive] = useState(false);
     const handleToggleMyPage = () => {
         setMyPageActive((prevState) => !prevState);
-        console.log("+++++++++++++++++++++",myPageActive)
     };
     const handleTogglePost = () => {
         setPostActive((prevState) => !prevState);
