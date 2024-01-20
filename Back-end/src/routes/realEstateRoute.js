@@ -1,5 +1,31 @@
 const router = require("express").Router();
 const postCtr = require('../controllers/postCtr')
+const uploadController = require('../controllers/uploadCtr');
+const multer = require('multer');
 
-router.post("/postRealEstate", postCtr.createRealEstate)
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, 'uploads/');
+    },
+    filename: (req, file, cb) => {
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+      const fileExtension = file.originalname.split('.').pop();
+      cb(null, 'image-' + uniqueSuffix + '.' + fileExtension);
+    },
+  });
+  
+  const fileFilter = (req, file, cb) => {
+    const allowedFileTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+    if (allowedFileTypes.includes(file.mimetype)) {
+      cb(null, true);
+    } else {
+      cb(null, false);
+    }
+  };
+  
+  const upload = multer({ storage, fileFilter });
+  
+
+router.post("/postRealEstate",  postCtr.createRealEstate)
+router.post('/api/upload', upload.array('images', 5), uploadController.uploadImages);
 module.exports = router;

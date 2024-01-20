@@ -5,27 +5,55 @@ const postSchema = new mongoose.Schema({
   realEstateCategory: {
     type: Boolean,
   },
-  posterInfo:{
-    type: Schema.Types.ObjectId,
-    ref:"User"
-  },
-  address:[{
-    province:{
-        type:String
-    },
-    city:{
-        type:String
-    },
-    streetBunch:{
-        type:String
-    },
-    postNumber:{
+
+  privacy: [
+
+    {email: {
+      type: String,
+      required: [true, "Must be provided email"],
+      maxlength: [30, "email must be less than 30 characters"],
+      trim: true,
+    }},
+    {password: {
+      type: String,
+      required: [true, "Must be provided password"],
+    }},
+    {firstNameGanji: {
+      type: String 
+    }},
+    {lastNameGanji: {
+        type: String 
+    }},
+    {firstNameGana: {
+        type: String 
+    }},
+    {lastNameGana: {
+        type: String 
+    }},       
+    {age:{
       type:Number
+    }},
+    {phoneNumber:
+      [{type:Number}]
     },
-    buildingName:{
+    {province:{
+      type:String
+    }},
+    {city:{
         type:String
+    }},
+    {streetBunch:{
+        type:String
+    }},
+    {postNumber:
+      [{type:String}]
     },
-  }],
+    {buildingName:{
+        type:String
+    }},
+  ],
+  
+   
   description:[{
     briefDescription:{
         type:String
@@ -54,10 +82,7 @@ const postSchema = new mongoose.Schema({
       type:Number
     }
     }],
-    imageURL:{
-        type:String
-    },
-
+    
     basiclandInfo:[{
       budget:{
         type:Number
