@@ -3,7 +3,6 @@ import { useState } from "react";
 
 const FavouriteStarInButton = (props) => {
     const {clicked} = props;
-    console.log("clicked", clicked)
     return(
         <div>
             <div className="text-center text-[30px] cursor-pointer">

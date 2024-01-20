@@ -680,7 +680,7 @@ export default function ItemDetailPage() {
     const searchParams = new URLSearchParams(location.search);
     const flag = searchParams.get('flag');
     const index = searchParams.get('index');
-    const realEstateDisplayData = realEstates[index]
+    const realEstateDisplayData = realEstates[index];
     const {basicInfo, briefDescription, fullDescription, address, images} = realEstateDisplayData;
 
     const [favouriteButtonActive, setFavouriteButtonActive] = useState(false);

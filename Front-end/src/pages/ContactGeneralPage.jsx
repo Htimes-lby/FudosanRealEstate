@@ -45,19 +45,16 @@ const ContactGeneralPage = ({senderName, receiveName}) => {
                 {
                     contactMessages.map((contactMessage, index) =>
                         (<div key={index} className={`w-full h-auto p-10 mb-10 ${contactMessage.sender === 'minato' ? 'bg-white' : 'bg-[#F2ECCD]'}`}>
-                            <p className='text-[20px] font-semibold mb-8'>{contactMessage.sender} → {contactMessage.receiver}</p>
+                            <p className='text-[20px] font-semibold mb-8'>{contactMessage.sender}さん → {contactMessage.receiver}さん</p>
                             <p className='text-[16px]'>{contactMessage.content}</p>
                         </div>)
                     )
                 }
-
                 <p className='mt-10 mb-3 text-[24px] pb-[15px]'>メッセージ送信フォーム</p>
                 <textarea name="message" id="message" cols="10" rows="3" className='w-full py-4 px-12 text-[24px]'></textarea>
-
                 <div className='pt-[37px] pb-[105px] flex justify-center'>
                     <button className='bg-[#2A6484] text-[24px] text-white rounded-[15px] py-[19px] px-[50px]'>メッセージを送信する</button>
                 </div>
-                
             </div>
         </div>
     )

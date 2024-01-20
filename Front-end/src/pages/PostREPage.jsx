@@ -98,7 +98,6 @@ const PostREPage = () => {
     "テキスト  テキスト  テキスト  テキスト  テキスト  テキスト"+
     "テキスト  テキスト  テキスト  テキスト  テキスト  テキスト"
 
-    
     return (
         <div className='bg-[#F1F1F1]'> 
             <div className='container'>

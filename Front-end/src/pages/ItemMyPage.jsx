@@ -8,7 +8,7 @@ const myArray = [
     require("../assets/img/carousel/4.jpg"),
     require("../assets/img/carousel/5.jpg"),
 ];
-const realEstateInfo = [
+const realEstates = [
     {
         posterInfo: {
             name: {
@@ -352,7 +352,7 @@ const ItemMyPage = () => {
 
                 }
                 {
-                    realEstateInfo.map((realEstate, index) => {
+                    realEstates.map((realEstate, index) => {
                         return(
                             <RealEstateBigCard key = {index} realEstate = {realEstate} parentComponent = 'ItemMyPage' />
                         );

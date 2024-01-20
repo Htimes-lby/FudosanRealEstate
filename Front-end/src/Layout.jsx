@@ -20,7 +20,7 @@ import ContactGeneralPage from "./pages/ContactGeneralPage";
 import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
 
-const Mainboard = () =>{
+const Layout = () =>{
 
   return (
     <Switch>
@@ -48,4 +48,4 @@ const Mainboard = () =>{
   );
 }
 
-export default Mainboard;
+export default Layout;

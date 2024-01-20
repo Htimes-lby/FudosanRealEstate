@@ -5,14 +5,13 @@ import BasicTableLand from "./BasicTableLand";
 import FavouriteButton from "./FavouriteButton";
 
 
-const RealEstateBigCard = ({realEstate, handleRealEstateBigCardClicked, parentComponent}) => {
+const RealEstateBigCard = ({realEstate, handleRealEstateBigCardClicked, parentComponent, index}) => {
     const history = useHistory();
     const {briefDescription, fullDescription, images, basicInfo, realEstateCategory} = realEstate;
     const width = 'w-[180px]'
     const fontSize = 'text-[11px]'
     const [favouriteButtonActive, setFavouriteButtonActive] = useState(false);
     const handleFavouriteButtonClicked = (e) => {
-        console.log('---------------------')
         setFavouriteButtonActive(favouriteButtonActive ? false : true);
         e.stopPropagation();
     }
@@ -20,9 +19,8 @@ const RealEstateBigCard = ({realEstate, handleRealEstateBigCardClicked, parentCo
         history.push('/contact-post');
         e.stopPropagation();
     }
-    console.log("BigCard", parentComponent);
     return(
-        <div className="flex items-center w-[1275px] border border-black p-6 rounded-lg shadow-md mb-[50px]" onClick={() => handleRealEstateBigCardClicked(realEstate)}>
+        <div className="flex items-center w-[1275px] border border-black p-6 rounded-lg shadow-md mb-[50px]" onClick={() => handleRealEstateBigCardClicked(index)}>
             <div>
                 <div className="w-[200px] h-[160px]"><img src={images[1]} alt="photo1" className="w-full h-full object-cover"/></div>
                 {
