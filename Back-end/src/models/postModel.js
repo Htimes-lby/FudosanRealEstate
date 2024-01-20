@@ -1,71 +1,105 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const postSchema = new mongoose.Schema({
-  category: {
-    type: String,
+  realEstateCategory: {
+    type: Boolean,
   },
-  postInfo:[{
-    name:{
-        type: Schema.Types.ObjectId,
-        ref:"User"
-    },
-    age:{
-        type:Date
-    },
-    email:{
-        type: Schema.Types.ObjectId,
-        ref:"User"
-    },
-    zipCode:{
-        type:Number
-    },
 
-  }],
-  address:[{
-    prefectures:{
-        type:String
+  privacy: [
+
+    {email: {
+      type: String,
+      required: [true, "Must be provided email"],
+      maxlength: [30, "email must be less than 30 characters"],
+      trim: true,
+    }},
+    {password: {
+      type: String,
+      required: [true, "Must be provided password"],
+    }},
+    {firstNameGanji: {
+      type: String 
+    }},
+    {lastNameGanji: {
+        type: String 
+    }},
+    {firstNameGana: {
+        type: String 
+    }},
+    {lastNameGana: {
+        type: String 
+    }},       
+    {age:{
+      type:Number
+    }},
+    {phoneNumber:
+      [{type:Number}]
     },
-    municipalities:{
+    {province:{
+      type:String
+    }},
+    {city:{
         type:String
-    },
-    streetBunch:{
+    }},
+    {streetBunch:{
         type:String
+    }},
+    {postNumber:
+      [{type:String}]
     },
-    buildingName:{
+    {buildingName:{
         type:String
-    },
-  }],
+    }},
+  ],
+  
+   
   description:[{
-    shortDescription:{
+    briefDescription:{
         type:String
     },
     fullDescription:{
         type:String
     }
   }],
-  mainInfo:[{
-    price:{
+  basicInfo:[{
+    budget:{
+      type:Number
+    },
+    layout:{
       type:String
     },
-    floorPlan:{
-      type:String
+    landarea:{
+      type:Number
     },
-    landArea:{
-      type:String
+    buildingarea:{
+      type:Number
     },
-    buildingArea:{
-      type:String
-    },
-    moveIn:{
+    deadline:{
       type:String
     },
     parking:{
-      type:String
+      type:Number
     }
     }],
-    imageURL:{
+    
+    basiclandInfo:[{
+      budget:{
+        type:Number
+      },
+      landarea:{
         type:String
-    },
+      },
+      dryCloseRate:{
+        type:Number
+      },
+      floorAreaRatio:{
+        type:Number
+      },
+      structure:{
+        type:String
+      }
+    }]
 });
 
 module.exports = mongoose.model("Post", postSchema);

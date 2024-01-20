@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import Category from "../components/Category"
 import FlagTextContainer from "../components/FlagTextContainer"
 import SoldFeedbackCard from '../components/SoldFeedbackCard';
-import RealEstateSmallCard from '../components/RealEstateSmallCard';
 import PrivacyForm from "../components/Form/PrivacyForm";
 import ContentForm from "../components/Form/ContentForm";
 import OverviewHouseForm from "../components/Form/OverviewHouseForm";
 import UploadImageForm from "../components/Form/UploadImageForm";
 import ConditionForm from "../components/Form/ConditionForm"
+import axios from 'axios'
 
 const PostREPage = () => {
     const [privacyDataArray, setPrivacyDataArray] = useState([]);
@@ -17,15 +17,50 @@ const PostREPage = () => {
     const [conditionData, setConditionData] = useState("");
 
     const handlePrivacyDataArray = (data) => {
-        // Update the state with the received array
+       
         setPrivacyDataArray(data);
+    };
+    const handleContentDataArray = (data) => {
+       
         setContentDataArray(data);
+    };
+    const handleOverviewDataArray = (data) => {
+       
         setOverviewDataArray(data);
-        setUploadDataArray(data)
-        setConditionData(data)
+    };
+    const handleUploadDataArray = (data) => {
+       
+        setUploadDataArray(data);
+    };
+    const handleconditionDataArray = (data) => {
+       
+        setConditionData(data);
+    };
+
+ 
+
+      const formData = {privacyDataArray, contentDataArray, overviewHouseDataArray }
+        const handleSubmit = async (e) => {
+        e.preventDefault();
+    
+        try {
+          // Send the form data to the backend
+            await axios.post(process.env.REACT_APP_API_BASE_URL + '/api/upload', uploadDataArray, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          });
+          const res = await axios.post(process.env.REACT_APP_API_BASE_URL + "/postRealEstate", formData );
+        
+          // Handle the response if needed
+          console.log('Response from backend:', res.data);
+        } catch (error) {
+          // Handle errors
+          console.error('Error sending form data:', error);
+        }
       };
 
-           
+    
     const myImage = 
         {
             "古民家":require("../assets/img/category/1.png"),
@@ -63,31 +98,6 @@ const PostREPage = () => {
     "テキスト  テキスト  テキスト  テキスト  テキスト  テキスト"+
     "テキスト  テキスト  テキスト  テキスト  テキスト  テキスト"
 
-    const realEstateInfo = 
-        {
-            images: myArray,
-            briefDescription: `テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-        テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-        テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト`,
-            fullDescription: `テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト `,
-            image: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2620&q=80',
-            basicInfo: {
-                budget: '1',
-                layout: '4LDK',
-                landarea: '7777m²',
-                buildingarea: '4444m²',
-                deadline: '即日',
-                parking: '3台',
-            },
-            realEstateCategory: 'building'
-        }
-
     return (
         <div className='bg-[#F1F1F1]'> 
             <div className='container'>
@@ -106,7 +116,7 @@ const PostREPage = () => {
                     </div>
                     <div className='w-[720px] m-[15px]'>
                         <div>
-                            <p className='text-[40px] text-Architects Daughter text-center'>どんな物件でも大丈夫！ </p>
+                            <p className='text-[32px] text-Architects Daughter text-center'>どんな物件でも大丈夫！ </p>
                         </div>
                         <div>
                             <p className='text-[25px] pt-[54px] pr-[10px]'> ふどうさん活市場では、どんな場所でも、どんなに古くても、
@@ -145,36 +155,36 @@ const PostREPage = () => {
                         <div>
                             <p className='text-[36px] pt-[80px] text-center'>掲載のご依頼</p>
                         </div>
-                        <div className='pt-[60px] flex'>
+                        <div className='pt-[60px] flex pl-[80px]'>
                             <div>
-                                <p className='text-[24px] pb-[60px]'>どうぞ、ご存じの範囲でありのままご記入ください。</p>
-                                <p className='pb-[21px]'>※掲載内容は後からでも追記、修正できます。</p>
-                                <p className='pb-[21px]'>※掲載の休止、終了はいつでも可能です。</p>
+                                <p className='text-[24px] pb-[30px]'>どうぞ、ご存じの範囲でありのままご記入ください。</p>
+                                <p className='pb-[4px]'>※掲載内容は後からでも追記、修正できます。</p>
+                                <p className='pb-[4px]'>※掲載の休止、終了はいつでも可能です。</p>
                                 <p>※どう書いたらいいか分からないなどのご相談もお受けします。</p>
                             </div>
-                            <div className='pl-[38px]'>
-                                <RealEstateSmallCard  realEstate = {realEstateInfo}  />    
-                            </div>
+                            
+                            
                         </div>
-                        
+                        <form onSubmit={handleSubmit}>
                             <div className='pt-[120px]'>
                                 <PrivacyForm  onDataArrayFromChild={handlePrivacyDataArray} />
                             </div>
                             <div className='pt-[53px]'>
-                                <ContentForm onDataArrayFromChild={handlePrivacyDataArray} />
+                                <ContentForm onDataArrayFromChild={handleContentDataArray} />
                             </div>
                             <div className='pt-[77px]'>
-                                <OverviewHouseForm onDataArrayFromChild={handlePrivacyDataArray} />
+                                <OverviewHouseForm onDataArrayFromChild={handleOverviewDataArray} />
                             </div>
                             <div>
-                                <UploadImageForm title="物件写真" button="画像ファイルを選択する" width1={"w-[700px]"} width2={"w-[177px]"} gap={"gap-[35px]"} onDataArrayFromChild={handlePrivacyDataArray} />
+                                <UploadImageForm title="物件写真" button="画像ファイルを選択する" width1={"w-[700px]"} width2={"w-[190px]"} gap={"gap-[35px]"} onDataArrayFromChild={handleUploadDataArray} />
                             </div>
                             <div className='flex justify-center'>
-                                <ConditionForm  onDataArrayFromChild={handlePrivacyDataArray}/>
+                                <ConditionForm  onDataArrayFromChild={handleconditionDataArray}/>
                             </div>
                             <div className='flex justify-center pt-[105px] pb-[170px]'>
                                 <button type='submit' className='bg-[#2A6484] text-white px-[115px] py-[14px] text-[24px] rounded-[20px]'>提出</button>
                             </div>
+                        </form>
                        
                     </div>
                 </div>
