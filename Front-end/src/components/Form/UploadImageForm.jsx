@@ -3,7 +3,7 @@ import axios from 'axios';
 import shortid from "shortid";
 
 
-const UploadImageForm = ({button, title, width1, width2,gap, status, onDataArrayFromChild}) => {
+const UploadImageForm = ({button, title, width1, width2, gap, status, onDataArrayFromChild}) => {
 
     
     const [selectedfile, SetSelectedFile] = useState([]);
@@ -22,8 +22,7 @@ const UploadImageForm = ({button, title, width1, width2,gap, status, onDataArray
 
     const InputChange = (e) => {
         // --For Multiple File Input
-        const files = Array.from(e.target.files);
-        SetSelectedImage(files);
+        SetSelectedImage(e.target.files);
         let images = [];
         for (let i = 0; i < e.target.files.length; i++) {
             images.push((e.target.files[i]));
@@ -51,7 +50,8 @@ const UploadImageForm = ({button, title, width1, width2,gap, status, onDataArray
             }
         }
     }
-    
+    let formData = [];
+
    
       
     const DeleteSelectFile = (id) => {
@@ -67,20 +67,43 @@ const UploadImageForm = ({button, title, width1, width2,gap, status, onDataArray
     
     const FileUploadSubmit = async (e) => {
         e.preventDefault();
-      
+        let formData = [];
+       console.log(formData)
+        // form reset on submit 
+        
+            for (let index = 0; index < selectedfile.length; index++) {
+                formData.push(selectedfile[index].fileimage);
+                console.log(formData)
+               
+            }
+            
+            // try {
+            //     const response = await axios.post('http://your-server/upload', formData);
+            //     console.log('Upload success:', response.data);
+            //     // Handle any further actions, such as updating state or displaying a success message
+            //   } catch (error) {
+            //     console.error('Upload failed:', error);
+            //     // Handle errors, display error messages, etc.
+            //   }
+        
         
     }
 
     useEffect(()=>{
-        const formData = new FormData();
-        selectedImage.forEach((file) => {
-          formData.append('images', file);
-          console.log(formData);
-        });
-    
+
+        let formData = [];
+   
+        // form reset on submit 
+        
+            for (let index = 0; index < selectedfile.length; index++) {
+                formData.push(selectedfile[index].fileimage);
+        
+               
+            }
+        
         onDataArrayFromChild(formData);
         
-      },[selectedImage])
+      },[selectedfile])
     
     return(
         
@@ -92,8 +115,8 @@ const UploadImageForm = ({button, title, width1, width2,gap, status, onDataArray
                                 <div className="kb-data-box flex">
                                     <div className=' flex '>
                                         <div className={`${width2}  flex ${gap} `}>
-                                            {status === "必須" ? <span className='bg-[#F69191] h-[28px] flex items-center p-2 rounded-md text-[15px] mx-[12px] text-white'>必須</span>:
-                                            <span className='bg-[#63A4D4] h-[28px] flex items-center p-2 rounded-md text-[15px] mx-[12px] text-white'>任意</span>
+                                            {status === "必須" ? <span className='bg-[#F69191] h-[28px] inline-block p-1 rounded-md text-[15px] mx-[12px] text-white'>必須</span>:
+                                            <span className='bg-[#63A4D4] h-[28px] inline-block p-1 rounded-md text-[15px] mx-[12px] text-white'>任意</span>
                                             }
                                             
                                             <p className='text-[20px]'>{title}</p>

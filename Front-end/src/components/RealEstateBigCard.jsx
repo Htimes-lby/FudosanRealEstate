@@ -7,7 +7,8 @@ import FavouriteButton from "./FavouriteButton";
 
 const RealEstateBigCard = ({realEstate, handleRealEstateBigCardClicked, parentComponent, index}) => {
     const history = useHistory();
-    const {briefDescription, fullDescription, images, basicInfo, realEstateCategory} = realEstate;
+    const {briefDescription, fullDescription, images, basicInfo, realEstateCategory, _id} = realEstate;
+    console.log('+++++++++++++++++++', _id);
     const width = 'w-[180px]'
     const fontSize = 'text-[11px]'
     const [favouriteButtonActive, setFavouriteButtonActive] = useState(false);
@@ -15,12 +16,15 @@ const RealEstateBigCard = ({realEstate, handleRealEstateBigCardClicked, parentCo
         setFavouriteButtonActive(favouriteButtonActive ? false : true);
         e.stopPropagation();
     }
-    const handleNavigateToContactPostPage = (e) => {
-        history.push('/contact-post');
+    const handleNavigateToContactPostPage = (e, _id) => {
+        const searchParams = new URLSearchParams ();
+        searchParams.set('id', _id);
+        console.log("=======================", _id);
+        history.push(`/contact-post?${searchParams.toString()}`);
         e.stopPropagation();
     }
     return(
-        <div className="flex items-center w-[1275px] border border-black p-6 rounded-lg shadow-md mb-[50px]" onClick={() => handleRealEstateBigCardClicked(index)}>
+        <div className="flex items-center w-[1275px] bg-white border border-black p-6 rounded-lg shadow-md mb-[50px]" onClick={() => handleRealEstateBigCardClicked(index)}>
             <div>
                 <div className="w-[200px] h-[160px]"><img src={images[1]} alt="photo1" className="w-full h-full object-cover"/></div>
                 {
@@ -30,7 +34,7 @@ const RealEstateBigCard = ({realEstate, handleRealEstateBigCardClicked, parentCo
                 }
                 {
                     parentComponent === 'ItemMyPage' &&
-                    <div className="mt-2" onClick={(e) => handleNavigateToContactPostPage(e)}><FavouriteButton parentComponent={parentComponent}/></div>
+                    <div className="mt-2" onClick={(e) => handleNavigateToContactPostPage(e, _id)}><FavouriteButton parentComponent={parentComponent}/></div>
                 }
             </div>
             <div className="pt-1 pl-11 pr-11 w-[260px]">

@@ -48,7 +48,8 @@ const realEstates = [
             deadline: '即日',
             parking: '3台',
         },
-        realEstateCategory: 'building'
+        realEstateCategory: 'building',
+        _id:'123'
     },
     {
         posterInfo: {
@@ -68,7 +69,6 @@ const realEstates = [
             city:'三浦市',
             street:'1 Chome-9-11 Misaki',
         },
-        username: "千葉県南房総市   T.Tさん",
         images: myArray,
         briefDescription: `テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
     テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
@@ -89,7 +89,8 @@ const realEstates = [
             deadline: '即日',
             parking: '3台',
         },
-        realEstateCategory: 'building'
+        realEstateCategory: 'building',
+        _id:'123'
     },
     {
         posterInfo: {
@@ -109,7 +110,6 @@ const realEstates = [
             city:'三浦市',
             street:'1 Chome-9-11 Misaki',
         },
-        username: "千葉県南房総市   T.Tさん",
         images: myArray,
         briefDescription: `テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
     テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
@@ -130,7 +130,8 @@ const realEstates = [
             deadline: '即日',
             parking: '3台',
         },
-        realEstateCategory: 'building'
+        realEstateCategory: 'building',
+        _id:'123'
     },
     {
         posterInfo: {
@@ -150,7 +151,6 @@ const realEstates = [
             city:'三浦市',
             street:'1 Chome-9-11 Misaki',
         },
-        username: "千葉県南房総市   T.Tさん",
         images: myArray,
         briefDescription: `テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
     テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
@@ -171,7 +171,8 @@ const realEstates = [
             deadline: '即日',
             parking: '3台',
         },
-        realEstateCategory: 'building'
+        realEstateCategory: 'building',
+        _id:'123'
     },
     {
         posterInfo: {
@@ -191,7 +192,6 @@ const realEstates = [
             city:'三浦市',
             street:'1 Chome-9-11 Misaki',
         },
-        username: "千葉県南房総市   T.Tさん",
         images: myArray,
         briefDescription: `テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
     テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
@@ -212,7 +212,8 @@ const realEstates = [
             deadline: '即日',
             parking: '3台',
         },
-        realEstateCategory: 'building'
+        realEstateCategory: 'building',
+        _id:'123'
     },
     {
         posterInfo: {
@@ -232,7 +233,6 @@ const realEstates = [
             city:'三浦市',
             street:'1 Chome-9-11 Misaki',
         },
-        username: "千葉県南房総市   T.Tさん",
         images: myArray,
         briefDescription: `テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
     テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
@@ -253,7 +253,8 @@ const realEstates = [
             deadline: '即日',
             parking: '3台',
         },
-        realEstateCategory: 'building'
+        realEstateCategory: 'building',
+        _id:'123'
     },
     {
         posterInfo: {
@@ -273,7 +274,6 @@ const realEstates = [
             city:'三浦市',
             street:'1 Chome-9-11 Misaki',
         },
-        username: "千葉県南房総市   T.Tさん",
         images: myArray,
         briefDescription: `テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
     テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
@@ -294,7 +294,8 @@ const realEstates = [
             deadline: '即日',
             parking: '3台',
         },
-        realEstateCategory: 'building'
+        realEstateCategory: 'building',
+        _id:'123'
     },
     {
         posterInfo: {
@@ -314,7 +315,6 @@ const realEstates = [
             city:'三浦市',
             street:'1 Chome-9-11 Misaki',
         },
-        username: "千葉県南房総市   T.Tさん",
         images: myArray,
         briefDescription: `テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
     テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
@@ -335,7 +335,8 @@ const realEstates = [
             deadline: '即日',
             parking: '3台',
         },
-        realEstateCategory: 'building'
+        realEstateCategory: 'building',
+        _id:'123'
     },
 ]
 const userInfo = {

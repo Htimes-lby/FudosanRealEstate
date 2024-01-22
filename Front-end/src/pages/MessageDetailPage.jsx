@@ -166,7 +166,8 @@ const realEstate = {
         deadline: '即日',
         parking: '3台',
     },
-    realEstateCategory: 'building'
+    realEstateCategory: 'building',
+    _id:'123'
 };
 const agent = {companyName :"会社名",
     agentName:"担当者名",
@@ -203,10 +204,10 @@ const MessageDetailPage = () => {
                 }
             </div>
             <div className='flex justify-center pt-[48px] pb-[45px]'>
-                <textarea  className="border-[1px] border-black rounded-sm" name="message" id="" cols="100" rows="4"></textarea>
+                <textarea  className="border-[1px] border-black pt-1 pl-2 rounded-sm" name="message" id="" cols="100" rows="4"></textarea>
             </div>
-            <div className='flex justify-center'>
-                <button className='bg-[#2A6484] text-[24px] text-white py-[19px] px-[50px] rounded-2xl mb-[103px]'>メッセージを送信する</button>
+            <div className='flex justify-center mb-[100px]'>
+                <button className='bg-[#2A6484] text-[24px] text-white py-[20px] px-[50px] rounded-2xl'>メッセージを送信する</button>
             </div> 
         </div>
     )

@@ -28,7 +28,7 @@ const SignInPage = () => {
                     <div className='flex flex-col w-full'>
                         <label htmlFor="" className='text-white font-normal mb-1 mt-5 text-[20px]'>メール</label>
                         <input
-                            className='h-[35px] rounded-md' 
+                            className='h-[35px] rounded-md pl-2' 
                             type="text"
                             id="email"
                             name="emailname"
@@ -38,7 +38,7 @@ const SignInPage = () => {
                     <div className='relative flex flex-col w-full'>
                         <label htmlFor="" className='text-white font-normal mb-1 mt-7 text-[20px]'>パスワード<br /><span className='text-[14px] leading-[2px]'>登録済みのパスワードをご入力ください。</span><br /></label>
                         <input
-                            className='h-[35px] rounded-md'
+                            className='h-[35px] rounded-md pl-2'
                             type={passwordShown ? "text" : "password"}
                             id="password"
                             name="password"
