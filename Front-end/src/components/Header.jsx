@@ -17,6 +17,12 @@ const Header = () => {
         if(myPageRef.current && !myPageRef.current.contains(event.target)){setMyPageActive(false)}
         if(postPageRef.current && !postPageRef.current.contains(event.target)){setPostActive(false)}
     };
+    const handleRealEstatePostClicked = (props) => {
+        const postRealEstateFlag = props;
+        const searchParams = new URLSearchParams ();
+        searchParams.set('postRealEstateFlag', postRealEstateFlag);
+        history.push(`/post?${searchParams.toString()}`)
+    }
     const handleMyPageBlur = () => {
         setMyPageActive(false);
     };
@@ -40,11 +46,11 @@ const Header = () => {
                 
                 <div className='float-right mr-[10px]'>
                     <div className=' inline-block text-[18px] leading-[40px] text-white font-semibold px-3'><Link to='/faq' className = 'text-current no-underline transition-all duration-75 hover:text-white/40'>ふどうさんは</Link></div>
-                    <div className='relative inline-block'>
-                        <div className=' inline-block text-[17px] leading-[40px] text-white font-semibold px-3 cursor-pointer' ref={postPageRef} onClick={handleTogglePost}>掲示板に投稿</div>
+                    <div className='relative inline-block' ref={postPageRef} onClick={handleTogglePost}>
+                        <div className=' inline-block text-[17px] leading-[40px] text-white font-semibold px-3 cursor-pointer'>掲示板に投稿</div>
                         <div className= {`absolute top-[32px] left-[-40px] min-w-[200px] px-auto pt-3 bg-[#32769b] transition-all duration-300 ${postActive ? 'inline-block' : 'hidden'}`}>
-                            <div className=' text-[18px] font-semibold py-3 text-white border-y border-y-white/50'><Link to='/message-board' className = 'text-current no-underline transition-all duration-75 hover:text-white/40'>PostBuilding</Link></div>
-                            <div className=' text-[17px] font-semibold py-3 text-white border-b border-b-white/50'><Link to='/my-post' className = 'text-current no-underline transition-all duration-75 hover:text-white/40'>PostLand</Link></div>
+                            <div className=' text-[18px] font-semibold py-3 text-white border-y border-y-white/50 no-underline transition-all duration-75 hover:text-white/40 cursor-pointer' onClick={() => handleRealEstatePostClicked('post-building')}>PostBuilding</div>
+                            <div className=' text-[17px] font-semibold py-3 text-white border-b border-b-white/50 no-underline transition-all duration-75 hover:text-white/40 cursor-pointer' onClick={() => handleRealEstatePostClicked('post-land')}>PostLand</div>
                             <div className=' text-[17px] font-semibold py-3 text-white border-b border-b-white/50'><Link to='/favourite' className = 'text-current no-underline transition-all duration-75 hover:text-white/40'>PostAgent</Link></div>
                         </div>
                     </div>
@@ -53,7 +59,7 @@ const Header = () => {
                     <div className=' relative inline-block' ref={myPageRef} onClick={handleToggleMyPage}>
                         <div className=' text-[18px] leading-[40px] text-white font-semibold px-3 cursor-pointer'>マイページ</div>
                         <div className= {`absolute top-[32px] left-[-40px] min-w-[200px] px-auto pt-3 bg-[#32769b] transition-all duration-300 ${myPageActive ? 'inline-block' : 'hidden'}`}>
-                            <div className=' text-[18px] font-semibold py-3 text-white border-y border-y-white/50' onClick={handle}><Link to='/message-board' className = 'text-current no-underline transition-all duration-75 hover:text-white/40'>メッセージ</Link></div>
+                            <div className=' text-[18px] font-semibold py-3 text-white border-y border-y-white/50'><Link to='/message-board' className = 'text-current no-underline transition-all duration-75 hover:text-white/40'>メッセージ</Link></div>
                             <div className=' text-[17px] font-semibold py-3 text-white border-b border-b-white/50'><Link to='/my-post' className = 'text-current no-underline transition-all duration-75 hover:text-white/40'>私の投稿</Link></div>
                             <div className=' text-[17px] font-semibold py-3 text-white border-b border-b-white/50'><Link to='/favourite' className = 'text-current no-underline transition-all duration-75 hover:text-white/40'>お気に入り</Link></div>
                             <div className=' text-[17px] font-semibold py-3 text-white'><Link to='/contact-general' className = 'text-current no-underline transition-all duration-75 hover:text-white/40'>総合窓口</Link></div>

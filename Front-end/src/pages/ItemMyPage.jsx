@@ -47,7 +47,8 @@ const realEstates = [
             deadline: '即日',
             parking: '3台',
         },
-        realEstateCategory: 'building'
+        realEstateCategory: 'building',
+        _id:'123'
     },
     {
         posterInfo: {
@@ -88,7 +89,8 @@ const realEstates = [
             deadline: '即日',
             parking: '3台',
         },
-        realEstateCategory: 'building'
+        realEstateCategory: 'building',
+        _id:'123'
     },
     {
         posterInfo: {
@@ -129,7 +131,8 @@ const realEstates = [
             deadline: '即日',
             parking: '3台',
         },
-        realEstateCategory: 'building'
+        realEstateCategory: 'building',
+        _id:'123'
     },
     {
         posterInfo: {
@@ -170,7 +173,8 @@ const realEstates = [
             deadline: '即日',
             parking: '3台',
         },
-        realEstateCategory: 'building'
+        realEstateCategory: 'building',
+        _id:'123'
     },
     {
         posterInfo: {
@@ -211,7 +215,8 @@ const realEstates = [
             deadline: '即日',
             parking: '3台',
         },
-        realEstateCategory: 'building'
+        realEstateCategory: 'building',
+        _id:'123'
     },
     {
         posterInfo: {
@@ -252,7 +257,8 @@ const realEstates = [
             deadline: '即日',
             parking: '3台',
         },
-        realEstateCategory: 'building'
+        realEstateCategory: 'building',
+        _id:'123'
     },
     {
         posterInfo: {
@@ -293,7 +299,8 @@ const realEstates = [
             deadline: '即日',
             parking: '3台',
         },
-        realEstateCategory: 'building'
+        realEstateCategory: 'building',
+        _id:'123'
     },
     {
         posterInfo: {
@@ -334,7 +341,8 @@ const realEstates = [
             deadline: '即日',
             parking: '3台',
         },
-        realEstateCategory: 'building'
+        realEstateCategory: 'building',
+        _id:'123'
     },
 ]
 const userInfo = {
