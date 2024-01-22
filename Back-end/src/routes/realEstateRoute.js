@@ -26,6 +26,6 @@ const storage = multer.diskStorage({
   const upload = multer({ storage, fileFilter });
   
 
-router.post("/postRealEstate",  postCtr.createRealEstate)
+router.post("/postRealEstate", upload.array('images', 10),  postCtr.createRealEstate)
 router.post('/api/upload', upload.array('images', 5), uploadController.uploadImages);
 module.exports = router;

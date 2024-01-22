@@ -52,8 +52,7 @@ const UploadImageForm = ({button, title, width1, width2,gap, status, onDataArray
         }
     }
     
-   
-      
+
     const DeleteSelectFile = (id) => {
         if(window.confirm("このファイルを削除してもよろしいですか？")){
             const result = selectedfile.filter((data) => data.id !== id);
@@ -64,23 +63,16 @@ const UploadImageForm = ({button, title, width1, width2,gap, status, onDataArray
         
     }
     
-    
-    const FileUploadSubmit = async (e) => {
-        e.preventDefault();
-      
-        
-    }
 
     useEffect(()=>{
         const formData = new FormData();
         selectedImage.forEach((file) => {
-          formData.append('images', file);
-          console.log(formData);
+        formData.append('images', file); 
         });
     
         onDataArrayFromChild(formData);
         
-      },[selectedImage])
+        },[selectedImage])
     
     return(
         
@@ -100,11 +92,11 @@ const UploadImageForm = ({button, title, width1, width2,gap, status, onDataArray
                                         </div>
                                         
                                     </div>
-                                    <form onSubmit={FileUploadSubmit}>
+                                    <div>
                                         <div className="kb-file-upload ml-[75px]">
                                             <div className="file-upload-box">           
                                                 <input type="file" id="fileupload" className="file-upload-input" onChange={InputChange} multiple />
-                                                 <span className="file-link">{button}</span>
+                                                    <span className="file-link">{button}</span>
                                             </div>
                                             <div><p className="pt-[12px] pl-[60px] text-[15px]">複数のファイルを選択できます。</p></div>
                                         </div>
@@ -120,34 +112,29 @@ const UploadImageForm = ({button, title, width1, width2,gap, status, onDataArray
                                                                     <div className="file-image"><i className="far fa-file-alt"></i></div>
                                                             }
                                                             <div className="file-detail flex justify-between">
-                                                               <div>
-                                                                <h6>{filename}</h6>
-                                                                <p>サイズ: {filesize}</p>
-                                                                <p>変更時刻: {datetime}</p>
-                                                               </div>
+                                                                <div>
+                                                                    <h6>{filename}</h6>
+                                                                    <p>サイズ: {filesize}</p>
+                                                                    <p>変更時刻: {datetime}</p>
+                                                                </div>
                                                                 <div className="file-actions ">
                                                                     <button type="button" className="file-action-btn" onClick={() => DeleteSelectFile(id)}><i className="fa-solid fa-trash text-[40px] pl-[15px]"></i></button>
                                                                 </div>
-                                                               
                                                             </div>
                                                         </div>
                                                     )
                                                 })
                                             }
                                         </div>
-                                        
-                                    </form>
-                                    
+                                    </div>                                   
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                
+                </div>       
             </div>
 
-            
-       
+                
     );
 }
 
