@@ -9,6 +9,8 @@ import UploadImageForm from "../components/Form/UploadImageForm";
 import ConditionForm from "../components/Form/ConditionForm"
 import axios from 'axios'
 
+
+
 const PostREPage = () => {
     const [privacyDataArray, setPrivacyDataArray] = useState([]);
     const [contentDataArray, setContentDataArray] = useState([]);
@@ -17,48 +19,55 @@ const PostREPage = () => {
     const [conditionData, setConditionData] = useState("");
 
     const handlePrivacyDataArray = (data) => {
-       
         setPrivacyDataArray(data);
     };
     const handleContentDataArray = (data) => {
-       
         setContentDataArray(data);
     };
     const handleOverviewDataArray = (data) => {
-       
         setOverviewDataArray(data);
     };
     const handleUploadDataArray = (data) => {
-       
         setUploadDataArray(data);
     };
     const handleconditionDataArray = (data) => {
-       
         setConditionData(data);
     };
+    
 
- 
-
-      const formData = {privacyDataArray, contentDataArray, overviewHouseDataArray }
         const handleSubmit = async (e) => {
+            
         e.preventDefault();
     
         try {
-          // Send the form data to the backend
+
+        const formData = new FormData();
+
+            // Append other form data
+            formData.append('privacyDataArray', JSON.stringify(privacyDataArray));
+            formData.append('contentDataArray', JSON.stringify(contentDataArray));
+            formData.append('overviewHouseDataArray', JSON.stringify(overviewHouseDataArray));
+            // ... Append other form data as needed
+
+            // Append image files
+            console.log(uploadDataArray);   
+            for (const file of uploadDataArray) {
+                formData.append('images', file);
+            }
+            // Make a single axios request for both form data and images
+            const res = await axios.post(process.env.REACT_APP_API_BASE_URL + '/postRealEstate', formData)
+
             await axios.post(process.env.REACT_APP_API_BASE_URL + '/api/upload', uploadDataArray, {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
-          });
-          const res = await axios.post(process.env.REACT_APP_API_BASE_URL + "/postRealEstate", formData );
-        
-          // Handle the response if needed
-          console.log('Response from backend:', res.data);
+                headers: {
+                'Content-Type': 'multipart/form-data',
+                },
+            });
+
         } catch (error) {
           // Handle errors
-          console.error('Error sending form data:', error);
+        console.error('Error sending form data:', error);
         }
-      };
+        };
 
     
     const myImage = 
@@ -185,7 +194,6 @@ const PostREPage = () => {
                                 <button type='submit' className='bg-[#2A6484] text-white px-[115px] py-[14px] text-[24px] rounded-[20px]'>提出</button>
                             </div>
                         </form>
-                       
                     </div>
                 </div>
             </div>
