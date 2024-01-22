@@ -1,6 +1,7 @@
 import { React, useState } from 'react';
 import { useHistory } from 'react-router-dom'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from 'axios'
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 const eye = <FontAwesomeIcon icon={faEye} />;
 
@@ -13,11 +14,23 @@ const SignUpPage = () => {
     const [lastNameGana, setLastNameGana] = useState('');
     const [firstNameGanji, setFirstNameGanji] = useState('');
     const [lastNameGanji, setLastNameGanji] = useState('');
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
-        const name = {firstNameGanji, lastNameGanji, firstNameGana, lastNameGana};
-        const payload = {email, name, password};
+
+        try {
+            const payload = {email, password, firstNameGanji, lastNameGanji, firstNameGana, lastNameGana};
+            console.log(payload);
+            
+            const res = await axios.post(process.env.REACT_APP_API_BASE_URL + '/signup', payload)
+    
+            } catch (error) {
+              // Handle errors
+            console.error('Error sending form data:', error);
+            }
+        
     }
+
+    
 
     const togglePasswordVisibility = () => {
         setPasswordShown(passwordShown ? false : true);
