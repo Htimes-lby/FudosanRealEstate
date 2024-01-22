@@ -55,7 +55,7 @@ const SearchBoard = () =>{
                 <div className="pt-[20px] flex items-center justify-between pr-[80px]">
                     <p className="text-[10px] pl-[48px] ">表示順番</p>
                     <select
-                        className="border-[1px] focus:outline-none focus:border-blue-500 p-1  rounded-md border-black w-[145px] "
+                        className="border-2 rounded-md border-black w-[145px]"
                         onChange={event => setValue(pre => {return {...pre, disp: event.target.value}})}
                         defaultValue={value}
                         ref={inputDisp}>
@@ -80,7 +80,7 @@ const SearchBoard = () =>{
                     <div className="pt-[16px] flex items-center justify-between pr-[80px]">
                         <p className="text-[10px] pl-[48px] ">価格未定物件</p>
                         <select
-                            className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[145px]"
+                            className="border-2 rounded-md border-black w-[145px]"
                             onChange={event => setValue(pre => {return {...pre, price: event.target.value}})}
                             defaultValue={value}
                             ref={inputPrice}>
@@ -92,16 +92,16 @@ const SearchBoard = () =>{
                     </div>
                     <div className="pt-[16px] flex items-center justify-between pr-[80px]">
                         <p className="text-[10px] pl-[48px] ">価格上限</p>
-                        <input className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[145px]" ref={inputTopPrice} placeholder="万円" type="text" onChange={event => setValue(pre => {return {...pre, topprice: event.target.value}})} />
+                        <input className="border-2 rounded-md border-black w-[145px]" ref={inputTopPrice} placeholder="万円" type="text" onChange={event => setValue(pre => {return {...pre, topprice: event.target.value}})} />
                     </div>
                     <div className="pt-[16px] flex items-center justify-between pr-[80px]">
                         <p className="text-[10px] pl-[48px] ">価格下限</p>
-                        <input className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[145px]" ref={inputBottomPrice} placeholder="万円" type="text" onChange={event => setValue(pre => {return {...pre, bottomprice: event.target.value}})} />
+                        <input className="border-2 rounded-md border-black w-[145px]" ref={inputBottomPrice} placeholder="万円" type="text" onChange={event => setValue(pre => {return {...pre, bottomprice: event.target.value}})} />
                     </div>
                     <div className="pt-[16px] flex items-center justify-between pr-[80px]">
                         <p className="text-[10px] pl-[48px] ">土地/建物</p>
                         <select
-                            className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[145px]"
+                            className="border-2 rounded-md border-black w-[145px]"
                             onChange={event => setValue(pre => {return {...pre, land: event.target.value}})}
                             defaultValue={value}
                             ref={inputLand}>
@@ -115,7 +115,7 @@ const SearchBoard = () =>{
                     <div className="pt-[16px] flex items-center justify-between pr-[80px]">
                         <p className="text-[10px] pl-[48px] ">写真</p>
                         <select
-                            className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[145px]"
+                            className="border-2 rounded-md border-black w-[145px]"
                             onChange={event => setValue(pre => {return {...pre, photo: event.target.value}})}
                             defaultValue={value}
                             ref={inputPhoto}>
@@ -129,7 +129,7 @@ const SearchBoard = () =>{
                     <div className="pt-[16px] flex items-center justify-between pr-[80px]">
                         <p className="text-[10px] pl-[48px] ">受付休止物件</p>
                         <select
-                            className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[145px]"
+                            className="border-2 rounded-md border-black w-[145px]"
                             onChange={event => setValue(pre => {return {...pre, receive: event.target.value}})}
                             defaultValue={value}
                             ref={inputReceive}>
@@ -142,7 +142,7 @@ const SearchBoard = () =>{
                     <div className="pt-[16px] flex items-center justify-between pr-[80px]">
                         <p className="text-[10px] pl-[48px] ">掲載終了物件</p>
                         <select
-                            className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[145px]"
+                            className="border-2 rounded-md border-black w-[145px]"
                             onChange={event => setValue(pre => {return {...pre, post: event.target.value}})}
                             defaultValue={value}
                             ref={inputPost}>
@@ -153,7 +153,7 @@ const SearchBoard = () =>{
                         </select>
                     </div> 
                     <div className="flex justify-center pt-[31px]">
-                        <button className="border border-black rounded-md p-2 text-[12px]" onClick={cancelCourse} >入力内容をリセットする</button>
+                        <button className="border border-black rounded-md p-1 text-[12px]" onClick={cancelCourse} >入力内容をリセットする</button>
                     </div> 
                     <div className="flex justify-center pt-[31px] pb-[64px]">
                         <button className=" bg-[#2A6484]  rounded-3xl py-[12px] px-[47px] text-[16px] text-white ">設定を保存/表示する</button>

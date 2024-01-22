@@ -12,15 +12,15 @@ export default function ContentForm( props ) {
   
   return (
     <div>
-      <div className=' w-[803px]  flex gap-[110px] '>
-          <div className='w-[190px] flex gap-[35px]  '>
-              <span className='bg-[#F69191] h-[28px] flex items-center p-2 rounded-md text-[15px] mx-[12px] text-white'>必須</span>
+      <div className=' w-[803px]  flex gap-[124px] '>
+          <div className='w-[177px] flex gap-[35px]  '>
+              <span className='bg-[#F69191] h-[28px] inline-block p-1 rounded-md text-[15px] mx-[12px] text-white'>必須</span>
               <p className='text-[20px]'>投稿内容</p>
           </div>
           <div>              
               <p className='text-[20px]'>物件のウリとイマイチなところ</p>
               <div className='pt-[13px]'>
-                <textarea name="content" id="" cols="60" rows="6" className='border-[1px] px-3 py-[5px] focus:outline-none focus:border-blue-500   w-[500px] border-black rounded-md' onChange={(e) => setBriefDescription(e.target.value)}></textarea>
+                <textarea name="content" id="" cols="60" rows="6" className='border-[1px] border-black rounded-md' onChange={(e) => setBriefDescription(e.target.value)}></textarea>
               </div>
           </div>
       </div>
@@ -28,7 +28,7 @@ export default function ContentForm( props ) {
             <div>              
               <p className='text-[20px]'>これまでの経緯と今の状況</p>
               <div className='pt-[13px]'>
-                <textarea name="content" id="" cols="60" rows="12" className='border-[1px] px-3 py-[5px] focus:outline-none focus:border-blue-500  w-[500px] border-black rounded-md' onChange={(e) => setFullDescription(e.target.value)}></textarea>
+                <textarea name="content" id="" cols="60" rows="12" className='border-[1px] border-black rounded-md' onChange={(e) => setFullDescription(e.target.value)}></textarea>
               </div>
           </div>  
       </div>

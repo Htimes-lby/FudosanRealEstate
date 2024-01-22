@@ -17,7 +17,6 @@ const SignUpPage = () => {
         e.preventDefault();
         const name = {firstNameGanji, lastNameGanji, firstNameGana, lastNameGana};
         const payload = {email, name, password};
-        console.log("payload", payload);
     }
 
     const togglePasswordVisibility = () => {
@@ -36,7 +35,7 @@ const SignUpPage = () => {
                     <div className=' flex flex-col w-full'>
                         <label htmlFor="" className='text-white font-normal mb-1 mt-2 text-[20px]'>メール</label>
                         <input
-                            className='h-[35px] rounded-md' 
+                            className='h-[35px] rounded-md pl-2' 
                             type="text"
                             id="email"
                             name="emailname"
@@ -46,7 +45,7 @@ const SignUpPage = () => {
                     <div className=' flex flex-col relative w-full'>
                         <label htmlFor="" className='text-white font-normal mb-1 mt-6 text-[20px]'>パスワード<br /><span className=' block text-[11px] leading-[2px] mt-3'>以下に新しくパスワードを記入してください。</span><span className='text-[11px] leading-[2px]'>(忘れないようにメモをとっておきましょう)</span></label>
                         <input
-                            className='h-[35px] rounded-md'
+                            className='h-[35px] rounded-md pl-2'
                             type={passwordShown ? "text" : "password"}
                             id="password"
                             name="password"
@@ -59,7 +58,7 @@ const SignUpPage = () => {
                         <div className='flex flex-row justify-between items-center mt-3'>
                             <label htmlFor="" className='font-normal text-[16px] text-white ml-2'>(姓)</label>
                             <input
-                                className='h-[35px] w-[35%] rounded-md' 
+                                className='h-[35px] w-[35%] rounded-md pl-2' 
                                 type="text"
                                 id="lastnameganji"
                                 name="lastnameganji"
@@ -67,7 +66,7 @@ const SignUpPage = () => {
                             />
                             <label htmlFor="" className='font-normal text-[16px] text-white'>(名)</label>
                             <input
-                                className='h-[35px] w-[35%] rounded-md' 
+                                className='h-[35px] w-[35%] rounded-md pl-2' 
                                 type="text"
                                 id="firstnameganji"
                                 name="firstnameganji"
@@ -77,7 +76,7 @@ const SignUpPage = () => {
                         <div className='flex flex-row justify-between items-center mt-3'>
                             <label htmlFor="" className='font-normal text-[16px] text-white'>(せい)</label>
                             <input
-                                className='h-[35px] w-[35%] rounded-md' 
+                                className='h-[35px] w-[35%] rounded-md pl-2' 
                                 type="text"
                                 id="lastnamegana"
                                 name="lastnamegana"
@@ -85,7 +84,7 @@ const SignUpPage = () => {
                             />
                             <label htmlFor="" className='font-normal text-[16px] text-white'>(めい)</label>
                             <input
-                                className='h-[35px] w-[35%] rounded-md' 
+                                className='h-[35px] w-[35%] rounded-md pl-2' 
                                 type="text"
                                 id="firstnamegana"
                                 name="firstnamegana"

@@ -266,7 +266,7 @@ const DashboardFeedbackBoard = () => {
             <div className='flex flex-col gap-5 mx-auto w-[1250px] mt-7'>
                 <div className='flex justify-between text-[16px] font-normal px-[10px]'>
                     <span>売りました体験談</span>
-                    <span className='text-[20px] font-medium cursor-pointer' onClick={() => handleViewMoreClicked('sold')}>もっと見る</span>
+                    <span className='text-[20px] font-medium cursor-pointer border-b-2 border-b-black' onClick={() => handleViewMoreClicked('sold')}>もっと見る<div className = 'pl-2 fa-solid fa-arrow-right'></div></span>
                 </div>
                 <div className='flex justify-between'>
                     {
@@ -282,7 +282,7 @@ const DashboardFeedbackBoard = () => {
                 </div>
                 <div className='flex justify-between text-[16px] font-normal px-[10px] mt-[30px]'>
                     <span>こんな風に使ってます</span>
-                    <span className='text-[20px] font-medium cursor-pointer' onClick={() => handleViewMoreClicked('bought')}>もっと見る</span>
+                    <span className='text-[20px] font-medium cursor-pointer border-b-2 border-b-black' onClick={() => handleViewMoreClicked('bought')}>もっと見る<div className = 'pl-2 fa-solid fa-arrow-right'></div></span>
                 </div>
                 <div className='flex justify-between'>
                     {

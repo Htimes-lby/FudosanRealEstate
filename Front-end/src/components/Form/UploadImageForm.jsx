@@ -3,7 +3,7 @@ import axios from 'axios';
 import shortid from "shortid";
 
 
-const UploadImageForm = ({button, title, width1, width2,gap, status, onDataArrayFromChild}) => {
+const UploadImageForm = ({button, title, width1, width2, gap, status, onDataArrayFromChild}) => {
 
     
     const [selectedfile, SetSelectedFile] = useState([]);
@@ -22,8 +22,7 @@ const UploadImageForm = ({button, title, width1, width2,gap, status, onDataArray
 
     const InputChange = (e) => {
         // --For Multiple File Input
-        const files = Array.from(e.target.files);
-        SetSelectedImage(files);
+        SetSelectedImage(e.target.files);
         let images = [];
         for (let i = 0; i < e.target.files.length; i++) {
             images.push((e.target.files[i]));
@@ -51,8 +50,6 @@ const UploadImageForm = ({button, title, width1, width2,gap, status, onDataArray
             }
         }
     }
-    
-
     const DeleteSelectFile = (id) => {
         if(window.confirm("このファイルを削除してもよろしいですか？")){
             const result = selectedfile.filter((data) => data.id !== id);
@@ -67,12 +64,13 @@ const UploadImageForm = ({button, title, width1, width2,gap, status, onDataArray
     useEffect(()=>{
         const formData = new FormData();
         selectedImage.forEach((file) => {
-        formData.append('images', file); 
+          formData.append('images', file);
+         
         });
     
         onDataArrayFromChild(formData);
         
-        },[selectedImage])
+      },[selectedImage])
     
     return(
         
@@ -96,7 +94,7 @@ const UploadImageForm = ({button, title, width1, width2,gap, status, onDataArray
                                         <div className="kb-file-upload ml-[75px]">
                                             <div className="file-upload-box">           
                                                 <input type="file" id="fileupload" className="file-upload-input" onChange={InputChange} multiple />
-                                                    <span className="file-link">{button}</span>
+                                                 <span className="file-link">{button}</span>
                                             </div>
                                             <div><p className="pt-[12px] pl-[60px] text-[15px]">複数のファイルを選択できます。</p></div>
                                         </div>

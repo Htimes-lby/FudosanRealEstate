@@ -8,7 +8,7 @@ const myArray = [
     require("../assets/img/carousel/4.jpg"),
     require("../assets/img/carousel/5.jpg"),
 ];
-const realEstateInfo = [
+const realEstates = [
     {
         posterInfo: {
             name: {
@@ -47,7 +47,8 @@ const realEstateInfo = [
             deadline: '即日',
             parking: '3台',
         },
-        realEstateCategory: 'building'
+        realEstateCategory: 'building',
+        _id:'123'
     },
     {
         posterInfo: {
@@ -88,7 +89,8 @@ const realEstateInfo = [
             deadline: '即日',
             parking: '3台',
         },
-        realEstateCategory: 'building'
+        realEstateCategory: 'building',
+        _id:'123'
     },
     {
         posterInfo: {
@@ -129,7 +131,8 @@ const realEstateInfo = [
             deadline: '即日',
             parking: '3台',
         },
-        realEstateCategory: 'building'
+        realEstateCategory: 'building',
+        _id:'123'
     },
     {
         posterInfo: {
@@ -170,7 +173,8 @@ const realEstateInfo = [
             deadline: '即日',
             parking: '3台',
         },
-        realEstateCategory: 'building'
+        realEstateCategory: 'building',
+        _id:'123'
     },
     {
         posterInfo: {
@@ -211,7 +215,8 @@ const realEstateInfo = [
             deadline: '即日',
             parking: '3台',
         },
-        realEstateCategory: 'building'
+        realEstateCategory: 'building',
+        _id:'123'
     },
     {
         posterInfo: {
@@ -252,7 +257,8 @@ const realEstateInfo = [
             deadline: '即日',
             parking: '3台',
         },
-        realEstateCategory: 'building'
+        realEstateCategory: 'building',
+        _id:'123'
     },
     {
         posterInfo: {
@@ -293,7 +299,8 @@ const realEstateInfo = [
             deadline: '即日',
             parking: '3台',
         },
-        realEstateCategory: 'building'
+        realEstateCategory: 'building',
+        _id:'123'
     },
     {
         posterInfo: {
@@ -334,7 +341,8 @@ const realEstateInfo = [
             deadline: '即日',
             parking: '3台',
         },
-        realEstateCategory: 'building'
+        realEstateCategory: 'building',
+        _id:'123'
     },
 ]
 const userInfo = {
@@ -352,7 +360,7 @@ const ItemMyPage = () => {
 
                 }
                 {
-                    realEstateInfo.map((realEstate, index) => {
+                    realEstates.map((realEstate, index) => {
                         return(
                             <RealEstateBigCard key = {index} realEstate = {realEstate} parentComponent = 'ItemMyPage' />
                         );

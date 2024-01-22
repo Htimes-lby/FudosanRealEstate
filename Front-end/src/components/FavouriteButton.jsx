@@ -4,7 +4,6 @@ const addFavourite = 'お気に入りに追加';
 const removeFavourite = 'お気に入りを削除';
 
 const FavouriteButton = ({ favouriteButtonActive, parentComponent }) => {
-  console.log('FavouriteButton', parentComponent);
   return (
     <div className={`flex justify-center gap-[20px] items-center text-[#2A6484] bg-white rounded-xl border-[#2A6484] border-2 font-normal cursor-pointer 
             ${parentComponent === 'realEstateDetailPage' ? 'w-[380px] h-[80px] text-[24px]' : 'w-[200px] h-[40px] text-[12px]'}`}
