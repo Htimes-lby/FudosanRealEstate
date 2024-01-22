@@ -63,10 +63,9 @@ const UploadImageForm = ({button, title, width1, width2, gap, status, onDataArra
 
     useEffect(()=>{
         const formData = new FormData();
-        selectedImage.forEach((file) => {
-          formData.append('images', file);
-         
-        });
+        for (const image of selectedImage) {
+            formData.append('images', image);
+          }
     
         onDataArrayFromChild(formData);
         

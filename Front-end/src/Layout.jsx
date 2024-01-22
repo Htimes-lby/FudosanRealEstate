@@ -41,7 +41,6 @@ const Layout = () =>{
         <Route exact path="/faq" component={FAQPage} />
         <Route exact path="/feedback-board" component={FeedbackBoardPage} />
         <Route exact path="/feedback-detail" component={FeedbackDetailPage} />
-        <Route exact path="/post" component={PostREPage} />
         <Route exact path="/login" component={SignInPage} />
         <Route exact path="/register" component={SignUpPage} />
     </Switch>  
