@@ -687,8 +687,8 @@ const realEstates = [
         approved: 'false',
     },
 ]
-const approve = 'Approve';
-const unapprove = 'Unapprove';
+const approve = '掲示板に投稿する';
+const unapprove = '掲示板に投稿する';
 const AdminApproveRealEstateDetail = () => {
 
     const location = useLocation();
@@ -733,7 +733,7 @@ const AdminApproveRealEstateDetail = () => {
             <p className='text-[16px] pt-[56px]'>{fullDescription}</p>
 
             <div className='flex justify-center gap-[50px] w-full mt-20'>
-                <div className='flex w-[380px] h-[80px] justify-center items-center bg-[#2A6484] text-white text-[24px] rounded-xl cursor-pointer' onClick={handleContactPosterButtonClicked}>Contact to Poster</div>
+                <div className='flex w-[380px] h-[80px] justify-center items-center bg-[#2A6484] text-white text-[24px] rounded-xl cursor-pointer' onClick={handleContactPosterButtonClicked}>投稿者への連絡</div>
                 <div className='flex w-[380px] h-[80px] justify-center items-center text-[#2A6484] bg-white text-[24px] rounded-xl cursor-pointer border-[2px] border-[#2A6484]' onClick={handleApproveToggle}>{approveToggleButtonContent}</div>
             </div>
         </div>

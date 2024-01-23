@@ -130,7 +130,7 @@ const DashboardFAQPage = () => {
 
     return (
         <div className=' flex flex-col items-center justify-center w-full mt-20 py-20 bg-[#32769b]'>
-            <div className='text-[32px] text-white mb-10 font-normal'>よくある質問</div>
+            <div className='mt-10 mb-20 text-4xl text-white noto-medium'>よくある質問</div>
             <div className='flex flex-col gap-2 w-[60%]'>
                 {faqs.map((faq, index) => {
                     return (
@@ -139,7 +139,7 @@ const DashboardFAQPage = () => {
                     })
                 }
             </div>
-            <div className=' w-[200px] bg-white font-semibold text-[#2A6484] border-2 border-[#2A6484] text-center py-[12px] mt-20 rounded-xl cursor-pointer' onClick={handleViewMoreClicked}>もっと見る</div>
+            <div className=' w-[200px] bg-white mt-20 py-[12px] rounded-xl border-2 border-[#2A6484] noto-semibold text-lg text-[#2A6484] text-center cursor-pointer' onClick={handleViewMoreClicked}>もっと見る</div>
         </div>
     )
 }

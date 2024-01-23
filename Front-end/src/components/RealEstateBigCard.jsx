@@ -8,7 +8,6 @@ import FavouriteButton from "./FavouriteButton";
 const RealEstateBigCard = ({realEstate, handleRealEstateBigCardClicked, parentComponent, index}) => {
     const history = useHistory();
     const {briefDescription, fullDescription, images, basicInfo, realEstateCategory, _id} = realEstate;
-    console.log('+++++++++++++++++++', _id);
     const width = 'w-[180px]'
     const fontSize = 'text-[11px]'
     const [favouriteButtonActive, setFavouriteButtonActive] = useState(false);
@@ -41,11 +40,11 @@ const RealEstateBigCard = ({realEstate, handleRealEstateBigCardClicked, parentCo
                 realEstateCategory === 'building' ? <BasicTableBuilding tableData = {basicInfo} width = {width} fontSize = {fontSize} /> : <BasicTableLand tableData = {basicInfo} width= {width} fontSize = {fontSize} />
             }
             </div>
-            <div className="pl-5 pt-3">
-                <div className="text-[20px] font-bold line-clamp-2">
+            <div className="pl-3">
+                <div className="text-base noto-medium line-clamp-2">
                     <p>{briefDescription}</p>   
                 </div>
-                <div className="text-[16px] pt-4 line-clamp-3">
+                <div className="text-sm noto-regular pt-4 line-clamp-5">
                    <p>{fullDescription}</p>
                 </div>
             </div>

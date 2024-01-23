@@ -32,9 +32,9 @@ const ContactGeneralPage = ({senderName, receiveName}) => {
 
     return (
         <div className='bg-[#F1F1F1] w-full'>
-            <div className='flex flex-col items-center w-[1200px] mx-auto'>
-                <p className='text-[40px] flex justify-center pt-[63px] pb-[58px]'>総合窓口</p>
-                <ul className='text-[18px]'>
+            <div className='flex flex-col items-center w-[1200px] mx-auto noto-regular'>
+                <p className='text-[40px] flex justify-center pt-[63px] pb-[58px] noto-medium'>総合窓口</p>
+                <ul className='text-sm noto-regular'>
                     <li className='list-disc'>掲載中の物件に関するお問い合わせはこちら</li>
                     <li className='list-disc'>物件に関するお問合せはこちらではしないでください。<br />
                     購入を検討している物件のページから、売主さんに直接お問い合わせください。
@@ -52,8 +52,8 @@ const ContactGeneralPage = ({senderName, receiveName}) => {
                 }
                 <p className='mt-10 mb-3 text-[24px] pb-[15px]'>メッセージ送信フォーム</p>
                 <textarea name="message" id="message" cols="10" rows="3" className='w-full py-4 px-12 text-[24px]'></textarea>
-                <div className='pt-[37px] pb-[105px] flex justify-center'>
-                    <button className='bg-[#2A6484] text-[24px] text-white rounded-[15px] py-[19px] px-[50px]'>メッセージを送信する</button>
+                <div className='pt-10 pb-24 flex justify-center'>
+                    <button className='py-3 px-8 rounded-[15px] bg-[#2A6484] noto-medium text-[24px] text-white'>メッセージを送信する</button>
                 </div>
             </div>
         </div>

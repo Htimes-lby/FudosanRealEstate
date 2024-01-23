@@ -29,7 +29,7 @@ const Footer = () => {
         history.push('/login')
     }
     return (
-        <div className='flex flex-col relative w-full h-[340px] bg-[#2A6484]'>
+        <div className='flex flex-col relative w-full h-[340px] bg-[#2A6484] noto-regular'>
             <div className='flex flex-row justify-between items-start w-full h-[220px] pt-6 px-[330px] border-b  border-white'>
                 <div className='flex flex-col items-start'>
                     <span className=' text-[#FFC804]'><span className=' text-[24px]'>ふどうさん</span><span className=' text-[18px]'>は</span></span>
