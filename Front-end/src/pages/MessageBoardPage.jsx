@@ -2,7 +2,6 @@ import React from 'react';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
-import MessageItem from '../components/MessageItem';
 import Pagination from '../components/Pagination'
 import AccordionItemMessage from '../components/AccordionItemMessage';
 
@@ -71,10 +70,7 @@ const MessageBoardPage = () => {
         setActive(parseInt(clickedPage));
     };
     const handleMessageItemClicked = (props) => {
-        const index = props;
-        const load = messages[index];
-        const parentComponent = 'message-board'
-        history.push('/message-detail', {state: {parentComponent, load}});
+        history.push('/message-detail');
     }
     const handleActiveCategorySelected = (props) => {
         setActiveCategory(props);

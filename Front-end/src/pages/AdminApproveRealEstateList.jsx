@@ -1,12 +1,9 @@
-import React from 'react'
-import { useState } from 'react'
-import { useLocation, useHistory } from 'react-router-dom/cjs/react-router-dom.min'
+import {React, useState, useEffect} from 'react';
+import { useLocation, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
-import Carousel from '../components/Carousel'
-import GoogleMapComponent from '../components/GoogleMapComponent'
-import BasicTableBuilding from '../components/BasicTableBuilding'
-import BasicTableLand from '../components/BasicTableLand'
-import FavouriteButton from '../components/FavouriteButton'
+import SearchBoard from "../components/SearchBoard"
+import Pagination from '../components/Pagination';
+import RealEstateSmallCard from '../components/RealEstateSmallCard';
 
 const myArray = [
     require("../assets/img/carousel/1.jpg"),
@@ -673,54 +670,64 @@ const realEstates = [
         realEstateCategory: 'building'
     },
 ]
-const ItemDetailPage = () => {
+const AdminApproveRealEstateList = () => {
 
-    const location = useLocation();
     const history = useHistory();
-    const searchParams = new URLSearchParams(location.search);
-    const index = searchParams.get('index');
-    const realEstateDisplayData = realEstates[index];
-    const {basicInfo, briefDescription, fullDescription, address, images} = realEstateDisplayData;
-
-    const [favouriteButtonActive, setFavouriteButtonActive] = useState(false);
-    const handleFavouriteButtonClicked = () => {
-        setFavouriteButtonActive(favouriteButtonActive ? false : true);
+    const [isOpen, setIsOpen] = useState(false);
+    const [active, setActive] = useState(1);
+    const activeHandler = (clickedPage) => {
+        setActive(parseInt(clickedPage));
+    };
+    const magnifierToggleHandler = () => {
+          setIsOpen((isOpen) => !isOpen);
     }
-    const sendMsgButtonClicked = () => {
+    const handleRealEstateCardClicked = (props) => {
         const searchParams = new URLSearchParams();
-        searchParams.set('previous-page','itemDetailPage')
-        history.push(`/message-detail?${searchParams.toString()}`);
-    }
-  return (
-    <div className=' flex flex-col items-center pb-[120px] pt-[92px] w-full'>
-        <p className='text-[32px] text-center'>{address.province}{address.city}</p>
+        searchParams.set('index', props);
+        history.push(`/admin-approve-realestate-detail?${searchParams.toString()}`);
+    };
+    
+    return (
+        <div className='flex flex-col items-center pt-20'>
+            <div className='flex justify-center items-center gap-10 mt-16'>            
+                <Pagination
+                    active={active}
+                    size={99}
+                    step={2}
+                    onClickHandler={activeHandler}
+                />
+                <i className="fa-solid fa-magnifying-glass text-[40px] cursor-pointer" onClick={magnifierToggleHandler}></i>
+            </div>
+            
+            <div className=' bg-white flex justify-end fixed z-[100] right-10 top-[15%]'>
+                {isOpen && <SearchBoard />}              
+            </div>
 
-        <div className='mt-[28px] w-full'>
-            <Carousel images = {images}/>
-        </div>
-
-        <div className='w-[1300px] mx-auto'>
-            <div className='flex items-center w-full justify-between pt-[90px] pb-[84px]'>
-                <div>
-                    <GoogleMapComponent />
+            <div className='flex flex-col items-center w-full'>
+                <div className=' grid gap-x-8 gap-y-12 grid-cols-4 mt-3 mb-5 mx-auto box-border max-w-[1100px]'>
+                    {
+                        realEstates.map((realEstate, index) => {
+                            return(
+                                <div  onClick={() => handleRealEstateCardClicked(index)} className='cursor-pointer'>
+                                    <RealEstateSmallCard key = {index} realEstate = {realEstate}/>
+                                </div>
+                            );
+                        })
+                    }
                 </div>
-                {
-                    realEstateDisplayData.realEstateCategory === 'building' && <BasicTableBuilding tableData = {basicInfo} fontSize = {"text-[24px]"} width = {"w-[500px]"}  />
-                }
-                {
-                    realEstateDisplayData.realEstateCategory === 'land' && <BasicTableLand tableData = {basicInfo} fontSize = {"text-[24px]"} width = {"w-[500px]"}  />
-                }             
             </div>
-            <p className='text-[24px]'>{briefDescription}</p>
-            <p className='text-[16px] pt-[56px]'>{fullDescription}</p>
 
-            <div className='flex justify-center gap-[50px] w-full mt-20'>
-                <div className='flex w-[380px] h-[80px] justify-center items-center bg-[#2A6484] text-white text-[24px] rounded-xl cursor-pointer' onClick={sendMsgButtonClicked}>メッセージを送信する</div>
-                <div onClick={handleFavouriteButtonClicked}><FavouriteButton parentComponent='realEstateDetailPage' favouriteButtonActive={favouriteButtonActive}/></div>
+            <div className='flex justify-center items-center gap-10 pb-16'>
+                <Pagination
+                    active={active}
+                    size={99}
+                    step={2}
+                    onClickHandler={activeHandler}
+                />
+                <i className="fa-solid fa-magnifying-glass text-[40px] cursor-pointer" onClick={magnifierToggleHandler}></i>
             </div>
         </div>
-    </div>
-  )
+    )
 }
 
-export default ItemDetailPage;
+export default AdminApproveRealEstateList;
