@@ -6,54 +6,56 @@ const postSchema = new mongoose.Schema({
     type: Boolean,
   },
 
-  privacy: [
 
-    {email: {
-      type: String,
-      required: [true, "Must be provided email"],
-      maxlength: [30, "email must be less than 30 characters"],
-      trim: true,
-    }},
-    {password: {
-      type: String,
-      required: [true, "Must be provided password"],
-    }},
-    {firstNameGanji: {
-      type: String 
-    }},
-    {lastNameGanji: {
-        type: String 
-    }},
-    {firstNameGana: {
-        type: String 
-    }},
-    {lastNameGana: {
-        type: String 
-    }},       
-    {age:{
-      type:Number
-    }},
-    {phoneNumber:
-      [{type:Number}]
-    },
-    {province:{
+  privacy: [{
+    province:{
       type:String
-    }},
-    {city:{
-        type:String
-    }},
-    {streetBunch:{
-        type:String
-    }},
-    {postNumber:
-      [{type:String}]
     },
-    {buildingName:{
+    city:{
         type:String
-    }},
-  ],
+    },
+    buildingName:{
+        type:String
+    },
+    street:{
+      type:String
+    },
+    phoneNumber:[{
+      type:Number
+    }],
+    postalNumber:[{
+      type:Number
+    }],
+    email: {
+      type: String,
+    },
+    age:{
+      type:Number
+    },
+    firstNameGana: {
+        type: String 
+    },
+    lastNameGana: {
+        type: String 
+    },       
+    firstNameGanji: {
+      type: String 
+    },
+    lastNameGanji: {
+        type: String 
+    },
+    password: {
+      type: String,
+    },
+    isVerified: {
+      type: Boolean,
+      default: false,
+    },
+    verificationToken:{
+      type:String
+    } ,
+}],
   
-   
   description:[{
     briefDescription:{
         type:String
@@ -82,6 +84,8 @@ const postSchema = new mongoose.Schema({
       type:Number
     }
     }],
+
+    imagePaths: [{ type: String }],
     
     basiclandInfo:[{
       budget:{

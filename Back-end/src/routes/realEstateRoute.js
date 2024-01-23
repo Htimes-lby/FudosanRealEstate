@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const postCtr = require('../controllers/postCtr')
 const uploadController = require('../controllers/uploadCtr');
+const userCtr = require('../controllers/userCtr');
 const multer = require('multer');
 
 const storage = multer.diskStorage({
@@ -26,6 +27,9 @@ const storage = multer.diskStorage({
   const upload = multer({ storage, fileFilter });
   
 
-router.post("/postRealEstate",  postCtr.createRealEstate)
+router.post("/postRealEstate", upload.array('images', 10),  postCtr.createRealEstate)
+router.post("/signup", userCtr.signUp)
+router.get('/verify/:token', userCtr.verifyAccount);
 router.post('/api/upload', upload.array('images', 5), uploadController.uploadImages);
+
 module.exports = router;
