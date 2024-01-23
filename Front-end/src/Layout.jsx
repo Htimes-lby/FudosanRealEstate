@@ -19,6 +19,10 @@ import ContactPostPage from "./pages/ContactPostPage";
 import ContactGeneralPage from "./pages/ContactGeneralPage";
 import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
+import AdminApproveRealEstateList from "./pages/AdminApproveRealEstateList";
+import AdminApproveRealEstateDetail from "./pages/AdminApproveRealEstateDetail";
+import AdminViewAgentPage from "./pages/AdminViewAgentPage";
+import AdminContactAgentPage from "./pages/AdminContactaAgentPage";
 
 const Layout = () =>{
 
@@ -44,6 +48,11 @@ const Layout = () =>{
         <Route exact path="/post" component={PostREPage} />
         <Route exact path="/login" component={SignInPage} />
         <Route exact path="/register" component={SignUpPage} />
+
+        <Route exact path="/admin-approve-realestate-list" component={AdminApproveRealEstateList} />
+        <Route exact path="/admin-approve-realestate-detail" component={AdminApproveRealEstateDetail} />
+        <Route exact path="/admin-view-agent" component={AdminViewAgentPage} />
+        <Route exact path="/admin-contact-agent" component={AdminContactAgentPage} />
     </Switch>  
   );
 }

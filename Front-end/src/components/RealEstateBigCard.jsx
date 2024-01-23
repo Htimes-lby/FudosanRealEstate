@@ -19,7 +19,6 @@ const RealEstateBigCard = ({realEstate, handleRealEstateBigCardClicked, parentCo
     const handleNavigateToContactPostPage = (e, _id) => {
         const searchParams = new URLSearchParams ();
         searchParams.set('id', _id);
-        console.log("=======================", _id);
         history.push(`/contact-post?${searchParams.toString()}`);
         e.stopPropagation();
     }

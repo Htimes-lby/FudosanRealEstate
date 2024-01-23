@@ -5,32 +5,29 @@ const Header = () => {
     const history = useHistory();
     const myPageRef = useRef(null);
     const postPageRef = useRef(null);
+    const adminRef = useRef(null);
     const [myPageActive, setMyPageActive] = useState(false);
     const [postActive, setPostActive] = useState(false);
+    const [adminPageActive, setAdminPageActive] = useState(false);
     const handleToggleMyPage = () => {
         setMyPageActive((prevState) => !prevState);
     };
     const handleTogglePost = () => {
         setPostActive((prevState) => !prevState);
     };
+    const handleToggleAdminPage = () => {
+        setAdminPageActive((prevState) => !prevState);
+    };
     const handleDocumentClick = (event) => {
         if(myPageRef.current && !myPageRef.current.contains(event.target)){setMyPageActive(false)}
         if(postPageRef.current && !postPageRef.current.contains(event.target)){setPostActive(false)}
+        if(adminRef.current && !adminRef.current.contains(event.target)){setAdminPageActive(false)}
     };
     const handleRealEstatePostClicked = (props) => {
         const postRealEstateFlag = props;
         const searchParams = new URLSearchParams ();
         searchParams.set('postRealEstateFlag', postRealEstateFlag);
         history.push(`/post?${searchParams.toString()}`)
-    }
-    const handleMyPageBlur = () => {
-        setMyPageActive(false);
-    };
-    const handlePostBlur = () => {
-        setPostActive(false);
-    };
-    const handle = () => {
-        history.push('/message-board')
     }
     useEffect(() => {
         setMyPageActive(false);
@@ -66,6 +63,15 @@ const Header = () => {
                         </div>
                     </div>
                     <div className=' inline-block text-[18px] leading-[40px] text-white font-semibold px-3'><Link to='/login' className = 'text-current no-underline transition-all duration-75 hover:text-white/40'>ログイン</Link></div>
+                    <div className=' relative inline-block' ref={adminRef} onClick={handleToggleAdminPage}>
+                        <div className=' text-[18px] leading-[40px] text-white font-semibold px-3 cursor-pointer'>Admin</div>
+                        <div className= {`absolute top-[32px] left-[-40px] min-w-[200px] px-auto pt-3 bg-[#32769b] transition-all duration-300 ${adminPageActive ? 'inline-block' : 'hidden'}`}>
+                            <div className=' text-[18px] font-semibold py-3 text-white border-y border-y-white/50'><Link to='/admin-view-agent' className = 'text-current no-underline transition-all duration-75 hover:text-white/40'>ApproveAgent</Link></div>
+                            <div className=' text-[17px] font-semibold py-3 text-white border-b border-b-white/50'><Link to='/admin-approve-realestate-list' className = 'text-current no-underline transition-all duration-75 hover:text-white/40'>ApproveRE</Link></div>
+                            <div className=' text-[17px] font-semibold py-3 text-white border-b border-b-white/50'><Link to='/favourite' className = 'text-current no-underline transition-all duration-75 hover:text-white/40'>お気に入り</Link></div>
+                            <div className=' text-[17px] font-semibold py-3 text-white'><Link to='/contact-general' className = 'text-current no-underline transition-all duration-75 hover:text-white/40'>総合窓口</Link></div>
+                        </div>
+                    </div>
                 </div>
 
             </div>

@@ -1,12 +1,10 @@
 import React from 'react'
-import { useState } from 'react'
 import { useLocation, useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 
 import Carousel from '../components/Carousel'
 import GoogleMapComponent from '../components/GoogleMapComponent'
 import BasicTableBuilding from '../components/BasicTableBuilding'
 import BasicTableLand from '../components/BasicTableLand'
-import FavouriteButton from '../components/FavouriteButton'
 
 const myArray = [
     require("../assets/img/carousel/1.jpg"),
@@ -55,7 +53,8 @@ const realEstates = [
             deadline: '即日',
             parking: '3台',
         },
-        realEstateCategory: 'building'
+        realEstateCategory: 'building',
+        approved: 'false',
     },
     {
         posterInfo: {
@@ -96,7 +95,8 @@ const realEstates = [
             deadline: '即日',
             parking: '3台',
         },
-        realEstateCategory: 'building'
+        realEstateCategory: 'building',
+        approved: 'false',
     },
     {
         posterInfo: {
@@ -137,7 +137,8 @@ const realEstates = [
             deadline: '即日',
             parking: '3台',
         },
-        realEstateCategory: 'building'
+        realEstateCategory: 'building',
+        approved: 'false',
     },
     {
         posterInfo: {
@@ -178,7 +179,8 @@ const realEstates = [
             deadline: '即日',
             parking: '3台',
         },
-        realEstateCategory: 'building'
+        realEstateCategory: 'building',
+        approved: 'false',
     },
     {
         posterInfo: {
@@ -219,7 +221,8 @@ const realEstates = [
             deadline: '即日',
             parking: '3台',
         },
-        realEstateCategory: 'building'
+        realEstateCategory: 'building',
+        approved: 'false',
     },
     {
         posterInfo: {
@@ -260,7 +263,8 @@ const realEstates = [
             deadline: '即日',
             parking: '3台',
         },
-        realEstateCategory: 'building'
+        realEstateCategory: 'building',
+        approved: 'false',
     },
     {
         posterInfo: {
@@ -301,7 +305,8 @@ const realEstates = [
             deadline: '即日',
             parking: '3台',
         },
-        realEstateCategory: 'building'
+        realEstateCategory: 'building',
+        approved: 'false',
     },
     {
         posterInfo: {
@@ -342,7 +347,8 @@ const realEstates = [
             deadline: '即日',
             parking: '3台',
         },
-        realEstateCategory: 'building'
+        realEstateCategory: 'building',
+        approved: 'false',
     },
     {
         posterInfo: {
@@ -383,7 +389,8 @@ const realEstates = [
             deadline: '即日',
             parking: '3台',
         },
-        realEstateCategory: 'building'
+        realEstateCategory: 'building',
+        approved: 'false',
     },
     {
         posterInfo: {
@@ -424,7 +431,8 @@ const realEstates = [
             deadline: '即日',
             parking: '3台',
         },
-        realEstateCategory: 'building'
+        realEstateCategory: 'building',
+        approved: 'false',
     },
     {
         posterInfo: {
@@ -465,7 +473,8 @@ const realEstates = [
             deadline: '即日',
             parking: '3台',
         },
-        realEstateCategory: 'building'
+        realEstateCategory: 'building',
+        approved: 'false',
     },
     {
         posterInfo: {
@@ -506,7 +515,8 @@ const realEstates = [
             deadline: '即日',
             parking: '3台',
         },
-        realEstateCategory: 'building'
+        realEstateCategory: 'building',
+        approved: 'false',
     },
     {
         posterInfo: {
@@ -547,7 +557,8 @@ const realEstates = [
             deadline: '即日',
             parking: '3台',
         },
-        realEstateCategory: 'building'
+        realEstateCategory: 'building',
+        approved: 'false',
     },
     {
         posterInfo: {
@@ -588,7 +599,8 @@ const realEstates = [
             deadline: '即日',
             parking: '3台',
         },
-        realEstateCategory: 'building'
+        realEstateCategory: 'building',
+        approved: 'false',
     },
     {
         posterInfo: {
@@ -629,7 +641,8 @@ const realEstates = [
             deadline: '即日',
             parking: '3台',
         },
-        realEstateCategory: 'building'
+        realEstateCategory: 'building',
+        approved: 'false',
     },
     {
         posterInfo: {
@@ -670,26 +683,31 @@ const realEstates = [
             deadline: '即日',
             parking: '3台',
         },
-        realEstateCategory: 'building'
+        realEstateCategory: 'building',
+        approved: 'false',
     },
 ]
-const ItemDetailPage = () => {
+const approve = 'Approve';
+const unapprove = 'Unapprove';
+const AdminApproveRealEstateDetail = () => {
 
     const location = useLocation();
     const history = useHistory();
     const searchParams = new URLSearchParams(location.search);
     const index = searchParams.get('index');
     const realEstateDisplayData = realEstates[index];
-    const {basicInfo, briefDescription, fullDescription, address, images} = realEstateDisplayData;
-
-    const [favouriteButtonActive, setFavouriteButtonActive] = useState(false);
-    const handleFavouriteButtonClicked = () => {
-        setFavouriteButtonActive(favouriteButtonActive ? false : true);
+    const {basicInfo, briefDescription, fullDescription, address, images, approved} = realEstateDisplayData;
+    const approveToggleButtonContent = approved ? approve : unapprove;
+    
+    const handleApproveToggle = () => {
+        const nextApproved = !approved;
+        // axios : set the approved of realestate of current id as nextApproved 
+        // axios : get the realestate of current id
     }
-    const sendMsgButtonClicked = () => {
+    const handleContactPosterButtonClicked = () => {
         const searchParams = new URLSearchParams();
-        searchParams.set('previous-page','itemDetailPage')
-        history.push(`/message-detail?${searchParams.toString()}`);
+        searchParams.set('id', index)
+        history.push(`/contact-post?${searchParams.toString()}`);
     }
   return (
     <div className=' flex flex-col items-center pb-[120px] pt-[92px] w-full'>
@@ -715,12 +733,12 @@ const ItemDetailPage = () => {
             <p className='text-[16px] pt-[56px]'>{fullDescription}</p>
 
             <div className='flex justify-center gap-[50px] w-full mt-20'>
-                <div className='flex w-[380px] h-[80px] justify-center items-center bg-[#2A6484] text-white text-[24px] rounded-xl cursor-pointer' onClick={sendMsgButtonClicked}>メッセージを送信する</div>
-                <div onClick={handleFavouriteButtonClicked}><FavouriteButton parentComponent='realEstateDetailPage' favouriteButtonActive={favouriteButtonActive}/></div>
+                <div className='flex w-[380px] h-[80px] justify-center items-center bg-[#2A6484] text-white text-[24px] rounded-xl cursor-pointer' onClick={handleContactPosterButtonClicked}>Contact to Poster</div>
+                <div className='flex w-[380px] h-[80px] justify-center items-center text-[#2A6484] bg-white text-[24px] rounded-xl cursor-pointer border-[2px] border-[#2A6484]' onClick={handleApproveToggle}>{approveToggleButtonContent}</div>
             </div>
         </div>
     </div>
   )
 }
 
-export default ItemDetailPage;
+export default AdminApproveRealEstateDetail;
