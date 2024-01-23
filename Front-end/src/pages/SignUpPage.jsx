@@ -8,7 +8,7 @@ const eye = <FontAwesomeIcon icon={faEye} />;
 const SignUpPage = () => {
     const history = useHistory();
     const [passwordShown, setPasswordShown] = useState(false);
-    const [password, setPassword] = useState();
+    const [passwords, setPasswords] = useState();
     const [email, setEmail] = useState();
     const [firstNameGana, setFirstNameGana] = useState('');
     const [lastNameGana, setLastNameGana] = useState('');
@@ -18,19 +18,17 @@ const SignUpPage = () => {
         e.preventDefault();
 
         try {
-            const payload = {email, password, firstNameGanji, lastNameGanji, firstNameGana, lastNameGana};
+            const payload = {email, passwords, firstNameGanji, lastNameGanji, firstNameGana, lastNameGana};
             console.log(payload);
             
             const res = await axios.post(process.env.REACT_APP_API_BASE_URL + '/signup', payload)
-    
+            alert(res.message);
             } catch (error) {
               // Handle errors
             console.error('Error sending form data:', error);
             }
         
     }
-
-    
 
     const togglePasswordVisibility = () => {
         setPasswordShown(passwordShown ? false : true);
@@ -46,9 +44,9 @@ const SignUpPage = () => {
                 <h1 className='text-[28px] text-white font-semibold pt-[24px]'>サインアップ</h1>
                 <form className='flex flex-col items-center flex-wrap w-[70%]' onSubmit={(e) => handleSubmit(e)}>
                     <div className=' flex flex-col w-full'>
-                        <label htmlFor="" className='text-white font-normal mb-1 mt-2 text-[20px]'>メール</label>
+                        <label htmlFor="email" className='text-white font-normal mb-1 mt-2 text-[20px]'>メール</label>
                         <input
-                            className='h-[35px] rounded-md pl-2' 
+                            className='h-[35px] rounded-md pl-2 border-[1px] outline-none focus:border-blue-500 shadow-lg' 
                             type="text"
                             id="email"
                             name="emailname"
@@ -56,30 +54,30 @@ const SignUpPage = () => {
                         />
                     </div>
                     <div className=' flex flex-col relative w-full'>
-                        <label htmlFor="" className='text-white font-normal mb-1 mt-6 text-[20px]'>パスワード<br /><span className=' block text-[11px] leading-[2px] mt-3'>以下に新しくパスワードを記入してください。</span><span className='text-[11px] leading-[2px]'>(忘れないようにメモをとっておきましょう)</span></label>
+                        <label htmlFor="password" className='text-white font-normal mb-1 mt-6 text-[20px]'>パスワード<br /><span className=' block text-[11px] leading-[2px] mt-3'>以下に新しくパスワードを記入してください。</span><span className='text-[11px] leading-[2px]'>(忘れないようにメモをとっておきましょう)</span></label>
                         <input
-                            className='h-[35px] rounded-md pl-2'
+                            className='h-[35px] rounded-md pl-2 border-[1px] outline-none focus:border-blue-500 shadow-lg'
                             type={passwordShown ? "text" : "password"}
                             id="password"
                             name="password"
-                            onChange={(e) => setPassword(e.target.value)}
+                            onChange={(e) => setPasswords(e.target.value)}
                         />
                         <i className=' absolute bottom-1 right-3 cursor-pointer' onClick={togglePasswordVisibility}>{eye}</i>
                     </div>
                     <div className=' flex flex-col w-full mt-6'>
                         <p className='font-normal text-[18px] text-white'>お名前</p>
                         <div className='flex flex-row justify-between items-center mt-3'>
-                            <label htmlFor="" className='font-normal text-[16px] text-white ml-2'>(姓)</label>
+                            <label htmlFor="lastnameganji" className='font-normal text-[16px] text-white ml-2'>(姓)</label>
                             <input
-                                className='h-[35px] w-[35%] rounded-md pl-2' 
+                                className='h-[35px] w-[35%] rounded-md pl-2 border-[1px] outline-none focus:border-blue-500 shadow-lg' 
                                 type="text"
                                 id="lastnameganji"
                                 name="lastnameganji"
                                 onChange={(e) => setLastNameGanji(e.target.value)}
                             />
-                            <label htmlFor="" className='font-normal text-[16px] text-white'>(名)</label>
+                            <label htmlFor="firstnameganji" className='font-normal text-[16px] text-white'>(名)</label>
                             <input
-                                className='h-[35px] w-[35%] rounded-md pl-2' 
+                                className='h-[35px] w-[35%] rounded-md pl-2 border-[1px] outline-none focus:border-blue-500 shadow-lg' 
                                 type="text"
                                 id="firstnameganji"
                                 name="firstnameganji"
@@ -87,17 +85,17 @@ const SignUpPage = () => {
                             />
                         </div>
                         <div className='flex flex-row justify-between items-center mt-3'>
-                            <label htmlFor="" className='font-normal text-[16px] text-white'>(せい)</label>
+                            <label htmlFor="lastnamegana" className='font-normal text-[16px] text-white'>(せい)</label>
                             <input
-                                className='h-[35px] w-[35%] rounded-md pl-2' 
+                                className='h-[35px] w-[35%] rounded-md pl-2 border-[1px] outline-none focus:border-blue-500 shadow-lg' 
                                 type="text"
                                 id="lastnamegana"
                                 name="lastnamegana"
                                 onChange={(e) => setLastNameGana(e.target.value)}
                             />
-                            <label htmlFor="" className='font-normal text-[16px] text-white'>(めい)</label>
+                            <label htmlFor="firstnamegana" className='font-normal text-[16px] text-white'>(めい)</label>
                             <input
-                                className='h-[35px] w-[35%] rounded-md pl-2' 
+                                className='h-[35px] w-[35%] rounded-md pl-2 border-[1px] outline-none focus:border-blue-500 shadow-lg' 
                                 type="text"
                                 id="firstnamegana"
                                 name="firstnamegana"

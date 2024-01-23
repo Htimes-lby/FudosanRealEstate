@@ -6,6 +6,7 @@ const postSchema = new mongoose.Schema({
     type: Boolean,
   },
 
+
   privacy: [{
     province:{
       type:String
@@ -46,6 +47,13 @@ const postSchema = new mongoose.Schema({
     password: {
       type: String,
     },
+    isVerified: {
+      type: Boolean,
+      default: false,
+    },
+    verificationToken:{
+      type:String
+    } ,
 }],
   
   description:[{
