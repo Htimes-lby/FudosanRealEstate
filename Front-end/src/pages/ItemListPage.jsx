@@ -694,7 +694,7 @@ const ItemListPage = () => {
     
     return (
         <div className='flex flex-col items-center pt-20'>
-            <p className=' font-medium text-[36px]' >{searchStandardContent}</p>
+            <p className='noto-medium text-[36px]' >{searchStandardContent}</p>
             <div className='flex justify-center items-center gap-10 mt-16'>            
                 <Pagination
                     active={active}
@@ -705,7 +705,7 @@ const ItemListPage = () => {
                 <i className="fa-solid fa-magnifying-glass text-[40px] cursor-pointer" onClick={magnifierToggleHandler}></i>
             </div>
             
-            <div className=' bg-white flex justify-end fixed z-[100] right-10 top-[12%]'>
+            <div className=' bg-white flex justify-end fixed z-[100] right-10 top-[15%]'>
                 {isOpen && <SearchBoard />}              
             </div>
 

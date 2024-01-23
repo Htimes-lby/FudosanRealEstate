@@ -15,10 +15,10 @@ const FavouriteButton = ({ favouriteButtonActive, parentComponent }) => {
           <div className={`text-center cursor-pointer ${parentComponent === 'realEstateDetailPage' ? 'text-[30px]' : 'text-[15px]'}`}>
             <div className={`fa fa-star transition-all text-duration-200 ease-in ${favouriteButtonActive ? 'starred text-[#f52755]' : 'unstarred text-slate-200'}`}></div>
           </div>
-          <span>{favouriteButtonActive ? removeFavourite : addFavourite}</span>
+          <span className="noto-medium">{favouriteButtonActive ? removeFavourite : addFavourite}</span>
         </>
       ) : null}
-      {parentComponent === 'ItemMyPage' && <span>ふどさんへの問合せ</span>}
+      {parentComponent === 'ItemMyPage' && <span className="noto-medium">ふどさんへの問合せ</span>}
     </div>
   );
 };

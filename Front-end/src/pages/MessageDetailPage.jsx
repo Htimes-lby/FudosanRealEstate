@@ -184,7 +184,7 @@ const MessageDetailPage = () => {
     const previousPage = searchParams.get('previous-page');
     return (
         <div className='flex flex-col items-center w-full'> 
-            <p className='text-[32px] font-medium text-center pt-20'>サスケさんとのメッセージ</p>
+            <p className='text-[32px] noto-regular text-center pt-20'>サスケさんとのメッセージ</p>
             <div className='flex flex-col items-center w-full min-h-[300px] mt-20'>
                 {
                     previousPage === 'itemDetailPage' &&
@@ -200,14 +200,14 @@ const MessageDetailPage = () => {
                 </div>
                 {
                     msgs.length === 0 &&
-                    <p className='text-center text-[32px] font-semibold'>No messages here</p>
+                    <p className='text-center text-[32px] noto-regular'>表示するメッセージがありません</p>
                 }
             </div>
             <div className='flex justify-center pt-[48px] pb-[45px]'>
                 <textarea  className="border-[1px] border-black pt-1 pl-2 rounded-sm" name="message" id="" cols="100" rows="4"></textarea>
             </div>
             <div className='flex justify-center mb-[100px]'>
-                <button className='bg-[#2A6484] text-[24px] text-white py-[20px] px-[50px] rounded-2xl'>メッセージを送信する</button>
+                <button className='py-[20px] px-[50px] rounded-2xl bg-[#2A6484] noto-medium text-xl text-white'>メッセージを送信する</button>
             </div> 
         </div>
     )

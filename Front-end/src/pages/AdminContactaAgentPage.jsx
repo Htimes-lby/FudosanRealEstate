@@ -119,7 +119,7 @@ const AdminContactAgentPage = () => {
     const agentId = searchParams.get('agentId');
 
     return(
-        <div className='flex flex-col items-center w-full bg-[#F1F1F1] pt-20'>
+        <div className='flex flex-col items-center w-full bg-[#F1F1F1] pt-20 noto-regular'>
             <div className='flex flex-col items-center w-[500px] px-4 py-3 bg-white rounded-lg border-[1px] border-black/30 cursor-pointer'>
                 <div className='flex items-center justify-between w-full'>
                     <div>{agent.agentName} {agent.companyName}</div>
@@ -146,7 +146,7 @@ const AdminContactAgentPage = () => {
                 <textarea className="border-[1px] border-black rounded-sm pt-1 pl-2" name="message" id="" cols="100" rows="4"></textarea>
             </div>
             <div className='flex justify-center mb-[100px]'>
-                <button className='bg-[#2A6484] text-[20px] text-white py-[20px] px-[50px] rounded-2xl'>メッセージを送信する</button>
+                <button className='py-[20px] px-[50px] rounded-2xl bg-[#2A6484] text-[20px] text-white noto-medium'>メッセージを送信する</button>
             </div> 
         </div>
     );

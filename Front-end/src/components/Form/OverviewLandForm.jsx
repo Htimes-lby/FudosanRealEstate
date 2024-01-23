@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default  function OverviewLandForm
+export default function 
 () {
 
   return (
@@ -12,7 +12,7 @@ export default  function OverviewLandForm
             </div>
             <div className='flex'>
                 <span className='text-[20px] pr-10'>希望価格</span>
-                <input type="number" placeholder='万円' className='w-[381px]  border-[1px] outline-none focus:border-blue-500 p-1 border-black rounded-md'/>
+                <input type="text" placeholder='万円' className='w-[381px] border-[1px] border-black rounded-md'/>
             </div>
         </div>
 
@@ -20,7 +20,7 @@ export default  function OverviewLandForm
            
             <div className='flex'>
                 <span className='text-[20px] pr-10'>土地面積</span>
-                <input type="number" placeholder='m²'  className='w-[381px]  border-[1px] outline-none focus:border-blue-500 p-1 border-black rounded-md'/>
+                <input type="text" placeholder='m²'  className='w-[381px] border-[1px] border-black rounded-md'/>
             </div>
         </div>
 
@@ -28,7 +28,7 @@ export default  function OverviewLandForm
            
             <div className='flex'>
                 <span className='text-[20px] pr-[60px]'>乾閉率</span>
-                <input type="number" placeholder='%' className='w-[381px]  border-[1px] outline-none focus:border-blue-500 p-1 border-black rounded-md'/>
+                <input type="text" placeholder='%' className='w-[381px] border-[1px] border-black rounded-md'/>
             </div>
         </div>
         
@@ -36,7 +36,7 @@ export default  function OverviewLandForm
            
             <div className='flex'>
                 <span className='text-[20px] pr-[60px]'>容積率</span>
-                <input type="number" placeholder='%' className='w-[381px]  border-[1px] outline-none focus:border-blue-500 p-1 border-black rounded-md'/>
+                <input type="text" placeholder='%' className='w-[381px] border-[1px] border-black rounded-md'/>
             </div>
         </div>
 
@@ -46,7 +46,7 @@ export default  function OverviewLandForm
            
             <div className='flex'>
                 <span className='text-[20px] pr-20'>構造</span>
-                <input type="text" placeholder='木造平屋'  className='w-[381px]  border-[1px] outline-none focus:border-blue-500 p-1 border-black rounded-md'/>
+                <input type="text" placeholder='木造平屋'  className='w-[381px] border-[1px] border-black rounded-md'/>
             </div>
         </div> 
         
