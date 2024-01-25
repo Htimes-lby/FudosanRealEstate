@@ -56,7 +56,7 @@ const PostREPage = () => {
             }
             // Make a single axios request for both form data and images
             const res = await axios.post(process.env.REACT_APP_API_BASE_URL + '/postRealEstate', formData)
-
+            console.log(res);
             await axios.post(process.env.REACT_APP_API_BASE_URL + '/api/upload', uploadDataArray, {
                 headers: {
                 'Content-Type': 'multipart/form-data',

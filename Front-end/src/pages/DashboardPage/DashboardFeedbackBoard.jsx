@@ -273,7 +273,7 @@ const DashboardFeedbackBoard = () => {
                         feedbacks.map((feedback, index) => {
                             return(
                                 feedback.category === 'bought' &&
-                                <div className='cursor-pointer' onClick={() => handleCardClicked(index)}>
+                                <div className='cursor-pointer' key={index}  onClick={() => handleCardClicked(index)}>
                                     <FeedbackCard feedback = {feedback}/>
                                 </div>  
                             );
@@ -289,7 +289,7 @@ const DashboardFeedbackBoard = () => {
                         feedbacks.map((feedback, index) => {
                             return(
                                 feedback.category === 'sold' &&
-                                <div className='cursor-pointer' onClick={() => handleCardClicked(index)}>
+                                <div className='cursor-pointer' key={index} onClick={() => handleCardClicked(index)}>
                                     <FeedbackCard feedback = {feedback}/>
                                 </div> 
                             );
