@@ -37,20 +37,34 @@ const PostREPage = () => {
         setConditionData(data);
     };
 
- 
 
-      const formData = {privacyDataArray, contentDataArray, overviewHouseDataArray }
+    const formData = {privacyDataArray, contentDataArray, overviewHouseDataArray }
         const handleSubmit = async (e) => {
         e.preventDefault();
     
         try {
-          // Send the form data to the backend
+
+        const formData = new FormData();
+
+            // Append other form data
+            formData.append('privacyDataArray', JSON.stringify(privacyDataArray));
+            formData.append('contentDataArray', JSON.stringify(contentDataArray));
+            formData.append('overviewHouseDataArray', JSON.stringify(overviewHouseDataArray));
+            // ... Append other form data as needed
+
+            // Append image files
+            console.log(uploadDataArray);   
+            for (const file of uploadDataArray) {
+                formData.append('images', file);
+            }
+            // Make a single axios request for both form data and images
+            const res = await axios.post(process.env.REACT_APP_API_BASE_URL + '/postRealEstate', formData)
+            console.log(res);
             await axios.post(process.env.REACT_APP_API_BASE_URL + '/api/upload', uploadDataArray, {
             headers: {
               'Content-Type': 'multipart/form-data',
             },
           });
-          const res = await axios.post(process.env.REACT_APP_API_BASE_URL + "/postRealEstate", formData );
         
           // Handle the response if needed
           console.log('Response from backend:', res.data);

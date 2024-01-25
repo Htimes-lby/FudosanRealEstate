@@ -1,24 +1,54 @@
-import { React, useState } from 'react';
+import { React, useState, useRef } from 'react';
 import { useHistory } from 'react-router-dom'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from 'axios';
+import toast, { Toaster } from 'react-hot-toast';
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 const eye = <FontAwesomeIcon icon={faEye} />;
 
 const SignUpPage = () => {
+    const emailRef = useRef(null);
+    const passwordRef = useRef(null);
+    const firstGanaRef = useRef(null);
+    const firstGanjiRef = useRef(null);
+    const lastGanaRef = useRef(null);
+    const lastGanjiRef = useRef(null);
     const history = useHistory();
     const [passwordShown, setPasswordShown] = useState(false);
-    const [password, setPassword] = useState();
-    const [email, setEmail] = useState();
+    const [passwords, setPasswords] = useState('');
+    const [email, setEmail] = useState('');
     const [firstNameGana, setFirstNameGana] = useState('');
     const [lastNameGana, setLastNameGana] = useState('');
     const [firstNameGanji, setFirstNameGanji] = useState('');
     const [lastNameGanji, setLastNameGanji] = useState('');
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const name = {firstNameGanji, lastNameGanji, firstNameGana, lastNameGana};
-        const payload = {email, name, password};
-    }
+        try {
+            const payload = {email, passwords, firstNameGanji, lastNameGanji, firstNameGana, lastNameGana};
+            const res = await axios.post(process.env.REACT_APP_API_BASE_URL + '/signup', payload)
+            console.log(res.data.message)
 
+                if(res.data.message === 'Invalid email format. Must contain "@".'){
+                toast.error('Correct input mail!')
+                }
+                else{
+                    res.data.message === 'Already exist!'
+                    ? toast.error('Email already exists!')
+                    : toast.success('Signup successful!');
+                }
+            
+            
+            emailRef.current.value = '';
+            passwordRef.current.value = '';
+            firstGanaRef.current.value = '';
+            lastGanjiRef.current.value = '';
+            firstGanjiRef.current.value = '';
+            lastGanaRef.current.value = '';
+            } catch (error) {
+              // Handle errors
+            console.error('Error sending form data:', error);
+            }
+    }
     const togglePasswordVisibility = () => {
         setPasswordShown(passwordShown ? false : true);
     };
@@ -28,7 +58,9 @@ const SignUpPage = () => {
 
     return (
         <>
+        <Toaster position="top-right" reverseOrder={false} />
             <div className= ' w-full h-[900px] bg-image-blur bg-cover'></div>
+            
             <div className= ' absolute flex flex-col items-center top-[18%] left-[35%] w-[550px] h-[680px] bg-black/50 z-10 border-white border-2 rounded-lg'>
                 <h1 className='text-[28px] text-white font-semibold pt-[24px]'>サインアップ</h1>
                 <form className='flex flex-col items-center flex-wrap w-[70%]' onSubmit={(e) => handleSubmit(e)}>
@@ -38,7 +70,9 @@ const SignUpPage = () => {
                             className='h-[35px] rounded-md pl-2' 
                             type="text"
                             id="email"
+                            ref={emailRef}
                             name="emailname"
+                            required={true}
                             onChange={(e) => setEmail(e.target.value)}
                         />
                     </div>
@@ -49,7 +83,9 @@ const SignUpPage = () => {
                             type={passwordShown ? "text" : "password"}
                             id="password"
                             name="password"
-                            onChange={(e) => setPassword(e.target.value)}
+                            ref={passwordRef}
+                            required={true}
+                            onChange={(e) => setPasswords(e.target.value)}
                         />
                         <i className=' absolute bottom-1 right-3 cursor-pointer' onClick={togglePasswordVisibility}>{eye}</i>
                     </div>
@@ -62,6 +98,8 @@ const SignUpPage = () => {
                                 type="text"
                                 id="lastnameganji"
                                 name="lastnameganji"
+                                ref={lastGanjiRef}
+                                required={true}
                                 onChange={(e) => setLastNameGanji(e.target.value)}
                             />
                             <label htmlFor="" className='font-normal text-[16px] text-white'>(名)</label>
@@ -70,6 +108,8 @@ const SignUpPage = () => {
                                 type="text"
                                 id="firstnameganji"
                                 name="firstnameganji"
+                                ref={firstGanjiRef}
+                                required={true}
                                 onChange={(e) => setFirstNameGanji(e.target.value)}
                             />
                         </div>
@@ -80,6 +120,8 @@ const SignUpPage = () => {
                                 type="text"
                                 id="lastnamegana"
                                 name="lastnamegana"
+                                ref={lastGanaRef}
+                                required={true}
                                 onChange={(e) => setLastNameGana(e.target.value)}
                             />
                             <label htmlFor="" className='font-normal text-[16px] text-white'>(めい)</label>
@@ -88,6 +130,8 @@ const SignUpPage = () => {
                                 type="text"
                                 id="firstnamegana"
                                 name="firstnamegana"
+                                ref={firstGanaRef}
+                                required={true} 
                                 onChange={(e) => setFirstNameGana(e.target.value)}
                             />
                         </div>
@@ -96,6 +140,7 @@ const SignUpPage = () => {
                     <button className='mt-10 w-full h-[50px] rounded-md bg-[#2A6484] text-white font-semibold border-white/50 border-2 text-[22px]' type='submit'>アカウント作成 </button>
                     <button className='mt-3 w-full h-[50px] rounded-md bg-[#2A6484] text-white font-semibold border-white/50 border-2 text-[19px]' onClick={handleNavigateToLogIn}>サインアップページに移動 </button>
                 </form>
+               
             </div>
         </>
     )

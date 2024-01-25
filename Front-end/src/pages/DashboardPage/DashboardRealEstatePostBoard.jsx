@@ -361,8 +361,8 @@ const DashboardRealEstatePostBoard = () => {
                 {
                     realEstates.map((realEstate, index) => {
                         return(
-                            <div onClick={() => handleRealEstateCardClicked(index)} className='cursor-pointer'>
-                                <RealEstateSmallCard key = {index} realEstate = {realEstate}/>
+                            <div onClick={() => handleRealEstateCardClicked(index) } key = {index} className='cursor-pointer'>
+                                <RealEstateSmallCard  realEstate = {realEstate}/>
                             </div>
                         );
                     })
