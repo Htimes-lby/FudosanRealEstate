@@ -108,15 +108,15 @@ const ItemBoardPage = () => {
                 ))}
             </div>
             <div className='flex flex-col items-center'>
-                <div className='pt-[60px]' >
+                <div className='pt-[60px] noto-medium' >
                     <div className='flex gap-[22px]'>
-                        <span className="text-[#02540A] text-[16px] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'searchByProvince')}>北海道</span>
+                        <span className="text-[#02540A] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'searchByProvince')}>北海道</span>
                         <div onClick={(e) => handleClick(e, 'searchByCity')} className=' cursor-pointer'>
                             <span>北海道</span>
                         </div>
                     </div>
                     <div className='flex gap-[22px]'>
-                        <span className="text-[#02540A] text-[16px] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'searchByProvince')}>東北</span>
+                        <span className="text-[#02540A] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'searchByProvince')}>東北</span>
                         <div onClick={(e) => handleClick(e, 'searchByCity')} className=' cursor-pointer'>
                             <span className='pr-[5px]'>青森</span>
                             <span className='pr-[5px]'>岩手</span>
@@ -127,7 +127,7 @@ const ItemBoardPage = () => {
                         </div>
                     </div>
                     <div className='flex gap-[22px]'>
-                        <span className="text-[#02540A] text-[16px] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'searchByProvince')}>関東</span>
+                        <span className="text-[#02540A] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'searchByProvince')}>関東</span>
                         <div onClick={(e) => handleClick(e, 'searchByCity')} className=' cursor-pointer'>
                             <span className='pr-[5px]'>茨城</span>
                             <span className='pr-[5px]'>栃木</span>
@@ -140,7 +140,7 @@ const ItemBoardPage = () => {
                         </div>
                     </div>
                     <div className='flex gap-[22px]'>
-                        <span className="text-[#02540A] text-[16px] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'searchByProvince')}>甲信越</span>
+                        <span className="text-[#02540A] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'searchByProvince')}>甲信越</span>
                         <div onClick={(e) => handleClick(e, 'searchByCity')} className=' cursor-pointer'>
                             <span className='pr-[5px]'>新潟</span>
                             <span className='pr-[5px]'>長野</span>
@@ -150,7 +150,7 @@ const ItemBoardPage = () => {
                         
                     </div>
                     <div className='flex gap-[22px]'>
-                        <span className="text-[#02540A] text-[16px] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'searchByProvince')}>北陸</span>
+                        <span className="text-[#02540A] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'searchByProvince')}>北陸</span>
                         <div onClick={(e) => handleClick(e, 'searchByCity')} className=' cursor-pointer'>
                             <span className='pr-[5px]'>富山</span>
                             <span className='pr-[5px]'>石川</span>
@@ -160,7 +160,7 @@ const ItemBoardPage = () => {
                         
                     </div>
                     <div className='flex gap-[22px]'>
-                        <span className="text-[#02540A] text-[16px] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'searchByProvince')}>東海</span>
+                        <span className="text-[#02540A] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'searchByProvince')}>東海</span>
                         <div onClick={(e) => handleClick(e, 'searchByCity')} className=' cursor-pointer'>
                             <span className='pr-[5px]'>静岡</span>
                             <span className='pr-[5px]'>愛知</span>
@@ -171,7 +171,7 @@ const ItemBoardPage = () => {
                         
                     </div>
                     <div className='flex gap-[22px]'>
-                        <span className="text-[#02540A] text-[16px] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'searchByProvince')}>近畿</span>
+                        <span className="text-[#02540A] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'searchByProvince')}>近畿</span>
                         <div onClick={(e) => handleClick(e, 'searchByCity')} className=' cursor-pointer'>
                             <span className='pr-[5px]'>滋賀</span>
                             <span className='pr-[5px]'>京都</span>
@@ -184,7 +184,7 @@ const ItemBoardPage = () => {
                         
                     </div>
                     <div className='flex gap-[22px]'>
-                        <span className="text-[#02540A] text-[16px] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'searchByProvince')}>中国</span>
+                        <span className="text-[#02540A] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'searchByProvince')}>中国</span>
                         <div onClick={(e) => handleClick(e, 'searchByCity')} className=' cursor-pointer'>
                             <span className='pr-[5px]'>岡山</span>
                             <span className='pr-[5px]'>広島</span>
@@ -196,7 +196,7 @@ const ItemBoardPage = () => {
                         
                     </div>
                     <div className='flex gap-[22px]'>
-                        <span className="text-[#02540A] text-[16px] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'searchByProvince')}>四国</span>
+                        <span className="text-[#02540A] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'searchByProvince')}>四国</span>
                         <div onClick={(e) => handleClick(e, 'searchByCity')} className=' cursor-pointer'>
                             <span className='pr-[5px]'>香川</span>
                             <span className='pr-[5px]'>徳島</span>
@@ -207,7 +207,7 @@ const ItemBoardPage = () => {
                         
                     </div>
                     <div className='flex gap-[22px]'>
-                        <span className="text-[#02540A] text-[16px] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'searchByProvince')}>九州</span>
+                        <span className="text-[#02540A] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'searchByProvince')}>九州</span>
                         <div onClick={(e) => handleClick(e, 'searchByCity')} className=' cursor-pointer'>
                             <span className='pr-[5px]'>福岡</span>
                             <span className='pr-[5px]'>佐賀</span>
@@ -219,13 +219,13 @@ const ItemBoardPage = () => {
                         </div>
                     </div>
                     <div className='flex gap-[22px]'>
-                        <span className="text-[#02540A] text-[16px] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'searchByProvince')}>沖繩</span>
+                        <span className="text-[#02540A] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'searchByProvince')}>沖繩</span>
                         <div onClick={(e) => handleClick(e, 'searchByCity')} className=' cursor-pointer'>
                             <span className='pr-[5px]'>沖繩</span>                                                                                                                                        
                         </div>
                     </div>
                     <div className='flex gap-[22px]'>
-                        <span className="text-[#02540A] text-[16px] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'searchByProvince')}>海外</span>
+                        <span className="text-[#02540A] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'searchByProvince')}>海外</span>
                         <div onClick={(e) => handleClick(e, 'searchByCity')} className=' cursor-pointer'>
                             <span className='pr-[5px]'>豪州</span>
                             <span className='pr-[5px]'>北米</span>
@@ -238,13 +238,13 @@ const ItemBoardPage = () => {
                     <GoogleMapComponent />
                 </div>
             </div>
-            <div className={`absolute top-32 right-32 text-[16px] font-medium border-b-2 border-b-emerald-600 py-1 px-3 cursor-pointer ${displayAgents ? 'hidden' : 'block'}`} onClick={() => handleDisplayAgentsToggle(true)}><div className = 'pr-3 fa-solid fa-arrow-left'></div>エージェントを見る</div>
+            <div className={`absolute top-32 right-32 text-[16px] noto-medium border-b-2 border-b-emerald-600 py-1 px-3 cursor-pointer ${displayAgents ? 'hidden' : 'block'}`} onClick={() => handleDisplayAgentsToggle(true)}><div className = 'pr-3 fa-solid fa-arrow-left'></div>エージェントを見る</div>
             {
                 displayAgents &&
                 <div className='relative mt-4 mb-[24px] p-2  bg-white shadow-lg rounded-2xl'>
-                    <div className='absolute top-4 right-6 text-sm font-semibold cursor-pointer' onClick={() => handleDisplayAgentsToggle(false)}>隠れる<div className = 'pl-2 fa-solid fa-arrow-right'></div></div>
+                    <div className='absolute top-4 right-6 text-sm noto-bold cursor-pointer' onClick={() => handleDisplayAgentsToggle(false)}>隠れる<div className = 'pl-2 fa-solid fa-arrow-right'></div></div>
                     <div className='flex flex-col items-center w-[600px] h-[800px]  pt-[50px] pb-[55px] bg-white text-center  overflow-y-scroll no-scrollbar' >
-                        <div className='flex relative border-b-2 pt-[2px] border-black w-[500px] transition-all duration-300'>
+                        <div className='flex relative border-b-2 pt-[2px] border-black w-[500px] noto-medium transition-all duration-300'>
                             <span className=' w-[33%] cursor-pointer pb-3' onClick={() => setActiveAgentCategory('realEstateAgent')}>不動産業者</span>
                             <span className=' w-[34%] cursor-pointer' onClick={() => setActiveAgentCategory('judicialscrivener')}>司法書士</span>
                             <span className=' w-[33%] cursor-pointer' onClick={() => setActiveAgentCategory('invester')}>投資家</span>

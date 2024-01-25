@@ -9,8 +9,6 @@ import UploadImageForm from "../components/Form/UploadImageForm";
 import ConditionForm from "../components/Form/ConditionForm"
 import axios from 'axios'
 
-
-
 const PostREPage = () => {
     const [privacyDataArray, setPrivacyDataArray] = useState([]);
     const [contentDataArray, setContentDataArray] = useState([]);
@@ -19,24 +17,29 @@ const PostREPage = () => {
     const [conditionData, setConditionData] = useState("");
 
     const handlePrivacyDataArray = (data) => {
+       
         setPrivacyDataArray(data);
     };
     const handleContentDataArray = (data) => {
+       
         setContentDataArray(data);
     };
     const handleOverviewDataArray = (data) => {
+       
         setOverviewDataArray(data);
     };
     const handleUploadDataArray = (data) => {
+       
         setUploadDataArray(data);
     };
     const handleconditionDataArray = (data) => {
+       
         setConditionData(data);
     };
-    
 
+
+    const formData = {privacyDataArray, contentDataArray, overviewHouseDataArray }
         const handleSubmit = async (e) => {
-            
         e.preventDefault();
     
         try {
@@ -58,16 +61,18 @@ const PostREPage = () => {
             const res = await axios.post(process.env.REACT_APP_API_BASE_URL + '/postRealEstate', formData)
             console.log(res);
             await axios.post(process.env.REACT_APP_API_BASE_URL + '/api/upload', uploadDataArray, {
-                headers: {
-                'Content-Type': 'multipart/form-data',
-                },
-            });
-
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          });
+        
+          // Handle the response if needed
+          console.log('Response from backend:', res.data);
         } catch (error) {
           // Handle errors
-        console.error('Error sending form data:', error);
+          console.error('Error sending form data:', error);
         }
-        };
+      };
 
     
     const myImage = 
@@ -194,6 +199,7 @@ const PostREPage = () => {
                                 <button type='submit' className='bg-[#2A6484] text-white px-[115px] py-[14px] text-[24px] rounded-[20px]'>提出</button>
                             </div>
                         </form>
+                       
                     </div>
                 </div>
             </div>

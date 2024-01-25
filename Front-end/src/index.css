@@ -10,6 +10,38 @@
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css);
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap");
 
+/* Noto Fonts */
+@font-face {
+  font-family: 'Noto-Regular';
+  src: url('./assets/Font/Noto-regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Noto-Medium';
+  src: url('./assets/Font/Noto-medium.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Noto-Semibold';
+  src: url('./assets/Font/Noto-semibold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Noto-Bold';
+  src: url('./assets/Font/Noto-bold.ttf') format('truetype');
+}
+
+/* Font Classes */
+.noto-regular{
+  font-family: 'Noto-Regular';
+}
+.noto-medium{
+  font-family: 'Noto-Medium';
+}
+.noto-semibold{
+  font-family: 'Noto-Semibold';
+}
+.noto-bold{
+  font-family: 'Noto-Bold';
+}
+
 /* Root CSS */
 body {
   font-family: "Poppins", sans-serif;
@@ -18,6 +50,9 @@ body {
 ul{
   margin: 0;
   padding: 0;
+}
+td{
+  font-family: 'Noto-Medium';
 }
 
 
@@ -334,11 +369,8 @@ a, a:hover, a:focus {
   background: white;
 }
 .rc-accordion-body p{
-  font-weight: 500;
-  margin-bottom: 0;
-  font-size: 12px;
-  line-height: 24px;
-  color: black;
+
+
   /* color: #727E8C; */
 }
 .rc-collapse{

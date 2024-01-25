@@ -11,7 +11,7 @@ const RealEstateSmallCard = ( props ) =>{
     return(
         <div className="relative w-[240px]  border pb-3 shadow-lg ">
             {/* <div className="absolute top-[2px] right-1"><FavouriteStar/></div> */}
-            <div className="px-4 pt-3 text-center text-[10px] line-clamp-3" >
+            <div className="px-4 pt-3 text-center text-xs noto-medium line-clamp-3" >
                 <p>{briefDescription}</p>
             </div>
             <div className="flex justify-center mt-2 mb-3 w-[165px] h-[100px] mx-auto">

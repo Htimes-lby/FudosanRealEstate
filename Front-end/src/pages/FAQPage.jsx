@@ -210,7 +210,7 @@ const FAQPage = () => {
 
     return (
         <div className='w-full my-[70px]'>
-            <p className='mb-[55px] text-[32px] font-medium text-center'>よくある質問</p>
+            <p className='mb-[55px] text-[32px] text-center noto-regular'>よくある質問</p>
             <div className='flex flex-col w-[60%] mx-auto'>
                 {faqs.map((faq, index) => {
                     return (

@@ -151,11 +151,11 @@ const ContactPostPage = () => {
             <RealEstateBigCard realEstate={realEstate}></RealEstateBigCard>
             {
                 contactMsgs.length ===0 &&
-                <div className='w-full min-h-[100px] mt-[70px] text-[32px] font-semibold text-center'>No messages yet</div>
+                <div className='w-full min-h-[100px] mt-[70px] text-3xl noto-medium text-center'>表示するメッセージがありません</div>
             }
             {
                 contactMsgs.map((message, index) => (
-                    <div className={`relative w-[1200px] pt-6 pb-16 pl-12 pr-8 my-4 border-[1px] border-[#2A6484]/60 ${message.category === 'query' ? 'bg-[#F2ECCD]' : 'bg-white'}`}>
+                    <div className={`relative w-[1200px] pt-10 pb-16 pl-12 pr-8 my-4 border-[1px] border-[#2A6484]/60 text-sm noto-regular ${message.category === 'query' ? 'bg-[#F2ECCD]' : 'bg-white'}`}>
                         <div>{message.content}</div>
                         <div className = 'absolute right-6 bottom-6'>{message.date}</div>
                     </div>
@@ -165,7 +165,7 @@ const ContactPostPage = () => {
                 <textarea className="border-[1px] border-black rounded-sm pt-1 pl-2" name="message" id="" cols="100" rows="4"></textarea>
             </div>
             <div className='flex justify-center mb-[100px]'>
-                <button className='bg-[#2A6484] text-[20px] text-white py-[20px] px-[50px] rounded-2xl'>メッセージを送信する</button>
+                <button className='py-[20px] px-[50px] rounded-2xl bg-[#2A6484] noto-medium text-xl text-white '>メッセージを送信する</button>
             </div> 
         </div>
     )

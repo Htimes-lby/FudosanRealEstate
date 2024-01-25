@@ -673,12 +673,11 @@ const realEstates = [
         realEstateCategory: 'building'
     },
 ]
-export default function ItemDetailPage() {
+const ItemDetailPage = () => {
 
     const location = useLocation();
     const history = useHistory();
     const searchParams = new URLSearchParams(location.search);
-    const flag = searchParams.get('flag');
     const index = searchParams.get('index');
     const realEstateDisplayData = realEstates[index];
     const {basicInfo, briefDescription, fullDescription, address, images} = realEstateDisplayData;
@@ -694,7 +693,7 @@ export default function ItemDetailPage() {
     }
   return (
     <div className=' flex flex-col items-center pb-[120px] pt-[92px] w-full'>
-        <p className='text-[32px] text-center'>{address.province}{address.city}</p>
+        <p className='pb-10 text-3xl text-center noto-medium'>{address.province}{address.city}</p>
 
         <div className='mt-[28px] w-full'>
             <Carousel images = {images}/>
@@ -712,14 +711,16 @@ export default function ItemDetailPage() {
                     realEstateDisplayData.realEstateCategory === 'land' && <BasicTableLand tableData = {basicInfo} fontSize = {"text-[24px]"} width = {"w-[500px]"}  />
                 }             
             </div>
-            <p className='text-[24px]'>{briefDescription}</p>
-            <p className='text-[16px] pt-[56px]'>{fullDescription}</p>
+            <div className='w-[90%] mx-auto text-xl noto-regular'>{briefDescription}</div>
+            <div className=' border-2 border/60-black p-3 text-base noto-regular mt-14'>{fullDescription}</div>
 
             <div className='flex justify-center gap-[50px] w-full mt-20'>
-                <div className='flex w-[380px] h-[80px] justify-center items-center bg-[#2A6484] text-white text-[24px] rounded-xl cursor-pointer' onClick={sendMsgButtonClicked}>メッセージを送信する</div>
+                <div className='flex justify-center items-center w-[380px] h-[80px] bg-[#2A6484] rounded-xl noto-medium text-white text-[24px] cursor-pointer' onClick={sendMsgButtonClicked}>メッセージを送信する</div>
                 <div onClick={handleFavouriteButtonClicked}><FavouriteButton parentComponent='realEstateDetailPage' favouriteButtonActive={favouriteButtonActive}/></div>
             </div>
         </div>
     </div>
   )
 }
+
+export default ItemDetailPage;

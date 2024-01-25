@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 
-export default function OverviewHouseForm ( props ) {
+export default function ( props ) {
 
     const [budget, setBudget] = useState('');
     const [layout, setLayout] = useState('');
@@ -24,7 +24,7 @@ export default function OverviewHouseForm ( props ) {
             </div>
             <div className='flex'>
                 <span className='text-[20px] pr-10'>希望価格</span>
-                <input type="number" placeholder='万円' className='w-[381px]  border-[1px] outline-none focus:border-blue-500 p-1 border-black rounded-md' onChange={(e) => setBudget(e.target.value)}/>
+                <input type="text" placeholder='万円' className='w-[381px] border-[1px] border-black rounded-md' onChange={(e) => setBudget(e.target.value)}/>
             </div>
         </div>
 
@@ -32,7 +32,7 @@ export default function OverviewHouseForm ( props ) {
            
             <div className='flex'>
                 <span className='text-[20px] pr-[60px]'>間取り</span>
-                <input type="number" placeholder='4LDK' className='w-[381px]  border-[1px] outline-none focus:border-blue-500 p-1 border-black rounded-md' onChange={(e) => setLayout(e.target.value)}/>
+                <input type="text" placeholder='4LDK' className='w-[381px] border-[1px] border-black rounded-md' onChange={(e) => setLayout(e.target.value)}/>
             </div>
         </div>
 
@@ -40,7 +40,7 @@ export default function OverviewHouseForm ( props ) {
            
             <div className='flex'>
                 <span className='text-[20px] pr-10'>土地面積</span>
-                <input type="number" placeholder='m²' className='w-[381px]  border-[1px] outline-none focus:border-blue-500 p-1 border-black rounded-md' onChange={(e) => setLandarea(e.target.value)}/>
+                <input type="text" placeholder='m²' className='w-[381px] border-[1px] border-black rounded-md' onChange={(e) => setLandarea(e.target.value)}/>
             </div>
         </div>
         
@@ -48,7 +48,7 @@ export default function OverviewHouseForm ( props ) {
            
             <div className='flex'>
                 <span className='text-[20px] pr-10'>建物面積</span>
-                <input type="number" placeholder='m²' className='w-[381px]  border-[1px] outline-none focus:border-blue-500 p-1 border-black rounded-md' onChange={(e) => setBuildingarea(e.target.value)}/>
+                <input type="text" placeholder='m²' className='w-[381px] border-[1px] border-black rounded-md' onChange={(e) => setBuildingarea(e.target.value)}/>
             </div>
         </div>
 
@@ -56,7 +56,7 @@ export default function OverviewHouseForm ( props ) {
            
             <div className='flex'>
                 <span className='text-[20px] pr-10'>入居日付</span>
-                <input type="text"  className='w-[381px]  border-[1px] outline-none focus:border-blue-500 p-1 border-black rounded-md' onChange={(e) => setDeadline(e.target.value)}/>
+                <input type="text"  className='w-[381px] border-[1px] border-black rounded-md' onChange={(e) => setDeadline(e.target.value)}/>
             </div>
         </div>
 
@@ -64,7 +64,7 @@ export default function OverviewHouseForm ( props ) {
            
             <div className='flex'>
                 <span className='text-[20px] pr-20'>構造</span>
-                <input type="number" placeholder='木造平屋'  className='w-[381px]  border-[1px] outline-none focus:border-blue-500 p-1 border-black rounded-md' onChange={(e) => setParking(e.target.value)}/>
+                <input type="text" placeholder='木造平屋'  className='w-[381px] border-[1px] border-black rounded-md' onChange={(e) => setParking(e.target.value)}/>
             </div>
         </div>  
 

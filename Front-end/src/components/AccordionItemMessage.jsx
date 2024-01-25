@@ -12,9 +12,9 @@ const AccordionItemMessage = (props) => {
 
     return(
         <div className={`border-[1px] border-[#2A6484] ${sender === username ? '' : 'bg-[#F2ECCD]/70'}`}>
-            <div className=" flex flex-row justify-between items-center p-3 cursor-pointer" onClick={() => {handleToggle()}}>
+            <div className=" flex flex-row justify-between items-center p-3 noto-regular cursor-pointer" onClick={() => {handleToggle()}}>
                 <div className=" text-[20px] ml-4">{sender}</div>
-                {!active && <div className=" overflow-hidden p-3 whitespace-nowrap w-[65%] max-h-full text-ellipsis">{content}</div>}
+                {!active && <div className=" overflow-hidden p-3 whitespace-nowrap w-[65%] max-h-full text-sm text-ellipsis">{content}</div>}
                 <div className=" text-[16px] mr-4">{date}</div>
             </div>
             {active && <div className="p-3 w-[90%] h-auto mx-auto">{content}</div>}
