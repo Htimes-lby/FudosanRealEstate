@@ -37,7 +37,7 @@ const Header = () => {
         }
     }, [])
     return (
-        <div className="w-full h-[60px] py-5 bg-[#32769b] box-border sticky top-0 z-50 noto-medium">
+        <div className="w-full h-[60px] py-5 bg-[#32769b] box-border sticky top-0 z-[10000] noto-medium">
             <div className="max-w-[1600px] text-center my-0 mx-auto">
                 {/* <div className='text-[44px] leading-[10px] float-left text-white font-medium ml-[100px]'><Link to='/dashboard' className = 'text-current no-underline transition-all duration-75 hover:text-white/40'>ふどうさん<span className='text-[28px] ml-2 font-medium'>市場</span></Link></div> */}
                 
@@ -64,12 +64,12 @@ const Header = () => {
                     </div>
                     <div className=' inline-block text-[18px] leading-[40px] text-white px-3'><Link to='/login' className = 'text-current no-underline transition-all duration-75 hover:text-white/40'>ログイン</Link></div>
                     <div className=' relative inline-block' ref={adminRef} onClick={handleToggleAdminPage}>
-                        <div className=' text-[18px] leading-[40px] text-white px-3 cursor-pointer'>Admin</div>
+                        <div className=' text-[18px] leading-[40px] text-white px-3 cursor-pointer'>管理者</div>
                         <div className= {`absolute top-[32px] left-[-40px] min-w-[200px] px-auto pt-3 bg-[#32769b] transition-all duration-300 ${adminPageActive ? 'inline-block' : 'hidden'}`}>
-                            <div className=' text-[18px] py-3 text-white border-y border-y-white/50'><Link to='/admin-view-agent' className = 'text-current no-underline transition-all duration-75 hover:text-white/40'>ApproveAgent</Link></div>
-                            <div className=' text-[17px] py-3 text-white border-b border-b-white/50'><Link to='/admin-approve-realestate-list' className = 'text-current no-underline transition-all duration-75 hover:text-white/40'>ApproveRE</Link></div>
-                            <div className=' text-[17px] py-3 text-white border-b border-b-white/50'><Link to='/favourite' className = 'text-current no-underline transition-all duration-75 hover:text-white/40'>お気に入り</Link></div>
-                            <div className=' text-[17px] py-3 text-white'><Link to='/contact-general' className = 'text-current no-underline transition-all duration-75 hover:text-white/40'>総合窓口</Link></div>
+                            <div className=' text-[18px] py-3 text-white border-y border-y-white/50'><Link to='/admin-view-agent' className = 'text-current no-underline transition-all duration-75 hover:text-white/40'>エージェントを投稿</Link></div>
+                            <div className=' text-[17px] py-3 text-white border-b border-b-white/50'><Link to='/admin-approve-realestate-list' className = 'text-current no-underline transition-all duration-75 hover:text-white/40'>不動産を投稿</Link></div>
+                            {/* <div className=' text-[17px] py-3 text-white border-b border-b-white/50'><Link to='/favourite' className = 'text-current no-underline transition-all duration-75 hover:text-white/40'>お気に入り</Link></div>
+                            <div className=' text-[17px] py-3 text-white'><Link to='/contact-general' className = 'text-current no-underline transition-all duration-75 hover:text-white/40'>総合窓口</Link></div> */}
                         </div>
                     </div>
                 </div>

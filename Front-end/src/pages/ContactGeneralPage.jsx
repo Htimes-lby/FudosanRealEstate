@@ -44,7 +44,7 @@ const ContactGeneralPage = ({senderName, receiveName}) => {
                 <p className='inline-block py-10 px-[15px] underline underline-offset-8 text-[24px] font-normal cursor-pointer' onClick={handleNavigateToFaqClicked}>良くあるご質問はこちら <p className = 'pr-3 fa-solid fa-arrow-right underline underline-offset-8 '></p></p>
                 {
                     contactMessages.map((contactMessage, index) =>
-                        (<div key={index} className={`w-full h-auto p-10 mb-10 ${contactMessage.sender === 'minato' ? 'bg-white' : 'bg-[#F2ECCD]'}`}>
+                        (<div key={index} className={`w-full h-auto border-2 border-[#2A6484]/40 p-10 mb-10 ${contactMessage.sender === 'minato' ? 'bg-white' : 'bg-[#F2ECCD]'}`}>
                             <p className='text-[20px] font-semibold mb-8'>{contactMessage.sender}さん → {contactMessage.receiver}さん</p>
                             <p className='text-[16px]'>{contactMessage.content}</p>
                         </div>)

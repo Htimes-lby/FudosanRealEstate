@@ -705,7 +705,7 @@ const ItemListPage = () => {
                 <i className="fa-solid fa-magnifying-glass text-[40px] cursor-pointer" onClick={magnifierToggleHandler}></i>
             </div>
             
-            <div className=' bg-white flex justify-end fixed z-[100] right-10 top-[15%]'>
+            <div className=' bg-white flex justify-end fixed z-[100] right-10 top-[20%]'>
                 {isOpen && <SearchBoard />}              
             </div>
 

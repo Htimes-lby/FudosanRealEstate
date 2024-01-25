@@ -1,6 +1,6 @@
 import React, {useState, useRef} from "react";
 
-const SearchBoard = () =>{
+const SearchBoard = () => {
 
     const [value, setValue] = useState({
         disp: '',
@@ -10,7 +10,7 @@ const SearchBoard = () =>{
         land: '',
         photo: '',
         receive: '',
-        post: ''
+        post: '',
     });
 
     const inputDisp = useRef(null);
@@ -36,14 +36,12 @@ const SearchBoard = () =>{
         inputPhoto.current.value = "";
         inputReceive.current.value = "";
         inputPost.current.value = "";
-        
-        
-      }
+    }
     return(
         <div className="z-10 noto-regular">
             <div className="w-[355px] shadow-2xl border-2 border-black/40 rounded-xl" id="search">
                 <div className="flex justify-end">
-                    <i class=" fa-solid fa-x text-[30px]  pr-[30px] pt-[24px]" onClick={closenav}></i>
+                    <i class=" fa-solid fa-x text-lg pr-[30px] pt-[24px] cursor-pointer" onClick={closenav}></i>
                 </div>
                 <div className="flex">
                     <i className="fa-solid fa-magnifying-glass text-2xl pl-[42px] pt-[4px]"></i>
@@ -66,11 +64,9 @@ const SearchBoard = () =>{
                         <option className="text-[18px] font-bold " value="価格順" disabled={true}>価格順</option>
                         <option className="text-[16px]"  value="安い順" >&nbsp;安い順</option>
                         <option className="text-[16px]"  value="高い順" >&nbsp;高い順</option>
-
                     </select>
                 </div>
-                    <p className=" text-base noto-medium mx-auto pl-[35%] pt-6 pb-3">絞込み検索</p>                
-                
+                    <p className=" text-base noto-medium mx-auto pl-[35%] pt-6 pb-3">絞込み検索</p>
                     <div className="pt-[16px] flex items-center justify-between pr-14">
                         <p className="text-sm noto-medium pl-9 ">価格未定物件</p>
                         <select
@@ -81,7 +77,6 @@ const SearchBoard = () =>{
                             <option className="text-[16px]"  value="" ></option>
                             <option className="text-[16px]"  value="表示する" >&nbsp;表示する</option>
                             <option className="text-[16px]"  value="表示しない" >&nbsp;表示しない</option>
-                            
                         </select>
                     </div>
                     <div className="pt-[16px] flex items-center justify-between pr-14">
@@ -92,7 +87,7 @@ const SearchBoard = () =>{
                         <p className="text-sm noto-medium pl-9 ">価格下限</p>
                         <input className="border-[1px] outline-none focus:border-blue-500 p-1 rounded-md border-black w-[145px]" ref={inputBottomPrice} placeholder="万円" type="text" onChange={event => setValue(pre => {return {...pre, bottomprice: event.target.value}})} />
                     </div>
-                    <div className="pt-[16px] flex items-center justify-between pr-14">
+                    {/* <div className="pt-[16px] flex items-center justify-between pr-14">
                         <p className="text-sm noto-medium pl-9 ">土地/建物</p>
                         <select
                             className="border-[1px] outline-none focus:border-blue-500 p-1 rounded-md border-black w-[145px]"
@@ -103,10 +98,9 @@ const SearchBoard = () =>{
                             <option className="text-[16px]"  value="指定なし" >&nbsp;指定なし</option>
                             <option className="text-[16px]"  value="建物あり" >&nbsp;建物あり</option>
                             <option className="text-[16px]"  value="土地のみ" >&nbsp;土地のみ</option>
-                            
                         </select>
-                    </div>
-                    <div className="pt-[16px] flex items-center justify-between pr-14">
+                    </div> */}
+                    {/* <div className="pt-[16px] flex items-center justify-between pr-14">
                         <p className="text-sm noto-medium pl-9 ">写真</p>
                         <select
                             className="border-[1px] outline-none focus:border-blue-500 p-1 rounded-md border-black w-[145px]"
@@ -117,9 +111,8 @@ const SearchBoard = () =>{
                             <option className="text-[16px]"  value="指定なし" >&nbsp;指定なし</option>
                             <option className="text-[16px]"  value="ありのみ" >&nbsp;ありのみ</option>
                             <option className="text-[16px]"  value="なしも表示" >&nbsp;なしも表示</option>
-                            
                         </select>
-                    </div>
+                    </div> */}
                     {/* <div className="pt-[16px] flex items-center justify-between pr-14">
                         <p className="text-sm noto-medium pl-9 ">受付休止物件</p>
                         <select
@@ -129,8 +122,7 @@ const SearchBoard = () =>{
                             ref={inputReceive}>
                             <option className="text-[16px]"  value="" ></option>
                             <option className="text-[16px]"  value="表示する" >&nbsp;表示する</option>
-                            <option className="text-[16px]"  value="表示しない" >&nbsp;表示しない</option>
-                                                
+                            <option className="text-[16px]"  value="表示しない" >&nbsp;表示しない</option>             
                         </select>
                     </div>  
                     <div className="pt-[16px] flex items-center justify-between pr-14">
@@ -142,17 +134,15 @@ const SearchBoard = () =>{
                             ref={inputPost}>
                             <option className="text-[16px]"  value="" ></option>
                             <option className="text-[16px]"  value="表示する" >&nbsp;表示する</option>
-                            <option className="text-[16px]"  value="表示しない" >&nbsp;表示しない</option>
-                                                
+                            <option className="text-[16px]"  value="表示しない" >&nbsp;表示しない</option>        
                         </select>
                     </div>  */}
                     <div className="flex justify-center pt-8">
                         <button className="border border-black rounded-md p-2 text-sm noto-medium" onClick={cancelCourse} >入力内容をリセットする</button>
-                    </div> 
+                    </div>
                     <div className="flex justify-center pt-8 pb-20">
                         <button className=" bg-[#2A6484]  rounded-xl py-[12px] px-[47px] text-[16px] text-white ">設定を保存/表示する</button>
-                    </div> 
-
+                    </div>
                 </div>
         </div>
     )

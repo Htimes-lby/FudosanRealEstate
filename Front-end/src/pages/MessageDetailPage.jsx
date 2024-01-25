@@ -169,7 +169,8 @@ const realEstate = {
     realEstateCategory: 'building',
     _id:'123'
 };
-const agent = {companyName :"会社名",
+const agent = {
+    companyName :"会社名",
     agentName:"担当者名",
     phoneNumber:"0123456789",
     emailAddress:"abcdef@gmail.com",
@@ -190,6 +191,10 @@ const MessageDetailPage = () => {
                     previousPage === 'itemDetailPage' &&
                     <RealEstateBigCard realEstate = {realEstate} parentComponent = 'MessageDetailPage' />
                 }
+                {
+                    previousPage === 'itemBoardPage' &&
+                    <AgentCard agent = {agent}/>
+                }
                 <div className='flex flex-col w-[60%] pt-5 gap-[5px]'>
                     {msgs.map((msg, index) => {
                         return(
@@ -200,7 +205,7 @@ const MessageDetailPage = () => {
                 </div>
                 {
                     msgs.length === 0 &&
-                    <p className='text-center text-[32px] noto-regular'>表示するメッセージがありません</p>
+                    <p className='text-center text-3xl noto-regular'>表示するメッセージがありません</p>
                 }
             </div>
             <div className='flex justify-center pt-[48px] pb-[45px]'>
