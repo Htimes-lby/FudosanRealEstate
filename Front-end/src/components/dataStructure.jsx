@@ -25,6 +25,7 @@ const userModel = {
 }
 const realEstateModel = {
     _id:'',
+    posterId:'',
     address: {
         zipCode:'',
         province:'',
@@ -47,6 +48,7 @@ const realEstateModel = {
 }
 const agentModel = {
     _id: '',
+    posterId:'',
     agentName: '',
     companyName: '',
     email: '',

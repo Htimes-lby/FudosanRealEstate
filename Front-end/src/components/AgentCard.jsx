@@ -1,9 +1,9 @@
 import React from "react";
 import { useState } from "react";
 
-const AgentCard =(props) =>{
-    const {agentInfo} = props;
-    const {companyName, agentName, phoneNumber, emailAddress, content} = agentInfo;
+const AgentCard = (props) => {
+    const {agent} = props;
+    const {companyName, agentName, phoneNumber, emailAddress, content} = agent;
     const [active, setActive] = useState(false);
     const handleAgentCardClick = () => {
         setActive((prevState) => !prevState);

@@ -18,65 +18,104 @@ const myImage =
     "住宅地":require("../assets/img/category/8.png"),
 }
 
-const myAgent = [
-{companyName :"会社名",
-agentName:"担当者名",
-phoneNumber:"0123456789",
-emailAddress:"abcdef@gmail.com",
-content:"テキスト テキスト テキスト テキスト テキスト テキスト テキスト"+
-        "テキスト テキスト テキスト テキスト テキスト テキスト テキスト"+
-        "テキスト テキスト テキスト テキスト テキスト テキスト テキスト"+
-        "テキスト テキスト テキスト テキスト テキスト テキスト テキスト"},
-        {companyName :"会社名",
-agentName:"担当者名",
-phoneNumber:"0123456789",
-emailAddress:"abcdef@gmail.com",
-content:"テキスト テキスト テキスト テキスト テキスト テキスト テキスト"+
-        "テキスト テキスト テキスト テキスト テキスト テキスト テキスト"+
-        "テキスト テキスト テキスト テキスト テキスト テキスト テキスト"+
-        "テキスト テキスト テキスト テキスト テキスト テキスト テキスト"},
-        {companyName :"会社名",
-agentName:"担当者名",
-phoneNumber:"0123456789",
-emailAddress:"abcdef@gmail.com",
-content:"テキスト テキスト テキスト テキスト テキスト テキスト テキスト"+
-        "テキスト テキスト テキスト テキスト テキスト テキスト テキスト"+
-        "テキスト テキスト テキスト テキスト テキスト テキスト テキスト"+
-        "テキスト テキスト テキスト テキスト テキスト テキスト テキスト"},
-        {companyName :"会社名",
-agentName:"担当者名",
-phoneNumber:"0123456789",
-emailAddress:"abcdef@gmail.com",
-content:"テキスト テキスト テキスト テキスト テキスト テキスト テキスト"+
-        "テキスト テキスト テキスト テキスト テキスト テキスト テキスト"+
-        "テキスト テキスト テキスト テキスト テキスト テキスト テキスト"+
-        "テキスト テキスト テキスト テキスト テキスト テキスト テキスト"},
-                {companyName :"会社名",
-agentName:"担当者名",
-phoneNumber:"0123456789",
-emailAddress:"abcdef@gmail.com",
-content:"テキスト テキスト テキスト テキスト テキスト テキスト テキスト"+
-        "テキスト テキスト テキスト テキスト テキスト テキスト テキスト"+
-        "テキスト テキスト テキスト テキスト テキスト テキスト テキスト"+
-        "テキスト テキスト テキスト テキスト テキスト テキスト テキスト"},
-        {companyName :"会社名",
-        agentName:"担当者名",
-        phoneNumber:"0123456789",
-        emailAddress:"abcdef@gmail.com",
-        content:"テキスト テキスト テキスト テキスト テキスト テキスト テキスト"+
-                "テキスト テキスト テキスト テキスト テキスト テキスト テキスト"+
-                "テキスト テキスト テキスト テキスト テキスト テキスト テキスト"+
-                "テキスト テキスト テキスト テキスト テキスト テキスト テキスト"},
-                {companyName :"会社名",
-agentName:"担当者名",
-phoneNumber:"0123456789",
-emailAddress:"abcdef@gmail.com",
-content:"テキスト テキスト テキスト テキスト テキスト テキスト テキスト"+
-        "テキスト テキスト テキスト テキスト テキスト テキスト テキスト"+
-        "テキスト テキスト テキスト テキスト テキスト テキスト テキスト"+
-        "テキスト テキスト テキスト テキスト テキスト テキスト テキスト"},
-    
-    ]
+const agents = [
+{
+    _id:'',
+    posterId:'',
+    companyName :"会社名",
+    agentName:"担当者名",
+    phoneNumber:"0123456789",
+    emailAddress:"abcdef@gmail.com",
+    content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+            テキスト テキスト テキスト テキスト テキスト テキスト テキスト`
+},
+{
+    _id:'',
+    posterId:'',
+    companyName :"会社名",
+    agentName:"担当者名",
+    phoneNumber:"0123456789",
+    emailAddress:"abcdef@gmail.com",
+    content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+            テキスト テキスト テキスト テキスト テキスト テキスト テキスト`
+},
+{
+    _id:'',
+    posterId:'',
+    companyName :"会社名",
+    agentName:"担当者名",
+    phoneNumber:"0123456789",
+    emailAddress:"abcdef@gmail.com",
+    content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+            テキスト テキスト テキスト テキスト テキスト テキスト テキスト`
+},
+{
+    _id:'',
+    posterId:'',
+    companyName :"会社名",
+    agentName:"担当者名",
+    phoneNumber:"0123456789",
+    emailAddress:"abcdef@gmail.com",
+    content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+            テキスト テキスト テキスト テキスト テキスト テキスト テキスト`
+},
+{
+    _id:'',
+    posterId:'',
+    companyName :"会社名",
+    agentName:"担当者名",
+    phoneNumber:"0123456789",
+    emailAddress:"abcdef@gmail.com",
+    content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+            テキスト テキスト テキスト テキスト テキスト テキスト テキスト`
+},
+{
+    _id:'',
+    posterId:'',
+    companyName :"会社名",
+    agentName:"担当者名",
+    phoneNumber:"0123456789",
+    emailAddress:"abcdef@gmail.com",
+    content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+            テキスト テキスト テキスト テキスト テキスト テキスト テキスト`
+},
+{
+    _id:'',
+    posterId:'',
+    companyName :"会社名",
+    agentName:"担当者名",
+    phoneNumber:"0123456789",
+    emailAddress:"abcdef@gmail.com",
+    content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+            テキスト テキスト テキスト テキスト テキスト テキスト テキスト`
+},
+{
+    _id:'',
+    posterId:'',
+    companyName :"会社名",
+    agentName:"担当者名",
+    phoneNumber:"0123456789",
+    emailAddress:"abcdef@gmail.com",
+    content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+            テキスト テキスト テキスト テキスト テキスト テキスト テキスト`
+},
+]
 
 const ItemBoardPage = () => {
 
@@ -91,8 +130,14 @@ const ItemBoardPage = () => {
         history.push(`/item-list?${searchParams.toString()}`)
     }
     const agentCardClicked = (props) => {
-        const agentData = props;
-        history.push('/message-detail', {state: {agentData}});
+        const agentId = props;
+        const agentPosterId = agents[agentId].posterId;
+        const searchParams = new URLSearchParams();
+        searchParams.set('agentId', agentId);
+        searchParams.set('agentPosterId', agentPosterId);
+        searchParams.set('previous-page', 'itemBoardPage')
+        history.push(`/message-detail?${searchParams.toString()}`);
+        // history.push('/message-detail', {state: {agentData}});
     }
     const handleDisplayAgentsToggle = (value) => {
         setDisplayAgents(value);
@@ -250,9 +295,9 @@ const ItemBoardPage = () => {
                             <span className=' w-[33%] cursor-pointer' onClick={() => setActiveAgentCategory('invester')}>投資家</span>
                             <div className={`absolute w-[33.3%] h-1 bottom-0 bg-[#f13f13] rounded-md transition-all duration-500 ${activeAgentCategory === 'realEstateAgent' ? 'left-0' : activeAgentCategory === 'judicialscrivener' ? 'left-[33.3%]' : 'left-[66.6%]' }`}></div>
                         </div>
-                        {myAgent.map((agent, index) => (
+                        {agents.map((agent, index) => (
                             <div className='pt-[25px]' onClick={() => agentCardClicked(index)}> 
-                                <AgentCard agentInfo={agent} key={index} />                           
+                                <AgentCard agent={agent} key={index} />                           
                             </div>
                         ))}
                     </div>
