@@ -1,39 +1,60 @@
 const mongoose = require("mongoose");
 
 const agentsSchema = new mongoose.Schema({
-  agentName: {
-    type: String,
-    required: [true, "Must be provided agentname"],
-    maxlength: [20, "agentname must be less than 20 characters"],
-    trim: true,
+  posterId: {
+    type: Schema.Types.objectId,
+    ref: 'User',
   },
-  companyName: {
-    type: String,
-    required: [true, "Must be provided companyname"],
-    trim: true,
+  agentName: {
+    firstNameGanji: {
+      type: String,
+    },
+    lastNameGanji: {
+      type: String,
+    },
+    firstNameGana: {
+      type: String,
+    },
+    lastNameGana: {
+      type: String,
+    },
   },
   agentEmail: {
     type: String,
-    required: [true, "Must be provided agentemail"],
-    trim: true,
   },
-  zipCode: {
-    type: Number,
-    required: [true, "Must be provided zipcode"],
+  address: {
+    zipCode: {
+      type: String,
+    },
+    province: {
+      type: String,
+    },
+    city: {
+      type: String,
+    },
+    street: {
+      type: String,
+    },
+  },
+  category: {
+    type: String,
   },
   phoneNumber: {
     type: String,
   },
-  qualificationCopy:{
-    type:String
+  companyName: {
+    type: String,
   },
-  content:{
-    type:String
+  content: {
+    type: String,
   },
-  agentSort:{
-    type:String  
-  }
-  
+  qualificationCopy: {
+    type: String,
+  },
+  approved: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 module.exports = mongoose.model("Agent", agentsSchema);

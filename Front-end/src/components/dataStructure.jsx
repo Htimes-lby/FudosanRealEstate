@@ -20,7 +20,7 @@ const userModel = {
     age: 23,
     mail:'',
     phoneNumber: '+81501587316',
-    myFavourites: 'realEstateIds',
+    favourites: 'realEstateIds',
     myPosts: 'realEstateIds',
 }
 const realEstateModel = {
