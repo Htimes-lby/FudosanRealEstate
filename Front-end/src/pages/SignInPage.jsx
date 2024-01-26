@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import axios from 'axios';
+import toast, { Toaster } from 'react-hot-toast';
 const eye = <FontAwesomeIcon icon={faEye} />;
 
 const SignInPage = () => {
@@ -22,6 +23,20 @@ const SignInPage = () => {
                 params: { email: payload.email, password: payload.password },
                 });
             console.log(res)
+            if(res.data.message === 'Email is not exist!'){
+                toast.error('Correct input mail!')
+                }
+                else{
+                    if(res.data.message === 'Password in incorrect!'){
+                        toast.error('Correct input password')
+                    }
+                    else if(res.data.message === 'Jwt Login Success.'){
+                        toast.success('Signup successful!');
+                        setTimeout(() => {
+                            history.push('/', res.data)
+                        }, 2000);
+                    }
+                }
 
             } catch (error) {
               // Handle errors
@@ -36,6 +51,7 @@ const SignInPage = () => {
 
     return (
         <>
+        <Toaster position="top-right" reverseOrder={false} />
             <div className= 'w-full h-[900px] bg-image-blur bg-cover'></div>
             <div className= 'absolute flex flex-col items-center top-[20%] left-[35%] w-[550px] h-[640px] bg-black/50 z-10 border-white border-2 rounded-lg'>
                 <h1 className='text-[28px] text-white font-semibold pt-[40px]'>ログイン</h1>

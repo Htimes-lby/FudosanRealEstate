@@ -197,7 +197,6 @@ const PostREPage = () => {
                                 <button type='submit' className='bg-[#2A6484] text-white px-[115px] py-[14px] text-[24px] rounded-[20px]'>提出</button>
                             </div>
                         </form>
-                       
                     </div>
                 </div>
             </div>
