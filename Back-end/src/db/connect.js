@@ -1,12 +1,12 @@
-// external modules import
+// external modules importgo
 const mongoose = require("mongoose");
 
-const connectionString = process.env.MONGO_URI;
+// const connectionString = process.env.MONGO_URI;
 
 const connectDatabase = async () => {
   try {
     await mongoose
-      .connect(connectionString, {
+      .connect('mongodb://127.0.0.1:27017/test', {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         // useCreateIndex: true, // for mongoose 6.x
