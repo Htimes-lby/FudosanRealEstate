@@ -1,12 +1,3 @@
-/*
- * Name: TODO-App-Backend
- * Description: TODO-App-Backend with Node.js, Express, MongoDB
- * Author: Md. Samiur Rahman (Mukul)
- * Version: v1.0.0
- * Date: 14/6/2022
- * Last Modified: 14/6/2022
- *
- */
 
 // imports modules & dependencies
 const express = require("express");
