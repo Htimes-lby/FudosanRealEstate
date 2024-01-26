@@ -2,6 +2,7 @@ import  React, { useState } from 'react';
 import { useHistory } from 'react-router-dom'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
+import axios from 'axios';
 const eye = <FontAwesomeIcon icon={faEye} />;
 
 const SignInPage = () => {
@@ -12,36 +13,52 @@ const SignInPage = () => {
     const togglePasswordVisibility = () => {
         setPasswordShown(passwordShown ? false : true);
     };
-    const handleLogin = () =>{
-        const payload = {email, password}
+
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        try {
+            const payload = {email, password}
+            const res = await axios.get(process.env.REACT_APP_API_BASE_URL +"/signin", {
+                params: { email: payload.email, password: payload.password },
+                });
+            console.log(res)
+
+            } catch (error) {
+              // Handle errors
+            console.error('Error sending form data:', error);
+            }
     }
+
+
     const handleNavigateToRegister = () => {
         history.push('/register')
     }
-{/* <a href="" className='text-[14px] cursor-pointer underline underline-offset-4 decoration-[#FFC804]'>個人情報保護方針</a> */}
+
     return (
         <>
             <div className= 'w-full h-[900px] bg-image-blur bg-cover'></div>
             <div className= 'absolute flex flex-col items-center top-[20%] left-[35%] w-[550px] h-[640px] bg-black/50 z-10 border-white border-2 rounded-lg'>
                 <h1 className='text-[28px] text-white font-semibold pt-[40px]'>ログイン</h1>
-                <form className='flex flex-col items-center flex-wrap w-[70%]' onSubmit={handleLogin()} >
+                <form className='flex flex-col items-center flex-wrap w-[70%]' onSubmit={(e)=>handleLogin(e)} >
                     <div className='flex flex-col w-full'>
-                        <label htmlFor="" className='text-white font-normal mb-1 mt-5 text-[20px]'>メール</label>
+                        <label htmlFor="email" className='text-white font-normal mb-1 mt-5 text-[20px]'>メール</label>
                         <input
                             className='h-[35px] rounded-md pl-2' 
                             type="text"
                             id="email"
                             name="emailname"
+                            required={true}
                             onChange={(e) => setEmail(e.target.value)}
                         />
                     </div>
                     <div className='relative flex flex-col w-full'>
-                        <label htmlFor="" className='text-white font-normal mb-1 mt-7 text-[20px]'>パスワード<br /><span className='text-[14px] leading-[2px]'>登録済みのパスワードをご入力ください。</span><br /></label>
+                        <label htmlFor="password" className='text-white font-normal mb-1 mt-7 text-[20px]'>パスワード<br /><span className='text-[14px] leading-[2px]'>登録済みのパスワードをご入力ください。</span><br /></label>
                         <input
                             className='h-[35px] rounded-md pl-2'
                             type={passwordShown ? "text" : "password"}
                             id="password"
                             name="password"
+                            required={true}
                             onChange={(e) => setPassword(e.target.value)}
                         />
                         <i className='absolute bottom-1 right-3 cursor-pointer' onClick={togglePasswordVisibility}>{eye}</i>

@@ -37,8 +37,6 @@ const PostREPage = () => {
         setConditionData(data);
     };
 
-
-    const formData = {privacyDataArray, contentDataArray, overviewHouseDataArray }
         const handleSubmit = async (e) => {
         e.preventDefault();
     

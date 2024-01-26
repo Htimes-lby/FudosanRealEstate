@@ -32,9 +32,16 @@ const SignUpPage = () => {
                 toast.error('Correct input mail!')
                 }
                 else{
-                    res.data.message === 'Already exist!'
-                    ? toast.error('Email already exists!')
-                    : toast.success('Signup successful!');
+                    if(res.data.message === 'Already exist!'){
+                        toast.error('Email already exists!')
+                    }
+                    else{
+                        toast.success('Signup successful!');
+                        setTimeout(() => {
+                            history.push('/input-code')
+                        }, 2000);
+                    } 
+                    
                 }
             
             
