@@ -23,6 +23,7 @@ import AdminApproveRealEstateList from "./pages/AdminApproveRealEstateList";
 import AdminApproveRealEstateDetail from "./pages/AdminApproveRealEstateDetail";
 import AdminViewAgentPage from "./pages/AdminViewAgentPage";
 import AdminContactAgentPage from "./pages/AdminContactaAgentPage";
+import InputVerificationCodePage from "./pages/InputVerificationCodePage";
 
 const Layout = () =>{
 
@@ -47,6 +48,8 @@ const Layout = () =>{
         <Route exact path="/feedback-detail" component={FeedbackDetailPage} />
         <Route exact path="/login" component={SignInPage} />
         <Route exact path="/register" component={SignUpPage} />
+        <Route exact path="/input-code" component={InputVerificationCodePage} />
+
 
         <Route exact path="/admin-approve-realestate-list" component={AdminApproveRealEstateList} />
         <Route exact path="/admin-approve-realestate-detail" component={AdminApproveRealEstateDetail} />
