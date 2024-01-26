@@ -50,7 +50,6 @@ const Layout = () =>{
         <Route exact path="/register" component={SignUpPage} />
         <Route exact path="/input-code" component={InputVerificationCodePage} />
 
-
         <Route exact path="/admin-approve-realestate-list" component={AdminApproveRealEstateList} />
         <Route exact path="/admin-approve-realestate-detail" component={AdminApproveRealEstateDetail} />
         <Route exact path="/admin-view-agent" component={AdminViewAgentPage} />
