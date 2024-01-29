@@ -17,9 +17,9 @@ export default function ConditionForm({content, onDataArrayFromChild}) {
   return (
     <div>
         <div className=' w-[600px]  bg-[#D9D9D9]/40 pt-4 pb-3'>
-            <div className='flex justify-center'>
+            <div className='flex ml-[50px]'>
                 <div className=' pr-[56px] '>
-                    <span className='bg-[#F69191] h-[28px] inline-block p-1 rounded-md text-[15px] mx-[12px] text-white'>必須</span>
+                    <span className='bg-[#F69191] h-[28px] flex items-center p-2 rounded-md text-[15px] mx-[12px] text-white'>必須</span>
                 </div>
                 <div>
                     <p>以下の同意事項をご確認ください。</p>

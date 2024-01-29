@@ -47,8 +47,8 @@ const UploadImageForm = ({button, title, width1, width2, gap, status, onDataArra
             }
         }
     }
-    let formData = [];
-      
+    
+    
     const DeleteSelectFile = (id) => {
         if(window.confirm("このファイルを削除してもよろしいですか？")){
             const result = selectedfiles.filter((data) => data.id !== id);
@@ -57,56 +57,38 @@ const UploadImageForm = ({button, title, width1, width2, gap, status, onDataArra
             // alert('No');
         }
     }
-    const FileUploadSubmit = async (e) => {
-        e.preventDefault();
-        let formData = [];
-       console.log(formData)
-        // form reset on submit 
-            for (let index = 0; index < selectedfiles.length; index++) {
-                formData.push(selectedfiles[index].fileimage);
-                console.log(formData)
-            }
-            // try {
-            //     const response = await axios.post('http://your-server/upload', formData);
-            //     console.log('Upload success:', response.data);
-            //     // Handle any further actions, such as updating state or displaying a success message
-            //   } catch (error) {
-            //     console.error('Upload failed:', error);
-            //     // Handle errors, display error messages, etc.
-            //   }
-    }
-
-    useEffect(()=>{
-        let formData = [];
-        // form reset on submit 
-            for (let index = 0; index < selectedfiles.length; index++) {
-                formData.push(selectedfiles[index].fileimage);
-            }
-        onDataArrayFromChild(formData);
-      },[selectedfiles])
     
+        useEffect(()=>{
+            let images = []
+            for (const image of selectedImage) {
+                images.push(image)
+            }
+            onDataArrayFromChild(images);
+    },[selectedImage])
+
+
     return(
         
         <div className="fileupload-view ">
             <div className={`${width1} `}>
-                <div className="mt-5 pt-0 pr-[30px] pb-[30px] pl-0 flex flex-1 w-full">
+                <div className="mt-5 pt-0    pb-[30px]  flex flex-1 w-full">
                     <div className={`${width2}  flex ${gap} `}>
                         {
                             status === "必須" ? 
-                            <span className='bg-[#F69191] h-[28px] inline-block p-1 rounded-md text-[15px] mx-[12px] text-white'>必須</span> :
-                            <span className='bg-[#63A4D4] h-[28px] inline-block p-1 rounded-md text-[15px] mx-[12px] text-white'>任意</span>
+                            <span className='bg-[#F69191] h-[28px] flex items-center p-2 rounded-md text-[15px] mx-[12px] text-white'>必須</span> :
+                            <span className='bg-[#63A4D4] h-[28px] flex items-center p-2 rounded-md text-[15px] mx-[12px] text-white'>任意</span>
                         }
                         <p className='text-[20px]'>{title}</p>
                     </div>
-                    <form onSubmit={FileUploadSubmit}>
-                        <div className="mb-[60px] ml-[95px]">
+                    <form className="w-[500px]">
+                        <div className="mb-[60px]">
                             <div className="file-upload-box">           
                                 <input type="file" id="fileupload" className="file-upload-input" onChange={InputChange} multiple />
                                 <span className="text-white ml-[50px] py-[6px] px-[40px] rounded-md cursor-pointer bg-[#2A6484]/70">{button}</span>
                             </div>
                             <div><p className="pt-[12px] pl-[60px] text-[15px]">複数のファイルを選択できます。</p></div>
                         </div>
-                        <div className="mb-3 ml-20">
+                        <div className="mb-3 ">
                             {
                                 selectedfiles.map((data, index) => {
                                 const { id, filename, filetype, fileimage, datetime, filesize } = data;

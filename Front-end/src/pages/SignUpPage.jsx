@@ -65,7 +65,7 @@ const SignUpPage = () => {
 
     return (
         <>
-        <Toaster position="top-right" reverseOrder={false} />
+        <Toaster position="bottom-right" reverseOrder={false} />
             <div className= ' w-full h-[900px] bg-image-blur bg-cover'></div>
             
             <div className= ' absolute flex flex-col items-center top-[18%] left-[35%] w-[550px] h-[680px] bg-black/50 z-10 border-white border-2 rounded-lg'>
@@ -147,7 +147,7 @@ const SignUpPage = () => {
                     <button className='mt-10 w-full h-[50px] rounded-md bg-[#2A6484] text-white font-semibold border-white/50 border-2 text-[22px]' type='submit'>アカウント作成 </button>
                     <button className='mt-3 w-full h-[50px] rounded-md bg-[#2A6484] text-white font-semibold border-white/50 border-2 text-[19px]' onClick={handleNavigateToLogIn}>サインアップページに移動 </button>
                 </form>
-               
+            
             </div>
         </>
     )

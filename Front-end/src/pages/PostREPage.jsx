@@ -36,7 +36,7 @@ const PostREPage = () => {
        
         setConditionData(data);
     };
-
+        
         const handleSubmit = async (e) => {
         e.preventDefault();
     
@@ -49,7 +49,7 @@ const PostREPage = () => {
             formData.append('contentDataArray', JSON.stringify(contentDataArray));
             formData.append('overviewHouseDataArray', JSON.stringify(overviewHouseDataArray));
             // ... Append other form data as needed
-
+            
             // Append image files
             console.log(uploadDataArray);   
             for (const file of uploadDataArray) {
@@ -57,13 +57,8 @@ const PostREPage = () => {
             }
             // Make a single axios request for both form data and images
             const res = await axios.post(process.env.REACT_APP_API_BASE_URL + '/postRealEstate', formData)
-            console.log(res);
-            await axios.post(process.env.REACT_APP_API_BASE_URL + '/api/upload', uploadDataArray, {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
-          });
-        
+            
+                   
           // Handle the response if needed
           console.log('Response from backend:', res.data);
         } catch (error) {
@@ -177,7 +172,7 @@ const PostREPage = () => {
                             
                             
                         </div>
-                        <form onSubmit={handleSubmit}>
+                        <form onSubmit={handleSubmit} encType='multipart/form-data'>
                             <div className='pt-[120px]'>
                                 <PrivacyForm  onDataArrayFromChild={handlePrivacyDataArray} />
                             </div>
@@ -188,13 +183,19 @@ const PostREPage = () => {
                                 <OverviewHouseForm onDataArrayFromChild={handleOverviewDataArray} />
                             </div>
                             <div>
-                                <UploadImageForm title="物件写真" button="画像ファイルを選択する" width1={"w-[700px]"} width2={"w-[190px]"} gap={"gap-[35px]"} onDataArrayFromChild={handleUploadDataArray} />
+                                <UploadImageForm title="物件写真" button="画像ファイルを選択する" width1={"w-[800px]"} width2={"w-[300px]"} gap={"gap-[35px]"} onDataArrayFromChild={handleUploadDataArray} />
                             </div>
                             <div className='flex justify-center'>
                                 <ConditionForm  onDataArrayFromChild={handleconditionDataArray}/>
                             </div>
                             <div className='flex justify-center pt-[105px] pb-[170px]'>
-                                <button type='submit' className='bg-[#2A6484] text-white px-[115px] py-[14px] text-[24px] rounded-[20px]'>提出</button>
+                                {
+                                    conditionData?
+                                        <button type='submit' className='bg-[#2A6484] text-white px-[115px] py-[14px] text-[24px] rounded-[20px]' disabled={!conditionData}>提出</button>
+                                        :
+                                        <button type='submit' className=' bg-gray-300 text-white px-[115px] py-[14px] text-[24px] rounded-[20px]' disabled={!conditionData}>提出</button>
+                                }
+                                
                             </div>
                         </form>
                     </div>

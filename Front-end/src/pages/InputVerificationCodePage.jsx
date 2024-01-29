@@ -17,8 +17,7 @@ const InputVerificationCodePage = () => {
             console.log(payload);
             const res = await axios.post(process.env.REACT_APP_API_BASE_URL + '/inputCode', payload)
             console.log(res.data.message)
-
-                if(res.data.message === 'invalid verification code'){
+                if(res.data.message === 'Invalid verification code'){
                 toast.error('Correct input code!')
                 }
                 else{
@@ -37,7 +36,7 @@ const InputVerificationCodePage = () => {
 
     return (
         <>
-        <Toaster position="top-right" reverseOrder={false} />
+            <Toaster position="bottom-right" reverseOrder={false} />
             <div className= ' w-full h-[900px] bg-image-blur bg-cover'></div>
             
             <div className= ' absolute flex flex-col items-center top-[30%] left-[35%] w-[550px] h-[400px] bg-black/50 z-10 border-white border-2 rounded-lg'>

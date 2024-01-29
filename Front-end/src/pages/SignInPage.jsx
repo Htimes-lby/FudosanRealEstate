@@ -28,8 +28,12 @@ const SignInPage = () => {
                 }
                 else{
                     if(res.data.message === 'Password in incorrect!'){
-                        toast.error('Correct input password')
+                        toast.error('Correct input password!')
+                        console.log(res.data.message)
+                    }else if(res.data.message === 'Your email is not verified'){
+                        toast.error('Correct input mail!')
                     }
+                    
                     else if(res.data.message === 'Jwt Login Success.'){
                         toast.success('Signup successful!');
                         setTimeout(() => {
@@ -51,7 +55,7 @@ const SignInPage = () => {
 
     return (
         <>
-        <Toaster position="top-right" reverseOrder={false} />
+            <Toaster position="top-right" reverseOrder={false} />
             <div className= 'w-full h-[900px] bg-image-blur bg-cover'></div>
             <div className= 'absolute flex flex-col items-center top-[20%] left-[35%] w-[550px] h-[640px] bg-black/50 z-10 border-white border-2 rounded-lg'>
                 <h1 className='text-[28px] text-white font-semibold pt-[40px]'>ログイン</h1>
