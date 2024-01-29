@@ -44,8 +44,10 @@
 
 /* Root CSS */
 body {
-  font-family: "Poppins", sans-serif;
-  
+  font-family: "Poppins", sans-serif; 
+}
+body::-webkit-scrollbar {
+  display: none;
 }
 ul{
   margin: 0;
@@ -54,7 +56,6 @@ ul{
 td{
   font-family: 'Noto-Medium';
 }
-
 
 .no-scrollbar::-webkit-scrollbar {
   display: none;

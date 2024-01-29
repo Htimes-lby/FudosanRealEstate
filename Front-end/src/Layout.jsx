@@ -32,7 +32,7 @@ const Layout = () =>{
         <Route exact path="/message-board" component={MessageBoardPage} />
         <Route exact path="/message-detail" component={MessageDetailPage} />
         <Route exact path="/post-agent" component={PostAgentPage} />
-        <Route exact path="/post-real-estate" component={PostREPage} />
+        <Route exact path="/post-building" component={PostREPage} />
         <Route exact path="/favourite" component={FavouritePage} />
         <Route exact path="/my-post" component={ItemMyPage} />
         <Route exact path="/contact-post" component={ContactPostPage} />
