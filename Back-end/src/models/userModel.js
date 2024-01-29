@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const Schema = mongoose.Schema;
 const userSchema = new mongoose.Schema({
     name: {
         firstNameGanji: {
@@ -24,6 +24,9 @@ const userSchema = new mongoose.Schema({
     password: {
         type:String,
     },
+    verificationCode: {
+        type: String,
+    },
     emailVerified: {
         type: Boolean,
         default: false,
@@ -32,11 +35,11 @@ const userSchema = new mongoose.Schema({
         type: String,
     },
     favourites: [{
-        type: Schema.Types.objectId,
+        type: Schema.Types.ObjectId,
         ref: 'RealEstate',
     }],
     myPosts: [{
-        type: Scehma.Types.objectId,
+        type: Schema.Types.ObjectId,
         ref: 'RealEstate',
     }],
 })

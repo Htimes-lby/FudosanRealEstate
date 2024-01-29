@@ -7,6 +7,7 @@ const multer = require('multer');
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
       cb(null, 'uploads/');
+      
     },
     filename: (req, file, cb) => {
       const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
@@ -23,14 +24,16 @@ const storage = multer.diskStorage({
       cb(null, false);
     }
   };
+
   
   const upload = multer({ storage, fileFilter });
+  
   
 
 router.post("/postRealEstate", upload.array('images', 10),  postCtr.createRealEstate)
 router.post("/signup", userCtr.signUp)
+router.post('/inputCode', userCtr.inputEmailCode)
 router.get("/signin", userCtr.signIn)
-router.get('/verify/:token', userCtr.verifyAccount);
-router.post('/api/upload', upload.array('images', 5), uploadController.uploadImages);
+
 
 module.exports = router;

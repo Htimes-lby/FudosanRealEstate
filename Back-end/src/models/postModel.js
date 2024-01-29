@@ -46,10 +46,7 @@ const postSchema = new mongoose.Schema({
     password: {
       type: String,
     },
-    isVerified: {
-      type: Boolean,
-      default: false,
-    },
+    
     verificationCode:{
       type:String
     },
