@@ -1,6 +1,7 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useLocation, useHistory } from 'react-router-dom/cjs/react-router-dom.min'
+import axios from 'axios'
 
 import Carousel from '../components/Carousel'
 import GoogleMapComponent from '../components/GoogleMapComponent'
@@ -678,11 +679,11 @@ const ItemDetailPage = () => {
     const location = useLocation();
     const history = useHistory();
     const searchParams = new URLSearchParams(location.search);
-    const index = searchParams.get('index');
-    const realEstateDisplayData = realEstates[index];
-    const {basicInfo, briefDescription, fullDescription, address, images} = realEstateDisplayData;
-
+    const realEstateId = searchParams.get('realEstateId');
     const [favouriteButtonActive, setFavouriteButtonActive] = useState(false);
+    const [realEstate, setRealEstate] = useState(null);
+    // const {address, basicInfoBuilding, basicInfoLand, images, briefDescription, fullDescription, label} = realEstate;
+
     const handleFavouriteButtonClicked = () => {
         setFavouriteButtonActive(favouriteButtonActive ? false : true);
     }
@@ -691,12 +692,34 @@ const ItemDetailPage = () => {
         searchParams.set('previous-page','itemDetailPage')
         history.push(`/message-detail?${searchParams.toString()}`);
     }
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const params = new URLSearchParams ({
+                    realEstateId: realEstateId,
+                }).toString();
+                const res = await axios.get(`/getRealEstateById?${params}`)
+                setRealEstate(res.data.realEstate);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        fetchData();
+    },[])
+
+    if(realEstate === null) {
+        return (
+            <div>loading.............</div>
+        )
+    }
+
   return (
     <div className=' flex flex-col items-center pb-[120px] pt-[92px] w-full'>
-        <p className='pb-10 text-3xl text-center noto-medium'>{address.province}{address.city}</p>
+        <p className='pb-10 text-3xl text-center noto-medium'>{realEstate.address.province}{realEstate.address.city}</p>
 
         <div className='mt-[28px] w-full'>
-            <Carousel images = {images}/>
+            <Carousel images = {realEstate.images}/>
         </div>
 
         <div className='w-[1300px] mx-auto'>
@@ -705,14 +728,14 @@ const ItemDetailPage = () => {
                     <GoogleMapComponent />
                 </div>
                 {
-                    realEstateDisplayData.realEstateCategory === 'building' && <BasicTableBuilding tableData = {basicInfo} fontSize = {"text-[24px]"} width = {"w-[500px]"}  />
+                    realEstate.label === 'building' && <BasicTableBuilding tableData = {realEstate.basicInfoBuilding} fontSize = {"text-[24px]"} width = {"w-[500px]"}  />
                 }
                 {
-                    realEstateDisplayData.realEstateCategory === 'land' && <BasicTableLand tableData = {basicInfo} fontSize = {"text-[24px]"} width = {"w-[500px]"}  />
+                    realEstate.label === 'land' && <BasicTableLand tableData = {realEstate.basicInfoLand} fontSize = {"text-[24px]"} width = {"w-[500px]"}  />
                 }             
             </div>
-            <div className='w-[90%] mx-auto text-xl noto-regular'>{briefDescription}</div>
-            <div className=' border-2 border/60-black p-3 text-base noto-regular mt-14'>{fullDescription}</div>
+            <div className='w-[90%] mx-auto text-xl noto-regular'>{realEstate.briefDescription}</div>
+            <div className=' border-2 border/60-black p-3 text-base noto-regular mt-14'>{realEstate.fullDescription}</div>
 
             <div className='flex justify-center gap-[50px] w-full mt-20'>
                 <div className='flex justify-center items-center w-[380px] h-[80px] bg-[#2A6484] rounded-xl noto-medium text-white text-[24px] cursor-pointer' onClick={sendMsgButtonClicked}>メッセージを送信する</div>
