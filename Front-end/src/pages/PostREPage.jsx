@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import {  useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
+
 import Category from "../components/Category"
 import FlagTextContainer from "../components/FlagTextContainer"
 import SoldFeedbackCard from '../components/SoldFeedbackCard';
@@ -11,6 +13,10 @@ import ConditionForm from "../components/Form/ConditionForm";
 import axios from 'axios';
 
 const PostREPage = () => {
+
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const label = searchParams.get('label');
     const user = useSelector((state) => state.auth.user);
     console.log('----------------', user);
     const [privacyDataArray, setPrivacyDataArray] = useState([]);
@@ -18,27 +24,20 @@ const PostREPage = () => {
     const [overviewHouseDataArray, setOverviewDataArray] = useState([]);
     const [uploadDataArray, setUploadDataArray] = useState([]);
     const [conditionData, setConditionData] = useState("");
-    
-    
 
 const handlePrivacyDataArray = (data) => {
-    
     setPrivacyDataArray(data);
 };
 const handleContentDataArray = (data) => {
-    
     setContentDataArray(data);
 };
 const handleOverviewDataArray = (data) => {
-    
     setOverviewDataArray(data);
 };
 const handleUploadDataArray = (data) => {
-    
     setUploadDataArray(data);
 };
 const handleconditionDataArray = (data) => {
-
     setConditionData(data);
 };
     
@@ -46,7 +45,6 @@ const handleconditionDataArray = (data) => {
     e.preventDefault();
 
     try {
-
         const formData = new FormData();
             // Append other form data
             formData.append('privacyDataArray', JSON.stringify(privacyDataArray));
@@ -101,14 +99,14 @@ const handleconditionDataArray = (data) => {
     ];
 
     const text = 
-    "テキスト  テキスト  テキスト  テキスト  テキスト  テキスト "+
-    "テキスト  テキスト  テキスト  テキスト  テキスト  テキスト"+
-    "テキスト  テキスト  テキスト  テキスト  テキスト  テキスト"+
-    "テキスト  テキスト  テキスト  テキスト  テキスト  テキスト"+
-    "テキスト  テキスト  テキスト  テキスト  テキスト  テキスト"+
-    "テキスト  テキスト  テキスト  テキスト  テキスト  テキスト"+
-    "テキスト  テキスト  テキスト  テキスト  テキスト  テキスト"+
-    "テキスト  テキスト  テキスト  テキスト  テキスト  テキスト"
+    `テキスト  テキスト  テキスト  テキスト  テキスト  テキスト 
+    テキスト  テキスト  テキスト  テキスト  テキスト  テキスト
+    テキスト  テキスト  テキスト  テキスト  テキスト  テキスト
+    テキスト  テキスト  テキスト  テキスト  テキスト  テキスト
+    テキスト  テキスト  テキスト  テキスト  テキスト  テキスト
+    テキスト  テキスト  テキスト  テキスト  テキスト  テキスト
+    テキスト  テキスト  テキスト  テキスト  テキスト  テキスト
+    テキスト  テキスト  テキスト  テキスト  テキスト  テキスト`
 
     return (
         <div className='bg-[#F1F1F1]'> 
