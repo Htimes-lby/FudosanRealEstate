@@ -16,7 +16,7 @@ export default function PrivacyForm( props ) {
     const [lastNameGanji, setLastNameGanji] = useState('');
 
     useEffect(() => {
-        
+                
         const privacyDataArray = [{province:province}, {city: city}, {buildingName: buildingName}, {street: street}, {phoneNumber: phoneNumber}, 
                                     {postalNumber: postalNumber}, {email: email}, {age: age}, {firstNameGana: firstNameGana}, {lastNameGana: lastNameGana}, 
                                     {firstNameGanji: firstNameGanji}, {lastNameGanji: lastNameGanji} ]

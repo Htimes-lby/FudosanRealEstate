@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const postCtr = require('../controllers/postCtr')
-const uploadController = require('../controllers/uploadCtr');
+
 const userCtr = require('../controllers/userCtr');
 const realEstateCtr = require('../controllers/realEstateCtr')
 const multer = require('multer');
@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
   });
   
   const fileFilter = (req, file, cb) => {
-    const allowedFileTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+    const allowedFileTypes = ['image/jpeg', 'image/jpg', 'image/png','application/pdf', 'application/msword', 'text/plain'];
     if (allowedFileTypes.includes(file.mimetype)) {
       cb(null, true);
     } else {

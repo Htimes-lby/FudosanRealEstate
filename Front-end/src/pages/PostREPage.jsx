@@ -8,6 +8,7 @@ import SoldFeedbackCard from '../components/SoldFeedbackCard';
 import PrivacyForm from "../components/Form/PrivacyForm";
 import ContentForm from "../components/Form/ContentForm";
 import OverviewHouseForm from "../components/Form/OverviewHouseForm";
+import OverviewLandForm from '../components/Form/OverviewLandForm';
 import UploadImageForm from "../components/Form/UploadImageForm";
 import ConditionForm from "../components/Form/ConditionForm";
 import axios from 'axios';
@@ -18,7 +19,7 @@ const PostREPage = () => {
     const searchParams = new URLSearchParams(location.search);
     const label = searchParams.get('label');
     const user = useSelector((state) => state.auth.user);
-    const [privacyDataArray, setPrivacyDataArray] = useState([]);
+    const [privacyDataArray, setPrivacyDataArray] = useState();
     const [contentDataArray, setContentDataArray] = useState([]);
     const [overviewHouseDataArray, setOverviewDataArray] = useState([]);
     const [uploadDataArray, setUploadDataArray] = useState([]);
@@ -51,6 +52,7 @@ const handleconditionDataArray = (data) => {
             formData.append('contentDataArray', JSON.stringify(contentDataArray));
             formData.append('overviewHouseDataArray', JSON.stringify(overviewHouseDataArray));
             formData.append('newId', newId);
+            formData.append('label', label);
             
             // ... Append other form data as needed
             
@@ -185,7 +187,11 @@ const handleconditionDataArray = (data) => {
                                 <ContentForm onDataArrayFromChild={handleContentDataArray} />
                             </div>
                             <div className='pt-[77px]'>
-                                <OverviewHouseForm onDataArrayFromChild={handleOverviewDataArray} />
+                                {
+                                    label==="post-building" ? <OverviewHouseForm onDataArrayFromChild={handleOverviewDataArray} />:
+                                    <OverviewLandForm onDataArrayFromChild={handleOverviewDataArray} />
+                                }
+                                
                             </div>
                             <div>
                                 <UploadImageForm title="物件写真" button="画像ファイルを選択する" width1={"w-[800px]"} width2={"w-[300px]"} gap={"gap-[35px]"} onDataArrayFromChild={handleUploadDataArray} />

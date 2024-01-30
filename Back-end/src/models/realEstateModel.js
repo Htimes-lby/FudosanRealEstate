@@ -70,6 +70,9 @@ const realEstateSchema = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
+    label: {
+        type: String,
+    }
 })
 
 module.exports = mongoose.model('RealEstate', realEstateSchema);
