@@ -7,12 +7,13 @@ const jwt = require("jsonwebtoken");
 
 
 const signIn = async (req, res) => {
+    
     const user = await User.findOne({ email: req.query.email }, "");
-    console.log("fdsfdsfsdfdsf",user);
-    if(user.emailVerified === false) return res.json({ message: "Your email is not verified" });
-    if (!user) return res.json({ message: "UserId is not exist!" });
+    console.log(user);
+    if (!user) return res.status(500).json({ message: "UserId is not exist!" });
+    if(user.emailVerified === false || user.emailVerified === null) return res.status(500).json({ message: "Your email is not verified" });
     const isMatch = await bcrypt.compare(req.query?.password, user.password);
-    if (!isMatch) return res.json({ message: "Password in incorrect!" });
+    if (!isMatch) return res.status(500).json({ message: "Password in incorrect!" });
     const payload = {
     id: user._id,
     email: user.email,
@@ -35,9 +36,9 @@ const signUp = async (req, res) => {
         console.log(req.body);
         let user = await User.find({ email: req.body.email }, "");
         if (!req.body.email.includes('@')) {
-            return res.json({ message: 'Invalid email format. Must contain "@".' });
+            return res.status(500).json({ message: 'Invalid email format. Must contain "@".' });
         }
-        else if (user[0]) return res.json({ message: "Already exist!" });
+        else if (user[0]) return res.status(500).json({ message: "Already exist!" });
         const {email, passwords, firstNameGanji, lastNameGanji, firstNameGana, lastNameGana} = req.body;
         const name  = {firstNameGanji, lastNameGanji, firstNameGana, lastNameGana}
         const salt = await bcrypt.genSalt(10);
