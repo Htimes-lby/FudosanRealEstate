@@ -6,12 +6,15 @@ const jwt = require("jsonwebtoken");
 
 
 const signIn = async (req, res) => {
+    
     const user = await User.findOne({ email: req.query.email }, "");
+
     console.log("fdsfdsfsdfdsf",user);
     if (!user) return res.status(500).json({ message: "This email is not exist!" });
     if(user.emailVerified === false) return res.status(500).json({ message: "Your email is not verified" });
     const isMatch = await bcrypt.compare(req.query?.password, user.password);
     if (!isMatch) res.json(500).json({ message: "Password is incorrect!" });
+
     const payload = {
     id: user._id,
     email: user.email,
@@ -34,10 +37,12 @@ const signUp = async (req, res) => {
         console.log(req.body);
         let user = await User.find({ email: req.body.email }, "");
         if (!req.body.email.includes('@')) {
-            return res.json({ message: 'Invalid email format. Must contain "@".' });
+            return res.status(500).json({ message: 'Invalid email format. Must contain "@".' });
         }
         else if (user[0]) return res.status(500).json({ message: "Already exist!" });
+
         const {email, password, firstNameGanji, lastNameGanji, firstNameGana, lastNameGana} = req.body;
+
         const name  = {firstNameGanji, lastNameGanji, firstNameGana, lastNameGana}
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);

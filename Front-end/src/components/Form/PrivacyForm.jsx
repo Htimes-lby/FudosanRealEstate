@@ -1,30 +1,33 @@
 import React, {useState ,useEffect} from "react";
+import { useSelector } from 'react-redux'
 
 export default function PrivacyForm( props ) {
-
+    const user = useSelector((state) => state.auth.user);
+    console.log(user.email)
     const [province, setProvince] = useState('');
     const [city, setCity] = useState('');
     const [buildingName, setBuildingName] = useState('');
     const [street, setStreet] = useState('');
     const [phoneNumber, setPhoneNumber] = useState([]);
     const [postalNumber, setPostalNumber] = useState([]);
-    const [email, setEmail] = useState();
+    const [email, setEmail] = useState(user.email);
     const [age, setAge] = useState();
     const [firstNameGana, setFirstNameGana] = useState('');
     const [lastNameGana, setLastNameGana] = useState('');
     const [firstNameGanji, setFirstNameGanji] = useState('');
     const [lastNameGanji, setLastNameGanji] = useState('');
+    console.log(user);
 
     useEffect(() => {
         
         const privacyDataArray = [{province:province}, {city: city}, {buildingName: buildingName}, {street: street}, {phoneNumber: phoneNumber}, 
-                                  {postalNumber: postalNumber}, {email: email}, {age: age}, {firstNameGana: firstNameGana}, {lastNameGana: lastNameGana}, 
-                                  {firstNameGanji: firstNameGanji}, {lastNameGanji: lastNameGanji} ]
+                                    {postalNumber: postalNumber}, {email: email}, {age: age}, {firstNameGana: firstNameGana}, {lastNameGana: lastNameGana}, 
+                                    {firstNameGanji: firstNameGanji}, {lastNameGanji: lastNameGanji} ]
 
         props.onDataArrayFromChild(privacyDataArray);
-      }, [province, city, buildingName, street, phoneNumber, postalNumber, email, age, firstNameGana, firstNameGanji, lastNameGana, lastNameGanji]);
+    }, [province, city, buildingName, street, phoneNumber, postalNumber, email, age, firstNameGana, firstNameGanji, lastNameGana, lastNameGanji]);
 
-   
+
 
     const handleInputPhoneNumber = (index, value) => {
         // Create a new array with the updated value at the specified index
@@ -33,18 +36,18 @@ export default function PrivacyForm( props ) {
         // Update the state with the new array
         setPhoneNumber(updatedPhoneValues);
         
-      };
+    };
 
-      const handleInputPoastalNumber = (index, value) => {
+    const handleInputPoastalNumber = (index, value) => {
         // Create a new array with the updated value at the specified index
         const updatedPostalNumber = [...postalNumber];
         updatedPostalNumber[index] = value;
         // Update the state with the new array
         setPostalNumber(updatedPostalNumber);
-      };
+    };
 
 
-  return (
+return (
     <div>
         <div className=' w-[745px]  flex gap-[124px]'>
             <div className='w-[177px] flex gap-[35px] '>
@@ -90,7 +93,7 @@ export default function PrivacyForm( props ) {
                 <p className='text-[20px]'>メール</p>
             </div>
             <div>
-                <input type="text" className='w-[443px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' onChange={(e) => setEmail(e.target.value)}/>
+                <input type="text" value={email} className='w-[443px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' onChange={(e) => setEmail(e.target.value)}/>
             </div>
         </div>
 

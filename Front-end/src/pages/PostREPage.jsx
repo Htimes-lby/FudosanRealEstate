@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
 import Category from "../components/Category"
 import FlagTextContainer from "../components/FlagTextContainer"
 import SoldFeedbackCard from '../components/SoldFeedbackCard';
@@ -7,8 +7,8 @@ import PrivacyForm from "../components/Form/PrivacyForm";
 import ContentForm from "../components/Form/ContentForm";
 import OverviewHouseForm from "../components/Form/OverviewHouseForm";
 import UploadImageForm from "../components/Form/UploadImageForm";
-import ConditionForm from "../components/Form/ConditionForm"
-import axios from 'axios'
+import ConditionForm from "../components/Form/ConditionForm";
+import axios from 'axios';
 
 const PostREPage = () => {
     const user = useSelector((state) => state.auth.user);
@@ -18,32 +18,41 @@ const PostREPage = () => {
     const [overviewHouseDataArray, setOverviewDataArray] = useState([]);
     const [uploadDataArray, setUploadDataArray] = useState([]);
     const [conditionData, setConditionData] = useState("");
-
-    const handlePrivacyDataArray = (data) => {  
-        setPrivacyDataArray(data);
-    };
-    const handleContentDataArray = (data) => {
-        setContentDataArray(data);
-    };
-    const handleOverviewDataArray = (data) => {
-        setOverviewDataArray(data);
-    };
-    const handleUploadDataArray = (data) => {
-        setUploadDataArray(data);
-    };
-    const handleconditionDataArray = (data) => {
-        setConditionData(data);
-    };
-        
-        const handleSubmit = async (e) => {
-        e.preventDefault();
     
-        try {
+    
+
+const handlePrivacyDataArray = (data) => {
+    
+    setPrivacyDataArray(data);
+};
+const handleContentDataArray = (data) => {
+    
+    setContentDataArray(data);
+};
+const handleOverviewDataArray = (data) => {
+    
+    setOverviewDataArray(data);
+};
+const handleUploadDataArray = (data) => {
+    
+    setUploadDataArray(data);
+};
+const handleconditionDataArray = (data) => {
+
+    setConditionData(data);
+};
+    
+    const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+
         const formData = new FormData();
             // Append other form data
             formData.append('privacyDataArray', JSON.stringify(privacyDataArray));
             formData.append('contentDataArray', JSON.stringify(contentDataArray));
             formData.append('overviewHouseDataArray', JSON.stringify(overviewHouseDataArray));
+
             // ... Append other form data as needed
             
             // Append image files
@@ -53,13 +62,15 @@ const PostREPage = () => {
             }
             // Make a single axios request for both form data and images
             const res = await axios.post(process.env.REACT_APP_API_BASE_URL + '/postRealEstate', formData)
+            
+                
           // Handle the response if needed
-          console.log('Response from backend:', res.data);
+        console.log('Response from backend:', res.data);
         } catch (error) {
           // Handle errors
-          console.error('Error sending form data:', error);
+        console.error('Error sending form data:', error);
         }
-      };
+    };
 
     
     const myImage = 

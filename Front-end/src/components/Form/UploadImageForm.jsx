@@ -80,7 +80,7 @@ const UploadImageForm = ({button, title, width1, width2, gap, status, onDataArra
                         }
                         <p className='text-[20px]'>{title}</p>
                     </div>
-                    <form className="w-[500px]">
+                    <div className="w-[500px]">
                         <div className="mb-[60px]">
                             <div className="file-upload-box">           
                                 <input type="file" id="fileupload" className="file-upload-input" onChange={InputChange} multiple />
@@ -114,7 +114,7 @@ const UploadImageForm = ({button, title, width1, width2, gap, status, onDataArra
                                 })
                             }
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
