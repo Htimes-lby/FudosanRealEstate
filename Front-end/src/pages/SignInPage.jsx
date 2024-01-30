@@ -1,6 +1,6 @@
-import  React, { useState } from 'react';
+import  React, { useState, } from 'react';
 import { useHistory } from 'react-router-dom'
-import { useDispatch } from 'react-redux';
+import { useDispatch,  } from 'react-redux';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { signin } from '../redux/slices/auth';
@@ -22,23 +22,7 @@ const SignInPage = () => {
         try {
             const signinObject = {email, password}
             dispatch(signin(signinObject));
-            // const res = await axios.get(process.env.REACT_APP_API_BASE_URL +"/signin", {
-            //     params: { email: payload.email, password: payload.password },
-            //     });
-            // if(res.data.message === 'Email is not exist!'){
-            //     toast.error('Correct input mail!')
-            //     }
-            //     else{
-            //         if(res.data.message === 'Password in incorrect!'){
-            //             toast.error('Correct input password')
-            //         }
-            //         else if(res.data.message === 'Jwt Login Success.'){
-            //             toast.success('Signup successful!');
-            //             setTimeout(() => {
-            //                 history.push('/', res.data)
-            //             }, 2000);
-            //         }
-            //     }
+            
 
             } catch (error) {
                 if (error.response && error.response.status === 500) {
@@ -48,7 +32,7 @@ const SignInPage = () => {
                 }
             }
     }
-
+    
 
     const handleNavigateToRegister = () => {
         history.push('/register')

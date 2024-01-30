@@ -16,7 +16,7 @@ const SignUpPage = () => {
     const lastGanjiRef = useRef(null);
     const history = useHistory();
     const [passwordShown, setPasswordShown] = useState(false);
-    const [password, setPassword] = useState('');
+    const [passwords, setPasswords] = useState('');
     const [email, setEmail] = useState('');
     const [firstNameGana, setFirstNameGana] = useState('');
     const [lastNameGana, setLastNameGana] = useState('');
@@ -26,7 +26,7 @@ const SignUpPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const payload = {email, password, firstNameGanji, lastNameGanji, firstNameGana, lastNameGana};
+            const payload = {email, passwords, firstNameGanji, lastNameGanji, firstNameGana, lastNameGana};
             const res = await axios.post('/signup', payload);
             history.push('/input-code')
 
@@ -38,7 +38,7 @@ const SignUpPage = () => {
             lastGanaRef.current.value = '';
         } catch (error) {
             if(error.response && error.response.status === 500) {
-                setErrorMsg(error.response.data.error);
+                setErrorMsg(error.response.data.message);
             } else {
                 setErrorMsg('An Error Occured');
             }
@@ -79,7 +79,7 @@ const SignUpPage = () => {
                             name="password"
                             ref={passwordRef}
                             required={true}
-                            onChange={(e) => setPassword(e.target.value)}
+                            onChange={(e) => setPasswords(e.target.value)}
                         />
                         <i className=' absolute bottom-1 right-3 cursor-pointer' onClick={togglePasswordVisibility}>{eye}</i>
                     </div>

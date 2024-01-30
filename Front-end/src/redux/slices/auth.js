@@ -8,9 +8,10 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 export const signin = createAsyncThunk("/user/signin", async (payload) => {
   try {
     const response = await axios.get("/signin", {
-      params: { userId: payload.email, password: payload.password },
+      params: { email: payload.email, password: payload.password },
     });
     return response.data;
+
   }
   catch (e) {
     return e.response.data;
@@ -30,12 +31,18 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
+    getToken: (state) => {
+      state.token = localStorage.getItem("token");
+    },
     signOut: state => {
       localStorage.removeItem("token");
       setAuthToken(null);
       state.isAuthenticated = false;
       state.user = null;
     },
+    resetError: (state) => {
+      state.error = "";
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -48,7 +55,9 @@ const authSlice = createSlice({
           state.isLoading = false;
           axios.defaults.headers.common["Authorization"] = payload.token;
           localStorage.setItem("token", payload.token);
+          localStorage.setItem("id", payload.user._id);
           state.user = payload.user;
+          console.log(payload.user)
         }
       })
       .addCase(signin.rejected, (state, {payload}) => {
