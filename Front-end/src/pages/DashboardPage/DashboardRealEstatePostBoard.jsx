@@ -346,8 +346,9 @@ const DashboardRealEstatePostBoard = ( props ) => {
     const realEstates = props.realEstates;
     const handleRealEstateCardClicked = (props) => {
         const index = props;
+        const realEstateId = realEstates[index]._id;
         const searchParams = new URLSearchParams();
-        searchParams.set('index', index);
+        searchParams.set('realEstateId', realEstateId);
         history.push(`/item-detail?${searchParams.toString()}`);
     };
 

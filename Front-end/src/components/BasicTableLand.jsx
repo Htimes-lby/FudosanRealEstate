@@ -3,7 +3,7 @@ import React from "react";
 const BasicTableLand = ( props ) => {
 
     const {tableData, fontSize, width} = props
-    const {budget, landarea, buildingToLandRatio, floorAreaRatio, structure} = tableData;
+    const {budget, landarea, buildingCoverageRatio, floorAreaRatio, structure} = tableData;
 
     return(
         <table className={`border border-[#8d8d8d] ${width}`}>
@@ -18,7 +18,7 @@ const BasicTableLand = ( props ) => {
                 </tr>
                 <tr className="bg-[#ececec]">
                     <td className=" py-[7px] border-r border-[#8d8d8d]">乾閉率</td>
-                    <td className=" py-[7px]">{buildingToLandRatio}</td>
+                    <td className=" py-[7px]">{buildingCoverageRatio}</td>
                 </tr>
                 <tr>
                     <td className=" py-[7px] border-r border-[#8d8d8d]">容積率</td>

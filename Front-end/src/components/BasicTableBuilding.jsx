@@ -3,14 +3,14 @@ import React from "react";
 const BasicTableBuilding = ( props ) => {
 
     const {tableData, fontSize, width} = props;
-    const {budget, layout, landarea, buildingarea, deadline, parking} = tableData;
+    const {budget, layout, landarea, buildingArea, deadline, parking} = tableData;
 
     return(
         <table className={`border border-[#8d8d8d] ${width} text-center`}>
             <tbody className={`${fontSize}`}>
                 <tr className="bg-[#ececec]">
                     <td className=" py-[5px] border-r border-[#8d8d8d]">価格</td>
-                    <td className=" py-[5px]">{budget}</td>
+                    <td className=" py-[5px]">{budget}万円</td>
                 </tr>
                 <tr>
                     <td className=" py-[5px] border-r border-[#8d8d8d]">間取り</td>
@@ -18,11 +18,11 @@ const BasicTableBuilding = ( props ) => {
                 </tr>
                 <tr className="bg-[#ececec]">
                     <td className=" py-[5px] border-r border-[#8d8d8d]">土地面積</td>
-                    <td className=" py-[5px]">{landarea}</td>
+                    <td className=" py-[5px]">{landarea}m²</td>
                 </tr>
                 <tr>
                     <td className=" py-[5px] border-r border-[#8d8d8d]">建物面積</td>
-                    <td className=" py-[5px]">{buildingarea}</td>
+                    <td className=" py-[5px]">{buildingArea}m²</td>
                 </tr>
                 <tr className="bg-[#ececec]">
                     <td className=" py-[5px] border-r border-[#8d8d8d]" >入居</td>

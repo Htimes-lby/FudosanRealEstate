@@ -7,11 +7,8 @@ export default function ConditionForm({content, onDataArrayFromChild}) {
     const handleCheckboxChange = () => {
         // Update the state to toggle the checked state
         setIsChecked(!isChecked);
-     
       };
-
       useEffect(()=>{
-        
         onDataArrayFromChild(isChecked);
       },[isChecked])
   return (
