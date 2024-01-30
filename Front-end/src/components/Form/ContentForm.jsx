@@ -6,7 +6,7 @@ export default function ContentForm( props ) {
   const [fullDescription, setFullDescription] = useState('');
 
   useEffect(()=>{
-    const contentDataArray = [{briefDescription: briefDescription}, {fullDescription: fullDescription}];
+    const contentDataArray = {briefDescription: briefDescription, fullDescription: fullDescription};
     props.onDataArrayFromChild(contentDataArray);
   },[briefDescription, fullDescription ])
   

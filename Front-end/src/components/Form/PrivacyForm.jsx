@@ -17,9 +17,9 @@ export default function PrivacyForm( props ) {
 
     useEffect(() => {
                 
-        const privacyDataArray = [{province:province}, {city: city}, {buildingName: buildingName}, {street: street}, {phoneNumber: phoneNumber}, 
-                                    {postalNumber: postalNumber}, {email: email}, {age: age}, {firstNameGana: firstNameGana}, {lastNameGana: lastNameGana}, 
-                                    {firstNameGanji: firstNameGanji}, {lastNameGanji: lastNameGanji} ]
+        const privacyDataArray = {province:province, city: city, buildingName: buildingName, street: street, phoneNumber: phoneNumber, 
+                                    postalNumber: postalNumber, email: email, age: age, firstNameGana: firstNameGana, lastNameGana: lastNameGana, 
+                                    firstNameGanji: firstNameGanji, lastNameGanji: lastNameGanji} 
 
         props.onDataArrayFromChild(privacyDataArray);
     }, [province, city, buildingName, street, phoneNumber, postalNumber, email, age, firstNameGana, firstNameGanji, lastNameGana, lastNameGanji]);

@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const agentsSchema = new mongoose.Schema({
   posterId: {
-    type: Schema.Types.objectId,
+    type: Schema.Types.ObjectId,
     ref: 'User',
   },
   agentName: {
@@ -48,9 +49,7 @@ const agentsSchema = new mongoose.Schema({
   content: {
     type: String,
   },
-  qualificationCopy: {
-    type: String,
-  },
+  qualificationCopy: [String],
   approved: {
     type: Boolean,
     default: false,

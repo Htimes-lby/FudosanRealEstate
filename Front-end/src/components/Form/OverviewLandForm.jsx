@@ -9,7 +9,7 @@ const [floorAreaRatio, setFloorAreaRatio] = useState('');
 const [structure, setStructure] = useState('');
 
 useEffect(()=>{
-    const overviewHouseDataArray = [{budget: budget}, {landarea: landarea}, {buildingCoverageRatio: buildingCoverageRatio}, {floorAreaRatio: floorAreaRatio}, {structure: structure}];
+    const overviewHouseDataArray = {budget: budget, landarea: landarea, buildingCoverageRatio: buildingCoverageRatio, floorAreaRatio: floorAreaRatio, structure: structure};
     props.onDataArrayFromChild(overviewHouseDataArray);
     },[budget, landarea, buildingCoverageRatio, floorAreaRatio, structure])
     

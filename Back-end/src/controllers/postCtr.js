@@ -1,67 +1,48 @@
 const RealEstate = require('../models/realEstateModel')
 const User = require('../models/userModel')
+const Agent = require('../models/agentsModel')
 
 const createRealEstate = async (req, res) => {
-
+ 
   try {
     const {
-      privacyDataArray,
-      contentDataArray,
-      overviewHouseDataArray,
-      newId,
-      label
+      realEstateInfo
     } = req.body; // Use req.body to access request body data
-   
-    // Check if the arrays are defined
-    const newPrivacyDataArray = JSON.parse(privacyDataArray);
-    const newContentDataArray = JSON.parse(contentDataArray);
-    const newOverviewHouseDataArray = JSON.parse(overviewHouseDataArray);
-
-    const privacyData = newPrivacyDataArray ? newPrivacyDataArray.reduce((acc, data) => ({ ...acc, ...data }), {}) : {};
-    const descriptionData = newContentDataArray ? newContentDataArray.reduce((acc, data) => ({ ...acc, ...data }), {}) : {};
-    const basicInfoData = newOverviewHouseDataArray ? newOverviewHouseDataArray.reduce((acc, data) => ({ ...acc, ...data }), {}) : {};
   
+    // Check if the arrays are defined
+    const newPrivacyDataArray = JSON.parse(realEstateInfo);
     
-    const newphoneNumberData = privacyData.phoneNumber[0]+privacyData.phoneNumber[1]+privacyData.phoneNumber[2];
-    const newZipCodeData = privacyData.postalNumber[0]+privacyData.postalNumber[1]
-    const addressData = {zipCode: newZipCodeData, province:privacyData.province, city:privacyData.city, street:privacyData.street};
-    const newBasicInfoData = {budget:basicInfoData.budget, layout:basicInfoData.layout,
-                              landarea:basicInfoData.landarea,buildingArea:basicInfoData.buildingarea, 
-                              deadline:basicInfoData.deadline,parking:basicInfoData.parking};
-
-    const newBasicInfolandData = {budget:basicInfoData.budget, buildingCoverageRatio:basicInfoData.buildingCoverageRatio,
-      landarea:basicInfoData.landarea,floorAreaRatio:basicInfoData.floorAreaRatio, 
-      structure:basicInfoData.structure}
     const filepaths = req.files.map((file) => file.path);
-    const name  = {firstNameGanji : privacyData.firstNameGanji, lastNameGanji : privacyData.lastNameGanji, firstNameGana : privacyData.firstNameGana, lastNameGana : privacyData.lastNameGana}
-    let getUser = await User.findOneAndUpdate({ _id: newId }, {$set:{age:privacyData.age,email:privacyData.email,phoneNumber:newphoneNumberData,name:name}});
-       
+    let getUser = await User.findOneAndUpdate({ _id: newPrivacyDataArray.poster }, {$set:{age:newPrivacyDataArray.getUser.age,email:newPrivacyDataArray.getUser.email,phoneNumber:newPrivacyDataArray.getUser.phoneNumber,name:newPrivacyDataArray.getUser.name}});
+      
         let post
-        if(label ==='post-building'){
+        if(newPrivacyDataArray.label ==='post-building'){
           const postTemp = new RealEstate({
-            address:addressData,
-            briefDescription:descriptionData.briefDescription,
-            fullDescription:descriptionData.fullDescription,
-            basicInfoBuilding: newBasicInfoData,
+            address:newPrivacyDataArray.address,
+            briefDescription:newPrivacyDataArray.briefDescription,
+            fullDescription:newPrivacyDataArray.fullDescription,
+            basicInfoBuilding: newPrivacyDataArray.basicInfoBuilding,
             images:filepaths,
-            poster:newId,
+            poster:newPrivacyDataArray.poster,
             label: 'building',
           });
           post = postTemp;
+          
         }
+      
         else{
           const postTemp = new RealEstate({
-            address:addressData,
-            briefDescription:descriptionData.briefDescription,
-            fullDescription:descriptionData.fullDescription,
-            basicInfoLand: newBasicInfolandData,
+            address:newPrivacyDataArray.address,
+            briefDescription:newPrivacyDataArray.briefDescription,
+            fullDescription:newPrivacyDataArray.fullDescription,
+            basicInfoLand: newPrivacyDataArray.basicInfoLand,
             images:filepaths,
-            poster:newId,
+            poster:newPrivacyDataArray.poster,
             label: 'land',
           })
           post = postTemp;
         }
-   
+  
     
 
     // Save the post to the database
@@ -74,6 +55,39 @@ const createRealEstate = async (req, res) => {
   }
 };
 
+const createAgent = async (req, res) => {
+  try{
+    const {agentInfo} = req.body
+    const newAgentInfo = JSON.parse(agentInfo);
+    const qualificationCopy = req.files.map((file) => file.path);
+    console.log(qualificationCopy);
+    let getUser = await User.findOneAndUpdate({ _id: newAgentInfo.posterId }, {$set:{email:newAgentInfo.agentEmail,phoneNumber:newAgentInfo.phoneNumber,name:newAgentInfo.agentName}});
+    
+
+    const postAgent = new Agent({
+      posterId:newAgentInfo.posterId,
+      agentName:newAgentInfo.agentName,
+      agentEmail:newAgentInfo.agentEmail,
+      address:newAgentInfo.address,
+      category:newAgentInfo.category,
+      phoneNumber:newAgentInfo.phoneNumber,
+      companyName:newAgentInfo.companyName,
+      content:newAgentInfo.content,
+      qualificationCopy:qualificationCopy,
+
+    });
+
+    await postAgent.save();
+
+    return res.status(200).json({ message: 'Post created successfully'});
+  
+
+  }catch(error){
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
 module.exports = {
   createRealEstate,
+  createAgent,
 };

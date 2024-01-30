@@ -10,7 +10,7 @@ export default function OverviewHouseForm ( props ) {
     const [parking, setParking] = useState('');
 
     useEffect(()=>{
-        const overviewHouseDataArray = [{budget: budget}, {layout: layout}, {landarea: landarea}, {buildingarea: buildingarea}, {deadline: deadline}, {parking: parking}];
+        const overviewHouseDataArray = {budget: budget, layout: layout, landarea: landarea,buildingarea: buildingarea,deadline: deadline,parking: parking};
         props.onDataArrayFromChild(overviewHouseDataArray);
       },[budget, layout, landarea, buildingarea, deadline, parking])
       
