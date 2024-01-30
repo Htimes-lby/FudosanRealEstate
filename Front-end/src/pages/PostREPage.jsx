@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {  useSelector } from 'react-redux';
 import Category from "../components/Category"
 import FlagTextContainer from "../components/FlagTextContainer"
 import SoldFeedbackCard from '../components/SoldFeedbackCard';
@@ -7,16 +8,17 @@ import ContentForm from "../components/Form/ContentForm";
 import OverviewHouseForm from "../components/Form/OverviewHouseForm";
 import UploadImageForm from "../components/Form/UploadImageForm";
 import ConditionForm from "../components/Form/ConditionForm";
-import { useSelector } from 'react-redux'
 import axios from 'axios';
 
 const PostREPage = () => {
+    const user = useSelector((state) => state.auth.user);
+    console.log('----------------', user);
     const [privacyDataArray, setPrivacyDataArray] = useState([]);
     const [contentDataArray, setContentDataArray] = useState([]);
     const [overviewHouseDataArray, setOverviewDataArray] = useState([]);
     const [uploadDataArray, setUploadDataArray] = useState([]);
     const [conditionData, setConditionData] = useState("");
-    const user = useSelector((state) => state.auth.user);
+    
     
 
 const handlePrivacyDataArray = (data) => {
@@ -46,7 +48,6 @@ const handleconditionDataArray = (data) => {
     try {
 
         const formData = new FormData();
-
             // Append other form data
             formData.append('privacyDataArray', JSON.stringify(privacyDataArray));
             formData.append('contentDataArray', JSON.stringify(contentDataArray));

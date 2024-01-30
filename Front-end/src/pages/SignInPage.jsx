@@ -1,6 +1,6 @@
-import  React, { useState, } from 'react';
+import  React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom'
-import { useDispatch,  } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { signin } from '../redux/slices/auth';
@@ -17,22 +17,18 @@ const SignInPage = () => {
         setPasswordShown(passwordShown ? false : true);
     };
 
-    const handleLogin = async (e) => {
-        e.preventDefault();
-        try {
-            const signinObject = {email, password}
-            dispatch(signin(signinObject));
-            
-
-            } catch (error) {
-                if (error.response && error.response.status === 500) {
-                    setErrorMsg(error.reponse.data.error);
-                } else {
-                    setErrorMsg('An Error Occured')
-                }
-            }
-    }
+    const error = useSelector((state) => state.auth.error);
     
+    const handleLogin = (e) => {
+        e.preventDefault();
+        const signinObject = {email, password}
+        dispatch(signin(signinObject));
+    };
+
+    useEffect(() => {
+        setErrorMsg(error);
+        console.log('error in signin page', error)
+    },[error])
 
     const handleNavigateToRegister = () => {
         history.push('/register')
@@ -72,7 +68,7 @@ const SignInPage = () => {
                         errorMsg !== '' && 
                         <p className='text-white'>{errorMsg}</p>
                     }
-                    <button className='mt-10 w-full h-[50px] rounded-md bg-[#2A6484] text-white font-semibold border-white/50 border-2 text-[22px]' onSubmit={handleLogin}>ログイン </button>
+                    <button className='mt-10 w-full h-[50px] rounded-md bg-[#2A6484] text-white font-semibold border-white/50 border-2 text-[22px]' onSubmit={(e) => handleLogin(e, useSelector)}>ログイン </button>
                     <button className='mt-6 w-full h-[50px] rounded-md bg-[#2A6484] text-white font-semibold border-white/50 border-2 text-[19px] mb-20' onClick={handleNavigateToRegister}>サインアップページに移動 </button>
                 </form>
             </div>
