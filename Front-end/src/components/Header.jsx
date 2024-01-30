@@ -24,13 +24,10 @@ const Header = () => {
         if(adminRef.current && !adminRef.current.contains(event.target)){setAdminPageActive(false)}
     };
     const handleRealEstatePostClicked = (props) => {
-        const postRealEstateFlag = props;
-        
-        if(postRealEstateFlag === 'post-building') {
-            history.push('/post-building');
-        }
-        if(postRealEstateFlag === 'post-land') {history.push('/post-land')}
-        if(postRealEstateFlag === 'post-agent') {history.push('/post-agent')}
+        const label = props;
+        const searchParams = new URLSearchParams();
+        searchParams.set('label', label);
+        history.push(`/post-realestate?${searchParams.toString()}`);
     }
     useEffect(() => {
         setMyPageActive(false);
@@ -48,9 +45,9 @@ const Header = () => {
                     <div className='relative inline-block' ref={postPageRef} onClick={handleTogglePost}>
                         <div className=' inline-block text-[17px] leading-[40px] text-white px-3 cursor-pointer'>掲示板に投稿</div>
                         <div className= {`absolute top-[32px] left-[-40px] min-w-[200px] px-auto pt-3 bg-[#32769b] transition-all duration-300 ${postActive ? 'inline-block' : 'hidden'}`}>
-                            <div className=' text-[18px] py-3 text-white border-y border-y-white/50 no-underline transition-all duration-75 hover:text-white/40 cursor-pointer' onClick={() => handleRealEstatePostClicked('post-building')}>PostBuilding</div>
-                            <div className=' text-[17px] py-3 text-white border-b border-b-white/50 no-underline transition-all duration-75 hover:text-white/40 cursor-pointer' onClick={() => handleRealEstatePostClicked('post-land')}>PostLand</div>
-                            <div className=' text-[17px] py-3 text-white border-b border-b-white/50'><Link to='/favourite' className = 'text-current no-underline transition-all duration-75 hover:text-white/40'>PostAgent</Link></div>
+                            <div className=' text-[18px] py-3 text-white border-y border-y-white/50 no-underline transition-all duration-75 hover:text-white/40 cursor-pointer' onClick={() => handleRealEstatePostClicked('post-building')}>建物を投稿する</div>
+                            <div className=' text-[17px] py-3 text-white border-b border-b-white/50 no-underline transition-all duration-75 hover:text-white/40 cursor-pointer' onClick={() => handleRealEstatePostClicked('post-land')}>土地を投稿する</div>
+                            <div className=' text-[17px] py-3 text-white border-b border-b-white/50'><Link to='/post-agent' className = 'text-current no-underline transition-all duration-75 hover:text-white/40'>エージェントの投稿</Link></div>
                         </div>
                     </div>
 
