@@ -21,7 +21,7 @@ const PostREPage = () => {
     const user = useSelector((state) => state.auth.user);
     const [privacyDataArray, setPrivacyDataArray] = useState();
     const [contentDataArray, setContentDataArray] = useState([]);
-    const [overviewHouseDataArray, setOverviewDataArray] = useState([]);
+    const [overviewDataArray, setOverviewDataArray] = useState([]);
     const [uploadDataArray, setUploadDataArray] = useState([]);
     const [conditionData, setConditionData] = useState("");
 
@@ -40,20 +40,29 @@ const handleUploadDataArray = (data) => {
 const handleconditionDataArray = (data) => {
     setConditionData(data);
 };
+console.log(contentDataArray.briefDescription)
     
     const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
+        const newphoneNumber = privacyDataArray.phoneNumber[0]+privacyDataArray.phoneNumber[1]+privacyDataArray.phoneNumber[2];
+        const newpostalNumber = privacyDataArray.postalNumber[0]+privacyDataArray.postalNumber[1];
         const newId = localStorage.getItem('id');
+        const name = {firstNameGana: privacyDataArray.firstNameGana, lastNameGana: privacyDataArray.lastNameGana, firstNameGanji: privacyDataArray.firstNameGanji, lastNameGanji: privacyDataArray.lastNameGanji}
+        const address = {zipCode:newpostalNumber, province:privacyDataArray.province, city:privacyDataArray.city, street:privacyDataArray.street}
+        const briefDescription = contentDataArray.briefDescription;
+        const fullDescription = contentDataArray.fullDescription;
+        const basicInfoBuilding = {budget:overviewDataArray.budget,layout:overviewDataArray.layout, landarea:overviewDataArray.landarea, buildingArea:overviewDataArray.buildingArea, deadline:overviewDataArray.deadline, parking:overviewDataArray.parking}
+        const basicInfoLand = {budget:overviewDataArray.budget, buildingCoverageRatio:overviewDataArray.buildingCoverageRatio, landarea:overviewDataArray.landarea, floorAreaRatio:overviewDataArray.floorAreaRatio, structure:overviewDataArray.structure}
+        const label = searchParams.get('label');
+        const getUser = {age: privacyDataArray.age, email: privacyDataArray.email, phoneNumber:newphoneNumber, name:name}
+        
+        const realEstateData = {poster:newId,address:address, briefDescription:briefDescription, fullDescription:fullDescription, basicInfoBuilding:basicInfoBuilding, basicInfoLand:basicInfoLand, label:label , getUser:getUser}
+        
         const formData = new FormData();
             // Append other form data
-            formData.append('privacyDataArray', JSON.stringify(privacyDataArray));
-            formData.append('contentDataArray', JSON.stringify(contentDataArray));
-            formData.append('overviewHouseDataArray', JSON.stringify(overviewHouseDataArray));
-            formData.append('newId', newId);
-            formData.append('label', label);
-            
+            formData.append('realEstateInfo', JSON.stringify(realEstateData));
             // ... Append other form data as needed
             
             // Append image files
@@ -63,6 +72,7 @@ const handleconditionDataArray = (data) => {
             }
             // Make a single axios request for both form data and images
             const res = await axios.post(process.env.REACT_APP_API_BASE_URL + '/postRealEstate', formData)
+            console.log(formData);
 
             
                 
