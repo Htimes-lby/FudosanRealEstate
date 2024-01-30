@@ -2,7 +2,6 @@ import { React, useState, useRef } from 'react';
 import { useHistory } from 'react-router-dom'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from 'axios';
-import toast, { Toaster } from 'react-hot-toast';
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 const eye = <FontAwesomeIcon icon={faEye} />;
@@ -23,6 +22,7 @@ const SignUpPage = () => {
     const [firstNameGanji, setFirstNameGanji] = useState('');
     const [lastNameGanji, setLastNameGanji] = useState('');
     const [errorMsg, setErrorMsg] = useState('アカウント作成と同時に、当サイト');
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -53,7 +53,6 @@ const SignUpPage = () => {
 
     return (
         <>
-        <Toaster position="top-right" reverseOrder={false} />
             <div className= ' w-full h-[900px] bg-image-blur bg-cover'></div>
             <div className= ' absolute flex flex-col items-center top-[18%] left-[35%] w-[550px] bg-black/50 z-10 border-white border-2 rounded-lg'>
                 <h1 className='text-[28px] text-white font-semibold pt-8'>サインアップ</h1>
