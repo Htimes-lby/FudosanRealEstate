@@ -33,7 +33,6 @@ const signIn = async (req, res) => {
 
 
 const signUp = async (req, res) => {
-        console.log(req.body);
         let user = await User.find({ email: req.body.email }, "");
         if (!req.body.email.includes('@')) {
             return res.status(500).json({ message: 'Invalid email format. Must contain "@".' });
@@ -63,6 +62,12 @@ const signUp = async (req, res) => {
     });
     
 };
+
+const getUser = async (req, res) => {
+    let user = await User.find({ _id: req.query._id }, "");
+    res.json(user);
+
+}
 
 const inputEmailCode = async (req, res) => {
     try {
@@ -139,4 +144,5 @@ module.exports = {
     signUp,
     signIn,
     inputEmailCode,
+    getUser
 };

@@ -1,22 +1,19 @@
 import React, {useState ,useEffect} from "react";
-import { useSelector } from 'react-redux'
+import axios from 'axios';
 
 export default function PrivacyForm( props ) {
-    const user = useSelector((state) => state.auth.user);
-    console.log(user.email)
     const [province, setProvince] = useState('');
     const [city, setCity] = useState('');
     const [buildingName, setBuildingName] = useState('');
     const [street, setStreet] = useState('');
     const [phoneNumber, setPhoneNumber] = useState([]);
     const [postalNumber, setPostalNumber] = useState([]);
-    const [email, setEmail] = useState(user.email);
-    const [age, setAge] = useState();
+    const [email, setEmail] = useState('');
+    const [age, setAge] = useState('');
     const [firstNameGana, setFirstNameGana] = useState('');
     const [lastNameGana, setLastNameGana] = useState('');
     const [firstNameGanji, setFirstNameGanji] = useState('');
     const [lastNameGanji, setLastNameGanji] = useState('');
-    console.log(user);
 
     useEffect(() => {
         
@@ -26,6 +23,22 @@ export default function PrivacyForm( props ) {
 
         props.onDataArrayFromChild(privacyDataArray);
     }, [province, city, buildingName, street, phoneNumber, postalNumber, email, age, firstNameGana, firstNameGanji, lastNameGana, lastNameGanji]);
+
+    useEffect(() => {
+        const func = async () => {
+            const newId = localStorage.getItem("id");
+            const response = await axios.get("/getUser", {
+                params: { _id: newId},
+                });
+                
+                setEmail(response.data[0].email);
+                setFirstNameGana(response.data[0].name.firstNameGana)
+                setLastNameGana(response.data[0].name.lastNameGana)
+                setFirstNameGanji(response.data[0].name.firstNameGanji)
+                setLastNameGanji(response.data[0].name.lastNameGanji)
+        }
+        func();
+        }, []);
 
 
 
@@ -58,21 +71,21 @@ return (
                 <div className='w-[196px]'>
                     <div className='flex justify-between '>
                         <span>(姓)</span>
-                        <input className='w-[130px] border-[1px]  focus:outline-none focus:border-blue-500 p-1 focus:outline-none focus:border-blue-500 p-1 border-black  rounded-md' type="text" onChange={(e) => setLastNameGanji(e.target.value)} />
+                        <input value = {lastNameGanji} className='w-[130px] border-[1px]  focus:outline-none focus:border-blue-500 p-1 focus:outline-none focus:border-blue-500 p-1 border-black  rounded-md' type="text" onChange={(e) => setLastNameGanji(e.target.value)} />
                     </div>
                     <div className='flex justify-between pt-[16px]'>
                         <span>(せい)</span>
-                        <input className='w-[130px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' type="text" onChange={(e) => setLastNameGana(e.target.value)}  />
+                        <input value={lastNameGana} className='w-[130px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' type="text" onChange={(e) => setLastNameGana(e.target.value)}  />
                     </div>
                 </div> 
                 <div className='w-[196px]'>
                     <div className='flex justify-between'>
                         <span>(名)</span>
-                        <input className='w-[130px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' type="text" onChange={(e) => setFirstNameGanji(e.target.value)} />
+                        <input value = {firstNameGanji} className='w-[130px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' type="text" onChange={(e) => setFirstNameGanji(e.target.value)} />
                     </div>
                     <div className='flex justify-between pt-[16px]'>
                         <span>(めい)</span>
-                        <input className='w-[130px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' type="text" onChange={(e) => setFirstNameGana(e.target.value)} />
+                        <input value={firstNameGana} className='w-[130px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' type="text" onChange={(e) => setFirstNameGana(e.target.value)} />
                     </div>
                 </div>      
             </div>

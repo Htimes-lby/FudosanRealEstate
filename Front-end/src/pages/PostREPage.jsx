@@ -12,7 +12,6 @@ import axios from 'axios';
 
 const PostREPage = () => {
     const user = useSelector((state) => state.auth.user);
-    console.log('----------------', user);
     const [privacyDataArray, setPrivacyDataArray] = useState([]);
     const [contentDataArray, setContentDataArray] = useState([]);
     const [overviewHouseDataArray, setOverviewDataArray] = useState([]);
@@ -46,13 +45,14 @@ const handleconditionDataArray = (data) => {
     e.preventDefault();
 
     try {
-
+        const newId = localStorage.getItem('id');
         const formData = new FormData();
             // Append other form data
             formData.append('privacyDataArray', JSON.stringify(privacyDataArray));
             formData.append('contentDataArray', JSON.stringify(contentDataArray));
             formData.append('overviewHouseDataArray', JSON.stringify(overviewHouseDataArray));
-
+            formData.append('newId', newId);
+            
             // ... Append other form data as needed
             
             // Append image files
@@ -62,6 +62,7 @@ const handleconditionDataArray = (data) => {
             }
             // Make a single axios request for both form data and images
             const res = await axios.post(process.env.REACT_APP_API_BASE_URL + '/postRealEstate', formData)
+
             
                 
           // Handle the response if needed

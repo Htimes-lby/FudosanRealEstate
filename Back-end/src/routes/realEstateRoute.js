@@ -34,6 +34,8 @@ router.post("/postRealEstate", upload.array('images', 10),  postCtr.createRealEs
 router.post("/signup", userCtr.signUp)
 router.post('/inputCode', userCtr.inputEmailCode)
 router.get("/signin", userCtr.signIn)
+router.get("/getUser", userCtr.getUser)
+
 
 
 module.exports = router;
