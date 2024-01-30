@@ -1,4 +1,3 @@
-const Post = require('../models/postModel')
 const RealEstate = require('../models/realEstateModel')
 const User = require('../models/userModel')
 
@@ -9,9 +8,10 @@ const createRealEstate = async (req, res) => {
       privacyDataArray,
       contentDataArray,
       overviewHouseDataArray,
-      
+      newId,
     } = req.body; // Use req.body to access request body data
     
+    console.log(req.body)
     // Check if the arrays are defined
     const newPrivacyDataArray = JSON.parse(privacyDataArray);
     const newContentDataArray = JSON.parse(contentDataArray);
@@ -29,13 +29,16 @@ const createRealEstate = async (req, res) => {
                               landarea:basicInfoData.landarea,buildingArea:basicInfoData.buildingarea, 
                               deadline:basicInfoData.deadline,parking:basicInfoData.parking}
     const filepaths = req.files.map((file) => file.path);
-    
+    const name  = {firstNameGanji : privacyData.firstNameGanji, lastNameGanji : privacyData.lastNameGanji, firstNameGana : privacyData.firstNameGana, lastNameGana : privacyData.lastNameGana}
+    let getUser = await User.findOneAndUpdate({ _id: newId }, {$set:{age:privacyData.age,email:privacyData.email,phoneNumber:newphoneNumberData,name:name}});
+        console.log(getUser)
     const post = new RealEstate({
       address:addressData,
       briefDescription:descriptionData.briefDescription,
       fullDescription:descriptionData.fullDescription,
       basicInfoBuilding: newBasicInfoData,
       images:filepaths,
+      poster:newId,
         
     });
     

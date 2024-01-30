@@ -34,5 +34,8 @@ router.post('/inputCode', userCtr.inputEmailCode)
 router.get("/signin", userCtr.signIn)
 router.get("/getRealEstates", realEstateCtr.getRealEstates)
 router.get("/getRealEstateById", realEstateCtr.getRealEstateById)
+router.get("/getUser", userCtr.getUser)
+
+
 
 module.exports = router;

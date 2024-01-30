@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {jwtDecode} from "jwt-decode";
 import { setAuthToken } from "../utils";
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
