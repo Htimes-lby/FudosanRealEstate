@@ -1,4 +1,3 @@
-const Post = require('../models/postModel');
 const User = require('../models/userModel');
 const bcrypt = require("bcryptjs");
 const crypto = require('crypto');
@@ -9,11 +8,13 @@ const jwt = require("jsonwebtoken");
 const signIn = async (req, res) => {
     
     const user = await User.findOne({ email: req.query.email }, "");
-    console.log(user);
-    if (!user) return res.status(500).json({ message: "UserId is not exist!" });
-    if(user.emailVerified === false || user.emailVerified === null) return res.status(500).json({ message: "Your email is not verified" });
+
+    console.log("fdsfdsfsdfdsf",user);
+    if (!user) return res.status(500).json({ message: "This email is not exist!" });
+    if(user.emailVerified === false) return res.status(500).json({ message: "Your email is not verified" });
     const isMatch = await bcrypt.compare(req.query?.password, user.password);
-    if (!isMatch) return res.status(500).json({ message: "Password in incorrect!" });
+    if (!isMatch) res.json(500).json({ message: "Password is incorrect!" });
+
     const payload = {
     id: user._id,
     email: user.email,
@@ -23,7 +24,7 @@ const signIn = async (req, res) => {
     if (err) {
         throw err;
     }
-    res.json({
+    res.status(200).json({
         message: "Jwt Login Success.",
         token: `JWT ${token}`,
         user: user,
@@ -38,10 +39,12 @@ const signUp = async (req, res) => {
             return res.status(500).json({ message: 'Invalid email format. Must contain "@".' });
         }
         else if (user[0]) return res.status(500).json({ message: "Already exist!" });
-        const {email, passwords, firstNameGanji, lastNameGanji, firstNameGana, lastNameGana} = req.body;
+
+        const {email, password, firstNameGanji, lastNameGanji, firstNameGana, lastNameGana} = req.body;
+
         const name  = {firstNameGanji, lastNameGanji, firstNameGana, lastNameGana}
         const salt = await bcrypt.genSalt(10);
-        const password = await bcrypt.hash(passwords, salt);
+        const hashedPassword = await bcrypt.hash(password, salt);
         
         const randomBytes = crypto.randomBytes(Math.ceil(3));
 
@@ -51,8 +54,8 @@ const signUp = async (req, res) => {
         // Return the substring of the generated random number with the specified length
         const verificationCode = randomNumber.slice(0, 6);
         
-        const post = new User({email, password, name, verificationCode});
-    sendVerificationEmail(req.body.email, verificationCode);
+        const post = new User({email: email, password: hashedPassword, name: name, verificationCode: verificationCode});
+    // sendVerificationEmail(req.body.email, verificationCode);
     await post.save((err) => {
         if (err) {
         res.status(500).json({ message: "Failed!" });
@@ -60,7 +63,6 @@ const signUp = async (req, res) => {
         res.json({ message: "Success!" });
         }
     });
-    
 };
 
 const getUser = async (req, res) => {

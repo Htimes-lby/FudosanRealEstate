@@ -22,6 +22,7 @@ const SignUpPage = () => {
     const [firstNameGanji, setFirstNameGanji] = useState('');
     const [lastNameGanji, setLastNameGanji] = useState('');
     const [errorMsg, setErrorMsg] = useState('アカウント作成と同時に、当サイト');
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {

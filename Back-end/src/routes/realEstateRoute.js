@@ -2,6 +2,7 @@ const router = require("express").Router();
 const postCtr = require('../controllers/postCtr')
 const uploadController = require('../controllers/uploadCtr');
 const userCtr = require('../controllers/userCtr');
+const realEstateCtr = require('../controllers/realEstateCtr')
 const multer = require('multer');
 
 const storage = multer.diskStorage({
@@ -24,16 +25,15 @@ const storage = multer.diskStorage({
       cb(null, false);
     }
   };
-
   
   const upload = multer({ storage, fileFilter });
-  
-  
 
 router.post("/postRealEstate", upload.array('images', 10),  postCtr.createRealEstate)
 router.post("/signup", userCtr.signUp)
 router.post('/inputCode', userCtr.inputEmailCode)
 router.get("/signin", userCtr.signIn)
+router.get("/getRealEstates", realEstateCtr.getRealEstates)
+router.get("/getRealEstateById", realEstateCtr.getRealEstateById)
 router.get("/getUser", userCtr.getUser)
 
 
