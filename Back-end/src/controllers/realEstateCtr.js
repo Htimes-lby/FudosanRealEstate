@@ -1,55 +1,56 @@
 const RealEstate = require('../models/realEstateModel')
 
 exports.getRealEstates = async (req, res) => {
-    const startNumber = parseInt(req.query.startNumber)
-    const endNumber = parseInt(req.query.endNumber)
-    console.log('I am req.params', req.params)
-    console.log("endNumber", endNumber)
-    if(req.query.searchTitle !== undefined || req.query.searchContent !== undefined) {
-        const searchTitle  = req.query.searchTitle;
-        const searchContent = req.query.searchContent;
-        if(searchTitle === 'category'){
-            console.log('I am here in category search')
+    const firstNumber = parseInt(req.query.firstNumber)
+    const lastNumber = parseInt(req.query.lastNumber)
+    if(req.query.filterLabel !== undefined || req.query.filterContent !== undefined) {
+        const filterLabel  = req.query.filterLabel;
+        const filterContent = req.query.filterContent;
+        if(filterLabel === 'filterByCategory'){
+            console.log('I am here in category search', firstNumber)
             try {
-                const realEstates = await RealEstate.find({ category: searchContent }).sort({ createdAt: -1 }).skip(startNumber-1).limit(endNumber-startNumber+1);
-                res.status(200).json(realEstates);
+                const realEstates = await RealEstate.find({ category: filterContent, approved: true }).sort({ createdAt: -1 }).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
+                const totalDocumentNumber = await RealEstate.countDocuments({'category': filterContent, approved: true})
+                return res.status(200).json({totalDocumentNumber, realEstates});
             } catch (error) {
-                res.status(500).json({ error: 'Failed to fetch real estates' });
+                return res.status(500).json({ error: 'Failed to fetch real estates' });
             }
         }
-        if(searchTitle === 'province'){
+        if(filterLabel === 'filterByProvince'){
             console.log('I am here in province search')
             try {
-                const realEstates = await RealEstate.find({'address.province': searchContent}).sort({ createdAt: -1 }).skip(startNumber-1).limit(endNumber-startNumber+1);
-                res.status(200).json(realEstates);
+                const realEstates = await RealEstate.find({'address.province': filterContent, approved: true}).sort({ createdAt: -1 }).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
+                const totalDocumentNumber = await RealEstate.countDocuments({'address.province': filterContent, approved: true})
+                return res.status(200).json({totalDocumentNumber, realEstates});
             } catch (error) {
-                res.status(500).json({ error: 'Failed to fetch real estates' });
+                return res.status(500).json({ error: 'Failed to fetch real estates' });
             }
         }
-        if(searchTitle === 'city'){
+        if(filterLabel === 'filterByCity'){
             console.log('I am here in city search')
             try {
-                const realEstates = await RealEstate.find({'address.city': searchContent}).sort({ createdAt: -1 }).skip(startNumber-1).limit(endNumber-startNumber+1);
-                res.status(200).json(realEstates);
+                const realEstates = await RealEstate.find({'address.city': filterContent, approved: true}).sort({ createdAt: -1 }).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
+                const totalDocumentNumber = await RealEstate.countDocuments({'address.city': filterContent, approved: true});
+                return res.status(200).json({totalDocumentNumber, realEstates});
             } catch (error) {
-                res.status(500).json({ error: 'Failed to fetch real estates' });
+                return res.status(500).json({ error: 'Failed to fetch real estates' });
             }
         }
     }
     console.log('I am here in normal get mode')
     try {
-        const realEstates = await RealEstate.find().sort({ createdAt: -1 }).skip(startNumber-1).limit(endNumber-startNumber+1);
-        res.status(200).json(realEstates);
+        const realEstates = await RealEstate.find({approved: true}).sort({ createdAt: -1 }).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
+        return res.status(200).json(realEstates);
     } catch (error) {
-        res.status(500).json({ error: 'Failed to fetch real estates'});
+        return res.status(500).json({ error: 'Failed to fetch real estates'});
     }
 }
 
 exports.getRealEstateById = async (req, res) => {
     try {
-        const realEstate = await RealEstate.findOne({ _id: req.body.realEstateId });
+        const realEstate = await RealEstate.findOne({ _id: req.query.realEstateId });
         if(!realEstate) {
-            return res.status(404).json({ msg: `No RealEstate with id: ${req.body.realEstateId}`});
+            return res.status(404).json({ msg: `No RealEstate with id: ${req.query.realEstateId}`});
         } else {
             res.status(200).json({realEstate});
         }
