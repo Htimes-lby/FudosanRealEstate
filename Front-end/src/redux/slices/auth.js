@@ -5,15 +5,19 @@ import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 
-export const signin = createAsyncThunk("/user/signin", async (payload) => {
+export const signin = createAsyncThunk("/user/signin", async (payload, { rejectWithValue }) => {
   try {
     const response = await axios.get("/signin", {
-      params: { userId: payload.email, password: payload.password },
+      params: { email: payload.email, password: payload.password },
     });
     return response.data;
   }
-  catch (e) {
-    return e.response.data;
+  catch (error) {
+    console.log('---------------------', error);
+    if(error.response.status === 500) {
+      return rejectWithValue({ message: error.response.data.message })
+    }
+    return rejectWithValue({message : 'error occured'});
   }
 });
 
@@ -49,11 +53,13 @@ const authSlice = createSlice({
           axios.defaults.headers.common["Authorization"] = payload.token;
           localStorage.setItem("token", payload.token);
           state.user = payload.user;
+          state.error = null;
         }
       })
-      .addCase(signin.rejected, (state, {payload}) => {
+      .addCase(signin.rejected, (state, action) => {
+        console.log('+++++++++++++++++++++', action.payload.message);
         state.isLoading = false;
-        state.error = payload.error.message;
+        state.error = action.payload.message;
       })
   },
 });

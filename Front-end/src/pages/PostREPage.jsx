@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Category from "../components/Category"
 import FlagTextContainer from "../components/FlagTextContainer"
 import SoldFeedbackCard from '../components/SoldFeedbackCard';
@@ -10,30 +11,27 @@ import ConditionForm from "../components/Form/ConditionForm"
 import axios from 'axios'
 
 const PostREPage = () => {
+    const user = useSelector((state) => state.auth.user);
+    console.log('----------------', user);
     const [privacyDataArray, setPrivacyDataArray] = useState([]);
     const [contentDataArray, setContentDataArray] = useState([]);
     const [overviewHouseDataArray, setOverviewDataArray] = useState([]);
     const [uploadDataArray, setUploadDataArray] = useState([]);
     const [conditionData, setConditionData] = useState("");
 
-    const handlePrivacyDataArray = (data) => {
-       
+    const handlePrivacyDataArray = (data) => {  
         setPrivacyDataArray(data);
     };
     const handleContentDataArray = (data) => {
-       
         setContentDataArray(data);
     };
     const handleOverviewDataArray = (data) => {
-       
         setOverviewDataArray(data);
     };
     const handleUploadDataArray = (data) => {
-       
         setUploadDataArray(data);
     };
     const handleconditionDataArray = (data) => {
-       
         setConditionData(data);
     };
         
@@ -41,9 +39,7 @@ const PostREPage = () => {
         e.preventDefault();
     
         try {
-
         const formData = new FormData();
-
             // Append other form data
             formData.append('privacyDataArray', JSON.stringify(privacyDataArray));
             formData.append('contentDataArray', JSON.stringify(contentDataArray));
@@ -57,8 +53,6 @@ const PostREPage = () => {
             }
             // Make a single axios request for both form data and images
             const res = await axios.post(process.env.REACT_APP_API_BASE_URL + '/postRealEstate', formData)
-            
-                   
           // Handle the response if needed
           console.log('Response from backend:', res.data);
         } catch (error) {
