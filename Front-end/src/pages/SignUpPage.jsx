@@ -38,7 +38,7 @@ const SignUpPage = () => {
             lastGanaRef.current.value = '';
         } catch (error) {
             if(error.response && error.response.status === 500) {
-                setErrorMsg(error.response.data.error);
+                setErrorMsg(error.response.data.message);
             } else {
                 setErrorMsg('An Error Occured');
             }
