@@ -59,8 +59,10 @@ const AdminApproveRealEstateList = () => {
     },[unapprovedDataOnly, province]);
 
     const handleRealEstateCardClicked = (props) => {
+        const index = props;
+        const realEstateId = realEstates[index]._id;
         const searchParams = new URLSearchParams();
-        searchParams.set('index', props);
+        searchParams.set('realEstateId', realEstateId);
         history.push(`/admin-approve-realestate-detail?${searchParams.toString()}`);
     };
     

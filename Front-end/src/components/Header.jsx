@@ -11,7 +11,7 @@ const Header = () => {
     const [myPageActive, setMyPageActive] = useState(false);
     const [postActive, setPostActive] = useState(false);
     const [adminPageActive, setAdminPageActive] = useState(false);
-    const [feedbackActive, setFeedbackActive] = useState("");
+    // const [feedbackActive, setFeedbackActive] = useState("");
     const handleToggleMyPage = () => {
         setMyPageActive((prevState) => !prevState);
     };
@@ -33,16 +33,16 @@ const Header = () => {
         history.push(`/post-realestate?${searchParams.toString()}`);
     }
 
-    useEffect(() => {
-        const func = async () => {
-            const newId = localStorage.getItem("id");
-            const response = await axios.get("/getUser", {
-                params: { _id: newId},
-                });
-                setFeedbackActive(response.data[0].transactionVerified)
-        }
-        func();
-        }, []);
+    // useEffect(() => {
+    //     const func = async () => {
+    //         const newId = localStorage.getItem("id");
+    //         const response = await axios.get("/getUser", {
+    //             params: { _id: newId},
+    //             });
+    //             setFeedbackActive(response.data[0].transactionVerified)
+    //     }
+    //     func();
+    //     }, []);
 
 
 
@@ -79,9 +79,9 @@ const Header = () => {
                             <div className=' text-[17px] py-3 text-white'><Link to='/contact-general' className = 'text-current no-underline transition-all duration-75 hover:text-white/40'>総合窓口</Link></div>
                         </div>
                     </div>
-                    {
+                    {/* {
                         feedbackActive === true && <div className=' inline-block text-[18px] leading-[40px] text-white px-3'><Link to='/feedback' className = 'text-current no-underline transition-all duration-75 hover:text-white/40'>フィードバック</Link></div>
-                    }
+                    } */}
                     <div className=' inline-block text-[18px] leading-[40px] text-white px-3'><Link to='/login' className = 'text-current no-underline transition-all duration-75 hover:text-white/40'>ログイン</Link></div>
                     <div className=' relative inline-block' ref={adminRef} onClick={handleToggleAdminPage}>
                         <div className=' text-[18px] leading-[40px] text-white px-3 cursor-pointer'>管理者</div>
