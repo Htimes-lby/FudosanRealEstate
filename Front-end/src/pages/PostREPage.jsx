@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 
 import Category from "../components/Category"
@@ -18,7 +17,6 @@ const PostREPage = () => {
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const label = searchParams.get('label');
-    const user = useSelector((state) => state.auth.user);
     const [privacyDataArray, setPrivacyDataArray] = useState();
     const [contentDataArray, setContentDataArray] = useState([]);
     const [overviewDataArray, setOverviewDataArray] = useState([]);

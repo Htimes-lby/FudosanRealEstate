@@ -1,9 +1,10 @@
 const RealEstate = require('../models/realEstateModel')
 const User = require('../models/userModel')
 const Agent = require('../models/agentsModel')
+const Feedback = require('../models/feedbackModel')
 
 const createRealEstate = async (req, res) => {
-  console.log(req.body)
+  
   try {
     const {
       realEstateInfo
@@ -13,6 +14,7 @@ const createRealEstate = async (req, res) => {
     const newPrivacyDataArray = JSON.parse(realEstateInfo);
     
     const filepaths = req.files.map((file) => file.path);
+    console.log(filepaths)
     let getUser = await User.findOneAndUpdate({ _id: newPrivacyDataArray.poster }, {$set:{age:newPrivacyDataArray.getUser.age,email:newPrivacyDataArray.getUser.email,phoneNumber:newPrivacyDataArray.getUser.phoneNumber,name:newPrivacyDataArray.getUser.name}});
       
         let post
@@ -60,7 +62,7 @@ const createAgent = async (req, res) => {
     const {agentInfo} = req.body
     const newAgentInfo = JSON.parse(agentInfo);
     const qualificationCopy = req.files.map((file) => file.path);
-    console.log(qualificationCopy);
+    
     let getUser = await User.findOneAndUpdate({ _id: newAgentInfo.posterId }, {$set:{email:newAgentInfo.agentEmail,phoneNumber:newAgentInfo.phoneNumber,name:newAgentInfo.agentName}});
     
 
@@ -87,7 +89,36 @@ const createAgent = async (req, res) => {
   }
 }
 
+const createFeedBack = async (req, res) => {
+  try{
+    const {feedbackInfo} = req.body
+    const newFeedbackInfo = JSON.parse(feedbackInfo);
+    console.log(newFeedbackInfo);
+    const images = req.files.map((file) => file.path);
+    
+    const postFeedback = new Feedback({
+      poster:newFeedbackInfo.posterId,
+      name:newFeedbackInfo.name,
+      address:newFeedbackInfo.address,
+      images:images,
+      briefContent:newFeedbackInfo.briefContent,
+      fullContent:newFeedbackInfo.fullContent,
+
+    });
+
+    await postFeedback.save();
+
+    return res.status(200).json({ message: 'Post created successfully'});
+  
+
+  }catch(error){
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
+
+}
+
 module.exports = {
   createRealEstate,
   createAgent,
+  createFeedBack,
 };
