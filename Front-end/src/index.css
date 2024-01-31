@@ -404,6 +404,15 @@ a, a:hover, a:focus {
   transform-origin: 50% 50%;
   -webkit-transform-origin: 50% 50%;
   transition-timing-function: ease-in-out;
+  
+}
+
+input:checked {
+  background-color: gray; /* bg-green-500 */
+}
+
+input:checked ~ span:last-child {
+  transform: translateX(100%); /* translate-x-7 */
 }
 
 @keyframes spin {
