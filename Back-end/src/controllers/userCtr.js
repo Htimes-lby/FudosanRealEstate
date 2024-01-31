@@ -9,7 +9,7 @@ const signIn = async (req, res) => {
     
     const user = await User.findOne({ email: req.query.email }, "");
 
-    console.log("fdsfdsfsdfdsf",user);
+    
     if (!user) return res.status(500).json({ message: "This email is not exist!" });
     if(user.emailVerified === false) return res.status(500).json({ message: "Your email is not verified" });
     const isMatch = await bcrypt.compare(req.query?.password, user.password);
@@ -40,11 +40,11 @@ const signUp = async (req, res) => {
         }
         else if (user[0]) return res.status(500).json({ message: "Already exist!" });
 
-        const {email, password, firstNameGanji, lastNameGanji, firstNameGana, lastNameGana} = req.body;
+        const {email, passwords, firstNameGanji, lastNameGanji, firstNameGana, lastNameGana} = req.body;
 
         const name  = {firstNameGanji, lastNameGanji, firstNameGana, lastNameGana}
         const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(password, salt);
+        const hashedPassword = await bcrypt.hash(passwords, salt);
         
         const randomBytes = crypto.randomBytes(Math.ceil(3));
 
@@ -74,14 +74,13 @@ const getUser = async (req, res) => {
 const inputEmailCode = async (req, res) => {
     try {
         let code = await User.findOne({ verificationCode: req.body.emailVarificationCode }, "");
-        console.log(code);
+        
         if (!code) {
             return res.json({ message: "Invalid verification code" });
         } else {
             res.json({ message: 'Valid verification code' });
             code.verificationCode = '';
             code.emailVerified = true;
-            console.log(code.privacy);
             await code.save();  
         }
     } catch (error) {

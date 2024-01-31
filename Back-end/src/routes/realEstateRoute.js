@@ -30,6 +30,7 @@ const storage = multer.diskStorage({
 
 router.post("/postRealEstate", upload.array('images', 10),  postCtr.createRealEstate)
 router.post("/postAgent", upload.array('images', 10),  postCtr.createAgent)
+router.post("/postFeedBack", upload.array('images', 10),  postCtr.createFeedBack)
 router.post("/signup", userCtr.signUp)
 router.post('/inputCode', userCtr.inputEmailCode)
 router.get("/signin", userCtr.signIn)

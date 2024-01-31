@@ -31,6 +31,10 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
+    transactionVerified: {
+        type: Boolean,
+        default: false,
+    },
     phoneNumber: {
         type: String,
     },

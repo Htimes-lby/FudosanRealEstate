@@ -1,8 +1,24 @@
 const mongoose = require("mongoose");
-
+const Schema = mongoose.Schema;
 const feedbackSchema = new mongoose.Schema({
+
+  poster: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+},
   name: {
-    type: String,
+    firstNameGanji: {
+        type: String,
+    },
+    lastNameGanji: {
+        type: String,
+    },
+    firstNameGana: {
+        type: String,
+    },
+    lastNameGana: {
+        type: String,
+    }
   },
   address: {
     province: {
