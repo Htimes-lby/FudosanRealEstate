@@ -130,14 +130,15 @@ const ItemBoardPage = () => {
         history.push(`/item-list?${searchParams.toString()}`)
     }
     const agentCardClicked = (props) => {
-        const agentId = props;
-        const agentPosterId = agents[agentId].posterId;
-        const searchParams = new URLSearchParams();
-        searchParams.set('agentId', agentId);
-        searchParams.set('agentPosterId', agentPosterId);
-        searchParams.set('previous-page', 'itemBoardPage')
-        history.push(`/message-detail?${searchParams.toString()}`);
-        // history.push('/message-detail', {state: {agentData}});
+        // const index = props;
+        // const opponentId = agents[index].poster;
+        // const agentId = agents[index]._id;
+        // const searchParams = new URLSearchParams();
+        // searchParams.set('opponentId', opponentId);
+        // searchParams.set('agentId', agentId);
+        // searchParams.set('previous-page', 'itemBoardPage')
+        // history.push(`/message-detail?${searchParams.toString()}`);
+        // // history.push('/message-detail', {state: {agentData}});
     }
     const handleDisplayAgentsToggle = (value) => {
         setDisplayAgents(value);
@@ -264,12 +265,12 @@ const ItemBoardPage = () => {
                         </div>
                     </div>
                     <div className='flex gap-[22px]'>
-                        <span className="text-[#02540A] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'filterByProvince')}>沖繩</span>
+                        <span className="text-[#02540A] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'filterByProvince')}>富山県</span>
                         <div onClick={(e) => handleClick(e, 'filterByCity')} className=' cursor-pointer'>
                             <span className='pr-[5px]'>沖繩</span>                                                                                                                                        
                         </div>
                     </div>
-                    <div className='flex gap-[22px]'>
+                    {/* <div className='flex gap-[22px]'>
                         <span className="text-[#02540A] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'filterByProvince')}>海外</span>
                         <div onClick={(e) => handleClick(e, 'filterByCity')} className=' cursor-pointer'>
                             <span className='pr-[5px]'>豪州</span>
@@ -277,7 +278,7 @@ const ItemBoardPage = () => {
                             <span className='pr-[5px]'>欧州</span>
                             <span className='pr-[5px]'>アジア</span>                                                                                           
                         </div>   
-                    </div>
+                    </div> */}
                 </div>
                 <div className='pt-[20px]'>
                     <GoogleMapComponent />
