@@ -1,5 +1,7 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux/es/hooks/useSelector';
+import axios from 'axios';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 import Pagination from '../components/Pagination'
@@ -64,17 +66,47 @@ const messages = [
 const MessageBoardPage = () => {
 
     const history = useHistory();
+
+    const user = useSelector((state) => state.auth.user);
+    const myId = user._id;
     const [active, setActive] = useState(1);
     const [activeCategory, setActiveCategory] = useState('all')
+    const [messages, setMessages] = useState([]);
+    const [opponentId, setOpponentId] = useState();
+
     const activeHandler = (clickedPage) => {
         setActive(parseInt(clickedPage));
     };
     const handleMessageItemClicked = (props) => {
-        history.push('/message-detail');
+        const index = props;
+        if(messages[index].senderId !== myId) {
+            setOpponentId(messages[index].senderId);
+        } else {
+            setOpponentId(messages[index].receiverId);
+        }
+        const searchParams = new URLSearchParams();
+        searchParams.set('previous-page', 'messageBoard');
+        searchParams.set('myId', myId);
+        searchParams.set('opponentId', opponentId);
+        history.push(`/message-detail?${searchParams.toString()}`);
     }
     const handleActiveCategorySelected = (props) => {
         setActiveCategory(props);
     }
+    const fetchData = async () => {
+        try {
+            const payload = {myId: myId};
+            const res = axios.get('/getMessages', payload);
+            setMessages(res.data.messages);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        fetchData();
+    },[])
+
     return (
         <div className='flex flex-col items-center w-full py-20'>
             <p className='mb-10 noto-medium text-[24px] '>メッセージボックス</p>

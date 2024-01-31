@@ -7,7 +7,7 @@ import FavouriteButton from "./FavouriteButton";
 
 const RealEstateBigCard = ({realEstate, handleRealEstateBigCardClicked, parentComponent, index}) => {
     const history = useHistory();
-    const {briefDescription, fullDescription, images, basicInfo, realEstateCategory, _id} = realEstate;
+    const {briefDescription, fullDescription, images, basicInfoBuilding, basicInfoLand, label, _id} = realEstate;
     const width = 'w-[180px]'
     const fontSize = 'text-[11px]'
     const [favouriteButtonActive, setFavouriteButtonActive] = useState(false);
@@ -24,7 +24,7 @@ const RealEstateBigCard = ({realEstate, handleRealEstateBigCardClicked, parentCo
     return(
         <div className="flex items-center w-[1275px] bg-white border border-black p-6 rounded-lg shadow-md mb-[50px]" onClick={() => handleRealEstateBigCardClicked(index)}>
             <div>
-                <div className="w-[200px] h-[160px]"><img src={images[1]} alt="photo1" className="w-full h-full object-cover"/></div>
+                <div className="w-[200px] h-[160px]"><img src={images[0]} alt="photo1" className="w-full h-full object-cover"/></div>
                 {
                     parentComponent === 'FavouritePage' || parentComponent === 'MessageDetailPage' ?
                     (<div className="pt-1" onClick={(e) => handleFavouriteButtonClicked(e)}><FavouriteButton favouriteButtonActive={favouriteButtonActive} parentComponent={parentComponent}/></div>)
@@ -37,7 +37,7 @@ const RealEstateBigCard = ({realEstate, handleRealEstateBigCardClicked, parentCo
             </div>
             <div className="pt-1 pl-11 pr-11 w-[260px]">
             {
-                realEstateCategory === 'building' ? <BasicTableBuilding tableData = {basicInfo} width = {width} fontSize = {fontSize} /> : <BasicTableLand tableData = {basicInfo} width= {width} fontSize = {fontSize} />
+                label === 'building' ? <BasicTableBuilding tableData = {basicInfoBuilding} width = {width} fontSize = {fontSize} /> : <BasicTableLand tableData = {basicInfoLand} width= {width} fontSize = {fontSize} />
             }
             </div>
             <div className="pl-3">

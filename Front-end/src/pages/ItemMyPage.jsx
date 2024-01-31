@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux/es/hooks/useSelector';
 import RealEstateBigCard from '../components/RealEstateBigCard';
+import axios from 'axios';
 
 const myArray = [
     require("../assets/img/carousel/1.jpg"),
@@ -350,14 +352,34 @@ const userInfo = {
     myPost: [],
 }
 const ItemMyPage = () => {
+
+    const user = useSelector((state) => state.auth.user);
+    const myId = user._id;
+    const [realEstates, setRealEstates] = useState([]);
+
+    const fetchData = async () => {
+        const params = new URLSearchParams({posterId: myId}).toString();
+        try {
+            const res = axios.get(`/getRealEstatesByPosterId?${params}`);
+            setRealEstates(res.data.realEstates);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        fetchData();
+    },[])
+
     return (
         <div>
             <div className='flex text-[40px] justify-center pb-[80px]'>
                 <p className='pt-[63px]'>私の投稿</p>
             </div>
-            <div className='flex flex-col items-center justify-center h-min-[600px]'>
+            <div className='flex flex-col items-center min-h-[400px]'>
                 {
-
+                    realEstates.length === 0 &&
+                    <div className='noto-medium text-3xl mt-[50px]'>まだ投稿がありません</div>
                 }
                 {
                     realEstates.map((realEstate, index) => {
