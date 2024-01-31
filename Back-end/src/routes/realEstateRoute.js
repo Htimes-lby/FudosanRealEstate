@@ -4,6 +4,7 @@ const postCtr = require('../controllers/postCtr')
 const userCtr = require('../controllers/userCtr');
 const realEstateCtr = require('../controllers/realEstateCtr')
 const messageCtr = require('../controllers/messageCtr')
+const favouriteCtr = require('../controllers/favouriteCtr')
 
 const multer = require('multer');
 
@@ -42,5 +43,7 @@ router.get("/getRealEstatesByPosterId", realEstateCtr.getRealEstatesByPosterId)
 router.get("/getUser", userCtr.getUser)
 router.post("/setMessage", messageCtr.setMessage)
 router.get("/getMessages", messageCtr.getMessages)
+router.post("/addFavourite", favouriteCtr.addFavourite)
+router.post("/removeFavourite", favouriteCtr.removeFavourite)
 
 module.exports = router;
