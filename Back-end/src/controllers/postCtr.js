@@ -12,9 +12,12 @@ const createRealEstate = async (req, res) => {
   
     // Check if the arrays are defined
     const newPrivacyDataArray = JSON.parse(realEstateInfo);
+
+    const filepaths = req.files.map((file) => {
+      // Manipulate each file path to the desired format
+      return file.path.replace(/\\/g, "/").replace("uploads/", "../../../Back-end/uploads/");
+    });
     
-    const filepaths = req.files.map((file) => file.path);
-    console.log(filepaths)
     let getUser = await User.findOneAndUpdate({ _id: newPrivacyDataArray.poster }, {$set:{age:newPrivacyDataArray.getUser.age,email:newPrivacyDataArray.getUser.email,phoneNumber:newPrivacyDataArray.getUser.phoneNumber,name:newPrivacyDataArray.getUser.name}});
       
         let post

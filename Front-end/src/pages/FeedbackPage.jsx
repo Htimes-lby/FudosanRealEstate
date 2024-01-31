@@ -1,4 +1,4 @@
-import React ,{useState, useEffect  } from 'react';
+import React ,{useState, } from 'react';
 import UploadImageForm from "../components/Form/UploadImageForm"
 
 import axios from 'axios';
@@ -86,7 +86,7 @@ const FeedbackPage = () => {
                     <div className='w-[196px]'>
                         <div className='flex justify-between '>
                             <span>(姓)</span>
-                            <input value = {lastNameGanji} className='w-[130px] border-[1px]  focus:outline-none focus:border-blue-500 p-1 focus:outline-none focus:border-blue-500 p-1 border-black  rounded-md' type="text" onChange={(e) => setLastNameGanji(e.target.value)} />
+                            <input value = {lastNameGanji} className='w-[130px] border-[1px] focus:outline-none focus:border-blue-500 p-1 focus:outline-none focus:border-blue-500 p-1 border-black  rounded-md' type="text" onChange={(e) => setLastNameGanji(e.target.value)} />
                         </div>
                         <div className='flex justify-between pt-[16px]'>
                             <span>(せい)</span>
