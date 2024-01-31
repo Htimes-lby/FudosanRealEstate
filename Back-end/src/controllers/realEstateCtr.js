@@ -74,3 +74,39 @@ exports.getRealEstatesByPosterId = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 }
+
+exports.getRealEstatesByAdmin = async (req, res) => {
+    const firstNumber = parseInt(req.query.firstNumber);
+    const lastNumber = parseInt(req.query.lastNumber);
+    console.log('query-------------------', req.query);
+    if(req.query.province !== 'No Province') {
+        try {
+            const realEstates = await RealEstate.find({'address.province': req.query.province}).sort({createdAt: -1}).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
+            const totalDocumentNumber = await RealEstate.countDocuments({'address.province': req.query.province});
+            console.log('I am here in province search', totalDocumentNumber)
+            return res.status(200).json({realEstates, totalDocumentNumber});
+        } catch (error) {
+            return res.status(500).json({ error: error.message });
+        }
+    }
+    try {
+        const realEstates = await RealEstate.find().sort({createdAt: -1}).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
+        const totalDocumentNumber = await RealEstate.countDocuments();
+        console.log('I am here in getRealEstateByAdmin', totalDocumentNumber)
+        return res.status(200).json({realEstates, totalDocumentNumber});
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
+    }
+}
+
+exports.getUnapprovedRealEstatesByAdmin = async (req, res) => {
+    const firstNumber = parseInt(req.query.firstNumber);
+    const lastNumber = parseInt(req.query.lastNumber);
+    try {
+        const realEstates = await RealEstate.find({approved: false}).sort({createdAt: -1}).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
+        const totalDocumentNumber = await RealEstate.countDocuments({approved: false});
+        return res.status(200).json({realEstates, totalDocumentNumber});
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
+    }
+}
