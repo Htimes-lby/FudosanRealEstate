@@ -3,7 +3,7 @@ const User = require('../models/userModel')
 const Agent = require('../models/agentsModel')
 
 const createRealEstate = async (req, res) => {
- 
+  console.log(req.body)
   try {
     const {
       realEstateInfo
