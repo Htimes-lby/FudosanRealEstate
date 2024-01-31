@@ -12,7 +12,7 @@ const AdminApproveRealEstateList = () => {
     const [active, setActive] = useState(1);
     const [totalNumber, setTotalNumber] = useState();
     const [unapprovedDataOnly, setUnapprovedDataOnly] = useState(false);
-    const [province, setProvince] = useState('No Province');
+    const [province, setProvince] = useState('Not Selected');
     const [realEstates, setRealEstates] = useState(null);
 
     const activeHandler = (clickedPage) => {
@@ -25,7 +25,8 @@ const AdminApproveRealEstateList = () => {
             try {
                 const params = new URLSearchParams({
                     firstNumber: firstNumber,
-                    lastNumber: lastNumber
+                    lastNumber: lastNumber,
+                    province: province,
                 }).toString();
                 const res = await axios.get(`/getUnapprovedRealEstatesByAdmin?${params}`);
                 setRealEstates(res.data.realEstates);
