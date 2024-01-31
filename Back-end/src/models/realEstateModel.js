@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const Schema =mongoose.Schema;
+const Schema = mongoose.Schema;
+
 const realEstateSchema = new mongoose.Schema({
     poster: {
         type: Schema.Types.ObjectId,

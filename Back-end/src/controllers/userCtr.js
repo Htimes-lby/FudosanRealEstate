@@ -8,8 +8,6 @@ const jwt = require("jsonwebtoken");
 const signIn = async (req, res) => {
     
     const user = await User.findOne({ email: req.query.email }, "");
-
-    console.log("fdsfdsfsdfdsf",user);
     if (!user) return res.status(500).json({ message: "This email is not exist!" });
     if(user.emailVerified === false) return res.status(500).json({ message: "Your email is not verified" });
     const isMatch = await bcrypt.compare(req.query?.password, user.password);
@@ -53,10 +51,9 @@ const signUp = async (req, res) => {
 
         // Return the substring of the generated random number with the specified length
         const verificationCode = randomNumber.slice(0, 6);
-        
-        const post = new User({email: email, password: hashedPassword, name: name, verificationCode: verificationCode});
+        const newUser = new User({email: email, password: hashedPassword, name: name, verificationCode: verificationCode});
     // sendVerificationEmail(req.body.email, verificationCode);
-    await post.save((err) => {
+    await newUser.save((err) => {
         if (err) {
         res.status(500).json({ message: "Failed!" });
         } else {
@@ -74,14 +71,13 @@ const getUser = async (req, res) => {
 const inputEmailCode = async (req, res) => {
     try {
         let code = await User.findOne({ verificationCode: req.body.emailVarificationCode }, "");
-        console.log(code);
+
         if (!code) {
             return res.json({ message: "Invalid verification code" });
         } else {
             res.json({ message: 'Valid verification code' });
             code.verificationCode = '';
             code.emailVerified = true;
-            console.log(code.privacy);
             await code.save();  
         }
     } catch (error) {

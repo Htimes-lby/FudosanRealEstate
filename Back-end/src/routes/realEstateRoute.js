@@ -1,8 +1,10 @@
 const router = require("express").Router();
-const postCtr = require('../controllers/postCtr')
 
+const postCtr = require('../controllers/postCtr')
 const userCtr = require('../controllers/userCtr');
 const realEstateCtr = require('../controllers/realEstateCtr')
+const messageCtr = require('../controllers/messageCtr')
+
 const multer = require('multer');
 
 const storage = multer.diskStorage({
@@ -35,8 +37,9 @@ router.post('/inputCode', userCtr.inputEmailCode)
 router.get("/signin", userCtr.signIn)
 router.get("/getRealEstates", realEstateCtr.getRealEstates)
 router.get("/getRealEstateById", realEstateCtr.getRealEstateById)
+router.get("/getRealEstatesByPosterId", realEstateCtr.getRealEstatesByPosterId)
 router.get("/getUser", userCtr.getUser)
-
-
+router.post("/setMessage", messageCtr.setMessage)
+router.get("/getMessages", messageCtr.getMessages)
 
 module.exports = router;

@@ -7,7 +7,6 @@ exports.getRealEstates = async (req, res) => {
         const filterLabel  = req.query.filterLabel;
         const filterContent = req.query.filterContent;
         if(filterLabel === 'filterByCategory'){
-            console.log('I am here in category search', firstNumber)
             try {
                 const realEstates = await RealEstate.find({ category: filterContent, approved: true }).sort({ createdAt: -1 }).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
                 const totalDocumentNumber = await RealEstate.countDocuments({'category': filterContent, approved: true})
@@ -17,7 +16,6 @@ exports.getRealEstates = async (req, res) => {
             }
         }
         if(filterLabel === 'filterByProvince'){
-            console.log('I am here in province search')
             try {
                 const realEstates = await RealEstate.find({'address.province': filterContent, approved: true}).sort({ createdAt: -1 }).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
                 const totalDocumentNumber = await RealEstate.countDocuments({'address.province': filterContent, approved: true})
@@ -27,7 +25,6 @@ exports.getRealEstates = async (req, res) => {
             }
         }
         if(filterLabel === 'filterByCity'){
-            console.log('I am here in city search')
             try {
                 const realEstates = await RealEstate.find({'address.city': filterContent, approved: true}).sort({ createdAt: -1 }).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
                 const totalDocumentNumber = await RealEstate.countDocuments({'address.city': filterContent, approved: true});
@@ -37,7 +34,6 @@ exports.getRealEstates = async (req, res) => {
             }
         }
     }
-    console.log('I am here in normal get mode')
     try {
         const realEstates = await RealEstate.find({approved: true}).sort({ createdAt: -1 }).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
         return res.status(200).json(realEstates);
@@ -63,6 +59,16 @@ exports.getRealEstatesByIds = async (req, res) => {
     const ids = req.body.realEstateIds;
     try {
         const realEstates = await RealEstate.find({ _id: { $in: ids } });
+        res.status(200).json({realEstates});
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}
+
+exports.getRealEstatesByPosterId = async (req, res) => {
+    const posterId = req.query.posterId;
+    try {
+        const realEstates = await RealEstate.find({poster: posterId});
         res.status(200).json({realEstates});
     } catch (error) {
         res.status(500).json({ error: error.message });
