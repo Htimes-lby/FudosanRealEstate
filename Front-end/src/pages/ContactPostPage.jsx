@@ -155,7 +155,7 @@ const ContactPostPage = () => {
             }
             {
                 contactMsgs.map((message, index) => (
-                    <div className={`relative w-[1200px] pt-10 pb-16 pl-12 pr-8 my-4 border-[1px] border-[#2A6484]/60 text-sm noto-regular ${message.category === 'query' ? 'bg-[#F2ECCD]' : 'bg-white'}`}>
+                    <div key = {index} className={`relative w-[1200px] pt-10 pb-16 pl-12 pr-8 my-4 border-[1px] border-[#2A6484]/60 text-sm noto-regular ${message.category === 'query' ? 'bg-[#F2ECCD]' : 'bg-white'}`}>
                         <div>{message.content}</div>
                         <div className = 'absolute right-6 bottom-6'>{message.date}</div>
                     </div>
