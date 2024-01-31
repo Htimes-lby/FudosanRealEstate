@@ -5,6 +5,7 @@ const userCtr = require('../controllers/userCtr');
 const realEstateCtr = require('../controllers/realEstateCtr')
 const messageCtr = require('../controllers/messageCtr')
 const favouriteCtr = require('../controllers/favouriteCtr')
+const adminCtr = require('../controllers/adminCtrl')
 
 const multer = require('multer');
 
@@ -37,15 +38,21 @@ router.post("/postFeedBack", upload.array('images', 10),  postCtr.createFeedBack
 router.post("/signup", userCtr.signUp)
 router.post('/inputCode', userCtr.inputEmailCode)
 router.get("/signin", userCtr.signIn)
+router.get("/getUser", userCtr.getUser)
+
 router.get("/getRealEstates", realEstateCtr.getRealEstates)
 router.get("/getRealEstateById", realEstateCtr.getRealEstateById)
 router.get("/getRealEstatesByPosterId", realEstateCtr.getRealEstatesByPosterId)
 router.get("/getRealEstatesByAdmin", realEstateCtr.getRealEstatesByAdmin)
 router.get("/getUnapprovedRealEstatesByAdmin", realEstateCtr.getUnapprovedRealEstatesByAdmin)
-router.get("/getUser", userCtr.getUser)
+
 router.post("/setMessage", messageCtr.setMessage)
 router.get("/getMessages", messageCtr.getMessages)
+
 router.post("/addFavourite", favouriteCtr.addFavourite)
 router.post("/removeFavourite", favouriteCtr.removeFavourite)
+
+router.post("/approveRealEstate", adminCtr.approveRealEstate);
+router.post("/disapproveRealEstate", adminCtr.disapproveRealEstate);
 
 module.exports = router;
