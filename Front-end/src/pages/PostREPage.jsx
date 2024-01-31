@@ -38,7 +38,6 @@ const handleUploadDataArray = (data) => {
 const handleconditionDataArray = (data) => {
     setConditionData(data);
 };
-console.log(contentDataArray.briefDescription)
     
     const handleSubmit = async (e) => {
     e.preventDefault();
@@ -51,7 +50,7 @@ console.log(contentDataArray.briefDescription)
         const address = {zipCode:newpostalNumber, province:privacyDataArray.province, city:privacyDataArray.city, street:privacyDataArray.street}
         const briefDescription = contentDataArray.briefDescription;
         const fullDescription = contentDataArray.fullDescription;
-        const basicInfoBuilding = {budget:overviewDataArray.budget,layout:overviewDataArray.layout, landarea:overviewDataArray.landarea, buildingArea:overviewDataArray.buildingArea, deadline:overviewDataArray.deadline, parking:overviewDataArray.parking}
+        const basicInfoBuilding = {budget:overviewDataArray.budget,layout:overviewDataArray.layout, landarea:overviewDataArray.landarea, buildingArea:overviewDataArray.buildingarea, deadline:overviewDataArray.deadline, parking:overviewDataArray.parking}
         const basicInfoLand = {budget:overviewDataArray.budget, buildingCoverageRatio:overviewDataArray.buildingCoverageRatio, landarea:overviewDataArray.landarea, floorAreaRatio:overviewDataArray.floorAreaRatio, structure:overviewDataArray.structure}
         const label = searchParams.get('label');
         const getUser = {age: privacyDataArray.age, email: privacyDataArray.email, phoneNumber:newphoneNumber, name:name}

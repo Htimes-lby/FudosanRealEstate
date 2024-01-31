@@ -32,16 +32,16 @@ const SearchBoard = () => {
         inputDisp.current.value = "";
         inputTopPrice.current.value = "";
         inputBottomPrice.current.value = "";
-        inputLand.current.value = "";
-        inputPhoto.current.value = "";
-        inputReceive.current.value = "";
-        inputPost.current.value = "";
+        // inputLand.current.value = "";
+        // inputPhoto.current.value = "";
+        // inputReceive.current.value = "";
+        // inputPost.current.value = "";
     }
     return(
         <div className="z-10 noto-regular">
             <div className="w-[355px] shadow-2xl border-2 border-black/40 rounded-xl" id="search">
                 <div className="flex justify-end">
-                    <i class=" fa-solid fa-x text-lg pr-[30px] pt-[24px] cursor-pointer" onClick={closenav}></i>
+                    <i className=" fa-solid fa-x text-lg pr-[30px] pt-[24px] cursor-pointer" onClick={closenav}></i>
                 </div>
                 <div className="flex">
                     <i className="fa-solid fa-magnifying-glass text-2xl pl-[42px] pt-[4px]"></i>
