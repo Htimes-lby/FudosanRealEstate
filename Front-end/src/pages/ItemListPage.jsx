@@ -711,7 +711,7 @@ const ItemListPage = () => {
         setActive(parseInt(clickedPage));
     };
     const magnifierToggleHandler = () => {
-          setIsOpen((isOpen) => !isOpen);
+        setIsOpen((isOpen) => !isOpen);
     }
     const handleRealEstateCardClicked = (props) => {
         const index = props;
@@ -749,8 +749,8 @@ const ItemListPage = () => {
                     {
                         realEstates.map((realEstate, index) => {
                             return(
-                                <div  onClick={() => handleRealEstateCardClicked(index)} className='cursor-pointer'>
-                                    <RealEstateSmallCard key = {index} realEstate = {realEstate}/>
+                                <div key = {index}  onClick={() => handleRealEstateCardClicked(index)} className='cursor-pointer'>
+                                    <RealEstateSmallCard  realEstate = {realEstate}/>
                                 </div>
                             );
                         })

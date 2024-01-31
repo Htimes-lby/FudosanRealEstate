@@ -1,6 +1,7 @@
 const Message = require('../models/messageModel');
 
 exports.setMessage = async (req, res) => {
+    console.log(req.body)
     const newMessage = new Message({senderId: req.body.senderId, receiverId: req.body.receiverId, content: req.body.content});
     await newMessage.save((error) => {
         if(error) {
@@ -18,7 +19,7 @@ exports.getMessages = async (req, res) => {
         const opponentId = req.query.opponentId;
         console.log('I am here ----------------')
         try {
-            const messages = Message.find({
+            const messages = await Message.find({
                 $or: [
                     { senderId: myId, receiverId: opponentId },
                     { senderId: opponentId, receiverId: myId }
@@ -31,7 +32,7 @@ exports.getMessages = async (req, res) => {
         }
     }
     try {
-        const messages = Message.find({
+        const messages = await Message.find({
             $or: [
                 { senderId: myId },
                 { receiverId: myId }

@@ -14,7 +14,7 @@ const MessageDetailPage = () => {
     const previousPage = searchParams.get('previous-page');
     const opponentId = searchParams.get('opponentId');
     const user = useSelector((state) => state.auth.user);
-    const myId = user._id;
+    const myId = localStorage.getItem('id');
     
     const [realEstate, setRealEstate] = useState(null);
     const [agent, setAgent] = useState();
@@ -103,7 +103,11 @@ const MessageDetailPage = () => {
                 <textarea  className="border-[1px] border-black pt-1 pl-2 rounded-sm" name="message" id="" cols="100" rows="4" onChange={(e) => setContent(e.target.value)}></textarea>
             </div>
             <div className='flex justify-center mb-[100px]'>
-                <button className='py-[20px] px-[50px] rounded-2xl bg-[#2A6484] noto-medium text-xl text-white' onClick={handleSendMessageBtnClicked}>メッセージを送信する</button>
+                {
+                    myId === opponentId ?<button className='py-[20px] px-[50px] rounded-2xl bg-gray-500 noto-medium text-xl text-white' disabled = {true} onClick={handleSendMessageBtnClicked}>メッセージを送信する</button>:
+                    <button className='py-[20px] px-[50px] rounded-2xl bg-[#2A6484] noto-medium text-xl text-white' onClick={handleSendMessageBtnClicked}>メッセージを送信する</button>
+                }
+                
             </div> 
         </div>
     )
