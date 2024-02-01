@@ -78,7 +78,7 @@ exports.getRealEstatesByPosterId = async (req, res) => {
 exports.getRealEstatesByAdmin = async (req, res) => {
     const firstNumber = parseInt(req.query.firstNumber);
     const lastNumber = parseInt(req.query.lastNumber);
-    console.log('query-------------------', req.query);
+    
     if(req.query.province !== 'Not Selected') {
         try {
             const realEstates = await RealEstate.find({'address.province': req.query.province}).sort({createdAt: -1}).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
@@ -102,7 +102,9 @@ exports.getRealEstatesByAdmin = async (req, res) => {
 exports.getUnapprovedRealEstatesByAdmin = async (req, res) => {
     const firstNumber = parseInt(req.query.firstNumber);
     const lastNumber = parseInt(req.query.lastNumber);
-    if(req.query.province !== 'Not Selected') {
+    console.log("fdsfdsfdsfds", req.query)
+
+    if(req.query.province!== 'Not Selected') {
         try {
             const realEstates = await RealEstate.find({
                 'address.province': req.query.province,
@@ -116,7 +118,8 @@ exports.getUnapprovedRealEstatesByAdmin = async (req, res) => {
     }
     try {
         const realEstates = await RealEstate.find({approved: false}).sort({createdAt: -1}).skip(firstNumber -1).limit(lastNumber-firstNumber+1);
-        const totalDocumentNumber = await RealEstate.countDocuments({ approved: fasle });
+
+        const totalDocumentNumber = await RealEstate.countDocuments({ approved: false });
         return res.status(200).json({realEstates, totalDocumentNumber});
     } catch (error) {
         return res.status(500).json({ error: error.message });

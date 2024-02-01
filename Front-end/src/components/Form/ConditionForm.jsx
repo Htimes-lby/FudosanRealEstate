@@ -33,7 +33,7 @@ export default function ConditionForm({content, onDataArrayFromChild}) {
             </div>
             <div className='flex justify-center pb-3'>
                 <input type='checkbox' checked={isChecked} onChange={handleCheckboxChange} />
-                <span className='text-[14px] pl-[5px]'>上記規約・個人情報の取扱いについて同意します。</span>
+                <p className='text-[14px] pl-[5px]'>上記規約・個人情報の取扱いについて同意します。</p>
             </div>
         </div>
     </div>
