@@ -20,7 +20,7 @@ export default function ContentForm( props ) {
           <div>              
               <p className='text-[20px]'>物件のウリとイマイチなところ</p>
               <div className='pt-[13px]'>
-                <textarea name="content" id="" cols="60" rows="6" className='w-[500px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' onChange={(e) => setBriefDescription(e.target.value)}></textarea>
+                <textarea required = {true} name="content" id="" cols="60" rows="6" className='w-[500px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' onChange={(e) => setBriefDescription(e.target.value)}></textarea>
               </div>
           </div>
       </div>
@@ -28,7 +28,7 @@ export default function ContentForm( props ) {
             <div>              
               <p className='text-[20px]'>これまでの経緯と今の状況</p>
               <div className='pt-[13px]'>
-                <textarea name="content" id="" cols="60" rows="12" className='w-[500px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' onChange={(e) => setFullDescription(e.target.value)}></textarea>
+                <textarea required = {true} name="content" id="" cols="60" rows="12" className='w-[500px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' onChange={(e) => setFullDescription(e.target.value)}></textarea>
               </div>
           </div>  
       </div>

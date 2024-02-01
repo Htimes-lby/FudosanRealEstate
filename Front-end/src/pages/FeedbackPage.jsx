@@ -15,6 +15,7 @@ const FeedbackPage = () => {
     const [lastNameGanji, setLastNameGanji] = useState('');
     const [briefContent, setBriefContent] = useState('');
     const [fullContent, setFullContent] = useState('');
+    const [validationMessage, setValidationMessage] = useState('');
 
     const handleUploadDataArray = (data) => {
         setUploadDataArray(data);
@@ -30,13 +31,18 @@ const FeedbackPage = () => {
         setPostalNumber(updatedPostalNumber);
     };
     const newId = localStorage.getItem('id');
-    const newpostalNumber = postalNumber[0]+postalNumber[1];
+    const newpostalNumber = parseInt(
+        (postalNumber[0] ? postalNumber[0].toString() : '') +
+        (postalNumber[1] ? postalNumber[1].toString() : '') +
+        (postalNumber[2] ? postalNumber[2].toString() : '')
+    );
     const name = {firstNameGana: firstNameGana, lastNameGana: lastNameGana, firstNameGanji: firstNameGanji, lastNameGanji: lastNameGanji};
     const address = {zipCode:newpostalNumber, province:province, city:city, street:street}
     const feedbackData = {poster: newId, name: name, address: address, briefContent: briefContent, fullContent: fullContent}
         const handleSubmit = async (e) => {
             e.preventDefault();
-        
+            if(Math.abs(postalNumber[0]).toString().trim().length !== 3 || Math.abs(postalNumber[1]).toString().trim().length !== 4 )
+            return setValidationMessage("input required = {true} phone number correctly!");
             try {
                 const formData = new FormData();
                     // Append other form data
@@ -86,21 +92,21 @@ const FeedbackPage = () => {
                     <div className='w-[196px]'>
                         <div className='flex justify-between '>
                             <span>(姓)</span>
-                            <input value = {lastNameGanji} className='w-[130px] border-[1px] focus:outline-none focus:border-blue-500 p-1 focus:outline-none focus:border-blue-500 p-1 border-black  rounded-md' type="text" onChange={(e) => setLastNameGanji(e.target.value)} />
+                            <input placeholder="例:下保木" required = {true} value = {lastNameGanji} className='w-[130px] border-[1px] focus:outline-none focus:border-blue-500 p-1 focus:outline-none focus:border-blue-500 p-1 border-black  rounded-md' type="text" onChange={(e) => setLastNameGanji(e.target.value)} />
                         </div>
                         <div className='flex justify-between pt-[16px]'>
                             <span>(せい)</span>
-                            <input value={lastNameGana} className='w-[130px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' type="text" onChange={(e) => setLastNameGana(e.target.value)}  />
+                            <input placeholder="例:しもほき" required = {true} value={lastNameGana} className='w-[130px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' type="text" onChange={(e) => setLastNameGana(e.target.value)}  />
                         </div>
                     </div> 
                     <div className='w-[196px]'>
                         <div className='flex justify-between'>
                             <span>(名)</span>
-                            <input value = {firstNameGanji} className='w-[130px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' type="text" onChange={(e) => setFirstNameGanji(e.target.value)} />
+                            <input placeholder="例:虎史" required = {true} value = {firstNameGanji} className='w-[130px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' type="text" onChange={(e) => setFirstNameGanji(e.target.value)} />
                         </div>
                         <div className='flex justify-between pt-[16px]'>
                             <span>(めい)</span>
-                            <input value={firstNameGana} className='w-[130px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' type="text" onChange={(e) => setFirstNameGana(e.target.value)} />
+                            <input placeholder="例:こし" required = {true} value={firstNameGana} className='w-[130px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' type="text" onChange={(e) => setFirstNameGana(e.target.value)} />
                         </div>
                     </div>      
                 </div>
@@ -113,9 +119,9 @@ const FeedbackPage = () => {
                     </div>
                     <div>              
                         <span className=' w-[30px] mt-[15px] mr-[50px] text-[20px] '>郵便番号 - 〒</span>          
-                        <input type="text" className='w-[99px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' value={postalNumber[0] || ''} onChange={(e) => handleInputPoastalNumber(0, e.target.value)}/>
+                        <input placeholder="例:818" required = {true} type="number" className='w-[99px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' value={postalNumber[0] || ''} onChange={(e) => handleInputPoastalNumber(0, e.target.value)}/>
                         <span className=' inline-block border-t-2 w-[30px] border-black mt-[15px] mx-[21px]  '></span>
-                        <input type="text" className='w-[99px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' value={postalNumber[1] || ''} onChange={(e) => handleInputPoastalNumber(1, e.target.value)}/>
+                        <input placeholder="例:0124" required = {true} type="number" className='w-[99px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' value={postalNumber[1] || ''} onChange={(e) => handleInputPoastalNumber(1, e.target.value)}/>
                     </div>
                 </div>
 
@@ -125,6 +131,7 @@ const FeedbackPage = () => {
                             <select
                                 className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[272px] ml-[95px]"
                                 onChange={event => setProvince(event.target.value)}
+                                required = {true}
                                 defaultValue={province}>                       
                                 <option className="text-[16px]"  value="" >&nbsp;</option>
                                 <option className="text-[16px]"  value="北海道" >&nbsp;北海道</option>
@@ -185,14 +192,14 @@ const FeedbackPage = () => {
                 <div className=' w-[900px] ml-[200px]  flex gap-[169px] pt-[40px] justify-end '>            
                     <div className=" flex items-center justify-between ">
                             <p className="text-[20px] ">市区町村</p>
-                            <input type='text' className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[272px] ml-[95px]" onChange={(e) => setCity(e.target.value)}/>
+                            <input placeholder="例:町名番地" required = {true} type='text' className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[272px] ml-[95px]" onChange={(e) => setCity(e.target.value)}/>
                     </div>
                 </div>
 
                 <div className=' w-[900px] ml-[200px]  flex gap-[169px] pt-[40px] justify-end'>            
                     <div className=" flex items-center justify-between ">
                             <p className="text-[20px] ">町名番地</p>
-                            <input type='text' className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[272px] ml-[95px]" onChange={(e) => setStreet(e.target.value)}/>
+                            <input placeholder="例:6 Chome-19-19 Futsukaichikita" required = {true} type='text' className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[272px] ml-[95px]" onChange={(e) => setStreet(e.target.value)}/>
                     </div>
                 </div>
 
@@ -221,6 +228,7 @@ const FeedbackPage = () => {
                 </div>
                 
                 <div className='flex justify-center pb-[170px]'>
+                <p className='text-center pt-[20px]'>{validationMessage}</p>
                 <button type='submit' className='bg-[#2A6484] text-white px-[115px] py-[14px] text-[24px] rounded-[20px]' >提出</button>
                 </div>
             </form>

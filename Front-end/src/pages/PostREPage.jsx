@@ -22,6 +22,8 @@ const PostREPage = () => {
     const [overviewDataArray, setOverviewDataArray] = useState([]);
     const [uploadDataArray, setUploadDataArray] = useState([]);
     const [conditionData, setConditionData] = useState("");
+    const [validationMessage, setValidationMessage] = useState('');
+
 
 const handlePrivacyDataArray = (data) => {
     setPrivacyDataArray(data);
@@ -38,13 +40,26 @@ const handleUploadDataArray = (data) => {
 const handleconditionDataArray = (data) => {
     setConditionData(data);
 };
+
     
     const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    setValidationMessage("");
+    if(privacyDataArray.age>100 || privacyDataArray.age<10)
+        return setValidationMessage("Input age correctly!")
+    if(!privacyDataArray.email.includes('@'))
+        return setValidationMessage("Input email correctly!");
+    if(Math.abs(privacyDataArray.phoneNumber[0]).toString().trim().length > 3 || Math.abs(privacyDataArray.phoneNumber[0]).toString().trim().length < 2
+        || Math.abs(privacyDataArray.phoneNumber[1]).toString().trim().length > 4 || Math.abs(privacyDataArray.phoneNumber[1]).toString().trim().length < 2
+        || Math.abs(privacyDataArray.phoneNumber[2]).toString().trim().length !== 4 )
+        return setValidationMessage("Input phone number correctly!");
+    if(Math.abs(privacyDataArray.postalNumber[0]).toString().trim().length !== 3 || Math.abs(privacyDataArray.postalNumber[1]).toString().trim().length !== 4 )
+        return setValidationMessage("Input phone number correctly!");
 
     try {
-        const newphoneNumber = privacyDataArray.phoneNumber[0]+privacyDataArray.phoneNumber[1]+privacyDataArray.phoneNumber[2];
-        const newpostalNumber = privacyDataArray.postalNumber[0]+privacyDataArray.postalNumber[1];
+        const newphoneNumber =parseInt(privacyDataArray.phoneNumber[0].toString()+privacyDataArray.phoneNumber[1].toString()+privacyDataArray.phoneNumber[2].toString()); 
+        const newpostalNumber = parseInt(privacyDataArray.postalNumber[0].toString()+privacyDataArray.postalNumber[1].toString());
         const newId = localStorage.getItem('id');
         const name = {firstNameGana: privacyDataArray.firstNameGana, lastNameGana: privacyDataArray.lastNameGana, firstNameGanji: privacyDataArray.firstNameGanji, lastNameGanji: privacyDataArray.lastNameGanji}
         const address = {zipCode:newpostalNumber, province:privacyDataArray.province, city:privacyDataArray.city, street:privacyDataArray.street}
@@ -188,7 +203,7 @@ const handleconditionDataArray = (data) => {
                         </div>
                         <form onSubmit={handleSubmit} encType='multipart/form-data'>
                             <div className='pt-[120px]'>
-                                <PrivacyForm  onDataArrayFromChild={handlePrivacyDataArray} />
+                                <PrivacyForm  onDataArrayFromChild={handlePrivacyDataArray}  />
                             </div>
                             <div className='pt-[53px]'>
                                 <ContentForm onDataArrayFromChild={handleContentDataArray} />
@@ -206,7 +221,8 @@ const handleconditionDataArray = (data) => {
                             <div className='flex justify-center'>
                                 <ConditionForm  onDataArrayFromChild={handleconditionDataArray}/>
                             </div>
-                            <div className='flex justify-center pt-[105px] pb-[170px]'>
+                            <p className='text-center pt-[20px]'>{validationMessage}</p>
+                            <div className='flex justify-center pt-[80px] pb-[170px]'>
                                 {
                                     conditionData?
                                         <button type='submit' className='bg-[#2A6484] text-white px-[115px] py-[14px] text-[24px] rounded-[20px]' disabled={!conditionData}>提出</button>

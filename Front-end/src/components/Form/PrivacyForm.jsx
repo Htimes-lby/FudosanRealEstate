@@ -14,8 +14,9 @@ export default function PrivacyForm( props ) {
     const [lastNameGana, setLastNameGana] = useState('');
     const [firstNameGanji, setFirstNameGanji] = useState('');
     const [lastNameGanji, setLastNameGanji] = useState('');
-
+    
     useEffect(() => {
+        
                 
         const privacyDataArray = {province:province, city: city, buildingName: buildingName, street: street, phoneNumber: phoneNumber, 
                                     postalNumber: postalNumber, email: email, age: age, firstNameGana: firstNameGana, lastNameGana: lastNameGana, 
@@ -71,21 +72,21 @@ return (
                 <div className='w-[196px]'>
                     <div className='flex justify-between '>
                         <span>(姓)</span>
-                        <input value = {lastNameGanji} className='w-[130px] border-[1px]  focus:outline-none focus:border-blue-500 p-1 focus:outline-none focus:border-blue-500 p-1 border-black  rounded-md' type="text" onChange={(e) => setLastNameGanji(e.target.value)} />
+                        <input placeholder="例:下保木" required = {true} value = {lastNameGanji} className='w-[130px] border-[1px]  focus:outline-none focus:border-blue-500 p-1 focus:outline-none focus:border-blue-500 p-1 border-black  rounded-md' type="text" onChange={(e) => setLastNameGanji(e.target.value)} />
                     </div>
                     <div className='flex justify-between pt-[16px]'>
                         <span>(せい)</span>
-                        <input value={lastNameGana} className='w-[130px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' type="text" onChange={(e) => setLastNameGana(e.target.value)}  />
+                        <input placeholder="例:しもほき" required = {true} value={lastNameGana} className='w-[130px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' type="text" onChange={(e) => setLastNameGana(e.target.value)}  />
                     </div>
                 </div> 
                 <div className='w-[196px]'>
                     <div className='flex justify-between'>
                         <span>(名)</span>
-                        <input value = {firstNameGanji} className='w-[130px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' type="text" onChange={(e) => setFirstNameGanji(e.target.value)} />
+                        <input placeholder="例:虎史" required = {true} value = {firstNameGanji} className='w-[130px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' type="text" onChange={(e) => setFirstNameGanji(e.target.value)} />
                     </div>
                     <div className='flex justify-between pt-[16px]'>
                         <span>(めい)</span>
-                        <input value={firstNameGana} className='w-[130px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' type="text" onChange={(e) => setFirstNameGana(e.target.value)} />
+                        <input placeholder="例:こし" required = {true} value={firstNameGana} className='w-[130px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' type="text" onChange={(e) => setFirstNameGana(e.target.value)} />
                     </div>
                 </div>      
             </div>
@@ -96,7 +97,7 @@ return (
                 <p className='text-[20px]'>年齢</p>
             </div>
             <div>
-                <input type="text" className='w-[443px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' onChange={(e) => setAge(e.target.value)}/>
+                <input placeholder="例:35"  required = {true} type="number" className='w-[443px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' onChange={(e) => setAge(e.target.value)}/>
             </div>
         </div>
     
@@ -106,7 +107,7 @@ return (
                 <p className='text-[20px]'>メール</p>
             </div>
             <div>
-                <input type="text" value={email} className='w-[443px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' onChange={(e) => setEmail(e.target.value)}/>
+                <input placeholder="例:hoshi@gmail.com" required = {true} type="text" value={email} className='w-[443px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' onChange={(e) => setEmail(e.target.value)}/>
             </div>
         </div>
 
@@ -118,11 +119,11 @@ return (
                 <p className='text-[20px]'>電話番号</p>
             </div>
             <div className='flex '>
-                <input type="text" className='w-[99px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' value={phoneNumber[0] || ''} onChange={(e) => handleInputPhoneNumber(0, e.target.value)}/>
+                <input placeholder="例:092" required = {true} type="number" className='w-[99px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' value={phoneNumber[0] || ''} onChange={(e) => handleInputPhoneNumber(0, e.target.value)}/>
                 <span className='border-t-2 w-[30px] border-black mt-[15px] mx-[22px]'></span>            
-                <input type="text" className='w-[99px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' value={phoneNumber[1] || ''} onChange={(e) => handleInputPhoneNumber(1, e.target.value)}/>
+                <input placeholder="例:918" required = {true} type="number" className='w-[99px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' value={phoneNumber[1] || ''} onChange={(e) => handleInputPhoneNumber(1, e.target.value)}/>
                 <span className='border-t-2 w-[30px] border-black mt-[15px] mx-[21px]'></span>
-                <input type="text" className='w-[99px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' value={phoneNumber[2] || ''} onChange={(e) => handleInputPhoneNumber(2, e.target.value)}/>
+                <input placeholder="例:0234" required = {true} type="number" className='w-[99px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' value={phoneNumber[2] || ''} onChange={(e) => handleInputPhoneNumber(2, e.target.value)}/>
             </div>
         </div>
 
@@ -133,9 +134,9 @@ return (
             </div>
             <div>              
                 <span className=' w-[30px] mt-[15px] mr-[50px] text-[20px] '>郵便番号 - 〒</span>          
-                <input type="text" className='w-[99px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' value={postalNumber[0] || ''} onChange={(e) => handleInputPoastalNumber(0, e.target.value)}/>
+                <input placeholder="例:818" required = {true} type="number" className='w-[99px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' value={postalNumber[0] || ''} onChange={(e) => handleInputPoastalNumber(0, e.target.value)}/>
                 <span className=' inline-block border-t-2 w-[30px] border-black mt-[15px] mx-[21px]  '></span>
-                <input type="text" className='w-[99px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' value={postalNumber[1] || ''} onChange={(e) => handleInputPoastalNumber(1, e.target.value)}/>
+                <input placeholder="例:0124" required = {true} type="number" className='w-[99px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' value={postalNumber[1] || ''} onChange={(e) => handleInputPoastalNumber(1, e.target.value)}/>
             </div>
         </div>
 
@@ -143,6 +144,7 @@ return (
             <div className=" flex items-center justify-between ">
                     <p className="text-[20px] ">都道府県</p>
                     <select
+                        required = {true}
                         className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[272px] ml-[95px]"
                         onChange={event => setProvince(event.target.value)}
                         defaultValue={province}>                       
@@ -199,20 +201,21 @@ return (
                         <option className="text-[16px]"  value="アジア" >&nbsp;アジア</option>
 
                     </select>
+                    
             </div>
         </div>
 
         <div className=' w-[745px]  flex gap-[124px] pt-[24px] justify-end'>            
             <div className=" flex items-center justify-between ">
                     <p className="text-[20px] ">市区町村</p>
-                    <input type='text' className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[272px] ml-[95px]" onChange={(e) => setCity(e.target.value)}/>
+                    <input placeholder="例:町名番地" required = {true} type='text' className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[272px] ml-[95px]" onChange={(e) => setCity(e.target.value)}/>
             </div>
         </div>
 
         <div className=' w-[745px]  flex gap-[124px] pt-[24px] justify-end'>            
             <div className=" flex items-center justify-between ">
                     <p className="text-[20px] ">町名番地</p>
-                    <input type='text' className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[272px] ml-[95px]" onChange={(e) => setStreet(e.target.value)}/>
+                    <input placeholder="例:6 Chome-19-19 Futsukaichikita" required = {true} type='text' className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[272px] ml-[95px]" onChange={(e) => setStreet(e.target.value)}/>
             </div>
         </div>
 
