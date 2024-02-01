@@ -96,7 +96,6 @@ const createFeedBack = async (req, res) => {
   try{
     const {feedbackInfo} = req.body
     const newFeedbackInfo = JSON.parse(feedbackInfo);
-    console.log(newFeedbackInfo);
     const images = req.files.map((file) => file.path);
     
     const postFeedback = new Feedback({
