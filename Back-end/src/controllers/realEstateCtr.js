@@ -83,7 +83,6 @@ exports.getRealEstatesByAdmin = async (req, res) => {
         try {
             const realEstates = await RealEstate.find({'address.province': req.query.province}).sort({createdAt: -1}).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
             const totalDocumentNumber = await RealEstate.countDocuments({'address.province': req.query.province});
-            console.log('I am here in province search', totalDocumentNumber)
             return res.status(200).json({realEstates, totalDocumentNumber});
         } catch (error) {
             return res.status(500).json({ error: error.message });
@@ -92,7 +91,6 @@ exports.getRealEstatesByAdmin = async (req, res) => {
     try {
         const realEstates = await RealEstate.find().sort({createdAt: -1}).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
         const totalDocumentNumber = await RealEstate.countDocuments();
-        console.log('I am here in getRealEstateByAdmin', totalDocumentNumber)
         return res.status(200).json({realEstates, totalDocumentNumber});
     } catch (error) {
         return res.status(500).json({ error: error.message });
@@ -102,7 +100,6 @@ exports.getRealEstatesByAdmin = async (req, res) => {
 exports.getUnapprovedRealEstatesByAdmin = async (req, res) => {
     const firstNumber = parseInt(req.query.firstNumber);
     const lastNumber = parseInt(req.query.lastNumber);
-    console.log("fdsfdsfdsfds", req.query)
 
     if(req.query.province!== 'Not Selected') {
         try {
