@@ -1,42 +1,71 @@
 import React, {useState, useRef} from "react";
 
-const SearchBoard = () => {
+const SearchBoard = ( props ) => {
 
-    const [value, setValue] = useState({
-        disp: '',
-        price: '',
-        topprice: '',
-        bottomprice: '',
-        land: '',
-        photo: '',
-        receive: '',
-        post: '',
-    });
+    const setIsSearchMode = props.setIsSearchMode;
+    const setDisplayOrder = props.setDisplayOrder;
+    const setDisplayOrderDependency = props.setDisplayOrderDependency;
+    const setFloorBudget = props.setFloorBudget;
+    const setCeilBudget = props.setCeilBudget;
+    const setShowRealEstateWithoutBudget = props.setShowRealEstateWithoutBudget;
+    const fetchDataInSearchMode = props.fetchDataInSearchMode;
+    const test = props.test;
 
-    const inputDisp = useRef(null);
-    const inputPrice = useRef(null);
-    const inputTopPrice = useRef(null);
-    const inputBottomPrice = useRef(null);
-    const inputLand = useRef(null);
-    const inputPhoto = useRef(null);
-    const inputReceive = useRef(null);
-    const inputPost = useRef(null);
+    const displayOrderRef = useRef(null);
+    const withoutBudgetRef = useRef(null);
+    const floorBudgetRef = useRef(null);
+    const ceilBudgetRef = useRef(null);
+
+    const cancelSearchMode = () => {
+        displayOrderRef.current.value = '';
+        withoutBudgetRef.current.value = '';
+        floorBudgetRef.current.value = '';
+        ceilBudgetRef.current.value = '';
+        setIsSearchMode(false);
+        setDisplayOrder(-1);
+        setDisplayOrderDependency('createdAt');
+        setFloorBudget(-1);
+        setCeilBudget(1000000);
+        setShowRealEstateWithoutBudget(false);
+    }
+
+    const handleSaveAndDisplayBtnClicked = () => {
+        const displayOrderContent = displayOrderRef.current.value;
+        const withoutBudgetContent = withoutBudgetRef.current.value;
+        const floorBudget = floorBudgetRef.current.value;
+        const ceilBudget = ceilBudgetRef.current.value;
+        console.log('displayOrderContent--------------------', displayOrderContent)
+        setCeilBudget(ceilBudget === ''? 1000000: ceilBudget);
+        setFloorBudget(floorBudget === ''? -1: floorBudget);
+        if(displayOrderContent === '掲載が新しい順') {
+            setDisplayOrderDependency('createdAt');
+            setDisplayOrder(-1);
+        }
+        if(displayOrderContent === '掲載が古い順') {
+            setDisplayOrderDependency('createdAt');
+            setDisplayOrder(1);
+        }
+        if(displayOrderContent === '安い順') {
+            setDisplayOrderDependency('price');
+            setDisplayOrder(1);
+        }
+        if(displayOrderContent === '高い順') {
+            setDisplayOrderDependency('price');
+            setDisplayOrder(-1);
+        }
+        if(withoutBudgetContent === '表示する') {
+            setShowRealEstateWithoutBudget(true);
+        }
+        if(withoutBudgetContent === '表示しない') {
+            setShowRealEstateWithoutBudget(false);
+        }
+        setIsSearchMode(true)
+    }
 
     function closenav(){
         document.getElementById("search").style.display="none"        
     }
 
-    function cancelCourse(){
-        inputDisp.current.value = "";
-        inputPrice.current.value = "";
-        inputDisp.current.value = "";
-        inputTopPrice.current.value = "";
-        inputBottomPrice.current.value = "";
-        // inputLand.current.value = "";
-        // inputPhoto.current.value = "";
-        // inputReceive.current.value = "";
-        // inputPost.current.value = "";
-    }
     return(
         <div className="z-10 noto-regular">
             <div className="w-[355px] shadow-2xl border-2 border-black/40 rounded-xl" id="search">
@@ -51,16 +80,13 @@ const SearchBoard = () => {
                     <p className="text-sm noto-medium pl-9 ">表示順番</p>
                     <select
                         className="border-[1px] outline-none focus:border-blue-500 p-1 rounded-md border-black w-[145px]"
-                        onChange={event => setValue(pre => {return {...pre, disp: event.target.value}})}
-                        defaultValue={value}
-                        ref={inputDisp}>
+                        
+                        ref={displayOrderRef}
+                        >
                         <option className="text-[16px]"  value="" ></option>
                         <option className="text-[18px] font-bold " value="新着順" disabled={true}>新着順</option>
                         <option className="text-[16px]"  value="掲載が新しい順" >&nbsp;掲載が新しい順</option>
                         <option className="text-[16px]"  value="掲載が古い順" >&nbsp;掲載が古い順</option>
-                        {/* <option className="text-[18px] font-bold " value="人気順" disabled={true}>人気順</option>
-                        <option className="text-[16px]"  value="問合せ多い順" >&nbsp;問合せ多い順</option>
-                        <option className="text-[16px]"  value="問合せ少ない順" >&nbsp;問合せ少ない順</option> */}
                         <option className="text-[18px] font-bold " value="価格順" disabled={true}>価格順</option>
                         <option className="text-[16px]"  value="安い順" >&nbsp;安い順</option>
                         <option className="text-[16px]"  value="高い順" >&nbsp;高い順</option>
@@ -71,9 +97,8 @@ const SearchBoard = () => {
                         <p className="text-sm noto-medium pl-9 ">価格未定物件</p>
                         <select
                             className="border-[1px] outline-none focus:border-blue-500 p-1 rounded-md border-black w-[145px]"
-                            onChange={event => setValue(pre => {return {...pre, price: event.target.value}})}
-                            defaultValue={value}
-                            ref={inputPrice}>
+                            
+                            ref={withoutBudgetRef}>
                             <option className="text-[16px]"  value="" ></option>
                             <option className="text-[16px]"  value="表示する" >&nbsp;表示する</option>
                             <option className="text-[16px]"  value="表示しない" >&nbsp;表示しない</option>
@@ -81,67 +106,17 @@ const SearchBoard = () => {
                     </div>
                     <div className="pt-[16px] flex items-center justify-between pr-14">
                         <p className="text-sm noto-medium pl-9 ">価格上限</p>
-                        <input className="border-[1px] outline-none focus:border-blue-500 p-1 rounded-md border-black w-[145px]" ref={inputTopPrice} placeholder="万円" type="text" onChange={event => setValue(pre => {return {...pre, topprice: event.target.value}})} />
+                        <input className="border-[1px] outline-none focus:border-blue-500 p-1 rounded-md border-black w-[145px]" ref={ceilBudgetRef} placeholder="万円" type="text" />
                     </div>
                     <div className="pt-[16px] flex items-center justify-between pr-14">
                         <p className="text-sm noto-medium pl-9 ">価格下限</p>
-                        <input className="border-[1px] outline-none focus:border-blue-500 p-1 rounded-md border-black w-[145px]" ref={inputBottomPrice} placeholder="万円" type="text" onChange={event => setValue(pre => {return {...pre, bottomprice: event.target.value}})} />
+                        <input className="border-[1px] outline-none focus:border-blue-500 p-1 rounded-md border-black w-[145px]" ref={floorBudgetRef} placeholder="万円" type="text" />
                     </div>
-                    {/* <div className="pt-[16px] flex items-center justify-between pr-14">
-                        <p className="text-sm noto-medium pl-9 ">土地/建物</p>
-                        <select
-                            className="border-[1px] outline-none focus:border-blue-500 p-1 rounded-md border-black w-[145px]"
-                            onChange={event => setValue(pre => {return {...pre, land: event.target.value}})}
-                            defaultValue={value}
-                            ref={inputLand}>
-                            <option className="text-[16px]"  value="" ></option>
-                            <option className="text-[16px]"  value="指定なし" >&nbsp;指定なし</option>
-                            <option className="text-[16px]"  value="建物あり" >&nbsp;建物あり</option>
-                            <option className="text-[16px]"  value="土地のみ" >&nbsp;土地のみ</option>
-                        </select>
-                    </div> */}
-                    {/* <div className="pt-[16px] flex items-center justify-between pr-14">
-                        <p className="text-sm noto-medium pl-9 ">写真</p>
-                        <select
-                            className="border-[1px] outline-none focus:border-blue-500 p-1 rounded-md border-black w-[145px]"
-                            onChange={event => setValue(pre => {return {...pre, photo: event.target.value}})}
-                            defaultValue={value}
-                            ref={inputPhoto}>
-                            <option className="text-[16px]"  value="" ></option>
-                            <option className="text-[16px]"  value="指定なし" >&nbsp;指定なし</option>
-                            <option className="text-[16px]"  value="ありのみ" >&nbsp;ありのみ</option>
-                            <option className="text-[16px]"  value="なしも表示" >&nbsp;なしも表示</option>
-                        </select>
-                    </div> */}
-                    {/* <div className="pt-[16px] flex items-center justify-between pr-14">
-                        <p className="text-sm noto-medium pl-9 ">受付休止物件</p>
-                        <select
-                            className="border-[1px] outline-none focus:border-blue-500 p-1 rounded-md border-black w-[145px]"
-                            onChange={event => setValue(pre => {return {...pre, receive: event.target.value}})}
-                            defaultValue={value}
-                            ref={inputReceive}>
-                            <option className="text-[16px]"  value="" ></option>
-                            <option className="text-[16px]"  value="表示する" >&nbsp;表示する</option>
-                            <option className="text-[16px]"  value="表示しない" >&nbsp;表示しない</option>             
-                        </select>
-                    </div>  
-                    <div className="pt-[16px] flex items-center justify-between pr-14">
-                        <p className="text-sm noto-medium pl-9 ">掲載終了物件</p>
-                        <select
-                            className="border-[1px] outline-none focus:border-blue-500 p-1 rounded-md border-black w-[145px]"
-                            onChange={event => setValue(pre => {return {...pre, post: event.target.value}})}
-                            defaultValue={value}
-                            ref={inputPost}>
-                            <option className="text-[16px]"  value="" ></option>
-                            <option className="text-[16px]"  value="表示する" >&nbsp;表示する</option>
-                            <option className="text-[16px]"  value="表示しない" >&nbsp;表示しない</option>        
-                        </select>
-                    </div>  */}
                     <div className="flex justify-center pt-8">
-                        <button className="border border-black rounded-md p-2 text-sm noto-medium" onClick={cancelCourse} >入力内容をリセットする</button>
+                        <button className="border border-black rounded-md p-2 text-sm noto-medium" onClick={cancelSearchMode} >入力内容をリセットする</button>
                     </div>
                     <div className="flex justify-center pt-8 pb-20">
-                        <button className=" bg-[#2A6484]  rounded-xl py-[12px] px-[47px] text-[16px] text-white ">設定を保存/表示する</button>
+                        <button className=" bg-[#2A6484]  rounded-xl py-[12px] px-[47px] text-[16px] text-white " onClick={handleSaveAndDisplayBtnClicked}>設定を保存/表示する</button>
                     </div>
                 </div>
         </div>
