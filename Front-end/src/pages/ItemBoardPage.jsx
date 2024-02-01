@@ -156,7 +156,7 @@ const ItemBoardPage = () => {
             <div className='flex flex-col items-center'>
                 <div className='pt-[60px] noto-medium' >
                     <div className='flex gap-[22px]'>
-                        <span className="text-[#02540A] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'filterByProvince')}>千葉県</span>
+                        <span className="text-[#02540A] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'filterByProvince')}>北海道</span>
                         <div onClick={(e) => handleClick(e, 'filterByCity')} className=' cursor-pointer'>
                             <span>北海道</span>
                         </div>
@@ -265,7 +265,7 @@ const ItemBoardPage = () => {
                         </div>
                     </div>
                     <div className='flex gap-[22px]'>
-                        <span className="text-[#02540A] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'filterByProvince')}>富山県</span>
+                        <span className="text-[#02540A] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => handleClick(e, 'filterByProvince')}>沖繩</span>
                         <div onClick={(e) => handleClick(e, 'filterByCity')} className=' cursor-pointer'>
                             <span className='pr-[5px]'>沖繩</span>                                                                                                                                        
                         </div>
