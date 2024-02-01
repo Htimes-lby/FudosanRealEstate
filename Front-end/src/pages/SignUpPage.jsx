@@ -28,7 +28,7 @@ const SignUpPage = () => {
         try {
             const payload = {email, password, firstNameGanji, lastNameGanji, firstNameGana, lastNameGana};
             const res = await axios.post('/signup', payload);
-            history.push('/input-code')
+            // history.push('/input-code')
 
             emailRef.current.value = '';
             passwordRef.current.value = '';

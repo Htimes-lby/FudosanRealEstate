@@ -680,6 +680,7 @@ const ItemListPage = () => {
     const searchParams = new URLSearchParams(location.search);
     const filterLabel = searchParams.get('filterLabel');
     const filterContent = searchParams.get('filterContent');
+    console.log('filterContentIn ItemListPage', filterContent)
 
     const [isOpen, setIsOpen] = useState(false);
     const [active, setActive] = useState(1);
@@ -700,6 +701,7 @@ const ItemListPage = () => {
                 const res = await axios.get(`/getRealEstates?${params}`);
                 setRealEstates(res.data.realEstates);
                 setTotalNumber(res.data.totalDocumentNumber);
+                console.log('====================================================', res.data.realEstates);
             } catch (error) {
                 console.log(error);
             }
@@ -730,21 +732,24 @@ const ItemListPage = () => {
     return (
         <div className='flex flex-col items-center pt-20'>
             <p className='noto-medium text-[36px]' >{filterContent}</p>
-            <div className='flex justify-center items-center gap-10 mt-16'>            
-                <Pagination
-                    active={active}
-                    size={Math.ceil(totalNumber/16)}
-                    step={2}
-                    onClickHandler={activeHandler}
-                />
-                <i className="fa-solid fa-magnifying-glass text-[40px] cursor-pointer" onClick={magnifierToggleHandler}></i>
-            </div>
+            {
+                realEstates.length !== 0 &&
+                <div className='flex justify-center items-center gap-10 mt-16'>            
+                    <Pagination
+                        active={active}
+                        size={Math.ceil(totalNumber/16)}
+                        step={2}
+                        onClickHandler={activeHandler}
+                    />
+                    <i className="fa-solid fa-magnifying-glass text-[40px] cursor-pointer" onClick={magnifierToggleHandler}></i>
+                </div>
+            }
             
             <div className=' bg-white flex justify-end fixed z-[100] right-10 top-[20%]'>
                 {isOpen && <SearchBoard />}              
             </div>
 
-            <div className='flex flex-col items-center w-full'>
+            <div className='flex flex-col items-center w-full min-h-[600px]'>
                 <div className=' grid gap-x-8 gap-y-12 grid-cols-4 mt-3 mb-5 mx-auto box-border max-w-[1100px]'>
                     {
                         realEstates.map((realEstate, index) => {
@@ -756,17 +761,24 @@ const ItemListPage = () => {
                         })
                     }
                 </div>
+                {
+                    realEstates.length === 0 &&
+                    <div className='pt-[100px] text-3xl noto-medium'>{filterContent}の不動産はありません。</div>
+                }
             </div>
 
-            <div className='flex justify-center items-center gap-10 pb-16'>
-                <Pagination
-                    active={active}
-                    size={Math.ceil(totalNumber/16)}
-                    step={2}
-                    onClickHandler={activeHandler}
-                />
-                <i className="fa-solid fa-magnifying-glass text-[40px] cursor-pointer" onClick={magnifierToggleHandler}></i>
-            </div>
+            {
+                realEstates.length !== 0 &&
+                <div className='flex justify-center items-center gap-10 pb-16'>
+                    <Pagination
+                        active={active}
+                        size={Math.ceil(totalNumber/16)}
+                        step={2}
+                        onClickHandler={activeHandler}
+                    />
+                    <i className="fa-solid fa-magnifying-glass text-[40px] cursor-pointer" onClick={magnifierToggleHandler}></i>
+                </div>
+            }
         </div>
     )
 }
