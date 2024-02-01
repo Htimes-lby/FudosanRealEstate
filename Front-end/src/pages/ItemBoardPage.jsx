@@ -1,6 +1,6 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import axios from 'axios';
 
 import Category from '../components/Category';
 import GoogleMapComponent from '../components/GoogleMapComponent';
@@ -18,104 +18,104 @@ const myImage =
     "住宅地":require("../assets/img/category/8.png"),
 }
 
-const agents = [
-{
-    _id:'',
-    posterId:'',
-    companyName :"会社名",
-    agentName:"担当者名",
-    phoneNumber:"0123456789",
-    emailAddress:"abcdef@gmail.com",
-    content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト`
-},
-{
-    _id:'',
-    posterId:'',
-    companyName :"会社名",
-    agentName:"担当者名",
-    phoneNumber:"0123456789",
-    emailAddress:"abcdef@gmail.com",
-    content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト`
-},
-{
-    _id:'',
-    posterId:'',
-    companyName :"会社名",
-    agentName:"担当者名",
-    phoneNumber:"0123456789",
-    emailAddress:"abcdef@gmail.com",
-    content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト`
-},
-{
-    _id:'',
-    posterId:'',
-    companyName :"会社名",
-    agentName:"担当者名",
-    phoneNumber:"0123456789",
-    emailAddress:"abcdef@gmail.com",
-    content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト`
-},
-{
-    _id:'',
-    posterId:'',
-    companyName :"会社名",
-    agentName:"担当者名",
-    phoneNumber:"0123456789",
-    emailAddress:"abcdef@gmail.com",
-    content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト`
-},
-{
-    _id:'',
-    posterId:'',
-    companyName :"会社名",
-    agentName:"担当者名",
-    phoneNumber:"0123456789",
-    emailAddress:"abcdef@gmail.com",
-    content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト`
-},
-{
-    _id:'',
-    posterId:'',
-    companyName :"会社名",
-    agentName:"担当者名",
-    phoneNumber:"0123456789",
-    emailAddress:"abcdef@gmail.com",
-    content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト`
-},
-{
-    _id:'',
-    posterId:'',
-    companyName :"会社名",
-    agentName:"担当者名",
-    phoneNumber:"0123456789",
-    emailAddress:"abcdef@gmail.com",
-    content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト`
-},
-]
+// const agents = [
+// {
+//     _id:'',
+//     posterId:'',
+//     companyName :"会社名",
+//     agentName:"担当者名",
+//     phoneNumber:"0123456789",
+//     emailAddress:"abcdef@gmail.com",
+//     content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト`
+// },
+// {
+//     _id:'',
+//     posterId:'',
+//     companyName :"会社名",
+//     agentName:"担当者名",
+//     phoneNumber:"0123456789",
+//     emailAddress:"abcdef@gmail.com",
+//     content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト`
+// },
+// {
+//     _id:'',
+//     posterId:'',
+//     companyName :"会社名",
+//     agentName:"担当者名",
+//     phoneNumber:"0123456789",
+//     emailAddress:"abcdef@gmail.com",
+//     content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト`
+// },
+// {
+//     _id:'',
+//     posterId:'',
+//     companyName :"会社名",
+//     agentName:"担当者名",
+//     phoneNumber:"0123456789",
+//     emailAddress:"abcdef@gmail.com",
+//     content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト`
+// },
+// {
+//     _id:'',
+//     posterId:'',
+//     companyName :"会社名",
+//     agentName:"担当者名",
+//     phoneNumber:"0123456789",
+//     emailAddress:"abcdef@gmail.com",
+//     content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト`
+// },
+// {
+//     _id:'',
+//     posterId:'',
+//     companyName :"会社名",
+//     agentName:"担当者名",
+//     phoneNumber:"0123456789",
+//     emailAddress:"abcdef@gmail.com",
+//     content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト`
+// },
+// {
+//     _id:'',
+//     posterId:'',
+//     companyName :"会社名",
+//     agentName:"担当者名",
+//     phoneNumber:"0123456789",
+//     emailAddress:"abcdef@gmail.com",
+//     content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト`
+// },
+// {
+//     _id:'',
+//     posterId:'',
+//     companyName :"会社名",
+//     agentName:"担当者名",
+//     phoneNumber:"0123456789",
+//     emailAddress:"abcdef@gmail.com",
+//     content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト`
+// },
+// ]
 
 const legions = {
     '東北': ['青森', '岩手', '秋田', '宮城', '山形', '福島'],
@@ -131,9 +131,18 @@ const legions = {
 const ItemBoardPage = () => {
 
     const history = useHistory();
-    const [activeAgentCategory, setActiveAgentCategory] = useState('judicialscrivener')
+    const [activeAgentCategory, setActiveAgentCategory] = useState('司法書士')
     const [displayAgents, setDisplayAgents] = useState (false);
+    const [agents, setAgents] = useState ("");
 
+    useEffect(() => {
+        const func = async () => {
+            const response = await axios.get("/getAgent");   
+            setAgents(response.data);          
+        }
+        func();
+        }, []);
+        
     const goToItemListPageWithFilterContent = (e, params) => {
         const searchParams = new URLSearchParams();
         searchParams.set('filterContent', e.target.innerText);
@@ -219,15 +228,17 @@ const ItemBoardPage = () => {
                     <div className='absolute top-4 right-6 text-sm noto-bold cursor-pointer' onClick={() => handleDisplayAgentsToggle(false)}>隠れる<div className = 'pl-2 fa-solid fa-arrow-right'></div></div>
                     <div className='flex flex-col items-center w-[600px] h-[800px]  pt-[50px] pb-[55px] bg-white text-center  overflow-y-scroll no-scrollbar' >
                         <div className='flex relative border-b-2 pt-[2px] border-black w-[500px] noto-medium transition-all duration-300'>
-                            <span className=' w-[33%] cursor-pointer pb-3' onClick={() => setActiveAgentCategory('realEstateAgent')}>不動産業者</span>
-                            <span className=' w-[34%] cursor-pointer' onClick={() => setActiveAgentCategory('judicialscrivener')}>司法書士</span>
-                            <span className=' w-[33%] cursor-pointer' onClick={() => setActiveAgentCategory('invester')}>投資家</span>
-                            <div className={`absolute w-[33.3%] h-1 bottom-0 bg-[#f13f13] rounded-md transition-all duration-500 ${activeAgentCategory === 'realEstateAgent' ? 'left-0' : activeAgentCategory === 'judicialscrivener' ? 'left-[33.3%]' : 'left-[66.6%]' }`}></div>
+                            <span className=' w-[33%] cursor-pointer pb-3' onClick={() => setActiveAgentCategory('不動産業者')}>不動産業者</span>
+                            <span className=' w-[34%] cursor-pointer' onClick={() => setActiveAgentCategory('司法書士')}>司法書士</span>
+                            <span className=' w-[33%] cursor-pointer' onClick={() => setActiveAgentCategory('投資家')}>投資家</span>
+                            <div className={`absolute w-[33.3%] h-1 bottom-0 bg-[#f13f13] rounded-md transition-all duration-500 ${activeAgentCategory === '不動産業者' ? 'left-0' : activeAgentCategory === '司法書士' ? 'left-[33.3%]' : 'left-[66.6%]' }`}></div>
                         </div>
                         {agents.map((agent, index) => (
-                            <div className='pt-[25px]' onClick={() => agentCardClicked(index)}> 
-                                <AgentCard agent={agent} key={index} />                           
-                            </div>
+                                agent.category === activeAgentCategory &&
+                                <div className='pt-[25px]' onClick={() => agentCardClicked(index)}> 
+                                    <AgentCard agent={agent} key={index} />                           
+                                    
+                                </div>
                         ))}
                     </div>
                 </div>}
