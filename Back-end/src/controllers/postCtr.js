@@ -68,7 +68,6 @@ const createAgent = async (req, res) => {
     
     let getUser = await User.findOneAndUpdate({ _id: newAgentInfo.posterId }, {$set:{email:newAgentInfo.agentEmail,phoneNumber:newAgentInfo.phoneNumber,name:newAgentInfo.agentName}});
     
-
     const postAgent = new Agent({
       posterId:newAgentInfo.posterId,
       agentName:newAgentInfo.agentName,
@@ -121,10 +120,19 @@ const createFeedBack = async (req, res) => {
 
 const getAgent = async (req, res) => {
   try{
-    const agent = await Agent.find()
+    const agent = await Agent.find( {approved: true} )
     return res.status(200).json(agent)
   }catch(error){
     return res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+const getAgentByAdmin = async (req, res) => {
+  try {
+    const agents = await Agent.find();
+    return res.status(200).json(agents);
+  } catch (error) {
+    return res.status(500).json({ error: error.message});
   }
 }
 
@@ -132,5 +140,6 @@ module.exports = {
   createRealEstate,
   createAgent,
   createFeedBack,
-  getAgent
+  getAgent,
+  getAgentByAdmin,
 };
