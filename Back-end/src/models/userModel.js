@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
         }
     },
     age: {
-        type: String,
+        type: Number,
     },
     email: {
         type: String,
@@ -36,7 +36,7 @@ const userSchema = new mongoose.Schema({
         default: false,
     },
     phoneNumber: {
-        type: String,
+        type: Number,
     },
     favourites: [{
         type: Schema.Types.ObjectId,

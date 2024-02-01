@@ -21,6 +21,7 @@ const PostAgentPage = () => {
     const [firstNameGanji, setFirstNameGanji] = useState('');
     const [lastNameGanji, setLastNameGanji] = useState('');
     const [content, setContent] = useState('');
+    const [validationMessage, setValidationMessage] = useState('');
 
     const handleUploadDataArray = (data) => {
         setUploadDataArray(data);
@@ -47,8 +48,16 @@ const PostAgentPage = () => {
         setPostalNumber(updatedPostalNumber);
     };
     const newId = localStorage.getItem('id');
-    const newphoneNumber = phoneNumber[0]+phoneNumber[1]+phoneNumber[2];
-    const newpostalNumber = postalNumber[0]+postalNumber[1];
+    const newphoneNumber = parseInt(
+        (phoneNumber[0] ? phoneNumber[0].toString() : '') +
+        (phoneNumber[1] ? phoneNumber[1].toString() : '') +
+        (phoneNumber[2] ? phoneNumber[2].toString() : '')
+    );
+    const newpostalNumber = parseInt(
+        (postalNumber[0] ? postalNumber[0].toString() : '') +
+        (postalNumber[1] ? postalNumber[1].toString() : '') +
+        (postalNumber[2] ? postalNumber[2].toString() : '')
+    );
     const agentName = {firstNameGana: firstNameGana, lastNameGana: lastNameGana, firstNameGanji: firstNameGanji, lastNameGanji: lastNameGanji};
     const address = {zipCode:newpostalNumber, province:province, city:city, street:street}
 
@@ -56,10 +65,18 @@ const PostAgentPage = () => {
     const agentData = {posterId:newId, agentName: agentName, agentEmail: email, address: address, 
         category: role, phoneNumber: newphoneNumber, companyName: companyName, content: content,} 
 
-        console.log(agentData);
         const handleSubmit = async (e) => {
             e.preventDefault();
-        
+            setValidationMessage("");
+            
+            if(!email.includes('@'))
+                return setValidationMessage("Input email correctly!");
+            if(Math.abs(phoneNumber[0]).toString().trim().length > 3 || Math.abs(phoneNumber[0]).toString().trim().length < 2
+                || Math.abs(phoneNumber[1]).toString().trim().length > 4 || Math.abs(phoneNumber[1]).toString().trim().length < 2
+                || Math.abs(phoneNumber[2]).toString().trim().length !== 4 )
+                return setValidationMessage("Input phone number correctly!");
+            if(Math.abs(postalNumber[0]).toString().trim().length !== 3 || Math.abs(postalNumber[1]).toString().trim().length !== 4 )
+                return setValidationMessage("Input phone number correctly!");
             try {
                 const formData = new FormData();
                     // Append other form data
@@ -125,21 +142,21 @@ const PostAgentPage = () => {
                     <div className='w-[196px]'>
                         <div className='flex justify-between '>
                             <span>(姓)</span>
-                            <input value = {lastNameGanji} className='w-[130px] border-[1px]  focus:outline-none focus:border-blue-500 p-1 focus:outline-none focus:border-blue-500 p-1 border-black  rounded-md' type="text" onChange={(e) => setLastNameGanji(e.target.value)} />
+                            <input placeholder="例:下保木" required = {true} name = "lastNameGanji" value = {lastNameGanji} className='w-[130px] border-[1px]  focus:outline-none focus:border-blue-500 p-1 focus:outline-none focus:border-blue-500 p-1 border-black  rounded-md' type="text" onChange={(e) => setLastNameGanji(e.target.value)} />
                         </div>
                         <div className='flex justify-between pt-[16px]'>
                             <span>(せい)</span>
-                            <input value={lastNameGana} className='w-[130px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' type="text" onChange={(e) => setLastNameGana(e.target.value)}  />
+                            <input placeholder="例:しもほき" required = {true} name = "lastNameGana" value={lastNameGana} className='w-[130px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' type="text" onChange={(e) => setLastNameGana(e.target.value)}  />
                         </div>
                     </div> 
                     <div className='w-[196px]'>
                         <div className='flex justify-between'>
                             <span>(名)</span>
-                            <input value = {firstNameGanji} className='w-[130px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' type="text" onChange={(e) => setFirstNameGanji(e.target.value)} />
+                            <input placeholder="例:虎史" required = {true} name = "firstNameGanji" value = {firstNameGanji} className='w-[130px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' type="text" onChange={(e) => setFirstNameGanji(e.target.value)} />
                         </div>
                         <div className='flex justify-between pt-[16px]'>
                             <span>(めい)</span>
-                            <input value={firstNameGana} className='w-[130px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' type="text" onChange={(e) => setFirstNameGana(e.target.value)} />
+                            <input placeholder="例:こし" required = {true} name = "firstNameGana" value={firstNameGana} className='w-[130px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' type="text" onChange={(e) => setFirstNameGana(e.target.value)} />
                         </div>
                     </div>      
                 </div>
@@ -151,7 +168,7 @@ const PostAgentPage = () => {
                         <p className='text-[20px]'>会社名</p>
                     </div>
                     <div className='flex'>                      
-                        <input type="text"  className='w-[445px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' onChange={(e) => setCompanyName(e.target.value)}/>
+                        <input required = {true} type="text"  className='w-[445px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' onChange={(e) => setCompanyName(e.target.value)}/>
                     </div>
                 </div>
                 <div className=' w-[900px] ml-[310px]  flex gap-[169px] mt-[40px]'>
@@ -160,7 +177,7 @@ const PostAgentPage = () => {
                         <p className='text-[20px]'>メール</p>
                     </div>
                     <div className='flex'>                      
-                        <input value = {email} type="text"  className='w-[445px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' onChange={(e) => setEmail(e.target.value)}/>
+                        <input placeholder="例:hoshi@gmail.com" required = {true} value = {email} type="text"  className='w-[445px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' onChange={(e) => setEmail(e.target.value)}/>
                     </div>
                 </div>
                 <div className=' w-[900px] ml-[310px]  flex gap-[169px] pt-[40px] '> 
@@ -175,6 +192,7 @@ const PostAgentPage = () => {
                         <select
                             className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[445px] "
                             onChange={event => setRole(event.target.value)}
+                            required = {true}
                             defaultValue={value}>                       
                             <option className="text-[16px]"  value="" >&nbsp;</option>
                             <option className="text-[16px]"  value="不動産業者" >&nbsp;不動産業者</option>
@@ -193,11 +211,11 @@ const PostAgentPage = () => {
                         <p className='text-[20px]'>電話番号</p>
                     </div>
                     <div className='flex '>
-                        <input type="text" className='w-[99px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' value={phoneNumber[0] || ''} onChange={(e) => handleInputPhoneNumber(0, e.target.value)}/>
+                        <input placeholder="例:092" required = {true} type="number" className='w-[99px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' value={phoneNumber[0] || ''} onChange={(e) => handleInputPhoneNumber(0, e.target.value)}/>
                         <span className='border-t-2 w-[30px] border-black mt-[15px] mx-[22px]'></span>            
-                        <input type="text" className='w-[99px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' value={phoneNumber[1] || ''} onChange={(e) => handleInputPhoneNumber(1, e.target.value)}/>
+                        <input placeholder="例:918" required = {true} type="number" className='w-[99px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' value={phoneNumber[1] || ''} onChange={(e) => handleInputPhoneNumber(1, e.target.value)}/>
                         <span className='border-t-2 w-[30px] border-black mt-[15px] mx-[21px]'></span>
-                        <input type="text" className='w-[99px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' value={phoneNumber[2] || ''} onChange={(e) => handleInputPhoneNumber(2, e.target.value)}/>
+                        <input placeholder="例:0234" required = {true} type="number" className='w-[99px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' value={phoneNumber[2] || ''} onChange={(e) => handleInputPhoneNumber(2, e.target.value)}/>
                     </div>
                 </div>
 
@@ -208,9 +226,9 @@ const PostAgentPage = () => {
                     </div>
                     <div>              
                         <span className=' w-[30px] mt-[15px] mr-[50px] text-[20px] '>郵便番号 - 〒</span>          
-                        <input type="text" className='w-[99px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' value={postalNumber[0] || ''} onChange={(e) => handleInputPoastalNumber(0, e.target.value)}/>
+                        <input placeholder="例:818" required = {true} type="number" className='w-[99px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' value={postalNumber[0] || ''} onChange={(e) => handleInputPoastalNumber(0, e.target.value)}/>
                         <span className=' inline-block border-t-2 w-[30px] border-black mt-[15px] mx-[21px]  '></span>
-                        <input type="text" className='w-[99px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' value={postalNumber[1] || ''} onChange={(e) => handleInputPoastalNumber(1, e.target.value)}/>
+                        <input placeholder="例:0124" required = {true} type="number" className='w-[99px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' value={postalNumber[1] || ''} onChange={(e) => handleInputPoastalNumber(1, e.target.value)}/>
                     </div>
                 </div>
 
@@ -220,6 +238,7 @@ const PostAgentPage = () => {
                             <select
                                 className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[272px] ml-[95px]"
                                 onChange={event => setProvince(event.target.value)}
+                                required = {true}
                                 defaultValue={province}>                       
                                 <option className="text-[16px]"  value="" >&nbsp;</option>
                                 <option className="text-[16px]"  value="北海道" >&nbsp;北海道</option>
@@ -280,14 +299,14 @@ const PostAgentPage = () => {
                 <div className=' w-[900px] ml-[200px]  flex gap-[169px] pt-[40px] justify-end '>            
                     <div className=" flex items-center justify-between ">
                             <p className="text-[20px] ">市区町村</p>
-                            <input type='text' className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[272px] ml-[95px]" onChange={(e) => setCity(e.target.value)}/>
+                            <input placeholder="例:町名番地"  required = {true} type='text' className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[272px] ml-[95px]" onChange={(e) => setCity(e.target.value)}/>
                     </div>
                 </div>
 
                 <div className=' w-[900px] ml-[200px]  flex gap-[169px] pt-[40px] justify-end'>            
                     <div className=" flex items-center justify-between ">
                             <p className="text-[20px] ">町名番地</p>
-                            <input type='text' className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[272px] ml-[95px]" onChange={(e) => setStreet(e.target.value)}/>
+                            <input placeholder="例:6 Chome-19-19 Futsukaichikita" required = {true} type='text' className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[272px] ml-[95px]" onChange={(e) => setStreet(e.target.value)}/>
                     </div>
                 </div>
 
@@ -308,6 +327,7 @@ const PostAgentPage = () => {
                 <div className='flex justify-center'>
                     <ConditionForm onDataArrayFromChild={handleconditionDataArray} />
                 </div>
+                <p className='text-center pt-[20px]'>{validationMessage}</p>
                 <div className='flex justify-center pt-[105px] pb-[170px]'>
                     {
                         conditionData?

@@ -24,7 +24,7 @@ export default function OverviewHouseForm ( props ) {
             </div>
             <div className='flex'>
                 <span className='text-[20px] pr-10'>希望価格</span>
-                <input type="text" placeholder='万円' className='w-[381px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' onChange={(e) => setBudget(e.target.value)}/>
+                <input type="number" placeholder='万円' className='w-[381px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' onChange={(e) => setBudget(e.target.value)}/>
             </div>
         </div>
 
@@ -40,7 +40,7 @@ export default function OverviewHouseForm ( props ) {
            
             <div className='flex'>
                 <span className='text-[20px] pr-10'>土地面積</span>
-                <input type="text" placeholder='m²' className='w-[381px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' onChange={(e) => setLandarea(e.target.value)}/>
+                <input type="number" placeholder='m²' className='w-[381px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' onChange={(e) => setLandarea(e.target.value)}/>
             </div>
         </div>
         
@@ -48,7 +48,7 @@ export default function OverviewHouseForm ( props ) {
            
             <div className='flex'>
                 <span className='text-[20px] pr-10'>建物面積</span>
-                <input type="text" placeholder='m²' className='w-[381px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' onChange={(e) => setBuildingarea(e.target.value)}/>
+                <input type="number" placeholder='m²' className='w-[381px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' onChange={(e) => setBuildingarea(e.target.value)}/>
             </div>
         </div>
 

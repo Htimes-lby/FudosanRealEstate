@@ -8,7 +8,7 @@ const realEstateSchema = new mongoose.Schema({
     },
     address: {
         zipCode: {
-            type: String,
+            type: Number,
         },
         province: {
             type: String,
@@ -29,16 +29,16 @@ const realEstateSchema = new mongoose.Schema({
     },
     basicInfoBuilding: {
         budget: {
-            type: String,
+            type: Number,
         },
         layout: {
             type: String,
         },
         landarea: {
-            type: String,
+            type: Number,
         },
         buildingArea: {
-            type: String,
+            type: Number,
         },
         deadline: {
             type: String,
@@ -49,16 +49,16 @@ const realEstateSchema = new mongoose.Schema({
     },
     basicInfoLand: {
         budget: {
-            type: String,
+            type: Number,
         },
         landarea: {
-            type: String,
+            type: Number,
         },
         buildingCoverageRatio: {
-            type: String,
+            type: Number,
         },
         floorAreaRatio: {
-            type: String,
+            type: Number,
         },
         structure: {
             type: String,

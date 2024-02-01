@@ -31,7 +31,7 @@ const feedbackSchema = new mongoose.Schema({
       type: String,
     },
     zipCode: {
-      type: String,
+      type: Number,
     },
   },
   images: [String],
