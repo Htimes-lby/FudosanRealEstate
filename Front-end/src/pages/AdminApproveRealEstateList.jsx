@@ -18,6 +18,8 @@ const AdminApproveRealEstateList = () => {
     const activeHandler = (clickedPage) => {
         setActive(parseInt(clickedPage));
     };
+
+    console.log(unapprovedDataOnly)
     const fetchData = async () => {
         const firstNumber = (active - 1) * 16 + 1;
         const lastNumber = active * 16;
@@ -29,6 +31,7 @@ const AdminApproveRealEstateList = () => {
                     province: province,
                 }).toString();
                 const res = await axios.get(`/getUnapprovedRealEstatesByAdmin?${params}`);
+                console.log(res)
                 setRealEstates(res.data.realEstates);
                 setTotalNumber(res.data.totalDocumentNumber);
             } catch (error) {
@@ -88,7 +91,7 @@ const AdminApproveRealEstateList = () => {
                             className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[272px] ml-[95px]"
                             onChange={event => setProvince(event.target.value)}
                             defaultValue={province}>                       
-                            <option className="text-[16px]"  value="" >&nbsp;</option>
+                            <option className="text-[16px]"  value="Not Selected" >&nbsp;</option>
                             <option className="text-[16px]"  value="北海道" >&nbsp;北海道</option>
                             <option className="text-[16px]"  value="青森県" >&nbsp;青森県</option>
                             <option className="text-[16px]"  value="岩手県" >&nbsp;岩手県</option>
