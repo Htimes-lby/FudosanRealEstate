@@ -1,11 +1,17 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import {Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 const Footer = () => {
     const history = useHistory();
     const handleFeedbackCategoryClicked = (props) => {
         const searchParams = new URLSearchParams();
         searchParams.set('category', props);
         history.push(`/feedback-board?${searchParams.toString()}`)
+    }
+    const handleRealEstatePostClicked = (props) => {
+        const label = props;
+        const searchParams = new URLSearchParams();
+        searchParams.set('label', label);
+        history.push(`/post-realestate?${searchParams.toString()}`);
     }
     const handleRealEstateCagegoryClicked = (e) => {
         const searchParams = new URLSearchParams();
@@ -38,9 +44,9 @@ const Footer = () => {
                 </div>
                 <div className='flex flex-col items-start'>
                     <span className=' text-[#FFC804] text-[20px]'>掲示板に投稿</span>
-                    <span className=' text-white text-[16px] pt-3 cursor-pointer'>建物の投稿</span>
-                    <span className=' text-white text-[16px] pt-1 cursor-pointer'>土地の投稿</span>
-                    <span className=' text-white text-[16px] pt-1 cursor-pointer'>業者の投稿</span>
+                    <span className=' text-white text-[16px] pt-3 cursor-pointer' onClick={() => handleRealEstatePostClicked('post-building')}>建物の投稿</span>
+                    <span className=' text-white text-[16px] pt-1 cursor-pointer' onClick={() => handleRealEstatePostClicked('post-land')}>土地の投稿</span>
+                    <span className=' text-white text-[16px] pt-1 cursor-pointer'><Link to='/post-agent' className = 'text-current no-underline transition-all duration-75 hover:text-white/40'>業者の投稿</Link></span>
                 </div>
                 <div className='flex flex-col items-start'>
                     <span className=' text-[#FFC804] text-[20px]'>掲示板を見る</span>
