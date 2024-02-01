@@ -136,11 +136,12 @@ const ItemBoardPage = () => {
     const [agents, setAgents] = useState ("");
 
     useEffect(() => {
-        const func = async () => {
+        const fetchAgentData = async () => {
             const response = await axios.get("/getAgent");   
-            setAgents(response.data);          
+            setAgents(response.data);
         }
-        func();
+        fetchAgentData();
+        
         }, []);
         
     const goToItemListPageWithFilterContent = (e, params) => {
@@ -234,11 +235,10 @@ const ItemBoardPage = () => {
                             <div className={`absolute w-[33.3%] h-1 bottom-0 bg-[#f13f13] rounded-md transition-all duration-500 ${activeAgentCategory === '不動産業者' ? 'left-0' : activeAgentCategory === '司法書士' ? 'left-[33.3%]' : 'left-[66.6%]' }`}></div>
                         </div>
                         {agents.map((agent, index) => (
-                                agent.category === activeAgentCategory &&
-                                <div className='pt-[25px]' onClick={() => agentCardClicked(index)}> 
-                                    <AgentCard agent={agent} key={index} />                           
-                                    
-                                </div>
+                            agent.category === activeAgentCategory &&
+                            <div className='pt-[25px]' onClick={() => agentCardClicked(index)}> 
+                                <AgentCard agent={agent} key={index} />                           
+                            </div>
                         ))}
                     </div>
                 </div>}
