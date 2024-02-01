@@ -1,8 +1,8 @@
 const RealEstate = require('../models/realEstateModel')
 
 exports.getRealEstates = async (req, res) => {
-    const firstNumber = parseInt(req.query.firstNumber)
-    const lastNumber = parseInt(req.query.lastNumber)
+    const firstNumber = parseInt(req.query.firstNumber);
+    const lastNumber = parseInt(req.query.lastNumber);
 
     const legions = {
         '東北': ['青森県', '岩手県', '秋田県', '宮城県', '山形県', '福島県'],
@@ -41,20 +41,11 @@ exports.getRealEstates = async (req, res) => {
             try {
                 console.log('I am here in filterByLegion')
                 console.log('provinces in the provided legion', legions[filterContent])
-                const realEstates = await RealEstate.find({'address.province': { $in: legions[filterContent] }}).sort({ createdAt: -1 }).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
-                const totalDocumentNumber = await RealEstate.countDocuments({'address.province': {$in: legions[filterContent]}});
+                const realEstates = await RealEstate.find({'address.province': { $in: legions[filterContent] }, approved: true}).sort({ createdAt: -1 }).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
+                const totalDocumentNumber = await RealEstate.countDocuments({'address.province': {$in: legions[filterContent]}, approved: true});
                 return res.status(200).json({totalDocumentNumber, realEstates});
             } catch (error) {
                 return res.status(500).json({error: error.message});
-            }
-        }
-        if(filterLabel === 'filterByCity'){
-            try {
-                const realEstates = await RealEstate.find({'address.city': filterContent, approved: true}).sort({ createdAt: -1 }).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
-                const totalDocumentNumber = await RealEstate.countDocuments({'address.city': filterContent, approved: true});
-                return res.status(200).json({totalDocumentNumber, realEstates});
-            } catch (error) {
-                return res.status(500).json({ error: 'Failed to fetch real estates' });
             }
         }
     }
@@ -66,6 +57,367 @@ exports.getRealEstates = async (req, res) => {
     }
 }
 
+exports.getRealEstatesWithSearchCondition = async (req, res) => {
+    const firstNumber = parseInt(req.query.firstNumber);
+    const lastNumber = parseInt(req.query.lastNumber);
+    const filterLabel  = req.query.filterLabel;
+    const filterContent = req.query.filterContent;
+    const floorBudget = req.query.floorBudget;
+    const ceilBudget = req.query.ceilBudget;
+    const displayOrder = parseInt(req.query.displayOrder);
+    const displayOrderDependency = req.query.displayOrderDependency;
+    const showRealEstateWithoutBudget = req.query.showRealEstateWithoutBudget;
+    console.log('-------------------------------------', showRealEstateWithoutBudget, floorBudget, ceilBudget, filterContent, filterLabel)
+    
+    if(filterLabel === 'filterByCategory'){
+        if(displayOrderDependency === 'createdAt') {
+            if(showRealEstateWithoutBudget === 'true') {
+                try {
+                    const realEstates = await RealEstate.find({
+                        category: filterContent,
+                        approved: true,
+                        $or: [
+                            {'basicInfoBuilding.budget': {$gt: floorBudget, $lt: ceilBudget}},
+                            {'basicInfoLand.budget': {$gt: floorBudget, $lt: ceilBudget}},
+                            {'basicInfoBuilding.budget': ''},
+                            {'basicInfoLand.budget': ''}
+                        ]
+                    }).sort({ createdAt: displayOrder }).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
+                    const totalDocumentNumber = await RealEstate.countDocuments({
+                        category: filterContent,
+                        approved: true,
+                        $or: [
+                            {'basicInfoBuilding.budget': {$gt: floorBudget, $lt: ceilBudget}},
+                            {'basicInfoLand.budget': {$gt: floorBudget, $lt: ceilBudget}},
+                            {'basicInfoBuilding.budget': ''},
+                            {'basicInfoLand.budget': ''}
+                        ]
+                    })
+                    console.log('I am here createdAt Show Category', realEstates)
+                    return res.status(200).json({totalDocumentNumber, realEstates});
+                } catch (error) {
+                    return res.status(500).json({ error: error.message });
+                }
+            } else {
+                try {
+                    const realEstates = await RealEstate.find({
+                        category: filterContent,
+                        approved: true,
+                        $or: [
+                            {'basicInfoBuilding.budget': {$gt: floorBudget, $lt: ceilBudget}},
+                            {'basicInfoLand.budget': {$gt: floorBudget, $lt: ceilBudget}},
+                        ]
+                    }).sort({ createdAt: displayOrder }).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
+                    const totalDocumentNumber = await RealEstate.countDocuments({
+                        category: filterContent,
+                        approved: true,
+                        $or: [
+                            {'basicInfoBuilding.budget': {$gt: floorBudget, $lt: ceilBudget}},
+                            {'basicInfoLand.budget': {$gt: floorBudget, $lt: ceilBudget}},
+                        ]
+                    })
+                    console.log('I am here createdAt Hide Category', realEstates)
+                    return res.status(200).json({totalDocumentNumber, realEstates});
+                } catch (error) {
+                    return res.status(500).json({ error: error.message });
+                }
+            }
+        }
+        if(displayOrderDependency === 'price') {
+            if(showRealEstateWithoutBudget === 'true') {
+                try {
+                    const realEstates = await RealEstate.find({
+                        category: filterContent,
+                        approved: true,
+                        $or: [
+                            {'basicInfoBuilding.budget': {$gt: floorBudget, $lt: ceilBudget}},
+                            {'basicInfoLand.budget': {$gt: floorBudget, $lt: ceilBudget}},
+                            {'basicInfoBuilding.budget': ''},
+                            {'basicInfoLand.budget': ''}
+                        ]
+                    }).sort({ price: displayOrder }).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
+                    const totalDocumentNumber = await RealEstate.countDocuments({
+                        category: filterContent,
+                        approved: true,
+                        $or: [
+                            {'basicInfoBuilding.budget': {$gt: floorBudget, $lt: ceilBudget}},
+                            {'basicInfoLand.budget': {$gt: floorBudget, $lt: ceilBudget}},
+                            {'basicInfoBuilding.budget': ''},
+                            {'basicInfoLand.budget': ''}
+                        ]
+                    })
+                    console.log('I am here Price Show Category', realEstates)
+                    return res.status(200).json({totalDocumentNumber, realEstates});
+                } catch (error) {
+                    return res.status(500).json({ error: error.message });
+                }
+            } else {
+                try {
+                    const realEstates = await RealEstate.find({
+                        category: filterContent,
+                        approved: true,
+                        $or: [
+                            {label: 'building', 'basicInfoBuilding.budget': {$gt: floorBudget}},
+                            {label: 'land', 'basicInfoLand.budget': {$gt: floorBudget}}
+                        ],
+                        $or: [
+                            {label: 'building', 'basicInfoBuilding.budget': {$lt: ceilBudget}},
+                            {label: 'land', 'basicInfoLand.budget': {$lt: ceilBudget}}
+                        ]
+                    }).sort({ price: displayOrder }).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
+                    const totalDocumentNumber = await RealEstate.countDocuments({
+                        category: filterContent,
+                        approved: true,
+                        $or: [
+                            {label: 'building', 'basicInfoBuilding.budget': {$gt: floorBudget}},
+                            {label: 'land', 'basicInfoLand.budget': {$gt: floorBudget}}
+                        ],
+                        $or: [
+                            {label: 'building', 'basicInfoBuilding.budget': {$lt: ceilBudget}},
+                            {label: 'land', 'basicInfoLand.budget': {$lt: ceilBudget}}
+                        ]
+                    })
+                    console.log('I am here Price Hide Category', realEstates)
+                    return res.status(200).json({totalDocumentNumber, realEstates});
+                } catch (error) {
+                    return res.status(500).json({ error: error.message });
+                }
+            }
+        }
+    }
+    if(filterLabel === 'filterByProvince'){
+        if(displayOrderDependency === 'createdAt') {
+            if(showRealEstateWithoutBudget === 'true') {
+                try {
+                    const realEstates = await RealEstate.find({
+                        'address.province': filterContent,
+                        approved: true,
+                        $or: [
+                            {'basicInfoBuilding.budget': {$gt: floorBudget, $lt: ceilBudget}},
+                            {'basicInfoLand.budget': {$gt: floorBudget, $lt: ceilBudget}},
+                            {'basicInfoBuilding.budget': ''},
+                            {'basicInfoLand.budget': ''}
+                        ]
+                    }).sort({ createdAt: displayOrder }).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
+                    const totalDocumentNumber = await RealEstate.countDocuments({
+                        'address.province': filterContent,
+                        approved: true,
+                        $or: [
+                            {'basicInfoBuilding.budget': {$gt: floorBudget, $lt: ceilBudget}},
+                            {'basicInfoLand.budget': {$gt: floorBudget, $lt: ceilBudget}},
+                            {'basicInfoBuilding.budget': ''},
+                            {'basicInfoLand.budget': ''}
+                        ]
+                    })
+                    console.log('I am here createdAt Show Category', realEstates)
+                    return res.status(200).json({totalDocumentNumber, realEstates});
+                } catch (error) {
+                    return res.status(500).json({ error: error.message });
+                }
+            } else {
+                try {
+                    const realEstates = await RealEstate.find({
+                        'address.province': filterContent,
+                        approved: true,
+                        $or: [
+                            {'basicInfoBuilding.budget': {$gt: floorBudget, $lt: ceilBudget}},
+                            {'basicInfoLand.budget': {$gt: floorBudget, $lt: ceilBudget}},
+                        ]
+                    }).sort({ createdAt: displayOrder }).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
+                    const totalDocumentNumber = await RealEstate.countDocuments({
+                        'address.province': filterContent,
+                        approved: true,
+                        $or: [
+                            {'basicInfoBuilding.budget': {$gt: floorBudget, $lt: ceilBudget}},
+                            {'basicInfoLand.budget': {$gt: floorBudget, $lt: ceilBudget}},
+                        ]
+                    })
+                    console.log('I am here createdAt Hide Category', realEstates)
+                    return res.status(200).json({totalDocumentNumber, realEstates});
+                } catch (error) {
+                    return res.status(500).json({ error: error.message });
+                }
+            }
+        }
+        if(displayOrderDependency === 'price') {
+            if(showRealEstateWithoutBudget === 'true') {
+                try {
+                    const realEstates = await RealEstate.find({
+                        'address.province': filterContent,
+                        approved: true,
+                        $or: [
+                            {'basicInfoBuilding.budget': {$gt: floorBudget, $lt: ceilBudget}},
+                            {'basicInfoLand.budget': {$gt: floorBudget, $lt: ceilBudget}},
+                            {'basicInfoBuilding.budget': ''},
+                            {'basicInfoLand.budget': ''}
+                        ]
+                    }).sort({ price: displayOrder }).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
+                    const totalDocumentNumber = await RealEstate.countDocuments({
+                        'address.province': filterContent,
+                        approved: true,
+                        $or: [
+                            {'basicInfoBuilding.budget': {$gt: floorBudget, $lt: ceilBudget}},
+                            {'basicInfoLand.budget': {$gt: floorBudget, $lt: ceilBudget}},
+                            {'basicInfoBuilding.budget': ''},
+                            {'basicInfoLand.budget': ''}
+                        ]
+                    })
+                    console.log('I am here Price Show Category', realEstates)
+                    return res.status(200).json({totalDocumentNumber, realEstates});
+                } catch (error) {
+                    return res.status(500).json({ error: error.message });
+                }
+            } else {
+                try {
+                    const realEstates = await RealEstate.find({
+                        'address.province': filterContent,
+                        approved: true,
+                        $or: [
+                            {label: 'building', 'basicInfoBuilding.budget': {$gt: floorBudget}},
+                            {label: 'land', 'basicInfoLand.budget': {$gt: floorBudget}}
+                        ],
+                        $or: [
+                            {label: 'building', 'basicInfoBuilding.budget': {$lt: ceilBudget}},
+                            {label: 'land', 'basicInfoLand.budget': {$lt: ceilBudget}}
+                        ]
+                    }).sort({ price: displayOrder }).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
+                    const totalDocumentNumber = await RealEstate.countDocuments({
+                        'address.province': filterContent,
+                        approved: true,
+                        $or: [
+                            {label: 'building', 'basicInfoBuilding.budget': {$gt: floorBudget}},
+                            {label: 'land', 'basicInfoLand.budget': {$gt: floorBudget}}
+                        ],
+                        $or: [
+                            {label: 'building', 'basicInfoBuilding.budget': {$lt: ceilBudget}},
+                            {label: 'land', 'basicInfoLand.budget': {$lt: ceilBudget}}
+                        ]
+                    })
+                    console.log('I am here Price Hide Category', realEstates)
+                    return res.status(200).json({totalDocumentNumber, realEstates});
+                } catch (error) {
+                    return res.status(500).json({ error: error.message });
+                }
+            }
+        }
+    }
+    if(filterLabel === 'filterByLegion'){
+        if(displayOrderDependency === 'createdAt') {
+            if(showRealEstateWithoutBudget === 'true') {
+                try {
+                    const realEstates = await RealEstate.find({
+                        'address.province': { $in: legions[filterContent] },
+                        approved: true,
+                        $or: [
+                            {'basicInfoBuilding.budget': {$gt: floorBudget, $lt: ceilBudget}},
+                            {'basicInfoLand.budget': {$gt: floorBudget, $lt: ceilBudget}},
+                            {'basicInfoBuilding.budget': ''},
+                            {'basicInfoLand.budget': ''}
+                        ]
+                    }).sort({ createdAt: displayOrder }).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
+                    const totalDocumentNumber = await RealEstate.countDocuments({
+                        'address.province': { $in: legions[filterContent] },
+                        approved: true,
+                        $or: [
+                            {'basicInfoBuilding.budget': {$gt: floorBudget, $lt: ceilBudget}},
+                            {'basicInfoLand.budget': {$gt: floorBudget, $lt: ceilBudget}},
+                            {'basicInfoBuilding.budget': ''},
+                            {'basicInfoLand.budget': ''}
+                        ]
+                    })
+                    console.log('I am here createdAt Show Category', realEstates)
+                    return res.status(200).json({totalDocumentNumber, realEstates});
+                } catch (error) {
+                    return res.status(500).json({ error: error.message });
+                }
+            } else {
+                try {
+                    const realEstates = await RealEstate.find({
+                        'address.province': { $in: legions[filterContent] },
+                        approved: true,
+                        $or: [
+                            {'basicInfoBuilding.budget': {$gt: floorBudget, $lt: ceilBudget}},
+                            {'basicInfoLand.budget': {$gt: floorBudget, $lt: ceilBudget}},
+                        ]
+                    }).sort({ createdAt: displayOrder }).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
+                    const totalDocumentNumber = await RealEstate.countDocuments({
+                        'address.province': { $in: legions[filterContent] },
+                        approved: true,
+                        $or: [
+                            {'basicInfoBuilding.budget': {$gt: floorBudget, $lt: ceilBudget}},
+                            {'basicInfoLand.budget': {$gt: floorBudget, $lt: ceilBudget}},
+                        ]
+                    })
+                    console.log('I am here createdAt Hide Category', realEstates)
+                    return res.status(200).json({totalDocumentNumber, realEstates});
+                } catch (error) {
+                    return res.status(500).json({ error: error.message });
+                }
+            }
+        }
+        if(displayOrderDependency === 'price') {
+            if(showRealEstateWithoutBudget === 'true') {
+                try {
+                    const realEstates = await RealEstate.find({
+                        'address.province': { $in: legions[filterContent] },
+                        approved: true,
+                        $or: [
+                            {'basicInfoBuilding.budget': {$gt: floorBudget, $lt: ceilBudget}},
+                            {'basicInfoLand.budget': {$gt: floorBudget, $lt: ceilBudget}},
+                            {'basicInfoBuilding.budget': ''},
+                            {'basicInfoLand.budget': ''}
+                        ]
+                    }).sort({ price: displayOrder }).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
+                    const totalDocumentNumber = await RealEstate.countDocuments({
+                        'address.province': { $in: legions[filterContent] },
+                        approved: true,
+                        $or: [
+                            {'basicInfoBuilding.budget': {$gt: floorBudget, $lt: ceilBudget}},
+                            {'basicInfoLand.budget': {$gt: floorBudget, $lt: ceilBudget}},
+                            {'basicInfoBuilding.budget': ''},
+                            {'basicInfoLand.budget': ''}
+                        ]
+                    })
+                    console.log('I am here Price Show Category', realEstates)
+                    return res.status(200).json({totalDocumentNumber, realEstates});
+                } catch (error) {
+                    return res.status(500).json({ error: error.message });
+                }
+            } else {
+                try {
+                    const realEstates = await RealEstate.find({
+                        'address.province': { $in: legions[filterContent] },
+                        approved: true,
+                        $or: [
+                            {label: 'building', 'basicInfoBuilding.budget': {$gt: floorBudget}},
+                            {label: 'land', 'basicInfoLand.budget': {$gt: floorBudget}}
+                        ],
+                        $or: [
+                            {label: 'building', 'basicInfoBuilding.budget': {$lt: ceilBudget}},
+                            {label: 'land', 'basicInfoLand.budget': {$lt: ceilBudget}}
+                        ]
+                    }).sort({ price: displayOrder }).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
+                    const totalDocumentNumber = await RealEstate.countDocuments({
+                        'address.province': { $in: legions[filterContent] },
+                        approved: true,
+                        $or: [
+                            {label: 'building', 'basicInfoBuilding.budget': {$gt: floorBudget}},
+                            {label: 'land', 'basicInfoLand.budget': {$gt: floorBudget}}
+                        ],
+                        $or: [
+                            {label: 'building', 'basicInfoBuilding.budget': {$lt: ceilBudget}},
+                            {label: 'land', 'basicInfoLand.budget': {$lt: ceilBudget}}
+                        ]
+                    })
+                    console.log('I am here Price Hide Category', realEstates)
+                    return res.status(200).json({totalDocumentNumber, realEstates});
+                } catch (error) {
+                    return res.status(500).json({ error: error.message });
+                }
+            }
+        }
+    }
+}
 exports.getRealEstateById = async (req, res) => {
     try {
         const realEstate = await RealEstate.findOne({ _id: req.query.realEstateId });
