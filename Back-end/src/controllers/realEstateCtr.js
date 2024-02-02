@@ -443,8 +443,10 @@ exports.getRealEstatesByIds = async (req, res) => {
 
 exports.getRealEstatesByPosterId = async (req, res) => {
     const posterId = req.query.posterId;
+    console.log('I am here in getRealEsateByPosterId', posterId);
     try {
         const realEstates = await RealEstate.find({poster: posterId});
+        console.log('I am here in getRealEstatesByPosterId Try', realEstates);
         res.status(200).json({realEstates});
     } catch (error) {
         res.status(500).json({ error: error.message });
