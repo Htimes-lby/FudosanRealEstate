@@ -3,13 +3,14 @@ const User = require('../models/userModel')
 exports.addFavourite = async (req, res) => {
     const userId = req.query.userId;
     const realEstateIdToAdd = req.query.realEstateId;
+    console.log('I am here in addFavourite', userId, realEstateIdToAdd)
     try {
-        const updatedUser = User.findOneAndUpdate(
+        const updatedUser = await User.findOneAndUpdate(
             { _id: userId },
             { $push: { favourites: realEstateIdToAdd }},
             { new: true }
         )
-
+        console.log('I am here in try', updatedUser)
         if(!updatedUser) {
             return res.status(404).json({ error: 'Document Not Found' })
         }
@@ -24,7 +25,7 @@ exports.removeFavourite = async (req, res) => {
     const userId = req.query.userId;
     const realEstateIdToRemove = req.query.realEstateId;
     try {
-        const updatedUser = User.findOneAndUpdate(
+        const updatedUser = await User.findOneAndUpdate(
             { _id: userId },
             { $pull: { favourites: realEstateIdToRemove }},
             { new: true }
