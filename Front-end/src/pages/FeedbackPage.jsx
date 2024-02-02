@@ -1,9 +1,12 @@
 import React ,{useState, } from 'react';
 import UploadImageForm from "../components/Form/UploadImageForm"
+import {useCookies} from 'react-cookie'
 
 import axios from 'axios';
 
 const FeedbackPage = () => {
+
+    const [cookies, setCookie] = useCookies("");
     const [province, setProvince] = useState('');
     const [city, setCity] = useState('');
     const [street, setStreet] = useState('');
@@ -30,7 +33,7 @@ const FeedbackPage = () => {
         // Update the state with the new array
         setPostalNumber(updatedPostalNumber);
     };
-    const newId = localStorage.getItem('id');
+    const newId = cookies.user._id;
     const newpostalNumber = parseInt(
         (postalNumber[0] ? postalNumber[0].toString() : '') +
         (postalNumber[1] ? postalNumber[1].toString() : '') +
@@ -42,7 +45,7 @@ const FeedbackPage = () => {
         const handleSubmit = async (e) => {
             e.preventDefault();
             if(Math.abs(postalNumber[0]).toString().trim().length !== 3 || Math.abs(postalNumber[1]).toString().trim().length !== 4 )
-            return setValidationMessage("input required = {true} phone number correctly!");
+            return setValidationMessage("電話番号を正確に入力してください！");
             try {
                 const formData = new FormData();
                     // Append other form data

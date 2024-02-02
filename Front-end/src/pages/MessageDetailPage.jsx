@@ -6,15 +6,16 @@ import axios from 'axios';
 import AccordionItemMessage from '../components/AccordionItemMessage';
 import RealEstateBigCard from '../components/RealEstateBigCard';
 import AgentCard from '../components/AgentCard';
-
+import {useCookies} from 'react-cookie'
 const MessageDetailPage = () => {
 
     const location = useLocation();
+    const [cookies, setCookie] = useCookies();
     const searchParams = new URLSearchParams(location.search);
     const previousPage = searchParams.get('previous-page');
     const opponentId = searchParams.get('opponentId');
     const user = useSelector((state) => state.auth.user);
-    const myId = localStorage.getItem('id');
+    const myId = cookies.user._id;
     
     const [realEstate, setRealEstate] = useState(null);
     const [agent, setAgent] = useState();

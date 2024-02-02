@@ -3,17 +3,17 @@ const bcrypt = require("bcryptjs");
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 const jwt = require("jsonwebtoken");
-
+const mail = "";
 
 const signIn = async (req, res) => {
     
     const user = await User.findOne({ email: req.query.email }, "");
 
     
-    if (!user) return res.status(500).json({ message: "This email is not exist!" });
-    if(user.emailVerified === false) return res.status(500).json({ message: "Your email is not verified" });
+    if (!user) return res.status(500).json({ message: "このメールは存在しません!" });
+    if(user.emailVerified === false) return res.status(500).json({ message: "メールアドレスが認証されていません!" });
     const isMatch = await bcrypt.compare(req.query?.password, user.password);
-    if (!isMatch) res.json(500).json({ message: "Password is incorrect!" });
+    if (!isMatch) res.json(500).json({ message: "パスワードが正しくありません！" });
 
     const payload = {
     id: user._id,
@@ -35,10 +35,11 @@ const signIn = async (req, res) => {
 
 const signUp = async (req, res) => {
         let user = await User.find({ email: req.body.email }, "");
+        mail = req.body.email;
         if (!req.body.email.includes('@')) {
-            return res.status(500).json({ message: 'Invalid email format. Must contain "@".' });
+            return res.status(500).json({ message: '電子メールの形式が無効です。 含まれている必要があります "@"。' });
         }
-        else if (user[0]) return res.status(500).json({ message: "Already exist!" });
+        else if (user[0]) return res.status(500).json({ message: "すでに存在します!" });
 
         const {email, password, firstNameGanji, lastNameGanji, firstNameGana, lastNameGana} = req.body;
 
@@ -57,9 +58,9 @@ const signUp = async (req, res) => {
     // sendVerificationEmail(req.body.email, verificationCode);
     await newUser.save((err) => {
         if (err) {
-        res.status(500).json({ message: "Failed!" });
+        res.status(500).json({ message: "失敗しました！" });
         } else {
-        res.json({ message: "Success!" });
+        res.json({ message: "成功しました！" });
         }
     });
 };
@@ -75,16 +76,16 @@ const inputEmailCode = async (req, res) => {
         let code = await User.findOne({ verificationCode: req.body.emailVarificationCode }, "");
 
         if (!code) {
-            return res.json({ message: "Invalid verification code" });
+            return res.json({ message: "無効な検証コード" });
         } else {
-            res.json({ message: 'Valid verification code' });
+            res.json({ message: '有効な確認コード' });
             code.verificationCode = '';
             code.emailVerified = true;
             await code.save();  
         }
     } catch (error) {
         console.error('Error inputting email code:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.status(500).json({ error: '内部サーバーエラー' });
     }
 };
 
@@ -102,7 +103,7 @@ const sendVerificationEmail = (email, verificationCode) => {
 
     const mailOptions = {
         from: 'domashiadakeo@gmail.com',
-        to: "jamesryo310@gmail.com",
+        to: mail,
         subject: 'Account Verification',
         html: `<!DOCTYPE html>
         <html>

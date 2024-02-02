@@ -11,9 +11,10 @@ import OverviewLandForm from '../components/Form/OverviewLandForm';
 import UploadImageForm from "../components/Form/UploadImageForm";
 import ConditionForm from "../components/Form/ConditionForm";
 import axios from 'axios';
+import {useCookies} from 'react-cookie'
 
 const PostREPage = () => {
-
+    const [cookies, setCookie] = useCookies();
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const label = searchParams.get('label');
@@ -47,20 +48,20 @@ const handleconditionDataArray = (data) => {
     
     setValidationMessage("");
     if(privacyDataArray.age>100 || privacyDataArray.age<10)
-        return setValidationMessage("Input age correctly!")
+        return setValidationMessage("あなたの年齢を正しく入力してください!")
     if(!privacyDataArray.email.includes('@'))
-        return setValidationMessage("Input email correctly!");
+        return setValidationMessage("メールアドレスを正しく入力してください。");
     if(Math.abs(privacyDataArray.phoneNumber[0]).toString().trim().length > 3 || Math.abs(privacyDataArray.phoneNumber[0]).toString().trim().length < 2
         || Math.abs(privacyDataArray.phoneNumber[1]).toString().trim().length > 4 || Math.abs(privacyDataArray.phoneNumber[1]).toString().trim().length < 2
         || Math.abs(privacyDataArray.phoneNumber[2]).toString().trim().length !== 4 )
-        return setValidationMessage("Input phone number correctly!");
+        return setValidationMessage("電話番号を正確に入力してください！");
     if(Math.abs(privacyDataArray.postalNumber[0]).toString().trim().length !== 3 || Math.abs(privacyDataArray.postalNumber[1]).toString().trim().length !== 4 )
-        return setValidationMessage("Input phone number correctly!");
+        return setValidationMessage("郵便番号を正しく入力してください!");
 
     try {
         const newphoneNumber =parseInt(privacyDataArray.phoneNumber[0].toString()+privacyDataArray.phoneNumber[1].toString()+privacyDataArray.phoneNumber[2].toString()); 
         const newpostalNumber = parseInt(privacyDataArray.postalNumber[0].toString()+privacyDataArray.postalNumber[1].toString());
-        const newId = localStorage.getItem('id');
+        const newId = cookies.user._id;
         const name = {firstNameGana: privacyDataArray.firstNameGana, lastNameGana: privacyDataArray.lastNameGana, firstNameGanji: privacyDataArray.firstNameGanji, lastNameGanji: privacyDataArray.lastNameGanji}
         const address = {zipCode:newpostalNumber, province:privacyDataArray.province, city:privacyDataArray.city, street:privacyDataArray.street}
         const briefDescription = contentDataArray.briefDescription;

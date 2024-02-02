@@ -15,7 +15,7 @@ const AgentCard = (props) => {
         <div className="w-[500px] pt-[20px] pb-2 border border-[#0D4868] noto-regular cursor-pointer" onClick={handleAgentCardClick}>
             <div className="flex justify-between items-center">
                 <div className="pl-[23px] noto-medium">
-                    <span className=" text-[12px] pr-2 font-bold">{name}</span>
+                    <span className=" text-[12px] pr-2 noto-bold">{name}</span>
                     <span className="text-[15px]">{companyName}</span>
                 </div>
                 <div className="flex flex-col items-end pr-[30px] text-[12px] noto-medium">

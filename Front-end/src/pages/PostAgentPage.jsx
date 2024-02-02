@@ -2,10 +2,12 @@ import React ,{useState, useEffect  } from 'react';
 import UploadImageForm from "../components/Form/UploadImageForm"
 import ConditionForm from '../components/Form/ConditionForm';
 import axios from 'axios';
+import {useCookies} from 'react-cookie'
 
 const PostAgentPage = () => {
 
     const [value, setValue] = useState('');
+    const [cookies, setCookie] = useCookies();
     const [province, setProvince] = useState('');
     const [city, setCity] = useState('');
     const [street, setStreet] = useState('');
@@ -47,7 +49,7 @@ const PostAgentPage = () => {
         // Update the state with the new array
         setPostalNumber(updatedPostalNumber);
     };
-    const newId = localStorage.getItem('id');
+    const newId = cookies.user._id;
     const newphoneNumber = parseInt(
         (phoneNumber[0] ? phoneNumber[0].toString() : '') +
         (phoneNumber[1] ? phoneNumber[1].toString() : '') +
@@ -70,13 +72,13 @@ const PostAgentPage = () => {
             setValidationMessage("");
             
             if(!email.includes('@'))
-                return setValidationMessage("Input email correctly!");
+                return setValidationMessage("メールアドレスを正しく入力してください。");
             if(Math.abs(phoneNumber[0]).toString().trim().length > 3 || Math.abs(phoneNumber[0]).toString().trim().length < 2
                 || Math.abs(phoneNumber[1]).toString().trim().length > 4 || Math.abs(phoneNumber[1]).toString().trim().length < 2
                 || Math.abs(phoneNumber[2]).toString().trim().length !== 4 )
-                return setValidationMessage("Input phone number correctly!");
+                return setValidationMessage("電話番号を正確に入力してください！");
             if(Math.abs(postalNumber[0]).toString().trim().length !== 3 || Math.abs(postalNumber[1]).toString().trim().length !== 4 )
-                return setValidationMessage("Input phone number correctly!");
+                return setValidationMessage("郵便番号を正しく入力してください!");
             try {
                 const formData = new FormData();
                     // Append other form data
@@ -101,7 +103,7 @@ const PostAgentPage = () => {
             };
             useEffect(() => {
                 const func = async () => {
-                    const newId = localStorage.getItem("id");
+                    
                     const response = await axios.get("/getUser", {
                         params: { _id: newId},
                         });
