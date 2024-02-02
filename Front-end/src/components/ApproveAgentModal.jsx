@@ -74,7 +74,7 @@ const ApproveAgentModal = (props) => {
                 <span>{agent.agentEmail}</span>
             </div>
             
-            <span className='w-[420px] mx-auto p-3 text-sm mt-4'>{agent.content}</span>
+            <span className='w-[420px] max-h-[400px] overflow-y-auto mx-auto p-3 text-sm mt-4'>{agent.content}</span>
             <div className='flex w-[250px] h-[40px] justify-center items-center bg-[#2A6484] text-white text-lg noto-medium rounded-xl cursor-pointer mt-4 mb-2' onClick={() => handleContactPosterButtonClicked(agent._id)}>投稿者への連絡</div>
             {/* <div className='flex w-[250px] h-[40px] justify-center items-center bg-[#2A6484] text-white text-[24px] rounded-xl cursor-pointer' onClick={() => handleContactPosterButtonClicked(agent._id)}>Contact to Poster</div> */}
             {/* <div className='flex w-[250px] h-[40px] justify-center items-center bg-[#2A6484] text-white text-[24px] rounded-xl cursor-pointer' onClick={() => handleApproveToggle}>{approveToggleButtonContent}</div> */}
