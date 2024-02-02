@@ -1,7 +1,11 @@
 import React, {useState ,useEffect} from "react";
 import axios from 'axios';
+import {useCookies} from 'react-cookie'
 
 export default function PrivacyForm( props ) {
+
+    const [cookies, setCookie] = useCookies();
+    console.log(cookies.user._id)
     const [province, setProvince] = useState('');
     const [city, setCity] = useState('');
     const [buildingName, setBuildingName] = useState('');
@@ -27,7 +31,7 @@ export default function PrivacyForm( props ) {
 
     useEffect(() => {
         const func = async () => {
-            const newId = localStorage.getItem("id");
+            const newId = cookies.user._id;
             const response = await axios.get("/getUser", {
                 params: { _id: newId},
                 });

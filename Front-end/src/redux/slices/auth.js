@@ -14,6 +14,7 @@ export const signin = createAsyncThunk("/user/signin", async (props, { rejectWit
     const response = await axios.get("/signin", {
       params: { email: payload.email, password: payload.password },
     });
+    console.log(response.data.user)
     setCookie('user', response.data.user);
     setCookie('token', cookies.token);
     console.log('----------------------cookie', cookies.user)
@@ -65,7 +66,6 @@ const authSlice = createSlice({
           state.isLoading = false;
           axios.defaults.headers.common["Authorization"] = payload.token;
           localStorage.setItem("token", payload.token);
-          localStorage.setItem("id", payload.user._id);
           state.user = payload.user;
           state.error = null;
         }

@@ -2,10 +2,12 @@ import React ,{useState, useEffect  } from 'react';
 import UploadImageForm from "../components/Form/UploadImageForm"
 import ConditionForm from '../components/Form/ConditionForm';
 import axios from 'axios';
+import {useCookies} from 'react-cookie'
 
 const PostAgentPage = () => {
 
     const [value, setValue] = useState('');
+    const [cookies, setCookie] = useCookies();
     const [province, setProvince] = useState('');
     const [city, setCity] = useState('');
     const [street, setStreet] = useState('');
@@ -47,7 +49,7 @@ const PostAgentPage = () => {
         // Update the state with the new array
         setPostalNumber(updatedPostalNumber);
     };
-    const newId = localStorage.getItem('id');
+    const newId = cookies.user._id;
     const newphoneNumber = parseInt(
         (phoneNumber[0] ? phoneNumber[0].toString() : '') +
         (phoneNumber[1] ? phoneNumber[1].toString() : '') +
@@ -101,7 +103,7 @@ const PostAgentPage = () => {
             };
             useEffect(() => {
                 const func = async () => {
-                    const newId = localStorage.getItem("id");
+                    
                     const response = await axios.get("/getUser", {
                         params: { _id: newId},
                         });
