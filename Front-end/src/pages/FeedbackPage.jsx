@@ -42,7 +42,7 @@ const FeedbackPage = () => {
         const handleSubmit = async (e) => {
             e.preventDefault();
             if(Math.abs(postalNumber[0]).toString().trim().length !== 3 || Math.abs(postalNumber[1]).toString().trim().length !== 4 )
-            return setValidationMessage("input required = {true} phone number correctly!");
+            return setValidationMessage("電話番号を正確に入力してください！");
             try {
                 const formData = new FormData();
                     // Append other form data

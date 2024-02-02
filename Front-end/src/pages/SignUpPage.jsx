@@ -40,7 +40,7 @@ const SignUpPage = () => {
             if(error.response && error.response.status === 500) {
                 setErrorMsg(error.response.data.message);
             } else {
-                setErrorMsg('An Error Occured');
+                setErrorMsg('エラーが発生した!');
             }
         }
     }
