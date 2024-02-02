@@ -8,18 +8,51 @@ import GoogleMapComponent from '../components/GoogleMapComponent'
 import BasicTableBuilding from '../components/BasicTableBuilding'
 import BasicTableLand from '../components/BasicTableLand'
 import FavouriteButton from '../components/FavouriteButton'
+import { useCookies } from 'react-cookie'
 
 const ItemDetailPage = () => {
 
     const location = useLocation();
     const history = useHistory();
+    const [cookies, setCookie] = useCookies();
     const searchParams = new URLSearchParams(location.search);
     const realEstateId = searchParams.get('realEstateId');
-    const [favouriteButtonActive, setFavouriteButtonActive] = useState(false);
+
+    const user = cookies.user;
+    const myId = user._id;
+    const favourites = user.favourites;
+    const isFavourite = favourites.includes(realEstateId);
+    const [favouriteButtonActive, setFavouriteButtonActive] = useState(isFavourite);
     const [realEstate, setRealEstate] = useState(null);
+    console.log(user, myId, favourites, isFavourite)
     // const {address, basicInfoBuilding, basicInfoLand, images, briefDescription, fullDescription, label} = realEstate;
 
-    const handleFavouriteButtonClicked = () => {
+    const handleFavouriteButtonClicked = async () => {
+        const params = new URLSearchParams({
+            realEstateId: realEstateId,
+            userId: myId
+        }).toString();
+        if(isFavourite) {
+            try {
+                console.log('I am here in removeFavourite')
+                const res = await axios.post(`/removeFavourite?${params}`);
+                const updatedUser = res.data.updatedUser;
+                setCookie('user', updatedUser);
+                console.log('----------------------', updatedUser);
+            } catch (error) {
+                console.log(error.message);
+            }
+        } else {
+            try {
+                console.log('I am here in addFavourite', params)
+                const res = await axios.post(`/addFavourite?${params}`);
+                const updatedUser = res.data.updatedUser;
+                setCookie('user', updatedUser);
+                console.log('-----------------------', updatedUser)
+            } catch (error) {
+                console.log(error.message);
+            }
+        }
         setFavouriteButtonActive(favouriteButtonActive ? false : true);
     }
     const sendMsgButtonClicked = () => {
@@ -77,7 +110,7 @@ const ItemDetailPage = () => {
 
             <div className='flex justify-center gap-[50px] w-full mt-20'>
                 <div className='flex justify-center items-center w-[380px] h-[80px] bg-[#2A6484] rounded-xl noto-medium text-white text-[24px] cursor-pointer' onClick={sendMsgButtonClicked}>メッセージを送信する</div>
-                <div onClick={handleFavouriteButtonClicked}><FavouriteButton parentComponent='realEstateDetailPage' favouriteButtonActive={favouriteButtonActive}/></div>
+                <div onClick={handleFavouriteButtonClicked}><FavouriteButton parentComponent='realEstateDetailPage' isFavourite={isFavourite}/></div>
             </div>
         </div>
     </div>

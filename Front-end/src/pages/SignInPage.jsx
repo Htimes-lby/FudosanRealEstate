@@ -4,11 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { signin } from '../redux/slices/auth';
+import { useCookies } from 'react-cookie';
 
 const eye = <FontAwesomeIcon icon={faEye} />;
 const SignInPage = () => {
     const dispatch = useDispatch();
     const history = useHistory();
+    const [cookies, setCookie] = useCookies();
     const [passwordShown, setPasswordShown] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -22,7 +24,7 @@ const SignInPage = () => {
     const handleLogin = (e) => {
         e.preventDefault();
         const signinObject = {email, password}
-        dispatch(signin(signinObject));
+        dispatch(signin({signinObject, setCookie, cookies}));
     };
 
     useEffect(() => {

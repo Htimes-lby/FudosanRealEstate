@@ -2,15 +2,22 @@ import { createSlice } from "@reduxjs/toolkit";
 import { setAuthToken } from "../utils";
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { useCookies } from "react-cookie";
 
 
-export const signin = createAsyncThunk("/user/signin", async (payload, { rejectWithValue }) => {
+export const signin = createAsyncThunk("/user/signin", async (props, { rejectWithValue }) => {
+  // const [cookies, setCookie] = useCookies();
   try {
+    const payload = props.signinObject;
+    const setCookie = props.setCookie;
+    const cookies = props.cookies;
     const response = await axios.get("/signin", {
       params: { email: payload.email, password: payload.password },
     });
+    setCookie('user', response.data.user);
+    setCookie('token', cookies.token);
+    console.log('----------------------cookie', cookies.user)
     return response.data;
-
   }
   catch (error) {
     console.log('---------------------', error);
@@ -64,7 +71,7 @@ const authSlice = createSlice({
         }
       })
       .addCase(signin.rejected, (state, action) => {
-        console.log('+++++++++++++++++++++', action.payload.message);
+        console.log('I am here in signin rejected', action.payload.message);
         state.isLoading = false;
         state.error = action.payload.message;
       })
