@@ -1,145 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import ApproveAgentModal from '../components/ApproveAgentModal';
 import axios from 'axios';
-const agents = [
-    {
-    _id:'123',
-    companyName :"会社名",
-    agentName:"担当者名",
-    phoneNumber:"0123456789",
-    email:"abcdef@gmail.com",
-    content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト`,
-    address:{
-        province:'aaaaaaaa',
-        city:'bbbbbbbbbb',
-        street:'ccccccccc',
-    },
-    approved:'false',
-    },
-    {
-        _id:'123',
-    companyName :"会社名",
-    agentName:"担当者名",
-    phoneNumber:"0123456789",
-    email:"abcdef@gmail.com",
-    content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト`,
-    address:{
-        province:'aaaaaaaa',
-        city:'bbbbbbbbbb',
-        street:'ccccccccc',
-    },
-    approved:'false',
-    },
-    {
-        _id:'123',
-    companyName :"会社名",
-    agentName:"担当者名",
-    phoneNumber:"0123456789",
-    email:"abcdef@gmail.com",
-    content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト`,
-    address:{
-        province:'aaaaaaaa',
-        city:'bbbbbbbbbb',
-        street:'ccccccccc',
-    },
-    approved:'false',
-    },
-    {
-        _id:'123',
-    companyName :"会社名",
-    agentName:"担当者名",
-    phoneNumber:"0123456789",
-    email:"abcdef@gmail.com",
-    content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト`,
-    address:{
-        province:'aaaaaaaa',
-        city:'bbbbbbbbbb',
-        street:'ccccccccc',
-    },
-    approved:'false',
-    },
-    {
-        _id:'123',
-    companyName :"会社名",
-    agentName:"担当者名",
-    phoneNumber:"0123456789",
-    email:"abcdef@gmail.com",
-    content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト`,
-    address:{
-        province:'aaaaaaaa',
-        city:'bbbbbbbbbb',
-        street:'ccccccccc',
-    },
-    approved:'false',
-    },
-    {
-        _id:'123',
-    companyName :"会社名",
-    agentName:"担当者名",
-    phoneNumber:"0123456789",
-    email:"abcdef@gmail.com",
-    content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト`,
-    address:{
-        province:'aaaaaaaa',
-        city:'bbbbbbbbbb',
-        street:'ccccccccc',
-    },
-    approved:'false',
-    },
-    {
-        _id:'123',
-    companyName :"会社名",
-    agentName:"担当者名",
-    phoneNumber:"0123456789",
-    email:"abcdef@gmail.com",
-    content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト`,
-    address:{
-        province:'aaaaaaaa',
-        city:'bbbbbbbbbb',
-        street:'ccccccccc',
-    },
-    approved:'false',
-    },
-    {
-        _id:'123',
-    companyName :"会社名",
-    agentName:"担当者名",
-    phoneNumber:"0123456789",
-    email:"abcdef@gmail.com",
-    content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト`,
-    address:{
-        province:'aaaaaaaa',
-        city:'bbbbbbbbbb',
-        street:'ccccccccc',
-    },
-    approved:'false',
-    },
-        
-]
+
+
 const AdminViewAgentPage = () => {
 
     const [activeAgentCategory, setActiveAgentCategory] = useState('司法書士');
@@ -163,6 +26,7 @@ const AdminViewAgentPage = () => {
         console.log('--------------------------------', res.data)
         setAgents(res.data);
     }
+    console.log('agents', agents);
 
     useEffect (() => {
         if(showApproveAgentModal === false) {

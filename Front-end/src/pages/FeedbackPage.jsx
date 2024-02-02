@@ -1,9 +1,12 @@
 import React ,{useState, } from 'react';
 import UploadImageForm from "../components/Form/UploadImageForm"
+import {useCookies} from 'react-cookie'
 
 import axios from 'axios';
 
 const FeedbackPage = () => {
+
+    const [cookies, setCookie] = useCookies("");
     const [province, setProvince] = useState('');
     const [city, setCity] = useState('');
     const [street, setStreet] = useState('');
@@ -30,7 +33,7 @@ const FeedbackPage = () => {
         // Update the state with the new array
         setPostalNumber(updatedPostalNumber);
     };
-    const newId = localStorage.getItem('id');
+    const newId = cookies.user._id;
     const newpostalNumber = parseInt(
         (postalNumber[0] ? postalNumber[0].toString() : '') +
         (postalNumber[1] ? postalNumber[1].toString() : '') +

@@ -52,13 +52,16 @@ const Layout = () =>{
         <Route exact path="/register" component={SignUpPage} />
         <Route exact path="/input-code" component={InputVerificationCodePage} />
         <Route exact path="/feedback" component={FeedbackPage} />
-        <Route exact path="*" component={NotFoundPages} />
-
-
+      
         <Route exact path="/admin-approve-realestate-list" component={AdminApproveRealEstateList} />
         <Route exact path="/admin-approve-realestate-detail" component={AdminApproveRealEstateDetail} />
         <Route exact path="/admin-view-agent" component={AdminViewAgentPage} />
         <Route exact path="/admin-contact-agent" component={AdminContactAgentPage} />
+        
+        <Route exact path="*" component={NotFoundPages} />
+
+
+        
     </Switch>  
   );
 }
