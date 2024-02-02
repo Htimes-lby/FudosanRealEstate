@@ -64,7 +64,6 @@ export default function PrivacyForm( props ) {
         setPostalNumber(updatedPostalNumber);
     };
 
-
 return (
     <div>
         <div className=' w-[745px]  flex gap-[124px]'>
