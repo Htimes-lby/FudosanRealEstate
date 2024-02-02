@@ -45,6 +45,7 @@ router.get("/getAgentByAdmin", postCtr.getAgentByAdmin)
 
 router.get("/getRealEstates", realEstateCtr.getRealEstates)
 router.get("/getRealEstateById", realEstateCtr.getRealEstateById)
+router.post("/getRealEstatesByIds", realEstateCtr.getRealEstatesByIds)
 router.get("/getRealEstatesByPosterId", realEstateCtr.getRealEstatesByPosterId)
 router.get("/getRealEstatesByAdmin", realEstateCtr.getRealEstatesByAdmin)
 router.get("/getUnapprovedRealEstatesByAdmin", realEstateCtr.getUnapprovedRealEstatesByAdmin)
@@ -53,8 +54,8 @@ router.get("/getRealEstatesWithSearchCondition", realEstateCtr.getRealEstatesWit
 router.post("/setMessage", messageCtr.setMessage)
 router.get("/getMessages", messageCtr.getMessages)
 
-router.post("/addFavourite", favouriteCtr.addFavourite)
-router.post("/removeFavourite", favouriteCtr.removeFavourite)
+router.get("/addFavourite", favouriteCtr.addFavourite)
+router.get("/removeFavourite", favouriteCtr.removeFavourite)
 
 router.post("/approveRealEstate", adminCtr.approveRealEstate);
 router.post("/disapproveRealEstate", adminCtr.disapproveRealEstate);

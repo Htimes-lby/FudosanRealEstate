@@ -48,6 +48,7 @@ const ItemListPage = () => {
                 filterContent: filterContent,
             }).toString();
             const res = await axios.get(`/getRealEstates?${params}`);
+            console.log('-------------------------',res)
             setRealEstates(res.data.realEstates);
             setTotalNumber(res.data.totalDocumentNumber);
         } catch (error) {

@@ -29,7 +29,7 @@ const realEstateSchema = new mongoose.Schema({
     },
     basicInfoBuilding: {
         budget: {
-            type: Number,
+            type: String,
         },
         layout: {
             type: String,
@@ -49,7 +49,7 @@ const realEstateSchema = new mongoose.Schema({
     },
     basicInfoLand: {
         budget: {
-            type: Number,
+            type: String,
         },
         landarea: {
             type: Number,

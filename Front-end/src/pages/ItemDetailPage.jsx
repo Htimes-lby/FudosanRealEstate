@@ -35,7 +35,7 @@ const ItemDetailPage = () => {
         if(isFavourite) {
             try {
                 console.log('I am here in removeFavourite')
-                const res = await axios.post(`/removeFavourite?${params}`);
+                const res = await axios.get(`/removeFavourite?${params}`);
                 const updatedUser = res.data.updatedUser;
                 setCookie('user', updatedUser);
                 console.log('----------------------', updatedUser);
@@ -45,7 +45,7 @@ const ItemDetailPage = () => {
         } else {
             try {
                 console.log('I am here in addFavourite', params)
-                const res = await axios.post(`/addFavourite?${params}`);
+                const res = await axios.get(`/addFavourite?${params}`);
                 const updatedUser = res.data.updatedUser;
                 setCookie('user', updatedUser);
                 console.log('-----------------------', updatedUser)

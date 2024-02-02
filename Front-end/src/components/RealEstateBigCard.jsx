@@ -3,16 +3,22 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom";
 import BasicTableBuilding from "./BasicTableBuilding";
 import BasicTableLand from "./BasicTableLand";
 import FavouriteButton from "./FavouriteButton";
+import { useCookies } from "react-cookie";
+import axios from "axios";
 
-
-const RealEstateBigCard = ({realEstate, handleRealEstateBigCardClicked, parentComponent, index}) => {
+const RealEstateBigCard = ({realEstate, handleFavouriteToggle, handleRealEstateBigCardClicked, parentComponent, index}) => {
     const history = useHistory();
+    const [cookies, setCookie] = useCookies();
+    const myId = cookies.user._id;
+    const favourites = cookies.user.favourites;
+    const realEstateId = realEstate._id;
+    const isFavourite = favourites.includes(realEstate._id);
     const {briefDescription, fullDescription, images, basicInfoBuilding, basicInfoLand, label, _id} = realEstate;
     const width = 'w-[180px]'
     const fontSize = 'text-[11px]'
-    const [favouriteButtonActive, setFavouriteButtonActive] = useState(false);
-    const handleFavouriteButtonClicked = (e) => {
-        setFavouriteButtonActive(favouriteButtonActive ? false : true);
+    const handleFavouriteButtonClicked = async (e) => {
+        handleFavouriteToggle({realEstateId, isFavourite});
+        // console.log('--------------------------------');
         e.stopPropagation();
     }
     const handleNavigateToContactPostPage = (e, _id) => {
@@ -27,7 +33,7 @@ const RealEstateBigCard = ({realEstate, handleRealEstateBigCardClicked, parentCo
                 <div className="w-[200px] h-[160px]"><img src={images[0]} alt="photo1" className="w-full h-full object-cover"/></div>
                 {
                     parentComponent === 'FavouritePage' || parentComponent === 'MessageDetailPage' ?
-                    (<div className="pt-1" onClick={(e) => handleFavouriteButtonClicked(e)}><FavouriteButton favouriteButtonActive={favouriteButtonActive} parentComponent={parentComponent}/></div>)
+                    (<div className="pt-1" onClick={(e) => handleFavouriteButtonClicked(e)}><FavouriteButton isFavourite={isFavourite} parentComponent={parentComponent}/></div>)
                     : null
                 }
                 {

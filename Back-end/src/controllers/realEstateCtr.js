@@ -432,9 +432,13 @@ exports.getRealEstateById = async (req, res) => {
 }
 
 exports.getRealEstatesByIds = async (req, res) => {
-    const ids = req.body.realEstateIds;
+
+    const favourites = req.body.favourites
+    // const favourites = req.query.favourites;
     try {
-        const realEstates = await RealEstate.find({ _id: { $in: ids } });
+        console.log('favouriteREIds', favourites)
+        const realEstates = await RealEstate.find({ _id: { $in: favourites } });
+        console.log('I am here in getRealEstatesByIds', realEstates)
         res.status(200).json({realEstates});
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -445,11 +449,12 @@ exports.getRealEstatesByPosterId = async (req, res) => {
     const posterId = req.query.posterId;
     console.log('I am here in getRealEsateByPosterId', posterId);
     try {
-        const realEstates = await RealEstate.find({poster: posterId});
+        const realEstates = await RealEstate.find({poster: posterId}).sort({createdAt: -1});
         console.log('I am here in getRealEstatesByPosterId Try', realEstates);
-        res.status(200).json({realEstates});
+        console.log('Success')
+        return res.status(200).json(realEstates);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        return res.status(500).json({ error: error.message });
     }
 }
 
