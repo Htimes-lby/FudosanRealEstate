@@ -8,6 +8,8 @@ import GoogleMapComponent from '../components/GoogleMapComponent'
 import BasicTableBuilding from '../components/BasicTableBuilding'
 import BasicTableLand from '../components/BasicTableLand'
 import CategorySetModal from '../components/CategorySetModal'
+import Loading  from "../components/Loading"
+
 
 const approveText = '掲示板に投稿する';
 const unapproveText = '掲示板から削除する';
@@ -77,7 +79,9 @@ const AdminApproveRealEstateDetail = () => {
 
     if(realEstate === null){
         return(
-            <div>loading............</div>
+            <div>
+                <Loading />
+            </div>
         )
     }
   return (

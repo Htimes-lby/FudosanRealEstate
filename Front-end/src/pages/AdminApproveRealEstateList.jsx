@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import Pagination from '../components/Pagination';
 import RealEstateSmallCard from '../components/RealEstateSmallCard';
 import axios from 'axios';
+import Loading from '../components/Loading';
 
 
 const AdminApproveRealEstateList = () => {
@@ -75,7 +76,9 @@ const AdminApproveRealEstateList = () => {
     
     if(realEstates === null) {
         return(
-            <div>loading................</div>
+            <div>
+                <Loading />
+            </div>
         )
     }
 

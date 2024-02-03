@@ -6,6 +6,7 @@ import SearchBoard from "../components/SearchBoard"
 import DashboardRealEstatePostBoard from './DashboardPage/DashboardRealEstatePostBoard';
 import Pagination from '../components/Pagination';
 import RealEstateSmallCard from '../components/RealEstateSmallCard';
+import Loading from '../components/Loading';
 
 const ItemListPage = () => {
 
@@ -109,7 +110,9 @@ const ItemListPage = () => {
 
     if(realEstates === null) {
         return(
-            <div>loading............</div>
+            <div>
+                <Loading />
+            </div>
         );
     }
     

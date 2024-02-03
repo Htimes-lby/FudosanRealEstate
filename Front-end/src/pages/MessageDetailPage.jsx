@@ -7,6 +7,8 @@ import AccordionItemMessage from '../components/AccordionItemMessage';
 import RealEstateBigCard from '../components/RealEstateBigCard';
 import AgentCard from '../components/AgentCard';
 import {useCookies} from 'react-cookie'
+import Loading from '../components/Loading';
+
 const MessageDetailPage = () => {
 
     const location = useLocation();
@@ -70,7 +72,9 @@ const MessageDetailPage = () => {
 
     if(previousPage === 'itemDetailPage' && realEstate === null) {
         return (
-            <div>loading................</div>
+            <div>
+                <Loading />
+            </div>
         )
     }
 
