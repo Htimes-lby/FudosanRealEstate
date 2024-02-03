@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ApproveAgentModal from '../components/ApproveAgentModal';
 import axios from 'axios';
-
+import Loading from '../components/Loading';
 
 const AdminViewAgentPage = () => {
 
@@ -36,7 +36,7 @@ const AdminViewAgentPage = () => {
 
     if(agents === null) {
         return (
-            <div>loading................</div>
+            <div><Loading /></div>
         )
     }
     return (

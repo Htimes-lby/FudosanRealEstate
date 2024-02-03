@@ -9,6 +9,7 @@ import BasicTableBuilding from '../components/BasicTableBuilding'
 import BasicTableLand from '../components/BasicTableLand'
 import FavouriteButton from '../components/FavouriteButton'
 import { useCookies } from 'react-cookie'
+import Loading from '../components/Loading'
 
 const ItemDetailPage = () => {
 
@@ -81,7 +82,9 @@ const ItemDetailPage = () => {
 
     if(realEstate === null) {
         return (
-            <div>loading.............</div>
+            <div>
+                <Loading />
+            </div>
         )
     }
 

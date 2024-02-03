@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux/es/hooks/useSelector';
 import RealEstateBigCard from '../components/RealEstateBigCard';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
+import Loading from '../components/Loading';
 
 const ItemMyPage = () => {
 
@@ -29,7 +30,9 @@ const ItemMyPage = () => {
 
     if(realEstates === null) {
         return (
-            <div>loading.............</div>
+            <div>
+                <Loading />
+            </div>
         )
     }
 

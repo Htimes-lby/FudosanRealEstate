@@ -5,6 +5,7 @@ import { useCookies } from 'react-cookie';
 import { useState } from 'react';
 import axios from 'axios';
 import { useEffect } from 'react';
+import Loading from '../components/Loading';
 
 const FavouritePage = () => {
 
@@ -70,7 +71,9 @@ const FavouritePage = () => {
 
     if(realEstates === null) {
         return(
-            <div>loading......................</div>
+            <div>
+                <Loading />
+            </div>
         )
     }
     return (

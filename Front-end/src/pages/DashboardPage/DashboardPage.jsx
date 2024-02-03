@@ -5,6 +5,7 @@ import DashboardEyeCatch from './DashboardEyeCatch';
 import DashboardFeedbackBoard from './DashboardFeedbackBoard';
 import DashboardFAQPage from './DashboardFAQBoard';
 import DashboardRealEstatePostBoard from './DashboardRealEstatePostBoard';
+import Loading from "../../components/Loading"
 
 const DashboardPage = () => {
 
@@ -32,7 +33,7 @@ const DashboardPage = () => {
     if(realEstates.length  == 0) {
         return (
             <div>
-                Loading......
+                <Loading />
             </div>
         )
     }
