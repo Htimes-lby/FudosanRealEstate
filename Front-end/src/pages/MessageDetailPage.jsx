@@ -14,7 +14,6 @@ const MessageDetailPage = () => {
     const searchParams = new URLSearchParams(location.search);
     const previousPage = searchParams.get('previous-page');
     const opponentId = searchParams.get('opponentId');
-    const user = useSelector((state) => state.auth.user);
     const myId = cookies.user._id;
     
     const [realEstate, setRealEstate] = useState(null);
@@ -57,6 +56,7 @@ const MessageDetailPage = () => {
                 myId: myId,
                 opponentId: opponentId
             }).toString();
+            console.log('I am here--------------', params)
             const res = await axios.get(`/getMessages?${params}`);
             setMessages(res.data.messages);
         } catch (error) {
@@ -86,7 +86,7 @@ const MessageDetailPage = () => {
                     previousPage === 'itemBoardPage' &&
                     <AgentCard agent = {agent}/>
                 }
-                <div className='flex flex-col w-[60%] pt-5 gap-[5px]'>
+                <div className='flex flex-col w-[900px] pt-5 gap-4'>
                     {
                     messages.map((msg, index) => {
                         return(
