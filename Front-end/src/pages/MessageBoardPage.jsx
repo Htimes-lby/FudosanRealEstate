@@ -6,84 +6,32 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 import Pagination from '../components/Pagination'
 import AccordionItemMessage from '../components/AccordionItemMessage';
+import { useCookies } from 'react-cookie';
 
-const messages = [
-    {
-        sender: 'sasuke',
-        receiver: 'haruto',
-        content: `テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト
-        テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト
-        テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト
-        テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト
-        テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト
-        テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト
-        テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト
-        テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト
-        テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト
-        テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト
-        テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト
-        テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト`,
-        date: "2023年10月23日09時43分",
-        status: 'read',
-    },
-    {
-        sender: 'sasuke',
-        receiver: 'sakura',
-        content: `テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト
-        テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト
-        テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト`,
-        date: "2023年10月23日09時40分",
-        status:"read"
-    },
-    {
-        sender: 'akimoto',
-        receiver: 'sasuke',
-        content: `テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト
-        テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト
-        テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト`,
-        date: "2023年10月23日09時38分",
-        status:"unread"
-    },
-    {
-        sender: 'nara',
-        receiver: 'sasuke',
-        content: `テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト
-        テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト
-        テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト`,
-        date: "2023年10月23日09時32分",
-        status:"read"
-    },
-    {
-        sender: 'sasuke',
-        receiver: 'hero',
-        content: `テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト
-        テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト
-        テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト  テキスト`,
-        date: "2023年10月23日09時23分",
-        status:"unread"
-    },
-]
 const MessageBoardPage = () => {
 
     const history = useHistory();
+    const [cookies, setCookie] = useCookies();
+    const myId = cookies.user._id;
 
-    const user = useSelector((state) => state.auth.user);
-    const myId = user._id;
     const [active, setActive] = useState(1);
     const [activeCategory, setActiveCategory] = useState('all')
-    const [messages, setMessages] = useState([]);
-    const [opponentId, setOpponentId] = useState();
+    const [messages, setMessages] = useState(null);
+    
+    const [totalNumber, setTotalNumber] = useState();
 
     const activeHandler = (clickedPage) => {
         setActive(parseInt(clickedPage));
     };
     const handleMessageItemClicked = (props) => {
         const index = props;
+        let opponentId;
         if(messages[index].senderId !== myId) {
-            setOpponentId(messages[index].senderId);
+            opponentId = messages[index].senderId;
         } else {
-            setOpponentId(messages[index].receiverId);
+            opponentId = messages[index].receiverId;
         }
+        console.log('++++++++++++++++++++++++++++++++++++++', opponentId)
         const searchParams = new URLSearchParams();
         searchParams.set('previous-page', 'messageBoard');
         searchParams.set('myId', myId);
@@ -94,10 +42,19 @@ const MessageBoardPage = () => {
         setActiveCategory(props);
     }
     const fetchData = async () => {
+        const firstNumber = ( active -1 ) * 12 + 1;
+        const lastNumber = active * 12;
         try {
-            const payload = {myId: myId};
-            const res = axios.get('/getMessages', payload);
+            const params = new URLSearchParams({
+                'myId': myId,
+                'firstNumber': firstNumber,
+                'lastNumber': lastNumber,
+                'activeCategory': activeCategory,
+            }).toString();
+            console.log(firstNumber, lastNumber, activeCategory);
+            const res = await axios.get(`/getMessages?${params}`);
             setMessages(res.data.messages);
+            setTotalNumber(res.data.totalDocumentNumber);
         } catch (error) {
             console.log(error);
         }
@@ -105,7 +62,17 @@ const MessageBoardPage = () => {
 
     useEffect(() => {
         fetchData();
-    },[])
+    },[active, activeCategory])
+
+    useEffect(() => {
+        setActive(1);
+    },[activeCategory])
+
+    if(messages === null) {
+        return (
+            <div>loading.....................</div>
+        )
+    }
 
     return (
         <div className='flex flex-col items-center w-full py-20'>
@@ -113,7 +80,7 @@ const MessageBoardPage = () => {
             <div>
                 <Pagination
                     active={active}
-                    size={99}
+                    size={Math.ceil(totalNumber/12)}
                     step={2}
                     onClickHandler={activeHandler}
                 />
