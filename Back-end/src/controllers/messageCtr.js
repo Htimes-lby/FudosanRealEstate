@@ -26,16 +26,71 @@ exports.getMessages = async (req, res) => {
         } catch (error) {
             return res.status(500).json({error: 'error occured'});
         }
+    } else {
+        const firstNumber = req.query.firstNumber;
+        const lastNumber = req.query.lastNumber;
+        const activeCategory = req.query.activeCategory;
+        console.log(firstNumber, lastNumber, activeCategory)
+        if(activeCategory === 'all') {
+            try {
+                const messages = await Message.find({
+                    $or: [
+                        { senderId: myId },
+                        { receiverId: myId }
+                    ]
+                }).sort({ createdAt: -1 }).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
+                const totalDocumentNumber = await Message.countDocuments({
+                    $or: [
+                        { senderId: myId },
+                        { receiverId: myId }
+                    ]
+                })
+                return res.status(200).json({messages, totalDocumentNumber});
+            } catch (error) {
+                return res.status(500).json({error: 'error occured'});
+            }
+        }
+        if(activeCategory === 'received-all') {
+            try {
+                const messages = await Message.find({
+                    receiverId: myId
+                }).sort({ createdAt: -1 }).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
+                const totalDocumentNumber = await Message.countDocuments({
+                    receiverId: myId,
+                })
+                return res.status(200).json({messages, totalDocumentNumber});
+            } catch (error) {
+                return res.status(500).json({error: 'error occured'});
+            }
+        }
+        if(activeCategory === 'received-unread') {
+            try {
+                const messages = await Message.find({
+                    receiverId: myId,
+                    status: 'unread',
+                }).sort({ createdAt: -1 }).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
+                const totalDocumentNumber = await Message.countDocuments({
+                    receiverId: myId,
+                    status: 'unread',
+                })
+                return res.status(200).json({messages, totalDocumentNumber});
+            } catch (error) {
+                return res.status(500).json({error: 'error occured'});
+            }
+        }
+        if(activeCategory === 'sent') {
+            try {
+                const messages = await Message.find({
+                    senderId: myId
+                }).sort({ createdAt: -1 }).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
+                const totalDocumentNumber = await Message.countDocuments({
+                    senderId: myId,
+                })
+                return res.status(200).json({messages, totalDocumentNumber});
+            } catch (error) {
+                return res.status(500).json({error: 'error occured'});
+            }
+        }
     }
-    try {
-        const messages = await Message.find({
-            $or: [
-                { senderId: myId },
-                { receiverId: myId }
-            ]
-        }).sort({ createdAt: -1 });
-        return res.status(200).json({messages});
-    } catch (error) {
-        return res.status(500).json({error: 'error occured'});
-    }
+    
 }
