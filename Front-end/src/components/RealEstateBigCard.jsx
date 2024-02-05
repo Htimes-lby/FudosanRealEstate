@@ -6,7 +6,7 @@ import FavouriteButton from "./FavouriteButton";
 import { useCookies } from "react-cookie";
 import axios from "axios";
 
-const RealEstateBigCard = ({realEstate, handleFavouriteToggle, handleRealEstateBigCardClicked, parentComponent, index}) => {
+const RealEstateBigCard = ({realEstate, contactMoveToMyPost, handleFavouriteToggle, handleRealEstateBigCardClicked, parentComponent, index}) => {
     const history = useHistory();
     const [cookies, setCookie] = useCookies();
     const myId = cookies.user._id;
@@ -23,7 +23,7 @@ const RealEstateBigCard = ({realEstate, handleFavouriteToggle, handleRealEstateB
     }
     const handleNavigateToContactPostPage = (e, _id) => {
         const searchParams = new URLSearchParams ();
-        searchParams.set('id', _id);
+        searchParams.set('realEstateId', _id);
         history.push(`/contact-post?${searchParams.toString()}`);
         e.stopPropagation();
     }

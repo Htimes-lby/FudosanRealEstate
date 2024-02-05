@@ -12,14 +12,13 @@ const ApproveAgentModal = (props) => {
     console.log('agent', agent);
     const [approved, setApproved] = useState(agent.approved)
     const handleToggleShowModal = props.handleToggleShowModal;
-    console.log('-------------------------------', approved)
     const handleApproveToggle = props.handleApproveToggle;
-    const approveToggleButtonContent = approved ? '掲示板に投稿する' : '掲示板に投稿する';
 
     const handleContactPosterButtonClicked = (props) => {
         const agentId = props;
         const searchParams = new URLSearchParams();
         searchParams.set('agentId', agentId);
+        searchParams.set('posterId', agent.posterId);
         history.push(`/admin-contact-agent?${searchParams.toString()}`)
     }
 

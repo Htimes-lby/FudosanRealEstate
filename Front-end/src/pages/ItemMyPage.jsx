@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux/es/hooks/useSelector';
 import RealEstateBigCard from '../components/RealEstateBigCard';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
@@ -13,15 +12,17 @@ const ItemMyPage = () => {
     const [realEstates, setRealEstates] = useState(null);
 
     const fetchData = async () => {
-        console.log('I am here at fetchData')
         const params = new URLSearchParams({posterId: myId}).toString();
         try {
             const res = await axios.get(`/getRealEstatesByPosterId?${params}`);
-            console.log('I am here at fetchDataTry', res)
             setRealEstates(res.data);
         } catch (error) {
             console.log(error);
         }
+    }
+
+    const moveToContactMyPost = () => {
+
     }
 
     useEffect(() => {
@@ -49,7 +50,7 @@ const ItemMyPage = () => {
                 {
                     realEstates.map((realEstate, index) => {
                         return(
-                            <RealEstateBigCard key = {index} realEstate = {realEstate} parentComponent = 'ItemMyPage' />
+                            <RealEstateBigCard key = {index} contactToContactMyPost = {moveToContactMyPost} realEstate = {realEstate} parentComponent = 'ItemMyPage' />
                         );
                     })
                 }

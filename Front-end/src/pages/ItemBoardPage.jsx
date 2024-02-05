@@ -5,6 +5,7 @@ import axios from 'axios';
 import Category from '../components/Category';
 import GoogleMapComponent from '../components/GoogleMapComponent';
 import AgentCard from "../components/AgentCard"
+import { useCookies } from 'react-cookie';
 
 const myImage = 
 {
@@ -17,105 +18,6 @@ const myImage =
     "農地":require("../assets/img/category/7.jpg"),
     "住宅地":require("../assets/img/category/8.png"),
 }
-
-// const agents = [
-// {
-//     _id:'',
-//     posterId:'',
-//     companyName :"会社名",
-//     agentName:"担当者名",
-//     phoneNumber:"0123456789",
-//     emailAddress:"abcdef@gmail.com",
-//     content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト`
-// },
-// {
-//     _id:'',
-//     posterId:'',
-//     companyName :"会社名",
-//     agentName:"担当者名",
-//     phoneNumber:"0123456789",
-//     emailAddress:"abcdef@gmail.com",
-//     content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト`
-// },
-// {
-//     _id:'',
-//     posterId:'',
-//     companyName :"会社名",
-//     agentName:"担当者名",
-//     phoneNumber:"0123456789",
-//     emailAddress:"abcdef@gmail.com",
-//     content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト`
-// },
-// {
-//     _id:'',
-//     posterId:'',
-//     companyName :"会社名",
-//     agentName:"担当者名",
-//     phoneNumber:"0123456789",
-//     emailAddress:"abcdef@gmail.com",
-//     content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト`
-// },
-// {
-//     _id:'',
-//     posterId:'',
-//     companyName :"会社名",
-//     agentName:"担当者名",
-//     phoneNumber:"0123456789",
-//     emailAddress:"abcdef@gmail.com",
-//     content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト`
-// },
-// {
-//     _id:'',
-//     posterId:'',
-//     companyName :"会社名",
-//     agentName:"担当者名",
-//     phoneNumber:"0123456789",
-//     emailAddress:"abcdef@gmail.com",
-//     content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト`
-// },
-// {
-//     _id:'',
-//     posterId:'',
-//     companyName :"会社名",
-//     agentName:"担当者名",
-//     phoneNumber:"0123456789",
-//     emailAddress:"abcdef@gmail.com",
-//     content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト`
-// },
-// {
-//     _id:'',
-//     posterId:'',
-//     companyName :"会社名",
-//     agentName:"担当者名",
-//     phoneNumber:"0123456789",
-//     emailAddress:"abcdef@gmail.com",
-//     content:`テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-//             テキスト テキスト テキスト テキスト テキスト テキスト テキスト`
-// },
-// ]
 
 const legions = {
     '東北': ['青森', '岩手', '秋田', '宮城', '山形', '福島'],
@@ -131,6 +33,10 @@ const legions = {
 const ItemBoardPage = () => {
 
     const history = useHistory();
+    const [cookies, setCookies] = useCookies();
+
+    const [isAdmin, setIsAdmin] = useState();
+    const [myId, setMyId] = useState()
     const [activeAgentCategory, setActiveAgentCategory] = useState('司法書士')
     const [displayAgents, setDisplayAgents] = useState (false);
     const [agents, setAgents] = useState ("");
@@ -142,7 +48,7 @@ const ItemBoardPage = () => {
             console.log(response.data);
         }
         fetchAgentData();
-        
+        if(cookies.token){setMyId(cookies.user._id)}
         }, []);
 
         console.log(agents);
@@ -169,6 +75,28 @@ const ItemBoardPage = () => {
         history.push(`/item-list?${searchParams.toString()}`)
     }
     const agentCardClicked = (props) => {
+        const agentId = props.agentId;
+        const posterId = props.posterId;
+        console.log(agentId, posterId, myId);
+        if(cookies.token) {
+            if (isAdmin || posterId === myId) {
+                const searchParams = new URLSearchParams({
+                    'agentId': agentId,
+                    'posterId': posterId,
+                }).toString();
+                history.push(`/admin-contact-agent?${searchParams}`);
+            } else{
+                const searchParams = new URLSearchParams({
+                    'previous-page': 'itemBoardPage',
+                    'agentId': agentId,
+                    'opponentId': posterId,
+                }).toString();
+                history.push(`message-detail?${searchParams}`);
+            }
+        } else {
+            history.push('login')
+        }
+        
         // const index = props;
         // const opponentId = agents[index].poster;
         // const agentId = agents[index]._id;
@@ -239,7 +167,7 @@ const ItemBoardPage = () => {
                         </div>
                         {agents.map((agent, index) => (
                             agent.category === activeAgentCategory &&
-                            <div className='pt-[25px]' onClick={() => agentCardClicked(index)}> 
+                            <div className='pt-[25px]' onClick={() => agentCardClicked({agentId: agent._id, posterId: agent.posterId})}> 
                                 <AgentCard agent={agent} key={index} />                           
                             </div>
                         ))}
