@@ -39,8 +39,7 @@ exports.getRealEstates = async (req, res) => {
         }
         if(filterLabel === 'filterByLegion'){
             try {
-                console.log('I am here in filterByLegion')
-                console.log('provinces in the provided legion', legions[filterContent])
+                
                 const realEstates = await RealEstate.find({'address.province': { $in: legions[filterContent] }, approved: true}).sort({ createdAt: -1 }).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
                 const totalDocumentNumber = await RealEstate.countDocuments({'address.province': {$in: legions[filterContent]}, approved: true});
                 return res.status(200).json({totalDocumentNumber, realEstates});
@@ -67,7 +66,6 @@ exports.getRealEstatesWithSearchCondition = async (req, res) => {
     const displayOrder = parseInt(req.query.displayOrder);
     const displayOrderDependency = req.query.displayOrderDependency;
     const showRealEstateWithoutBudget = req.query.showRealEstateWithoutBudget;
-    console.log('-------------------------------------', showRealEstateWithoutBudget, floorBudget, ceilBudget, filterContent, filterLabel)
     
     if(filterLabel === 'filterByCategory'){
         if(displayOrderDependency === 'createdAt') {
@@ -93,7 +91,6 @@ exports.getRealEstatesWithSearchCondition = async (req, res) => {
                             {'basicInfoLand.budget': ''}
                         ]
                     })
-                    console.log('I am here createdAt Show Category', realEstates)
                     return res.status(200).json({totalDocumentNumber, realEstates});
                 } catch (error) {
                     return res.status(500).json({ error: error.message });
@@ -116,7 +113,6 @@ exports.getRealEstatesWithSearchCondition = async (req, res) => {
                             {'basicInfoLand.budget': {$gt: floorBudget, $lt: ceilBudget}},
                         ]
                     })
-                    console.log('I am here createdAt Hide Category', realEstates)
                     return res.status(200).json({totalDocumentNumber, realEstates});
                 } catch (error) {
                     return res.status(500).json({ error: error.message });
@@ -146,7 +142,7 @@ exports.getRealEstatesWithSearchCondition = async (req, res) => {
                             {'basicInfoLand.budget': ''}
                         ]
                     })
-                    console.log('I am here Price Show Category', realEstates)
+                    ////console.log('I am here Price Show Category', realEstates)
                     return res.status(200).json({totalDocumentNumber, realEstates});
                 } catch (error) {
                     return res.status(500).json({ error: error.message });
@@ -177,7 +173,7 @@ exports.getRealEstatesWithSearchCondition = async (req, res) => {
                             {label: 'land', 'basicInfoLand.budget': {$lt: ceilBudget}}
                         ]
                     })
-                    console.log('I am here Price Hide Category', realEstates)
+                    ////console.log('I am here Price Hide Category', realEstates)
                     return res.status(200).json({totalDocumentNumber, realEstates});
                 } catch (error) {
                     return res.status(500).json({ error: error.message });
@@ -209,7 +205,7 @@ exports.getRealEstatesWithSearchCondition = async (req, res) => {
                             {'basicInfoLand.budget': ''}
                         ]
                     })
-                    console.log('I am here createdAt Show Category', realEstates)
+                    //console.log('I am here createdAt Show Category', realEstates)
                     return res.status(200).json({totalDocumentNumber, realEstates});
                 } catch (error) {
                     return res.status(500).json({ error: error.message });
@@ -232,7 +228,7 @@ exports.getRealEstatesWithSearchCondition = async (req, res) => {
                             {'basicInfoLand.budget': {$gt: floorBudget, $lt: ceilBudget}},
                         ]
                     })
-                    console.log('I am here createdAt Hide Category', realEstates)
+                    //console.log('I am here createdAt Hide Category', realEstates)
                     return res.status(200).json({totalDocumentNumber, realEstates});
                 } catch (error) {
                     return res.status(500).json({ error: error.message });
@@ -262,7 +258,7 @@ exports.getRealEstatesWithSearchCondition = async (req, res) => {
                             {'basicInfoLand.budget': ''}
                         ]
                     })
-                    console.log('I am here Price Show Category', realEstates)
+                    //console.log('I am here Price Show Category', realEstates)
                     return res.status(200).json({totalDocumentNumber, realEstates});
                 } catch (error) {
                     return res.status(500).json({ error: error.message });
@@ -293,7 +289,7 @@ exports.getRealEstatesWithSearchCondition = async (req, res) => {
                             {label: 'land', 'basicInfoLand.budget': {$lt: ceilBudget}}
                         ]
                     })
-                    console.log('I am here Price Hide Category', realEstates)
+                    //console.log('I am here Price Hide Category', realEstates)
                     return res.status(200).json({totalDocumentNumber, realEstates});
                 } catch (error) {
                     return res.status(500).json({ error: error.message });
@@ -325,7 +321,7 @@ exports.getRealEstatesWithSearchCondition = async (req, res) => {
                             {'basicInfoLand.budget': ''}
                         ]
                     })
-                    console.log('I am here createdAt Show Category', realEstates)
+                    //console.log('I am here createdAt Show Category', realEstates)
                     return res.status(200).json({totalDocumentNumber, realEstates});
                 } catch (error) {
                     return res.status(500).json({ error: error.message });
@@ -348,7 +344,7 @@ exports.getRealEstatesWithSearchCondition = async (req, res) => {
                             {'basicInfoLand.budget': {$gt: floorBudget, $lt: ceilBudget}},
                         ]
                     })
-                    console.log('I am here createdAt Hide Category', realEstates)
+                    //console.log('I am here createdAt Hide Category', realEstates)
                     return res.status(200).json({totalDocumentNumber, realEstates});
                 } catch (error) {
                     return res.status(500).json({ error: error.message });
@@ -378,7 +374,7 @@ exports.getRealEstatesWithSearchCondition = async (req, res) => {
                             {'basicInfoLand.budget': ''}
                         ]
                     })
-                    console.log('I am here Price Show Category', realEstates)
+                    //console.log('I am here Price Show Category', realEstates)
                     return res.status(200).json({totalDocumentNumber, realEstates});
                 } catch (error) {
                     return res.status(500).json({ error: error.message });
@@ -409,7 +405,7 @@ exports.getRealEstatesWithSearchCondition = async (req, res) => {
                             {label: 'land', 'basicInfoLand.budget': {$lt: ceilBudget}}
                         ]
                     })
-                    console.log('I am here Price Hide Category', realEstates)
+                    //console.log('I am here Price Hide Category', realEstates)
                     return res.status(200).json({totalDocumentNumber, realEstates});
                 } catch (error) {
                     return res.status(500).json({ error: error.message });
@@ -436,9 +432,9 @@ exports.getRealEstatesByIds = async (req, res) => {
     const favourites = req.body.favourites
     // const favourites = req.query.favourites;
     try {
-        console.log('favouriteREIds', favourites)
+        //console.log('favouriteREIds', favourites)
         const realEstates = await RealEstate.find({ _id: { $in: favourites } });
-        console.log('I am here in getRealEstatesByIds', realEstates)
+        //console.log('I am here in getRealEstatesByIds', realEstates)
         res.status(200).json({realEstates});
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -447,11 +443,11 @@ exports.getRealEstatesByIds = async (req, res) => {
 
 exports.getRealEstatesByPosterId = async (req, res) => {
     const posterId = req.query.posterId;
-    console.log('I am here in getRealEsateByPosterId', posterId);
+    //console.log('I am here in getRealEsateByPosterId', posterId);
     try {
         const realEstates = await RealEstate.find({poster: posterId}).sort({createdAt: -1});
-        console.log('I am here in getRealEstatesByPosterId Try', realEstates);
-        console.log('Success')
+        //console.log('I am here in getRealEstatesByPosterId Try', realEstates);
+        //console.log('Success')
         return res.status(200).json(realEstates);
     } catch (error) {
         return res.status(500).json({ error: error.message });

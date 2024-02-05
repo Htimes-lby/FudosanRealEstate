@@ -5,7 +5,7 @@ import {useCookies} from 'react-cookie'
 export default function PrivacyForm( props ) {
 
     const [cookies, setCookie] = useCookies();
-    console.log(cookies.user._id)
+    //console.log(cookies.user._id)
     const [province, setProvince] = useState('');
     const [city, setCity] = useState('');
     const [buildingName, setBuildingName] = useState('');

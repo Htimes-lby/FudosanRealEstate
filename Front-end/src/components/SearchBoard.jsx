@@ -34,7 +34,7 @@ const SearchBoard = ( props ) => {
         const withoutBudgetContent = withoutBudgetRef.current.value;
         const floorBudget = floorBudgetRef.current.value;
         const ceilBudget = ceilBudgetRef.current.value;
-        console.log('displayOrderContent--------------------', displayOrderContent)
+        //console.log('displayOrderContent--------------------', displayOrderContent)
         setCeilBudget(ceilBudget === ''? 1000000: ceilBudget);
         setFloorBudget(floorBudget === ''? -1: floorBudget);
         if(displayOrderContent === '掲載が新しい順') {

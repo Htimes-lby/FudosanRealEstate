@@ -10,59 +10,86 @@ import BasicTableLand from '../components/BasicTableLand'
 import FavouriteButton from '../components/FavouriteButton'
 import { useCookies } from 'react-cookie'
 import Loading from '../components/Loading'
-
+import FavouriteSetLoginModal from '../components/FavouriteSetLoginModal'
 const ItemDetailPage = () => {
 
     const location = useLocation();
     const history = useHistory();
     const [cookies, setCookie] = useCookies();
+    const [user, setUser] = useState('');
+    const [isFavourite, setIsFavourite] = useState(false);
+    const [myId, setMyId] = useState('');
+    const [showModal, setShowModal] = useState(false);
+
     const searchParams = new URLSearchParams(location.search);
     const realEstateId = searchParams.get('realEstateId');
 
-    const user = cookies.user;
-    const myId = user._id;
-    const favourites = user.favourites;
-    const isFavourite = favourites.includes(realEstateId);
+    
+
+    useEffect(() => {
+        // Update user state when cookies.user changes
+        setUser(cookies.user);
+    }, [cookies.user]);
+
+    useEffect(() => {
+        // Update myId and isFavourite once user state is updated
+        if (user) {
+            setMyId(user._id);
+            const temp = user.favourites.includes(realEstateId);
+            setIsFavourite(temp);
+        }
+    }, [user, realEstateId]);
+   
     const [favouriteButtonActive, setFavouriteButtonActive] = useState(isFavourite);
     const [realEstate, setRealEstate] = useState(null);
-    console.log(user, myId, favourites, isFavourite)
+    
     // const {address, basicInfoBuilding, basicInfoLand, images, briefDescription, fullDescription, label} = realEstate;
 
     const handleFavouriteButtonClicked = async () => {
+        if(cookies.token){
         const params = new URLSearchParams({
             realEstateId: realEstateId,
             userId: myId
         }).toString();
         if(isFavourite) {
             try {
-                console.log('I am here in removeFavourite')
+                //console.log('I am here in removeFavourite')
                 const res = await axios.get(`/removeFavourite?${params}`);
                 const updatedUser = res.data.updatedUser;
                 setCookie('user', updatedUser);
-                console.log('----------------------', updatedUser);
+                //console.log('----------------------', updatedUser);
             } catch (error) {
                 console.log(error.message);
             }
         } else {
             try {
-                console.log('I am here in addFavourite', params)
+                //console.log('I am here in addFavourite', params)
                 const res = await axios.get(`/addFavourite?${params}`);
                 const updatedUser = res.data.updatedUser;
                 setCookie('user', updatedUser);
-                console.log('-----------------------', updatedUser)
+                //console.log('-----------------------', updatedUser)
             } catch (error) {
                 console.log(error.message);
             }
         }
         setFavouriteButtonActive(favouriteButtonActive ? false : true);
+        }
+        else{
+            setShowModal(true);
+        }
     }
     const sendMsgButtonClicked = () => {
+        if(cookies.token){
         const posterId = realEstate.poster;
         const searchParams = new URLSearchParams();
         searchParams.set('previous-page','itemDetailPage')
         searchParams.set('realEstateId', realEstateId);
         searchParams.set('opponentId', posterId);
         history.push(`/message-detail?${searchParams.toString()}`);
+        }
+        else{
+            setShowModal(true);
+        }
     }
 
     useEffect(() => {
@@ -87,8 +114,8 @@ const ItemDetailPage = () => {
             </div>
         )
     }
-
-  return (
+    
+    return (
     <div className=' flex flex-col items-center pb-[120px] pt-[92px] w-full'>
         <p className='pb-10 text-3xl text-center noto-medium'>{realEstate.address.province}{realEstate.address.city}</p>
 
@@ -110,10 +137,14 @@ const ItemDetailPage = () => {
             </div>
             <div className='w-[90%] mx-auto text-xl noto-regular'>{realEstate.briefDescription}</div>
             <div className=' border-2 border/60-black p-3 text-base noto-regular mt-14'>{realEstate.fullDescription}</div>
-
+            
             <div className='flex justify-center gap-[50px] w-full mt-20'>
                 <div className='flex justify-center items-center w-[380px] h-[80px] bg-[#2A6484] rounded-xl noto-medium text-white text-[24px] cursor-pointer' onClick={sendMsgButtonClicked}>メッセージを送信する</div>
+            
                 <div onClick={handleFavouriteButtonClicked}><FavouriteButton parentComponent='realEstateDetailPage' isFavourite={isFavourite}/></div>
+                {
+                (showModal===true) && <FavouriteSetLoginModal setShowModal = {setShowModal} />
+                }
             </div>
         </div>
     </div>

@@ -45,13 +45,13 @@ const ItemBoardPage = () => {
         const fetchAgentData = async () => {
             const response = await axios.get("/getAgent");   
             setAgents(response.data);
-            console.log(response.data);
+            //console.log(response.data);
         }
         fetchAgentData();
         if(cookies.token){setMyId(cookies.user._id)}
         }, []);
 
-        console.log(agents);
+        //console.log(agents);
         
     const goToItemListPageWithFilterContent = (e, params) => {
         const searchParams = new URLSearchParams();

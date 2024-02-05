@@ -135,7 +135,7 @@ const sendVerificationEmail = (email, verificationCode) => {
     if (error) {
         console.error('Error sending verification email:', error);
     } else {
-        console.log('Verification email sent:', info.response);
+        //console.log('Verification email sent:', info.response);
     }
     });
 };
