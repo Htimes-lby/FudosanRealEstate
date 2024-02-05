@@ -20,7 +20,7 @@ const AdminApproveRealEstateList = () => {
         setActive(parseInt(clickedPage));
     };
 
-    console.log(unapprovedDataOnly)
+    //console.log(unapprovedDataOnly)
     const fetchData = async () => {
         const firstNumber = (active - 1) * 16 + 1;
         const lastNumber = active * 16;
@@ -32,7 +32,7 @@ const AdminApproveRealEstateList = () => {
                     province: province,
                 }).toString();
                 const res = await axios.get(`/getUnapprovedRealEstatesByAdmin?${params}`);
-                console.log(res)
+                //console.log(res)
                 setRealEstates(res.data.realEstates);
                 setTotalNumber(res.data.totalDocumentNumber);
             } catch (error) {

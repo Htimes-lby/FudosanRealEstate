@@ -20,9 +20,7 @@ const DashboardPage = () => {
                 }).toString();
                 const res = await axios.get(`/getRealEstates?${params}`);
                 setRealEstates(res.data);
-                console.log('res---------------------', res);
-                console.log('res.data----------------------', res.data)
-                console.log("realEstates----------------", realEstates);
+            
             } catch (error) {
                 console.log(error);
             }
@@ -30,7 +28,7 @@ const DashboardPage = () => {
         fetchData();
     },[]);
 
-    if(realEstates.length  == 0) {
+    if(realEstates.length  === 0) {
         return (
             <div>
                 <Loading />

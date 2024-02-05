@@ -25,6 +25,16 @@ const SignInPage = () => {
         e.preventDefault();
         const signinObject = {email, password}
         dispatch(signin({signinObject, setCookie, cookies}));
+
+        setTimeout(() => {
+            // Once login is successful, navigate back to the previous page
+            handleLoginSuccess();
+        }, 2000);
+    };
+
+    const handleLoginSuccess = () => {
+        // Navigate back to the previous page
+        history.goBack();
     };
 
     useEffect(() => {

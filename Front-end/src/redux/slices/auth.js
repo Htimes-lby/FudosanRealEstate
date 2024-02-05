@@ -14,14 +14,14 @@ export const signin = createAsyncThunk("/user/signin", async (props, { rejectWit
     const response = await axios.get("/signin", {
       params: { email: payload.email, password: payload.password },
     });
-    console.log(response.data.user)
+    console.log(response.data)
     setCookie('user', response.data.user);
-    setCookie('token', cookies.token);
-    console.log('----------------------cookie', cookies.user)
+    setCookie('token', response.data.token);
+    //console.log('----------------------cookie', cookies.user)
     return response.data;
   }
   catch (error) {
-    console.log('---------------------', error);
+    //console.log('---------------------', error);
     if(error.response.status === 500) {
       return rejectWithValue({ message: error.response.data.message })
     }
@@ -71,7 +71,7 @@ const authSlice = createSlice({
         }
       })
       .addCase(signin.rejected, (state, action) => {
-        console.log('I am here in signin rejected', action.payload.message);
+        console.log(action.payload.message);
         state.isLoading = false;
         state.error = action.payload.message;
       })

@@ -17,7 +17,7 @@ const DashboardRealEstatePostBoard = ( props ) => {
         history.push('item-board')
     }
 
-    console.log('realEstates in PostBoard',realEstates)
+
     return(
         <div className='flex flex-col items-center w-full'>
             <div className=' text-center text-[40px] mt-5'>売ります掲示板</div>

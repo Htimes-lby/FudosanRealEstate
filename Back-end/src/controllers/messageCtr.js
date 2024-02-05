@@ -30,7 +30,7 @@ exports.getMessages = async (req, res) => {
         const firstNumber = req.query.firstNumber;
         const lastNumber = req.query.lastNumber;
         const activeCategory = req.query.activeCategory;
-        console.log(firstNumber, lastNumber, activeCategory)
+        
         if(activeCategory === 'all') {
             try {
                 const messages = await Message.find({

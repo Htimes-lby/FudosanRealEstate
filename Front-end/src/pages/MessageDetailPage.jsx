@@ -58,7 +58,7 @@ const MessageDetailPage = () => {
                 myId: myId,
                 opponentId: opponentId
             }).toString();
-            console.log('I am here--------------', params)
+            //console.log('I am here--------------', params)
             const res = await axios.get(`/getMessages?${params}`);
             setMessages(res.data.messages);
         } catch (error) {

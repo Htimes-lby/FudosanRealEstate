@@ -13,11 +13,11 @@ const ItemMyPage = () => {
     const [realEstates, setRealEstates] = useState(null);
 
     const fetchData = async () => {
-        console.log('I am here at fetchData')
+        //console.log('I am here at fetchData')
         const params = new URLSearchParams({posterId: myId}).toString();
         try {
             const res = await axios.get(`/getRealEstatesByPosterId?${params}`);
-            console.log('I am here at fetchDataTry', res)
+            //console.log('I am here at fetchDataTry', res)
             setRealEstates(res.data);
         } catch (error) {
             console.log(error);
