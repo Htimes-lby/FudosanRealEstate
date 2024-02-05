@@ -18,15 +18,15 @@ const AdminViewAgentPage = () => {
         setShowApproveAgentModal(value);
     }
     const handleApproveToggle = () => {
-        console.log('I am here', approved);
+        //console.log('I am here', approved);
         setApproved((prevState) => !prevState);
     }
     const fetchAgentData = async () => {
         const res = await axios.get('/getAgentByAdmin');
-        console.log('--------------------------------', res.data)
+        //console.log('--------------------------------', res.data)
         setAgents(res.data);
     }
-    console.log('agents', agents);
+    //console.log('agents', agents);
 
     useEffect (() => {
         if(showApproveAgentModal === false) {

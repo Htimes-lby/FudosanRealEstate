@@ -139,13 +139,13 @@ const ItemBoardPage = () => {
         const fetchAgentData = async () => {
             const response = await axios.get("/getAgent");   
             setAgents(response.data);
-            console.log(response.data);
+            //console.log(response.data);
         }
         fetchAgentData();
         
         }, []);
 
-        console.log(agents);
+        //console.log(agents);
         
     const goToItemListPageWithFilterContent = (e, params) => {
         const searchParams = new URLSearchParams();

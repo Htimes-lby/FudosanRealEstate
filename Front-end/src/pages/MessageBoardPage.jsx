@@ -31,7 +31,7 @@ const MessageBoardPage = () => {
         } else {
             opponentId = messages[index].receiverId;
         }
-        console.log('++++++++++++++++++++++++++++++++++++++', opponentId)
+        //console.log('++++++++++++++++++++++++++++++++++++++', opponentId)
         const searchParams = new URLSearchParams();
         searchParams.set('previous-page', 'messageBoard');
         searchParams.set('myId', myId);
@@ -51,7 +51,7 @@ const MessageBoardPage = () => {
                 'lastNumber': lastNumber,
                 'activeCategory': activeCategory,
             }).toString();
-            console.log(firstNumber, lastNumber, activeCategory);
+            //console.log(firstNumber, lastNumber, activeCategory);
             const res = await axios.get(`/getMessages?${params}`);
             setMessages(res.data.messages);
             setTotalNumber(res.data.totalDocumentNumber);

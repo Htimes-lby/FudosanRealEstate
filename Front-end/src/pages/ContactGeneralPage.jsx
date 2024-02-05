@@ -57,7 +57,7 @@ const ContactGeneralPage = () => {
                 category: category,
             }
             const res = await axios.post('/saveGeneralContactMessage', payload);
-            console.log('=====================================', res)
+            //console.log('=====================================', res)
             // setContactMessages(prevMessages => [...prevMessages, content]);
             } catch (error) {
                 console.log(error.message);
@@ -67,10 +67,10 @@ const ContactGeneralPage = () => {
     const fetchContactMessages = async () => {
         try {
             const clientId = myId;
-            console.log('++++++++++++++++==================', clientId)
+            //console.log('++++++++++++++++==================', clientId)
             const params = new URLSearchParams({'clientId': clientId}).toString();
             const res = await axios.get(`/fetchGeneralContactMessages?${params}`);
-            console.log('+++++++++++++++++++++++++++++++++++', res);
+            //console.log('+++++++++++++++++++++++++++++++++++', res);
             setContactMessages(res.data.contactMessages);
         } catch (error) {
             console.log(error.message);
