@@ -14,9 +14,9 @@ const InputVerificationCodePage = () => {
         e.preventDefault();
         try {
             const payload = {emailVarificationCode}
-            console.log(payload);
+            //console.log(payload);
             const res = await axios.post(process.env.REACT_APP_API_BASE_URL + '/inputCode', payload)
-            console.log(res.data.message)
+            //console.log(res.data.message)
                 if(res.data.message === 'Invalid verification code'){
                 toast.error('コードを正しく入力してください。')
                 }

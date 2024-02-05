@@ -92,11 +92,16 @@ exports.saveGeneralContactMessage = async (req, res) => {
 exports.fetchGeneralContactMessages = async (req, res) => {
     const clientId = req.query.clientId;
     try {
+<<<<<<< HEAD
         const contactMessages = await ContactGeneral.find({clientId: clientId}).populate({
             path: 'clientId',
             select: 'name',
         }).sort({createdAt: 1});
         console.log('I am here', contactMessages)
+=======
+        const contactMessages = await ContactGeneral.find({clientId: clientId}).sort({createdAt: -1});
+        
+>>>>>>> 3c20d4ffa21823f4a63f3be76e6be164489f6b70
         return res.status(200).json({contactMessages});
     } catch (error) {
         return res.status(500).json({error: error.message});

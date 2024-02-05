@@ -48,5 +48,5 @@ app.use(errorHandler);
 app.use("/", realEstate);
 // app listens to defined port
 app.listen(process.env.APP_PORT, () => {
-  console.log("TODO-App backend server running on: " + process.env.APP_BASE_URL);
+  console.log("RealEstate-App backend server running on: " + process.env.APP_BASE_URL);
 });

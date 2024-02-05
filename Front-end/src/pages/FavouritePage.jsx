@@ -34,7 +34,7 @@ const FavouritePage = () => {
     },[])
 
     const handleRealEstateBigCardClicked = (props) => {
-        console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++')
+        //console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++')
         const index = props;
         const realEstateId = realEstates[index]._id;
         const searchParams = new URLSearchParams();
@@ -45,7 +45,7 @@ const FavouritePage = () => {
     const handleFavouriteToggle = async (props) => {
         const realEstateId = props.realEstateId;
         const isFavourite = props.isFavourite;
-        console.log('+++++++++++++++++++++++++', realEstateId, isFavourite)
+        //console.log('+++++++++++++++++++++++++', realEstateId, isFavourite)
         const params = new URLSearchParams({
             userId: myId,
             realEstateId: realEstateId,
