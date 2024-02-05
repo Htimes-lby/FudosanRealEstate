@@ -21,7 +21,7 @@ exports.getMessages = async (req, res) => {
                     { senderId: myId, receiverId: opponentId },
                     { senderId: opponentId, receiverId: myId }
                 ]
-            }).sort({ createdAt: -1 });
+            }).sort({ createdAt: 1 });
             return res.status(200).json({messages});
         } catch (error) {
             return res.status(500).json({error: 'error occured'});
@@ -38,7 +38,7 @@ exports.getMessages = async (req, res) => {
                         { senderId: myId },
                         { receiverId: myId }
                     ]
-                }).sort({ createdAt: -1 }).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
+                }).sort({ createdAt: 1 }).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
                 const totalDocumentNumber = await Message.countDocuments({
                     $or: [
                         { senderId: myId },
@@ -54,7 +54,7 @@ exports.getMessages = async (req, res) => {
             try {
                 const messages = await Message.find({
                     receiverId: myId
-                }).sort({ createdAt: -1 }).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
+                }).sort({ createdAt: 1 }).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
                 const totalDocumentNumber = await Message.countDocuments({
                     receiverId: myId,
                 })
@@ -68,7 +68,7 @@ exports.getMessages = async (req, res) => {
                 const messages = await Message.find({
                     receiverId: myId,
                     status: 'unread',
-                }).sort({ createdAt: -1 }).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
+                }).sort({ createdAt: 1 }).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
                 const totalDocumentNumber = await Message.countDocuments({
                     receiverId: myId,
                     status: 'unread',
@@ -82,7 +82,7 @@ exports.getMessages = async (req, res) => {
             try {
                 const messages = await Message.find({
                     senderId: myId
-                }).sort({ createdAt: -1 }).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
+                }).sort({ createdAt: 1 }).skip(firstNumber-1).limit(lastNumber-firstNumber+1);
                 const totalDocumentNumber = await Message.countDocuments({
                     senderId: myId,
                 })

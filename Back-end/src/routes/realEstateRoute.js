@@ -42,6 +42,7 @@ router.get("/getUser", userCtr.getUser)
 
 router.get("/getAgent", postCtr.getAgent)
 router.get("/getAgentByAdmin", postCtr.getAgentByAdmin)
+router.get("/getAgentById", postCtr.getAgentById)
 
 router.get("/getRealEstates", realEstateCtr.getRealEstates)
 router.get("/getRealEstateById", realEstateCtr.getRealEstateById)
@@ -63,5 +64,7 @@ router.post("/approveAgent", adminCtr.approveAgent);
 router.post("/disapproveAgent", adminCtr.disapproveAgent);
 router.post("/saveGeneralContactMessage", adminCtr.saveGeneralContactMessage);
 router.get("/fetchGeneralContactMessages", adminCtr.fetchGeneralContactMessages);
+router.post("/savePostContactMessage", adminCtr.savePostContactMessage);
+router.get("/fetchPostContactMessages", adminCtr.fetchPostContactMessages);
 
 module.exports = router;

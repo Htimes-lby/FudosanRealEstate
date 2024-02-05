@@ -136,10 +136,21 @@ const getAgentByAdmin = async (req, res) => {
   }
 }
 
+const getAgentById = async (req, res) => {
+  try {
+    console.log('start', req.query.agentId);
+    const agent = await Agent.findOne({_id: req.query.agentId});
+    console.log('response', agent)
+    return res.status(200).json({agent});
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+}
 module.exports = {
   createRealEstate,
   createAgent,
   createFeedBack,
   getAgent,
   getAgentByAdmin,
+  getAgentById,
 };
