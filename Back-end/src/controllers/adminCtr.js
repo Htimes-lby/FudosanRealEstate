@@ -1,5 +1,6 @@
 const RealEstate = require('../models/realEstateModel')
 const Agent = require('../models/agentsModel')
+const ContactGeneral = require('../models/contactGeneral')
 exports.approveRealEstate = async (req, res) => {
     try {
         const category = req.body.category;
@@ -64,5 +65,27 @@ exports.disapproveAgent = async (req, res) => {
         return res.status(200).json({updatedAgent})
     } catch (error) {
         return res.status(500).json({ error: error.message });
+    }
+}
+
+exports.saveGeneralContactMessage = async (req, res) => {
+    const newContactMessage = new ContactGeneral({clientId: req.body.clientId, category: req.body.category, content: req.body.content});
+    await newContactMessage.save((error) => {
+        if(error) {
+            return res.status(404).json({message: 'failed'});
+        } else {
+            return res.status(200).json({message: 'success'});
+        }
+    })
+}
+
+exports.fetchGeneralContactMessages = async (req, res) => {
+    const clientId = req.query.clientId;
+    try {
+        const contactMessages = await ContactGeneral.find({clientId: clientId}).sort({createdAt: -1});
+        console.log('I am here', contactMessages)
+        return res.status(200).json({contactMessages});
+    } catch (error) {
+        return res.status(500).json({error: error.message});
     }
 }

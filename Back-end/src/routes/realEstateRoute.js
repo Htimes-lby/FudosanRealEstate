@@ -61,5 +61,7 @@ router.post("/approveRealEstate", adminCtr.approveRealEstate);
 router.post("/disapproveRealEstate", adminCtr.disapproveRealEstate);
 router.post("/approveAgent", adminCtr.approveAgent);
 router.post("/disapproveAgent", adminCtr.disapproveAgent);
+router.post("/saveGeneralContactMessage", adminCtr.saveGeneralContactMessage);
+router.get("/fetchGeneralContactMessages", adminCtr.fetchGeneralContactMessages);
 
 module.exports = router;
