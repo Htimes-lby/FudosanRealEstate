@@ -56,7 +56,6 @@ const AdminApproveRealEstateDetail = () => {
             }
         }
         if(realEstate.approved === false) {
-            //console.log('I am here in handleApproveToggleBtnClickedApprovedFalse', showCategorySetModal);
             setShowCategorySetModal(true);
         }
     }
@@ -65,7 +64,6 @@ const AdminApproveRealEstateDetail = () => {
         try {
             const payload = {realEstateId, category}
             const res = await axios.post('/approveRealEstate', payload);
-            //console.log('approvedrealEstate---------------', res)
             setRealEstate(res.data.updatedRealEstate);
             setShowCategorySetModal(false);
             setApproveBtnContent(unapproveText)
@@ -75,6 +73,8 @@ const AdminApproveRealEstateDetail = () => {
     }
     
     const handleContactPosterButtonClicked = () => {
+        const searchParams = new URLSearchParams({realEstateId: realEstateId}).toString();
+        history.push(`/contact-post?${searchParams}`);
     }
 
     if(realEstate === null){

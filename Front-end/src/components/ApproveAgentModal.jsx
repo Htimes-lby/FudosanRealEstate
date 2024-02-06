@@ -9,7 +9,6 @@ const ApproveAgentModal = (props) => {
     const history = useHistory();
 
     const agent = props.agent;
-    //console.log('agent', agent);
     const [approved, setApproved] = useState(agent.approved)
     const handleToggleShowModal = props.handleToggleShowModal;
 

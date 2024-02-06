@@ -20,7 +20,6 @@ const AdminApproveRealEstateList = () => {
         setActive(parseInt(clickedPage));
     };
 
-    //console.log(unapprovedDataOnly)
     const fetchData = async () => {
         const firstNumber = (active - 1) * 16 + 1;
         const lastNumber = active * 16;
@@ -32,7 +31,6 @@ const AdminApproveRealEstateList = () => {
                     province: province,
                 }).toString();
                 const res = await axios.get(`/getUnapprovedRealEstatesByAdmin?${params}`);
-                //console.log(res)
                 setRealEstates(res.data.realEstates);
                 setTotalNumber(res.data.totalDocumentNumber);
             } catch (error) {
@@ -87,9 +85,6 @@ const AdminApproveRealEstateList = () => {
             <div className=' flex gap-[50px] justify-center items-center pt-[24px] '>            
                 <div className=" flex items-center justify-center ">
                         <p className="text-[20px] ">都道府県</p>
-                        {
-
-                        }
                         <select
                             className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[272px] ml-[95px]"
                             onChange={event => setProvince(event.target.value)}
@@ -154,12 +149,13 @@ const AdminApproveRealEstateList = () => {
                     <span className="text-lg text-[20px] mr-3">全不動産表示</span>
                     <input type="checkbox" className="appearance-none transition-colors cursor-pointer w-16 h-8 rounded-full focus:outline-none  bg-[#306382]" onChange={handleToggleChange} />
                     <span className="w-8 h-8 right-8 absolute rounded-full transform transition-transform bg-gray-200" />
-                    
                 </label>
                 <span className="text-lg text-[20px] ml-[15px]">掲載する不動産の表示</span>
                 </div>
             </div>
-            <div className='flex justify-center items-center gap-10 mt-16'>            
+            {
+                realEstates.length !== 0 &&
+                <div className='flex justify-center items-center gap-10 mt-16'>            
                 <Pagination
                     active={active}
                     size={Math.ceil(totalNumber/16)}
@@ -167,8 +163,12 @@ const AdminApproveRealEstateList = () => {
                     onClickHandler={activeHandler}
                 />
             </div>
-            
-            <div className='flex flex-col items-center w-full'>
+            }
+            <div className='flex flex-col items-center w-full min-h-[500px]'>
+                {
+                    realEstates.length === 0 &&
+                    <div className='pt-[200px] noto-medium text-3xl text-center'>ここに掲載された不動産はありません。</div>
+                }
                 <div className=' grid gap-x-8 gap-y-12 grid-cols-4 mt-3 mb-5 mx-auto box-border max-w-[1100px]'>
                     {
                         realEstates.map((realEstate, index) => {
@@ -183,12 +183,15 @@ const AdminApproveRealEstateList = () => {
             </div>
 
             <div className='flex justify-center items-center gap-10 pb-16'>
-                <Pagination
+                {
+                    realEstates.length !== 0 &&
+                    <Pagination
                     active={active}
                     size={Math.ceil(totalNumber/16)}
                     step={2}
                     onClickHandler={activeHandler}
                 />
+                }      
             </div>
         </div>
     )

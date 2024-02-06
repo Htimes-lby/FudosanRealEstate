@@ -3,7 +3,6 @@ import { useState } from "react";
 
 const AgentCard = (props) => {
     const {agent} = props;
-    //console.log(agent);
 
     const {companyName, agentName, phoneNumber, agentEmail, content} = agent;
     const name = `${agentName.lastNameGanji} ${agentName.firstNameGana}`;

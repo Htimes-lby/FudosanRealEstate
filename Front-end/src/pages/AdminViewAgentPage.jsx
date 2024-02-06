@@ -18,15 +18,12 @@ const AdminViewAgentPage = () => {
         setShowApproveAgentModal(value);
     }
     const handleApproveToggle = () => {
-        //console.log('I am here', approved);
         setApproved((prevState) => !prevState);
     }
     const fetchAgentData = async () => {
         const res = await axios.get('/getAgentByAdmin');
-        //console.log('--------------------------------', res.data)
         setAgents(res.data);
     }
-    //console.log('agents', agents);
 
     useEffect (() => {
         if(showApproveAgentModal === false) {
@@ -49,21 +46,25 @@ const AdminViewAgentPage = () => {
                 <div className={`absolute w-[33.3%] h-1 bottom-0 bg-[#f13f13] rounded-md transition-all duration-500 ${activeAgentCategory === '不動産業者' ? 'left-0' : activeAgentCategory === '司法書士' ? 'left-[33.3%]' : 'left-[66.6%]' }`}></div>
             </div>
             <div className='grid grid-cols-2 gap-x-16 gap-y-5 max-w-[1250px] min-h-[600px] pt-10 pb-24'>
-            {
-                agents.map((agent, index) => (
-                    agent.category === activeAgentCategory &&
-                    <div key={index} className='flex flex-col items-center w-[500px] px-4 py-3 bg-white rounded-lg border-[1px] border-black/30 cursor-pointer' onClick={() => handleAgentClicked(index)}>
-                        <div className='flex items-center justify-between w-full'>
-                            <div> {agent.agentName.firstNameGanji} {agent.companyName}</div>
-                            <div className='flex flex-col items-end gap-[1px]'>
-                                <span>{agent.phoneNumber}</span>
-                                <span className='text-sm'>{agent.agentEmail}</span>
+                {
+                    agents.length === 0 &&
+                    <div className='pt-[200px] text-3xl noto-medium'>ここに掲載されたエージェントはありません。</div>
+                }
+                {
+                    agents.map((agent, index) => (
+                        agent.category === activeAgentCategory &&
+                        <div key={index} className='flex flex-col items-center w-[500px] px-4 py-3 bg-white rounded-lg border-[1px] border-black/30 cursor-pointer' onClick={() => handleAgentClicked(index)}>
+                            <div className='flex items-center justify-between w-full'>
+                                <div> {agent.agentName.firstNameGanji} {agent.companyName}</div>
+                                <div className='flex flex-col items-end gap-[1px]'>
+                                    <span>{agent.phoneNumber}</span>
+                                    <span className='text-sm'>{agent.agentEmail}</span>
+                                </div>
                             </div>
+                            <div className='text-xs pt-3 line-clamp-3'>{agent.content}</div>
                         </div>
-                        <div className='text-xs pt-3 line-clamp-3'>{agent.content}</div>
-                    </div>
-                ))
-            }
+                    ))
+                }
             </div>
             {
                 showApproveAgentModal &&

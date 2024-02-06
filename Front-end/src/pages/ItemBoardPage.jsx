@@ -45,13 +45,10 @@ const ItemBoardPage = () => {
         const fetchAgentData = async () => {
             const response = await axios.get("/getAgent");   
             setAgents(response.data);
-            //console.log(response.data);
         }
         fetchAgentData();
         if(cookies.token){setMyId(cookies.user._id)}
         }, []);
-
-        //console.log(agents);
         
     const goToItemListPageWithFilterContent = (e, params) => {
         const searchParams = new URLSearchParams();
@@ -77,7 +74,7 @@ const ItemBoardPage = () => {
     const agentCardClicked = (props) => {
         const agentId = props.agentId;
         const posterId = props.posterId;
-        console.log(agentId, posterId, myId);
+
         if(cookies.token) {
             if (isAdmin || posterId === myId) {
                 const searchParams = new URLSearchParams({
@@ -96,16 +93,6 @@ const ItemBoardPage = () => {
         } else {
             history.push('login')
         }
-        
-        // const index = props;
-        // const opponentId = agents[index].poster;
-        // const agentId = agents[index]._id;
-        // const searchParams = new URLSearchParams();
-        // searchParams.set('opponentId', opponentId);
-        // searchParams.set('agentId', agentId);
-        // searchParams.set('previous-page', 'itemBoardPage')
-        // history.push(`/message-detail?${searchParams.toString()}`);
-        // // history.push('/message-detail', {state: {agentData}});
     }
     const handleDisplayAgentsToggle = (value) => {
         setDisplayAgents(value);

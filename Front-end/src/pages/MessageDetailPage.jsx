@@ -52,7 +52,6 @@ const MessageDetailPage = () => {
             try {
                 const params = new URLSearchParams({agentId: agentId}).toString();
                 const res = await axios.get(`/getAgentById?${params}`);
-                console.log('success', res.data);
                 setAgent(res.data.agent);
             } catch (error) {
                 console.log(error);
@@ -63,9 +62,7 @@ const MessageDetailPage = () => {
                 myId: myId,
                 opponentId: opponentId,
             }).toString();
-            //console.log('I am here--------------', params)
             const res = await axios.get(`/getMessages?${params}`);
-            console.log('I am here', res.data.messages)
             setMessages(res.data.messages);
         } catch (error) {
             console.log(error);
