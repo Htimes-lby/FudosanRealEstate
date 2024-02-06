@@ -32,7 +32,7 @@ const FavouriteSetLoginModal = (props) => {
                 <span className='text-lg noto-medium'>まずサインアップする必要があります。</span>
             
             </div>
-            <div className='flex w-[250px]  h-[50px] justify-center items-center bg-[#2A6484] text-white text-lg noto-medium rounded-xl cursor-pointer mt-8 mb-[40px]' onClick={handleNavigateToLogIn} >掲示板に投稿する</div>
+            <div className='flex w-[250px]  h-[50px] justify-center items-center bg-[#2A6484] text-white text-lg noto-medium rounded-xl cursor-pointer mt-8 mb-[40px]' onClick={handleNavigateToLogIn} >ログインページに移動</div>
         </div>
         <div className='opacity-75 bg-black fixed inset-0 z-40'></div>
         </>

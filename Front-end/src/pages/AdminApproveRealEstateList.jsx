@@ -169,7 +169,8 @@ const AdminApproveRealEstateList = () => {
                     realEstates.length === 0 &&
                     <div className='pt-[200px] noto-medium text-3xl text-center'>ここに掲載された不動産はありません。</div>
                 }
-                <div className=' grid gap-x-8 gap-y-12 grid-cols-4 mt-3 mb-5 mx-auto box-border max-w-[1100px]'>
+                <div className= {`grid gap-x-8 gap-y-12 mt-3 mb-5 mx-auto box-border max-w-[1100px]
+                ${realEstates.length === 1 ? 'grid-cols-1' : realEstates.length === 2 ? 'grid-cols-2' : realEstates.length === 3 ? 'grid-cols-3' : 'grid-cols-4'}`}>
                     {
                         realEstates.map((realEstate, index) => {
                             return(

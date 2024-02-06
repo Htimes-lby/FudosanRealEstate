@@ -7,8 +7,8 @@ import Loading from '../components/Loading';
 
 const ContactGeneralPage = () => {
     const history = useHistory();
-    const location = useLocation();
-    const searchParams = new URLSearchParams(location.search);
+    // const location = useLocation();
+    // const searchParams = new URLSearchParams(location.search);
     const inputRef = useRef();
 
     const [cookies, setCookie] = useCookies();
