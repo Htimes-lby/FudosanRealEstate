@@ -267,11 +267,12 @@ const FeedbackBoardPage = () => {
             <div className='flex flex-col items-start max-w-[1200px] mt-5 mx-auto'>
                 <Pagination
                     active={active}
-                    size={99}
+                    size={15}
                     step={2}
                     onClickHandler={activeHandler}
                 />
-                <div className='grid gap-x-8 gap-y-12 grid-cols-4 mt-2 mx-auto box-border'>
+                <div className={`grid gap-x-8 gap-y-12 mt-2 mx-auto box-border
+                ${feedbacks.length === 1 ? 'grid-cols-1' : feedbacks.length === 2 ? 'grid-cols-2' : feedbacks.length === 3 ? 'grid-cols-3' : 'grid-cols-4'}`}>
                 {
                     feedbacks.map((feedback, index) => {
                         return(

@@ -45,7 +45,8 @@ const AdminViewAgentPage = () => {
                 <span className=' w-[33%] cursor-pointer text-center' onClick={() => setActiveAgentCategory('投資家')}>投資家</span>
                 <div className={`absolute w-[33.3%] h-1 bottom-0 bg-[#f13f13] rounded-md transition-all duration-500 ${activeAgentCategory === '不動産業者' ? 'left-0' : activeAgentCategory === '司法書士' ? 'left-[33.3%]' : 'left-[66.6%]' }`}></div>
             </div>
-            <div className='grid grid-cols-2 gap-x-16 gap-y-5 max-w-[1250px] min-h-[600px] pt-10 pb-24'>
+            <div className={`grid gap-x-16 gap-y-5 max-w-[1250px] min-h-[600px] pt-10 pb-24
+            ${agents.length === 1 ? 'grid-cols-1' : 'grid-cols-2'}`}>
                 {
                     agents.length === 0 &&
                     <div className='pt-[200px] text-3xl noto-medium'>ここに掲載されたエージェントはありません。</div>

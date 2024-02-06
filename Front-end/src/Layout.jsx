@@ -26,19 +26,23 @@ import AdminContactAgentPage from "./pages/AdminContactaAgentPage";
 import InputVerificationCodePage from "./pages/InputVerificationCodePage";
 import FeedbackPage from "./pages/FeedbackPage";
 import NotFoundPages from "./pages/404pages";
+import { useCookies } from "react-cookie";
 
-const Layout = () =>{
+const Layout = () => {
+
+  const [cookies, setCookie] = useCookies();
+  const token = cookies.token;
 
   return (
     <Switch>
-        <Route exact path="/message-board" component={MessageBoardPage} />
-        <Route exact path="/message-detail" component={MessageDetailPage} />
-        <Route exact path="/post-agent" component={PostAgentPage} />
-        <Route exact path="/post-realestate" component={PostREPage} />
-        <Route exact path="/favourite" component={FavouritePage} />
-        <Route exact path="/my-post" component={ItemMyPage} />
-        <Route exact path="/contact-post" component={ContactPostPage} />
-        <Route exact path="/contact-general" component={ContactGeneralPage} />
+        <PrivateRoute exact path="/message-board" component={MessageBoardPage} />
+        <PrivateRoute exact path="/message-detail" component={MessageDetailPage} />
+        <PrivateRoute exact path="/post-agent" component={PostAgentPage} />
+        <PrivateRoute exact path="/post-realestate" component={PostREPage} />
+        <PrivateRoute exact path="/favourite" component={FavouritePage} />
+        <PrivateRoute exact path="/my-post" component={ItemMyPage} />
+        <PrivateRoute exact path="/contact-post" component={ContactPostPage} />
+        <PrivateRoute exact path="/contact-general" component={ContactGeneralPage} />
 
         <Route exact path="/" component={DashboardPage} />
         <Route exact path="/dashboard" component={DashboardPage} />

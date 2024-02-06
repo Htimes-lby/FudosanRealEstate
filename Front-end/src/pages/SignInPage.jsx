@@ -26,10 +26,7 @@ const SignInPage = () => {
         const signinObject = {email, password}
         dispatch(signin({signinObject, setCookie, cookies}));
 
-        setTimeout(() => {
-            // Once login is successful, navigate back to the previous page
-            handleLoginSuccess();
-        }, 2000);
+        
     };
 
     const handleLoginSuccess = () => {
@@ -40,6 +37,14 @@ const SignInPage = () => {
     useEffect(() => {
         setErrorMsg(error);
     },[error])
+
+    useEffect(() => {
+        setTimeout(() => {
+            if(cookies.token){
+                handleLoginSuccess();
+            }
+        }, 2000);
+    })
 
     const handleNavigateToRegister = () => {
         history.push('/register')
@@ -74,7 +79,6 @@ const SignInPage = () => {
                         />
                         <i className='absolute bottom-1 right-3 cursor-pointer' onClick={togglePasswordVisibility}>{eye}</i>
                     </div>
-                    {/* <p className='text-white mt-10'>アカウント作成と同時に、当サイトの および個人情報保護方針プライバシーポリシーに同意したとみなされます。</p>  */}
                     {
                         errorMsg !== '' && 
                         <p className='text-white'>{errorMsg}</p>

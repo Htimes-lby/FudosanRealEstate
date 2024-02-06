@@ -21,7 +21,8 @@ const DashboardRealEstatePostBoard = ( props ) => {
     return(
         <div className='flex flex-col items-center w-full'>
             <div className=' text-center text-[40px] mt-5'>売ります掲示板</div>
-            <div className=' grid gap-x-8 gap-y-12 grid-cols-4 mt-5 mx-auto box-border max-w-[1100px]'>
+            <div className={` grid gap-x-8 gap-y-12 mt-5 mx-auto box-border max-w-[1100px]
+            ${realEstates.length === 1 ? 'grid-cols-1' : realEstates.length === 2 ? 'grid-cols-2' : realEstates.length === 3 ? 'grid-cols-3' : 'grid-cols-4'}`}>
                 {
                     realEstates.map((realEstate, index) => {
                         return(
