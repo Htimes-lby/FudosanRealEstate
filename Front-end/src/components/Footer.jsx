@@ -15,8 +15,8 @@ const Footer = () => {
     }
     const handleRealEstateCagegoryClicked = (e) => {
         const searchParams = new URLSearchParams();
-        searchParams.set('searchStandard', 'searchByCategory');
-        searchParams.set('searchStandardContent', e.target.innerText);
+        searchParams.set('filterLabel', 'filterByCategory');
+        searchParams.set('filterContent', e.target.innerText);
         history.push(`/item-list?${searchParams.toString()}`);
     }
     const handleMyPostClicked = () => {

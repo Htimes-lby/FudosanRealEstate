@@ -3,31 +3,7 @@ import React, { useRef, useState } from 'react';
 import { useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 import { useHistory, useLocation } from 'react-router-dom/cjs/react-router-dom.min';
-
-const tempContactMessages = [
-    {
-        sender: 'minato',
-        receiver: 'fudosan',
-        content: `家を投稿したいです。 利用規約を確認しました。 販売手数料がありましたが、どのように支払われますか？
-        鑑賞文ページがとても印象的でしたが、もしここで売買が成立したら鑑賞文を残したいと思います。
-        どこで鑑賞文を入力できますか？`,
-    },
-    {
-        sender: 'fudosan',
-        receiver: 'minato',
-        content:  `お世話になっております。 お問合わせいただきありがとうございます。 
-        「販売手数料が、どのように支払われるか」とのご質問ですが、 家いちばをご利用いただく際の料金（家いちば手数料）についてでよろしいでしょうか。
-         掲載するだけであれば無料です。
-        実際に家いちばを通じて売れた場合には家いちば手数料がかかります。
-         詳しくは下記のページをご覧ください。
-         https://www.fudosan.com/feature 
-        また、売主様の「売りました体験談」の入力につきましては ご売却後にご案内させていただきます。
-         なお、このたび投稿したい家は、以前家いちばにご投稿されたものとは別の物件でしょうか。
-         ご不明点等ございましたらお申し付けください。 
-        よろしくお願いいたします。
-        ふどさん事務局 齊藤`
-    },
-]
+import Loading from '../components/Loading';
 
 const ContactGeneralPage = () => {
     const history = useHistory();
@@ -89,7 +65,7 @@ const ContactGeneralPage = () => {
 
     if(contactMessages === null) {
         return(
-            <div>loading....................</div>
+            <Loading/>
         )
     }
 

@@ -39,7 +39,6 @@ const SignInPage = () => {
 
     useEffect(() => {
         setErrorMsg(error);
-        console.log('error in signin page', error)
     },[error])
 
     const handleNavigateToRegister = () => {

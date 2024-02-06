@@ -87,17 +87,9 @@ const PostAgentPage = () => {
                     for (const file of uploadDataArray) {
                         formData.append('images', file);
                     }
-
-                    //console.log(formData)
-                    // Make a single axios request for both form data and images
                     const res = await axios.post(process.env.REACT_APP_API_BASE_URL + '/postAgent', formData)
-        
                     
-                        
-                  // Handle the response if needed
-                //console.log('Response from backend:', res.data);
                 } catch (error) {
-                  // Handle errors
                 console.error('Error sending form data:', error);
                 }
             };
@@ -107,7 +99,6 @@ const PostAgentPage = () => {
                     const response = await axios.get("/getUser", {
                         params: { _id: newId},
                         });
-                        
                         setEmail(response.data[0].email);
                         setFirstNameGana(response.data[0].name.firstNameGana)
                         setLastNameGana(response.data[0].name.lastNameGana)
@@ -117,12 +108,10 @@ const PostAgentPage = () => {
                 func();
                 }, []);
 
-    
     return (
         <div className='bg-[#F1F1F1]  pt-[124px]'>
             <div className='container bg-white'>
                 <div>
-
                     <div>
                         <p className='text-[36px] flex justify-center py-[101px]'>掲載のご依頼</p>
                     </div>

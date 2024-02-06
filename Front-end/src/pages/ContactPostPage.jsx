@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 import { useCookies } from 'react-cookie';
 import RealEstateBigCard from '../components/RealEstateBigCard';
+import Loading from '../components/Loading';
 
 const ContactPostPage = () => {
     const location = useLocation();
@@ -10,7 +11,6 @@ const ContactPostPage = () => {
     const textareaRef = useRef(null);
     const searchParams = new URLSearchParams(location.search);
     const realEstateId = searchParams.get('realEstateId');
-    console.log('realEstateId', realEstateId);
     // const isAdmin = cookies.user.isAdmin;
 
     const [realEstate, setRealEstate] = useState(null);
@@ -61,7 +61,7 @@ const ContactPostPage = () => {
 
     if( realEstate === null || contactMessages === null ) {
         return(
-            <div>loading..................</div>
+            <Loading/>
         )
     }
 

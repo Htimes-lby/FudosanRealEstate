@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 import Pagination from '../components/Pagination'
 import AccordionItemMessage from '../components/AccordionItemMessage';
+import Loading from '../components/Loading';
 import { useCookies } from 'react-cookie';
 
 const MessageBoardPage = () => {
@@ -31,7 +32,6 @@ const MessageBoardPage = () => {
         } else {
             opponentId = messages[index].receiverId;
         }
-        //console.log('++++++++++++++++++++++++++++++++++++++', opponentId)
         const searchParams = new URLSearchParams();
         searchParams.set('previous-page', 'messageBoard');
         searchParams.set('myId', myId);
@@ -51,7 +51,6 @@ const MessageBoardPage = () => {
                 'lastNumber': lastNumber,
                 'activeCategory': activeCategory,
             }).toString();
-            //console.log(firstNumber, lastNumber, activeCategory);
             const res = await axios.get(`/getMessages?${params}`);
             setMessages(res.data.messages);
             setTotalNumber(res.data.totalDocumentNumber);
@@ -70,7 +69,7 @@ const MessageBoardPage = () => {
 
     if(messages === null) {
         return (
-            <div>loading.....................</div>
+            <Loading/>
         )
     }
 

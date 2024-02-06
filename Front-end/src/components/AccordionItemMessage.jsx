@@ -13,7 +13,6 @@ const AccordionItemMessage = (props) => {
     const month = japanTime.month();
     const day = japanTime.date();
     const time = japanTime.format('HH:mm:ss');
-    //console.log(message)
     const [active, setActive] = useState(false);
     const handleToggle = () => {
         setActive((prevState) => !prevState);

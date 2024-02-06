@@ -15,7 +15,6 @@ const ItemListPage = () => {
     const searchParams = new URLSearchParams(location.search);
     const filterLabel = searchParams.get('filterLabel');
     const filterContent = searchParams.get('filterContent');
-    //console.log('filterContentIn ItemListPage', filterContent)
 
     const [isOpen, setIsOpen] = useState(false);
     const [active, setActive] = useState(1);
@@ -33,13 +32,11 @@ const ItemListPage = () => {
     const test = () => {
         if(displayOrderDependency === 'price') {
             const testVariable = true;
-            //console.log('I am here in test', testVariable)
         }
     }
 
     const fetchData = async () => {
         try {
-            //console.log('I am here in fetchData')
             const firstNumber = (active - 1) * 16 + 1;
             const lastNumber = active * 16;
             const params = new URLSearchParams({
@@ -49,7 +46,6 @@ const ItemListPage = () => {
                 filterContent: filterContent,
             }).toString();
             const res = await axios.get(`/getRealEstates?${params}`);
-            //console.log('-------------------------',res)
             setRealEstates(res.data.realEstates);
             setTotalNumber(res.data.totalDocumentNumber);
         } catch (error) {
@@ -59,7 +55,6 @@ const ItemListPage = () => {
 
     const fetchDataInSearchMode = async () => {
         try {
-            //console.log('I am here in fetchDataInSearchMode')
             const firstNumber = (active -1) * 16 + 1;
             const lastNumber = active * 16;
             const params = new URLSearchParams({
@@ -82,7 +77,6 @@ const ItemListPage = () => {
     }
 
     useEffect(() => {
-        //console.log(displayOrder, displayOrderDependency, floorBudget, ceilBudget, showRealEstateWithoutBudget, isSearchMode);
         if(isSearchMode === true) {
             fetchDataInSearchMode();
         } else {
