@@ -98,6 +98,7 @@ exports.fetchGeneralContactMessages = async (req, res) => {
         }).sort({createdAt: 1});
         console.log('I am here', contactMessages)
         return res.status(200).json({contactMessages});
+    
     } catch (error) {
         return res.status(500).json({error: error.message});
     }

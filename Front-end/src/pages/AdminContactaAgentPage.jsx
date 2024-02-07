@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom/cjs/react-router-dom';
 import { useCookies } from 'react-cookie';
 import { useRef } from 'react';
+import Loading from '../components/Loading';
 
 const AdminContactAgentPage = () => {
     
@@ -11,7 +12,6 @@ const AdminContactAgentPage = () => {
     const searchParams = new URLSearchParams(location.search);
     const agentId = searchParams.get('agentId');
     const posterId = searchParams.get('posterId');
-    console.log('agentId', agentId)
     const [cookies, setCookie] = useCookies();
     const isAdmin = cookies.user.isAdmin;
     const textareaRef = useRef(null);
@@ -23,7 +23,6 @@ const AdminContactAgentPage = () => {
     const fetchContactMessages = async () => {
         const params = new URLSearchParams({clientId: posterId}).toString();
         try {
-            console.log('I am here...............')
             const res = await axios.get(`/fetchGeneralContactMessages?${params}`);
             setContactMessages(res.data.contactMessages);
         } catch (error) {
@@ -35,9 +34,7 @@ const AdminContactAgentPage = () => {
         const params = new URLSearchParams({agentId: agentId}).toString();
         try {
             const res = await axios.get(`/getAgentById?${params}`);
-            console.log('==================================', res.data.agent);
             setAgent(res.data.agent);
-            console.log('&&&&&&&&&&&&&&&&&&&&&&&&', agent)
         } catch (error) {
             console.log(error.message);
         }
@@ -56,7 +53,6 @@ const AdminContactAgentPage = () => {
             clientId: agent.posterId,
             content: content,
         }
-        console.log('payload', payload)
         try {
             const res = await axios.post('/saveGeneralContactMessage', payload);
             fetchContactMessages();
@@ -73,7 +69,7 @@ const AdminContactAgentPage = () => {
 
     if(contactMessages === null || agent === null) {
         return (
-            <div>loading...................</div>
+            <Loading/>
         )
     }
 

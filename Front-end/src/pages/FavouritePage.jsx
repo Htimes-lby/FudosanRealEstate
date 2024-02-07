@@ -34,7 +34,6 @@ const FavouritePage = () => {
     },[])
 
     const handleRealEstateBigCardClicked = (props) => {
-        //console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++')
         const index = props;
         const realEstateId = realEstates[index]._id;
         const searchParams = new URLSearchParams();
@@ -45,7 +44,6 @@ const FavouritePage = () => {
     const handleFavouriteToggle = async (props) => {
         const realEstateId = props.realEstateId;
         const isFavourite = props.isFavourite;
-        //console.log('+++++++++++++++++++++++++', realEstateId, isFavourite)
         const params = new URLSearchParams({
             userId: myId,
             realEstateId: realEstateId,
@@ -79,9 +77,9 @@ const FavouritePage = () => {
     return (
         <div>
             <div className='flex text-[40px] justify-center pb-[80px]'>
-                <p className='pt-[63px] noto-medium'>お気に入り</p>
+                <p className='pt-[90px] noto-medium'>お気に入り</p>
             </div>
-            <div className='flex flex-col items-center min-h-[600px]'>
+            <div className='flex flex-col items-center min-h-[500px]'>
                 {
                     realEstates.length === 0 &&
                     <div className='text-center text-3xl noto-medium pt-[150px]'>お気に入りに追加された不動産はありません。</div>

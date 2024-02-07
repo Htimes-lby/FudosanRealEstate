@@ -27,12 +27,10 @@ const ItemDetailPage = () => {
     
 
     useEffect(() => {
-        // Update user state when cookies.user changes
         setUser(cookies.user);
     }, [cookies.user]);
 
     useEffect(() => {
-        // Update myId and isFavourite once user state is updated
         if (user) {
             setMyId(user._id);
             const temp = user.favourites.includes(realEstateId);
@@ -43,7 +41,6 @@ const ItemDetailPage = () => {
     const [favouriteButtonActive, setFavouriteButtonActive] = useState(isFavourite);
     const [realEstate, setRealEstate] = useState(null);
     
-    // const {address, basicInfoBuilding, basicInfoLand, images, briefDescription, fullDescription, label} = realEstate;
 
     const handleFavouriteButtonClicked = async () => {
         if(cookies.token){
@@ -53,21 +50,17 @@ const ItemDetailPage = () => {
         }).toString();
         if(isFavourite) {
             try {
-                //console.log('I am here in removeFavourite')
                 const res = await axios.get(`/removeFavourite?${params}`);
                 const updatedUser = res.data.updatedUser;
                 setCookie('user', updatedUser);
-                //console.log('----------------------', updatedUser);
             } catch (error) {
                 console.log(error.message);
             }
         } else {
             try {
-                //console.log('I am here in addFavourite', params)
                 const res = await axios.get(`/addFavourite?${params}`);
                 const updatedUser = res.data.updatedUser;
                 setCookie('user', updatedUser);
-                //console.log('-----------------------', updatedUser)
             } catch (error) {
                 console.log(error.message);
             }

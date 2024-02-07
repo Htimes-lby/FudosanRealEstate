@@ -18,7 +18,6 @@ const RealEstateBigCard = ({realEstate, contactMoveToMyPost, handleFavouriteTogg
     const fontSize = 'text-[11px]'
     const handleFavouriteButtonClicked = async (e) => {
         handleFavouriteToggle({realEstateId, isFavourite});
-        // console.log('--------------------------------');
         e.stopPropagation();
     }
     const handleNavigateToContactPostPage = (e, _id) => {

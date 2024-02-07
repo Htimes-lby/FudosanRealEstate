@@ -79,18 +79,11 @@ const handleconditionDataArray = (data) => {
             // ... Append other form data as needed
             
             // Append image files
-            //console.log(uploadDataArray);   
             for (const file of uploadDataArray) {
                 formData.append('images', file);
             }
             // Make a single axios request for both form data and images
-            const res = await axios.post(process.env.REACT_APP_API_BASE_URL + '/postRealEstate', formData)
-            //console.log(formData);
-
-            
-                
           // Handle the response if needed
-        //console.log('Response from backend:', res.data);
         } catch (error) {
           // Handle errors
         console.error('Error sending form data:', error);
