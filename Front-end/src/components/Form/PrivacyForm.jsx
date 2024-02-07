@@ -31,19 +31,21 @@ export default function PrivacyForm( props ) {
 
     useEffect(() => {
         const func = async () => {
-            const newId = cookies.user._id;
-            const response = await axios.get("/getUser", {
-                params: { _id: newId},
+            if (cookies.user && cookies.user._id) {
+                const newId = cookies.user._id;
+                const response = await axios.get("/getUser", {
+                    params: { _id: newId },
                 });
-                
+                    
                 setEmail(response.data[0].email);
-                setFirstNameGana(response.data[0].name.firstNameGana)
-                setLastNameGana(response.data[0].name.lastNameGana)
-                setFirstNameGanji(response.data[0].name.firstNameGanji)
-                setLastNameGanji(response.data[0].name.lastNameGanji)
-        }
+                setFirstNameGana(response.data[0].name.firstNameGana);
+                setLastNameGana(response.data[0].name.lastNameGana);
+                setFirstNameGanji(response.data[0].name.firstNameGanji);
+                setLastNameGanji(response.data[0].name.lastNameGanji);
+            }
+        };
         func();
-        }, []);
+    }, [cookies.user]); // Include cookies.user in the dependency array
 
 
 

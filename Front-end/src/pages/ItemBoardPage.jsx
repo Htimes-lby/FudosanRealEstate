@@ -34,25 +34,34 @@ const ItemBoardPage = () => {
 
     const history = useHistory();
     const [cookies, setCookies] = useCookies();
-
     const [isAdmin, setIsAdmin] = useState();
     const [myId, setMyId] = useState()
     const [activeAgentCategory, setActiveAgentCategory] = useState('司法書士')
     const [displayAgents, setDisplayAgents] = useState (false);
     const [agents, setAgents] = useState ("");
+    const [realEstates, setRealEstates] = useState ([]);
+    const [newAddress, setNewAddress] = useState ([]);
+
 
     useEffect(() => {
         const fetchAgentData = async () => {
             const response = await axios.get("/getAgent");   
             setAgents(response.data);
-            //console.log(response.data);
+            const res = await axios.get("/getRealEstate");
+            setRealEstates(res.data);
         }
         fetchAgentData();
         if(cookies.token){setMyId(cookies.user._id)}
         }, []);
 
-        //console.log(agents);
-        
+        useEffect(() => {
+            const addresses = realEstates.map((data) => {
+                return data.address.province + " " + data.address.city;
+            });
+            setNewAddress(addresses);
+        }, [realEstates]);
+
+      
     const goToItemListPageWithFilterContent = (e, params) => {
         const searchParams = new URLSearchParams();
         searchParams.set('filterContent', e.target.innerText);
@@ -150,7 +159,7 @@ const ItemBoardPage = () => {
                     </div>
                 </div>
                 <div className='pt-[20px]'>
-                    <GoogleMapComponent />
+                    <GoogleMapComponent newAddress={newAddress} zoom={4} />
                 </div>
             </div>
             <div className={`absolute top-32 right-32 text-[16px] noto-medium border-b-2 border-b-emerald-600 py-1 px-3 cursor-pointer ${displayAgents ? 'hidden' : 'block'}`} onClick={() => handleDisplayAgentsToggle(true)}><div className = 'pr-3 fa-solid fa-arrow-left'></div>エージェントを見る</div>

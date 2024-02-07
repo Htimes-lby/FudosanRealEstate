@@ -114,6 +114,9 @@ const ItemDetailPage = () => {
             </div>
         )
     }
+    let newAddress = [];
+     newAddress.push(`${realEstate.address.province} ${realEstate.address.city}`) 
+    
     
     return (
     <div className=' flex flex-col items-center pb-[120px] pt-[92px] w-full'>
@@ -126,7 +129,7 @@ const ItemDetailPage = () => {
         <div className='w-[1300px] mx-auto'>
             <div className='flex items-center w-full justify-between pt-[90px] pb-[84px]'>
                 <div>
-                    <GoogleMapComponent />
+                    <GoogleMapComponent newAddress={newAddress} zoom={10}/>
                 </div>
                 {
                     realEstate.label === 'building' && <BasicTableBuilding tableData = {realEstate.basicInfoBuilding} fontSize = {"text-[24px]"} width = {"w-[500px]"}  />

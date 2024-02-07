@@ -454,6 +454,12 @@ exports.getRealEstatesByPosterId = async (req, res) => {
     }
 }
 
+exports.getRealEstate = async (req, res) => {
+        let realestate = await RealEstate.find({});
+        res.json(realestate);
+    
+}
+
 exports.getRealEstatesByAdmin = async (req, res) => {
     const firstNumber = parseInt(req.query.firstNumber);
     const lastNumber = parseInt(req.query.lastNumber);
